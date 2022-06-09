@@ -12,6 +12,7 @@ and maybe some bits of:
 
 - Chapter 3: Remedial Unix Shell
 - Chapter 4: Working with Remote Machines
+- Chapter 6: Bioinformatics Data
 
 
 
