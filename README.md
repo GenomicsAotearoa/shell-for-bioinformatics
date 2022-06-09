@@ -14,6 +14,6 @@ and maybe some bits of:
 - Chapter 4: [Working with Remote Machines](1-remote-machines.md)
 - Chapter 6: [Bioinformatics Data](2-bioinformatics-data.md)
 
-and perhaps even some (other stuff)[4-other-stuff.md]
+and perhaps even some [other stuff](4-other-stuff.md)
 
 
