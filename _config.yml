@@ -1,1 +1,5 @@
 theme: jekyll-theme-cayman
+
+kramdown:
+  parse_block_html: true
+ 
