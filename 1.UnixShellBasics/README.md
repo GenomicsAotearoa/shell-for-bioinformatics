@@ -231,7 +231,11 @@ Let's run the code:
 grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
-`CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA`<span style="color:red">Y</span>`CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC`
+```
+CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
+```
+
+**NB: colours not supported in Markdown (I tried usign HTML)**
 
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
