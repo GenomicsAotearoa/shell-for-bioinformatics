@@ -202,7 +202,7 @@ The pipe operator (`|`) passes the output from one command to another command as
 Steps:
 
 1. Remove the header information for the sequence (line starts with ">")
-2. Highlight any characters in teh sequence that *are not* A, T, C or G.
+2. Highlight any characters in the sequence that *are not* A, T, C or G.
 
 We will use grep to carry out the first step, and then use the pipe operator to pass the output to a second grep command to carry out the second step.
 
@@ -259,11 +259,10 @@ CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 
 ### Using `tee` to capture intermediate outputs
 
-
 ```
 grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color -i "[^ATCG]" > non-atcg.txt
 ```
 
-The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through teh pipe to the next `grep` command.
+The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
 
