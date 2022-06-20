@@ -231,11 +231,7 @@ Let's run the code:
 grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
-```
-CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
-```
-
-**NB: COLOUR ISN'T WORKING IN THE MARKDOWN DOCUMENT.**
+`CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA`<span style="color:red">Y</span>`CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC`
 
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
@@ -253,9 +249,7 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
 cat non-atcg.txt 
 ```
 
-```
-CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
-```
+NB: since we are redirecting to a text file, the colour information won't be recorded.
 
 ### Using `tee` to capture intermediate outputs
 
