@@ -7,8 +7,10 @@ This course utilises material and ideas from the book:
 Sections of the course:
 
 - [Unix Shell Basics](../1.UnixShellBasics/README.md)
-- Accessing bioinformatics data
-- Accessing remote machines
+- Working on remote machines
+- Bioinformatics data
+- [Unix Data Tools](../4.UnixDataTools/README.md)
+
 
 
 The data for the course can be downloaded as follows:
