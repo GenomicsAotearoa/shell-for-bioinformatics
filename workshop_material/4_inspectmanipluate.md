@@ -210,10 +210,39 @@ chr2	35	54
 chr3	11	28
 chr3	16	27
 ```
-`sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromo‐
+`sort` without any148
+| Chapter 7: Unix Data Tools arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromo‐
 somes together, as these are “ties” in the sorted order.
 
 However, using sort ’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
 
 • The ability to sort by particular columns
 • The ability to tell sort that certain columns are numeric values (and not alpha‐numeric text)
+
+`sort` has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):
+
+```bash
+$ sort -k1,1 -k2n test_sort.bed 
+
+chr1	9	28
+chr1	10	19
+chr1	26	39
+chr1	32	47
+chr1	40	49
+chr2	35	54
+chr3	11	28
+chr3	16	27
+```
+
+Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as start,end , so to sort by a single column we use start,start . In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
+with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n` ).
+
+
+### Exercise 4.3
+{% capture e4dot3 %}
+
+
+
+{% endcapture %}
+
+{% include exercise.html title="e4dot3" content=e4dot3%}
