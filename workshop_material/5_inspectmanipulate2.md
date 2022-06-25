@@ -109,7 +109,7 @@ chr1	32	47
 chr1	9	28
 ```
 
-**Built-In Variables In Awk**
+**Built-In Variables and special patterns In Awk**
 
 * Awk’s built-in variables include the field variables—$1, $2, $3, and so on ($0 is the entire line) — that break a line of text into individual words or pieces called fields. 
 
@@ -119,3 +119,8 @@ chr1	9	28
     - `RS`: stores the current record separator character. Since, by default, an input line is the input record, the default record separator character is a newline. 
     - `OFS`: stores the output field separator, which separates the fields when Awk prints them. The default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. 
     - `ORS`: stores the output record separator, which separates the output lines when Awk prints them. The default is a newline character. print automatically outputs the contents of ORS at the end of whatever it is given to print. 
+
+* Also, there are two special patterns `BEGIN` & `END`
+
+     - `BEGIN` - specifies what to do before the first record is read in. Useful to initialise and set up variables
+     - `END` - what to do after the last record's processing is complete. Useful to print data summaries ad the end of file processing
