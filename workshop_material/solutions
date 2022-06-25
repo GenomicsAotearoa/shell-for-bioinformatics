@@ -1,0 +1,12 @@
+### Exercise 4.1
+
+```bash
+$ (head -n 2; tail -n 2) < Mus_musculus.GRCm38.75_chr1.bed
+```
+###  Exercise 4.2
+
+```bash
+$ seq 10 > nums.txt
+$ cat nums.txt
+$ tail -n n+2 nums.txt
+```
