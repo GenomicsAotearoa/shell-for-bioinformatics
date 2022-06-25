@@ -239,3 +239,6 @@ grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color -i "[^ATCG]" >
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
 
+- - - 
+
+<p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
