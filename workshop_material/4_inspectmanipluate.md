@@ -212,3 +212,8 @@ chr3	16	27
 ```
 `sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromo‐
 somes together, as these are “ties” in the sorted order.
+
+However, using sort ’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
+
+• The ability to sort by particular columns
+• The ability to tell sort that certain columns are numeric values (and not alpha‐numeric text)
