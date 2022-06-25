@@ -52,3 +52,5 @@ $ head -n 4 Mus_musculus.GRCm38.75_chr1.bed
 ```bash
 $ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
 ```
+
+We can also use tail to remove the header of a file. Normally the -n argument specifies how many of the last lines of a file to include, but if -n is given a number x preceded with a + sign (e.g., +x ), tail will start from the x<sup>th</sup> line. So to chop off a header,we start from the second line with -n +2 . Here, we’ll use the command seq to generate a file of 3 numbers, and chop of the first line:
