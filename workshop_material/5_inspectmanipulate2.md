@@ -60,3 +60,18 @@ chr1	40	49
 chr1	9	28
 chr1	10	19
 ```
+
+`awk` can be used to mimic functionality of `cut` 
+
+```bash
+$ awk '{print $2 "\t" $3}' example.bed 
+26	39
+32	47
+11	28
+40	49
+16	27
+9	28
+35	54
+10	19
+```
+Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f2,3 example.bed` 
