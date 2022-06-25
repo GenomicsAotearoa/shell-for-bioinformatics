@@ -248,3 +248,5 @@ header). Can you group rows by chromosome, and sort by position ?. If yes, appen
 {% endcapture %}
 
 {% include exercise.html title="e4dot3" content=e4dot3%}
+
+## Finding Unique Values in uniq
