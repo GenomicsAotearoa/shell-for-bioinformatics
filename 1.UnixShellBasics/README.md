@@ -207,7 +207,7 @@ Let's run the code:
 ```bash
 $ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
-  CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
+  CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 ```
 
 **NB: colours not supported in Markdown (I tried using HTML)**
