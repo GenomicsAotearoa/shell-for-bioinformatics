@@ -1,7 +1,7 @@
 # What is a Unix Shell and Bash 
 
 <p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1 - Introduction </a></b> 
+  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/0_setup_download.html" style="background: var(--bs-green);font-weight:bold">&laquo; Setup </a></b> 
   <span style="float:right;">
     <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">3 - Shell Basics and recap &raquo;</a></b>
   </span>
@@ -29,7 +29,7 @@ Bash (Bourne again shell) is a type of Unix Shell and it is the default shell on
 
 - - - 
 <p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1 - Introduction </a></b> 
+  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/0_setup_download.html" style="background: var(--bs-green);font-weight:bold">&laquo; Setup </a></b> 
   <span style="float:right;">
     <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">3 - Shell Basics and recap &raquo;</a></b>
   </span>
