@@ -113,7 +113,7 @@ chr1	9	28
 
 **Built-In Variables and special patterns In Awk**
 
-* Awk’s built-in variables include the field variables—$1, $2, $3, and so on ($0 is the entire line) — that break a line of text into individual words or pieces called fields. 
+* Awk’s built-in variables include the field variables `$1`, `$2`, `$3`, and so on (`$0` is the entire line) — that break a line of text into individual words or pieces called fields. 
 
     - `NR`: keeps a current count of the number of input records. Remember that records are usually lines. Awk command performs the pattern/action statements once for each record in a file. 
     - `NF`: keeps a count of the number of fields within the current input record. 
