@@ -144,3 +144,23 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
 Note that although our three-column file of genomic positions looks like a BED- formatted file, it’s not due to subtle differences in genomic range formats
 
 `cut` also allows us to specify the column delimiter character. So, if we were to come across a CSV file containing chromosome names, start positions, and end positions, we could select columns from it, too:
+
+As you may have noticed when working with tab-delimited files, it’s not always easy to see which elements belong to a particular column. For example:
+
+```bash
+$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
+    
+    1	pseudogene	gene	3054233	3054733	.	+	.
+    1	unprocessed_pseudogene	transcript	3054233	3054733	.	+	.
+    1	unprocessed_pseudogene	exon	3054233	3054733	.	+	.
+```
+
+While tabs are a terrific delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
+
+```bash
+$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
+
+    1  pseudogene                          gene         3054233    3054733    .  +  .
+    1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
+    1  unprocessed_pseudogene              exon         3054233    3054733    .  +  .
+```
