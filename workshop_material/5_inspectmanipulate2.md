@@ -31,3 +31,32 @@ WHAT CAN WE DO WITH AWK?
 ```bash
 awk options 'selection_criteria {action}' input-file >  output-file
 ```
+**Options** 
+
+>>`-f program-file` : Reads the AWK program source from the file program-file, instead of from the first command line argument.
+>>
+>>`-F fs`            : Use fs for the input field separator
+
+Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
+
+```bash
+$ awk '{print}' example.bed 
+chr1	26	39
+chr1	32	47
+chr3	11	28
+chr1	40	49
+chr3	16	27
+chr1	9	28
+chr2	35	54
+chr1	10	19
+```
+Print lines which match the given pattern
+
+```bash
+$ awk '/chr1/ {print}' example.bed 
+chr1	26	39
+chr1	32	47
+chr1	40	49
+chr1	9	28
+chr1	10	19
+```
