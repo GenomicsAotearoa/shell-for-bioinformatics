@@ -1,5 +1,12 @@
 # Setup
 
+<p style="text-align:left;">
+  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-green);font-weight:bold">&laquo; Home </a></b> 
+  <span style="float:right;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">1 - Introduction &raquo;</a></b>
+  </span>
+</p>
+
 * Do not remove this line (it will not be displayed)
 {:toc}
 
@@ -33,3 +40,10 @@ OR
 $ wget -c https://github.com/GenomicsAotearoa/bash-for-bioinformatics/releases/download/v1.0rc1/data_shell4b.zip
 ```
 
+- - - 
+<p style="text-align:left;">
+  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-green);font-weight:bold">&laquo; Home </a></b> 
+  <span style="float:right;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">1 - Introduction &raquo;</a></b>
+  </span>
+</p>
