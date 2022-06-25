@@ -39,7 +39,7 @@ Other useful commands:
 
 ### Output redirection
 
-The `DataFiles` directory contains the following fasta files:
+The `data_shell4b` directory contains the following fasta files:
 
 ```
 tb1-protein.fasta
