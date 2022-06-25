@@ -1,4 +1,4 @@
-# Intermediate-Advanced Bash for Bioinformatics
+# Intermediate-Advanced shell for Bioinformatics
 
 ## Content
 
