@@ -83,3 +83,25 @@ $ wc Mus_musculus.GRCm38.75_chr1.bed
 
   81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
 ```
+Often, we only need to call the number of lines which can be done by using `-l` flag .i.e. It can be used as a sanity check at times to make sure an output which should carry the same number of lines as per input OR a certain file format depends on another format without loosing overall data structure wasn't corrupted or over/under manipulated. 
+
+>>**Question** - count the number of lines in *Mus_musculus.GRCm38.75_chr1.bed* and *Mus_musculus.GRCm38.75_chr1.gtf* . Anything out of the ordinary ? 
+
+Although `wc -l` is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" 
+
+For an example, If we are to create a file with 3 rows of data and then two empty lines, 
+
+```bash
+$ cat > fool_wc.bed
+1 100
+2 200
+3 300
+
+
+$
+```
+```bash
+$ wc -l fool_wc.bed 
+  5 fool_wc.bed
+```
+
