@@ -164,3 +164,13 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -
     1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
     1  unprocessed_pseudogene              exon         3054233    3054733    .  +  .
 ```
+Note that you should only use `column -t` to visualize data in the terminal, not toreformat data to write to a file. Tab-delimited data is preferable to data delimited by a
+variable number of spaces, since it’s easier for programs to parse. Like `cut` , `column` ’s default delimiter is the tab character ( `\t` ). We can specify a different delimiter with the `-s` option. So, if we wanted to visualize the columns of the ***Mus_musculus.GRCm38.75_chr1_bed.csv*** file more easily, we could use:
+
+```bash
+$ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
+
+    1	3054233	3054733
+    1	3054233	3054733
+    1	3054233	3054733
+```
