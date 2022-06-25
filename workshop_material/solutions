@@ -10,3 +10,8 @@ $ seq 10 > nums.txt
 $ cat nums.txt
 $ tail -n n+2 nums.txt
 ```
+### Exercise 4.3
+
+```bash
+sort -k1,1 -k4,4n Mus_musculus.GRCm38.75_chr1_random.gtf > Mus_musculus.GRCm38.75_chr1_sorted.gtf
+```
