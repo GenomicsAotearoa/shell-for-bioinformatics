@@ -280,3 +280,19 @@ A
 B
 C
 ```
+`uniq` with `-c` hows the counts of occurrences next to the unique lines.
+
+```bash
+$ uniq -c letters.txt 
+      2 A
+      1 B
+      1 C
+      1 B
+      3 C
+```
+```bash
+$ sort letters.txt | uniq -c
+      2 A
+      2 B
+      4 C
+```
