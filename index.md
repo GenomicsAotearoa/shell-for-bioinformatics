@@ -1,4 +1,4 @@
-# Intermediate-Advanced shell for Bioinformatics
+# Shell (intermediate) for Bioinformatics
 
 ## Content
 
