@@ -54,14 +54,6 @@ $ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 ```
 
 
-### Exercise 4.0
-{% capture e4dot0 %}
-
-Sometimes it’s useful to see both the beginning and end of a file—for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both `head` and `tail` on a single command to inspect first and last 2 lines of ***Mus_musculus.GRCm38.75_chr1.bed***
-
-{% endcapture %}
-
-{% include exercise.html title="e4dot0" content=e4dot0%}
 
 
 ### Exercise 4.1
@@ -77,11 +69,11 @@ Sometimes it’s useful to see both the beginning and end of a file—for exampl
 {% capture e4dot2 %}
 
 We can also use tail to remove the header of a file. Normally the -n argument specifies how many of the last lines of a file to include, but if -n is given a number x preceded with a + sign (e.g., +x ), tail will start from the x<sup>th</sup> line. So to chop off a header,we start from the second line with -n +2 . Here, we’ll use the command seq to generate a file of 3 numbers, and chop of the first line:
-* Use `seq` command to generate a file of 10 number and then use `tail` command  to chop off the first line. 
 
 {% endcapture %}
 
 {% include exercise.html title="e4dot2" content=e4dot2%}
+
 
 
 ## Extract summary information with `wc` 
