@@ -249,7 +249,7 @@ header). Can you group rows by chromosome, and sort by position ?. If yes, appen
 
 {% include exercise.html title="e4dot3" content=e4dot3%}
 
-## Finding Unique Values in uniq
+## Finding Unique Values with uniq
 
 `uniq` takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use uniq very frequently in command-line data processing.
 
