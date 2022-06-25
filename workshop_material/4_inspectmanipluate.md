@@ -54,6 +54,16 @@ $ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 ```
 
 
+### Exercise 4.0
+{% capture e4dot0 %}
+
+Sometimes it’s useful to see both the beginning and end of a file—for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both `head` and `tail` on a single command to inspect first and last 2 lines of ***Mus_musculus.GRCm38.75_chr1.bed***
+
+{% endcapture %}
+
+{% include exercise.html title="e4dot0" content=e4dot0%}
+
+
 ### Exercise 4.1
 {% capture e4dot1 %}
 
