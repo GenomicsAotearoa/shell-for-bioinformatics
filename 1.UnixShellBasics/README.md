@@ -42,17 +42,16 @@ Other useful commands:
 The `data_shell4b` directory contains the following fasta files:
 
 ```
+tb1.fasta
 tb1-protein.fasta
 tga1-protein.fasta
 ```
 
 We can use the `cat` command to view these files either one at a time:
 
-```
-cat tb1-protein.fasta
-```
+```bash
+$ cat tb1-protein.fasta
 
-```
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
@@ -62,33 +61,27 @@ GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
 VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
 NLSHHSSLSMNMPCAAA
 ```
+```bash
+$ cat tga1-protein.fasta 
 
-or all at once:
-
-```
-cat tga1-protein.fasta 
-```
-
-```
 >teosinte-glume-architecture-1 protein
 DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
 RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
 GGEGSSDGGT
 ```
+OR all at once with `cat *.fasta`
 
 We can also redirect the output to create a new file containing the sequence for both proteins:
 
 ```
-cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
+$ cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
 ```
 
 Now we have a new file called `zea-proteins.fasta`. Let's check the contents:
 
-```
-cat zea-proteins.fasta 
-```
+```bash
+$ cat zea-proteins.fasta 
 
-```
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
@@ -103,26 +96,11 @@ RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
 GGEGSSDGGT
 ```
 
-The file will be in your working drectory:
-
-```
-ls -l
-```
-
-```
-total 24
--rw-r--r--  1 black  staff  353 21 Jun 10:42 tb1-protein.fasta
--rw-r--r--  1 black  staff  152 21 Jun 10:42 tga1-protein.fasta
--rw-r--r--  1 black  staff  505 21 Jun 10:53 zea-proteins.fasta
-```
-
 Capturing error messages
 
-```
-cat tb1-protein.fasta mik.fasta
-```
+```bash
+$ cat tb1-protein.fasta mik.fasta
 
-```
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
@@ -136,21 +114,17 @@ cat: mik.fasta: No such file or directory
 
 There are two different types of output there: "standard outout" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relatign to the missign `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is catured, bu the standard error is not - it is still printed to the screen.  Let's check:
 
-```
-cat tb1-protein.fasta mik.fasta > test.fasta
-```
+``` bash
+$ cat tb1-protein.fasta mik.fasta > test.fasta
 
-```
-cat: mik.fasta: No such file or directory
+  cat: mik.fasta: No such file or directory
 ```
 
 The new file has been created, and contans the standard outout (contents of the file `tb1-protein.fasta`):
 
-```
-cat test.fasta
-```
+```bash
+$ cat test.fasta
 
-```
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
@@ -161,30 +135,29 @@ VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
 NLSHHSSLSMNMPCAAA
 ```
 
-If we want to caputure the standard error, we use the (slightly unweildy) `2>` operator:
+If we want to capture the standard error, we use the (slightly unweildy) `2>` operator:
 
+```bash
+$ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 ```
-cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
-```
+
+>>File descriptor `2` represents standard error. (other special file descriptors include `0` for standard input and `1` for standard output).
 
 Check the contents:
 
-```
-cat stderror.txt
-```
+```bash
+$ cat stderror.txt
 
-```
-cat: mik.fasta: No such file or directory
+  cat: mik.fasta: No such file or directory
 ```
 
 Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
 
-```
-cat tga1-protein.fasta >> test.fasta
-cat test.fasta 
-```
+```bash
+$ cat tga1-protein.fasta >> test.fasta
 
-```
+$ cat test.fasta 
+
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
@@ -212,7 +185,7 @@ We will use grep to carry out the first step, and then use the pipe operator to 
 
 Here is the full command:
 
-```
+```bash 
 grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
@@ -231,15 +204,13 @@ There are a few things going on here:
 
 Let's run the code:
 
-```
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+```bash
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+
+  CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 ```
 
-```
-CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
-```
-
-**NB: colours not supported in Markdown (I tried usign HTML)**
+**NB: colours not supported in Markdown (I tried using HTML)**
 
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
