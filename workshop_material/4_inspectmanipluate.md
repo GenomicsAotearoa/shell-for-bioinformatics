@@ -11,3 +11,44 @@ Tabular plain-text data formats are used extensively in computing. The basic for
 incredibly simple: each row (also known as a record) is kept on its own line, and each
 column (also known as a field) is separated by some delimiter. There are three flavors
 you will encounter: tab-delimited, comma-separated, and variable space-delimited.
+
+## Inspecting data with `head` and `tail`
+
+Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. .i.e. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
+
+```bash
+$ head Mus_musculus.GRCm38.75_chr1.bed 
+1	3054233	3054733
+1	3054233	3054733
+1	3054233	3054733
+1	3102016	3102125
+1	3102016	3102125
+1	3102016	3102125
+1	3205901	3671498
+1	3205901	3216344
+1	3213609	3216344
+1	3205901	3207317
+```
+```bash
+$ tail Mus_musculus.GRCm38.75_chr1.bed 
+1	195166217	195166390
+1	195165745	195165851
+1	195165748	195165851
+1	195165745	195165747
+1	195228278	195228398
+1	195228278	195228398
+1	195228278	195228398
+1	195240910	195241007
+1	195240910	195241007
+1	195240910	195241007
+```
+Changing the number of lines printed for either of those commands can be done by passing `-n <number_of_lines>` flag .i.e. Over-ride the `-n 10` default
+
+Try those commands with `0n 4` to print top 4 lines and bottom 4 lines
+
+```bash
+$ head -n 4 Mus_musculus.GRCm38.75_chr1.bed 
+```
+```bash
+$ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
+```
