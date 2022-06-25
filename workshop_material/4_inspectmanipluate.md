@@ -242,7 +242,7 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k
 {% capture e4dot3 %}
 
 ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
-header). Can you group rows by chromosome, and sort by position ?
+header). Can you group rows by chromosome, and sort by position ?. If yes, append the output to a separate file
 
 {% endcapture %}
 
