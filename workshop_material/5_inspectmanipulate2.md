@@ -25,3 +25,9 @@ WHAT CAN WE DO WITH AWK?
    - Format output lines 
    - Arithmetic and string operations 
    - Conditionals and loops 
+
+**Syntax**:
+
+```bash
+awk options 'selection_criteria {action}' input-file >  output-file
+```
