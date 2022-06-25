@@ -1,4 +1,6 @@
-# Shell (intermediate) for Bioinformatics
+# Shell (Intermediate) for Bioinformatics
+
+
 
 ## Content
 
@@ -7,3 +9,4 @@
 3. [Unix Shell basics and recap](1.UnixShellBasics/README.md)
 4. [Inspecting and Manipulating text data with Unix tools - Part 1](./workshop_material/4_inspectmanipluate.md)
 5. [Inspecting and Manipulating text data with Unix tools - Part 2](./workshop_material/5_inspectmanipulate2.md)
+
