@@ -272,3 +272,11 @@ C
 B
 C
 ```
+As you can see, `uniq` does not return the unique values letters.txt—it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
+
+```bash
+$ sort letters.txt | uniq
+A
+B
+C
+```
