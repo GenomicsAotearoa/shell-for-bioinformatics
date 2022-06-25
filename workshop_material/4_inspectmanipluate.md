@@ -276,6 +276,7 @@ As you can see, `uniq` does not return the unique values letters.txt—it only r
 
 ```bash
 $ sort letters.txt | uniq
+
 A
 B
 C
@@ -284,6 +285,7 @@ C
 
 ```bash
 $ uniq -c letters.txt 
+
       2 A
       1 B
       1 C
@@ -292,7 +294,34 @@ $ uniq -c letters.txt
 ```
 ```bash
 $ sort letters.txt | uniq -c
+
       2 A
       2 B
       4 C
+```
+Combined with other Unix tools like grep and `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
+
+```bash
+$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
+
+  25901 CDS
+  36128 exon
+   2027 gene
+   2290 start_codon
+   2299 stop_codon
+   4993 transcript
+   7588 UTR
+```
+Count in order from most frequent to last
+
+```bash
+$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
+
+  36128 exon
+  25901 CDS
+   7588 UTR
+   4993 transcript
+   2299 stop_codon
+   2290 start_codon
+   2027 gene
 ```
