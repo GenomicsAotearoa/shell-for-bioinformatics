@@ -73,3 +73,13 @@ We can also use tail to remove the header of a file. Normally the -n argument sp
 {% endcapture %}
 
 {% include exercise.html title="e4dot2" content=e4dot2%}
+
+## Extract summary information with `wc` and `awk`
+
+`wc` command which stands for "word count" can counts the number of **words, lines**, and **characters** in a file. (take a not on the order)
+
+```bash
+$ wc Mus_musculus.GRCm38.75_chr1.bed 
+
+  81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
+```
