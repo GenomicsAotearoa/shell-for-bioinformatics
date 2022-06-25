@@ -101,3 +101,10 @@ chr2	35	54
 ---
 
 We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:
+
+```bash
+$ awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
+chr1	26	39
+chr1	32	47
+chr1	9	28
+```
