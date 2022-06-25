@@ -112,3 +112,4 @@ $ grep -c "[^ \\n\\t]" fool_wc.bed
 
   3
 ```
+## Using  `cut` with column data and formatting tabular data with `column`
