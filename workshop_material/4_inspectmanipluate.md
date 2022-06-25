@@ -104,4 +104,11 @@ $
 $ wc -l fool_wc.bed 
   5 fool_wc.bed
 ```
+This is a good place bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)
 
+```bash
+
+$ grep -c "[^ \\n\\t]" fool_wc.bed 
+
+  3
+```
