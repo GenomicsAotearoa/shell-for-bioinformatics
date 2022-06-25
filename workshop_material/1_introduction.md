@@ -1,5 +1,9 @@
 # What is a Unix Shell and Bash 
 
+* Do not remove this line (it will not be displayed)
+{:toc}
+
+
 ## Unix Shell
 
 A shell is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard/touchscreen combination.
