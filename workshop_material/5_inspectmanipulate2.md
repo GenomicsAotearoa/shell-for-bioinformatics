@@ -88,17 +88,17 @@ chr2	35	54
 
 |Comparison |  Description                                |
 |:----------|:--------------------------------------------|
-|a == b     |a is equal to b                              |
-|a != b     |a is not equal to b                          |
-|a < b      |a is less than b                             |
-|a > b      |a is greater than b                          |
-|a <= b     |a is less than or equal to b                 |
-|a >= b     |a is greater than or equal to b              |
-|a ~ b      |a matches regular expression pattern b       |
-|a !~ b     |a does not match regular expression pattern b|
-|a && b     |logical and a and b                          |
-|a || b     |logical or a and b                           |
-|!a         |not a (logical negation)                     |
+|`a == b`     |a is equal to b                              |
+|`a != b`     |a is not equal to b                          |
+|`a < b`      |a is less than b                             |
+|`a > b`      |a is greater than b                          |
+|`a <= b`     |a is less than or equal to b                 |
+|`a >= b`     |a is greater than or equal to b              |
+|`a ~ b`      |a matches regular expression pattern b       |
+|`a !~ b`     |a does not match regular expression pattern b|
+|`a && b`     |logical and a and b                          |
+|`a || b`     |logical or a and b                           |
+|`!a`         |not a (logical negation)                     |
 
 ---
 
