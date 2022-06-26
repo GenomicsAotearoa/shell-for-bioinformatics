@@ -165,7 +165,7 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
     1	unprocessed_pseudogene	exon	3054233	3054733	.	+	.
 ```
 
-While tabs are a terrific delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
+While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
 
 ```bash
 $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
@@ -174,8 +174,7 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -
     1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
     1  unprocessed_pseudogene              exon         3054233    3054733    .  +  .
 ```
-Note that you should only use `column -t` to visualize data in the terminal, not toreformat data to write to a file. Tab-delimited data is preferable to data delimited by a
-variable number of spaces, since it’s easier for programs to parse. Like `cut` , `column` ’s default delimiter is the tab character ( `\t` ). We can specify a different delimiter with the `-s` option. So, if we wanted to visualize the columns of the ***Mus_musculus.GRCm38.75_chr1_bed.csv*** file more easily, we could use:
+Note that you should only use `column -t` to visualize data in the terminal, not to reformat data to write to a file. Tab-delimited data is preferable to data delimited by a variable number of spaces, since it’s easier for programs to parse. Like `cut` , `column`’s default delimiter is the tab character (`\t` ). We can specify a different delimiter with the `-s` option. So, if we wanted to visualize the columns of the ***Mus_musculus.GRCm38.75_chr1_bed.csv*** file more easily, we could use:
 
 ```bash
 $ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
@@ -184,12 +183,13 @@ $ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
     1	3054233	3054733
     1	3054233	3054733
 ```
+
 ## Sorting Plain-Text Data with Sort
 
 Very often we need to work with sorted plain-text data in bioinformatics. The two
 most common reasons to sort data are as follows:
-• Certain operations are much more efficient when performed on sorted data.
-• Sorting data is a prerequisite to finding all unique lines
+- Certain operations are much more efficient when performed on sorted data.
+- Sorting data is a prerequisite to finding all unique lines
 
 `sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments
 
@@ -218,11 +218,9 @@ chr2	35	54
 chr3	11	28
 chr3	16	27
 ```
-`sort` without any148
-| Chapter 7: Unix Data Tools arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromo‐
-somes together, as these are “ties” in the sorted order.
+`sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.
 
-However, using sort ’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
+However, using `sort`’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
 
 - The ability to sort by particular columns
 
@@ -243,15 +241,15 @@ chr3	11	28
 chr3	16	27
 ```
 
-Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as start,end , so to sort by a single column we use start,start . In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
-with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n` ).
+Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as `start,end`, so to sort by a single column we use `start,start`. In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
+with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
 
 
 ### Exercise 4.3
 {% capture e4dot3 %}
 
 ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
-header). Can you group rows by chromosome, and sort by position ?. If yes, append the output to a separate file
+header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.
 
 {% endcapture %}
 
@@ -259,7 +257,7 @@ header). Can you group rows by chromosome, and sort by position ?. If yes, appen
 
 ## Finding Unique Values with uniq
 
-`uniq` takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use uniq very frequently in command-line data processing.
+`uniq` takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use `uniq` very frequently in command-line data processing.
 
 ```bash
 $ cat letters.txt 
@@ -280,7 +278,7 @@ C
 B
 C
 ```
-As you can see, `uniq` does not return the unique values letters.txt—it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
+As you can see, `uniq` does not return the unique values in letters.txt — it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
 
 ```bash
 $ sort letters.txt | uniq
@@ -289,7 +287,7 @@ A
 B
 C
 ```
-`uniq` with `-c` hows the counts of occurrences next to the unique lines.
+`uniq` with `-c` shows the counts of occurrences next to the unique lines.
 
 ```bash
 $ uniq -c letters.txt 
