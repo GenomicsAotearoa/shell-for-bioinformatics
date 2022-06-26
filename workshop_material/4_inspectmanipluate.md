@@ -86,14 +86,14 @@ We can also use tail to remove the header of a file. Normally the `-n` argument 
 
 ## Extract summary information with `wc` 
 
-`wc` command which stands for "word count" can counts the number of **words, lines**, and **characters** in a file. (take a not on the order)
+The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **words, lines**, and **characters** in a file (take a note on the order).
 
 ```bash
 $ wc Mus_musculus.GRCm38.75_chr1.bed 
 
   81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
 ```
-Often, we only need to call the number of lines which can be done by using `-l` flag .i.e. It can be used as a sanity check at times to make sure an output which should carry the same number of lines as per input OR a certain file format depends on another format without loosing overall data structure wasn't corrupted or over/under manipulated. 
+Often, we only need to list the number of lines, which can be done by using the `-l` flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. 
 
 >>**Question** - count the number of lines in *Mus_musculus.GRCm38.75_chr1.bed* and *Mus_musculus.GRCm38.75_chr1.gtf* . Anything out of the ordinary ? 
 
@@ -124,7 +124,7 @@ $ grep -c "[^ \\n\\t]" fool_wc.bed
 ```
 ## Using  `cut` with column data and formatting tabular data with `column`
 
-When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with cut .
+When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
 
 ```bash
 $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
@@ -133,7 +133,7 @@ $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 3054233
 3054233
 ```
->>`-f`  argument is how we specify which columns to keep. Can be used to specify a range as well
+>>`-f`  argument is how we specify which columns to keep. It can be used to specify a range as well
 
 ```bash
 
