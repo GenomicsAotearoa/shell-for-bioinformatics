@@ -238,7 +238,7 @@ cat non-atcg.txt
 
 NB: since we are redirecting to a text file, the colour information won't be recorded.
 
-### Using `tee` to capture intermediate outputs
+### Using tee to capture intermediate outputs
 
 ```
 grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color -i "[^ATCG]" > non-atcg.txt
