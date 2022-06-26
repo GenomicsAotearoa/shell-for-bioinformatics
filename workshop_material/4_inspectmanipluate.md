@@ -307,7 +307,7 @@ $ sort letters.txt | uniq -c
       2 B
       4 C
 ```
-Combined with other Unix tools like grep and `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
+Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
 
 ```bash
 $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
