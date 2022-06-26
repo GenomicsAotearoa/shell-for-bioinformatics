@@ -20,7 +20,7 @@ incredibly simple: each row (also known as a record) is kept on its own line, an
 column (also known as a field) is separated by some delimiter. There are three flavors
 you will encounter: tab-delimited, comma-separated, and variable space-delimited.
 
-## Inspecting data with `head` and `tail`
+## Inspecting data with head and tail
 
 Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. .i.e. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
 
@@ -84,7 +84,7 @@ We can also use tail to remove the header of a file. Normally the `-n` argument 
 
 
 
-## Extract summary information with `wc` 
+## Extract summary information with wc
 
 The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **words, lines**, and **characters** in a file (take a note on the order).
 
@@ -122,7 +122,7 @@ $ grep -c "[^ \\n\\t]" fool_wc.bed
 
   3
 ```
-## Using  `cut` with column data and formatting tabular data with `column`
+## Using cut with column data and formatting tabular data with column
 
 When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
 
@@ -184,7 +184,7 @@ $ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
     1	3054233	3054733
 ```
 
-## Sorting Plain-Text Data with Sort
+## Sorting Plain-Text Data with sort
 
 Very often we need to work with sorted plain-text data in bioinformatics. The two
 most common reasons to sort data are as follows:
