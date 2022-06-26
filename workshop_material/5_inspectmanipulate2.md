@@ -3,7 +3,7 @@
 * Do not remove this line (it will not be displayed)
 {:toc}
 
-## Aho, Weinberger,Kernighan = `awk` 
+## Aho, Weinberger,Kernighan = awk
 
 Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. 
 
