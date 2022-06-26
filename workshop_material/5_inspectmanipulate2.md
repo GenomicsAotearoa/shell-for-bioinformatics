@@ -126,3 +126,48 @@ chr1	9	28
 
      - `BEGIN` - specifies what to do before the first record is read in. Useful to initialise and set up variables
      - `END` - what to do after the last record's processing is complete. Useful to print data summaries ad the end of file processing
+
+
+**Examples**
+
+* We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):
+
+```bash
+$ awk 'NR >= 3 && NR <=5' example.bed 
+
+    chr3	11	28
+    chr1	40	49
+    chr3	16	27
+```
+
+* suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:
+
+```bash
+$ awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 
+
+  mean: 14
+```
+>>In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment s by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
+
+* `awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐
+lus.GRCm38.75_chr1.gtf*** as follows:
+
+```bash
+$ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
+
+1	3054232	3054733
+1	3054232	3054733
+1	3054232	3054733
+```
+* `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
+
+```bash
+$ awk '/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k "\t" feature[k]}' Mus_musculus.GRCm38.75_chr1.gtf 
+
+CDS	56
+transcript	9
+start_codon	5
+gene	1
+exon	69
+UTR	24
+```
