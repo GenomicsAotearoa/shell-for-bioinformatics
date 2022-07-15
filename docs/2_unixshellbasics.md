@@ -236,12 +236,15 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
 cat non-atcg.txt 
 ```
 
-NB: since we are redirecting to a text file, the colour information won't be recorded.
+since we are redirecting to a text file, the `--color` by itself will not record the colour information. We can achieve this by invoking `always` flag for `--color`.i.e..
 
+```
+grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
+```
 ### Using tee to capture intermediate outputs
 
 ```
-grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color -i "[^ATCG]" > non-atcg.txt
+grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
 ```
 
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
