@@ -25,7 +25,7 @@ There are many reasons to learn about the shell:
 
     “Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” ***– Brian Kernighan & Rob Pike***
 
-### Unix Vs. Linux
+## Unix Vs. Linux
 
 Linux is not Unix, but it is a "Unix-like" operating system. Linux system is derived from Unix and it is a continuation of the basis of Unix design. Linux distributions are the most famous and healthiest example of the direct Unix derivatives. BSD (Berkley Software Distribution) is also an example of a Unix derivative.
 
@@ -37,11 +37,18 @@ Linux is not Unix, but it is a "Unix-like" operating system. Linux system is der
 
     Few Examples of currently registered UNIX systems include macOS, Solaris, and AIX. If we consider the POSIX system, then Linux can be regarded as Unix-like OS.
 
+    Linux is just the **kernel** and not the complete OS. This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.
 
+      -  A **Kernel** is a computer program that is the heart and core of an Operating System. Since the Operating System has control over the system so, the Kernel also has control over everything in the system. It is the most important part of an Operating System. Whenever a system starts, the Kernel is the first program that is loaded after the bootloader because the Kernel has to handle the rest of the thing of the system for the Operating System. The Kernel remains in the memory until the Operating System is shut-down. 
+    
+    Linux distribution (also called as a **distro** in short) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which is essential for a few device drivers.
 
-## Bash
+## Different Types of Shells in Linux
 
-Bash (Bourne again shell) is a type of Unix Shell and it is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. 
+Being able to interact with the kernel makes shells a powerful tool. Without the ability to interact with the kernel, a user cannot access the utilities offered by their machine’s operating system.
+
+Let’s understand the major shells that are available for the Linux environment
+
 
 - - - 
 <p style="text-align:left;">
