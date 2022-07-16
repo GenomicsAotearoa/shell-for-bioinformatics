@@ -21,6 +21,10 @@ There are many reasons to learn about the shell:
 * The shell makes your work more reproducible. When you carry out your work in the command-line (rather than a GUI), your computer keeps a record of every step that you’ve carried out, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you’ve done, so that others can inspect or apply your process to new data.
 * Many bioinformatic tasks require large amounts of computing power and can’t realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.
 
+!!! quote "On Unix philosophy"
+
+    “Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” ***– Brian Kernighan & Rob Pike***
+
 ## Bash
 
 Bash (Bourne again shell) is a type of Unix Shell and it is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. 
