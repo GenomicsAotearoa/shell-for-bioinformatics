@@ -1,8 +1,5 @@
 # Inspecting and Manipulating Text Data with Unix Tools - Part 2
 
-* Do not remove this line (it will not be displayed)
-{:toc}
-
 ## Aho, Weinberger, Kernighan = AWK
 
 Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. 
