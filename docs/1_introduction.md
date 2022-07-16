@@ -29,6 +29,16 @@ There are many reasons to learn about the shell:
 
 Linux is not Unix, but it is a "Unix-like" operating system. Linux system is derived from Unix and it is a continuation of the basis of Unix design. Linux distributions are the most famous and healthiest example of the direct Unix derivatives. BSD (Berkley Software Distribution) is also an example of a Unix derivative.
 
+??? "Unix-like"
+
+    A Unix-like OS (also called as UN*X or *nix) is the one that works in a way similar to Unix systems, however, it is not necessary that they conform to Single UNIX Specification (SUS) or similar POSIX (Portable Operating System Interface) standard.
+
+    SUS is a standard which is required to be met for any OS to qualify for using ‘UNIX’ trademark. This trademark is granted by [‘The Open Group’](https://www.opengroup.org/)
+
+    Few Examples of currently registered UNIX systems include macOS, Solaris, and AIX. If we consider the POSIX system, then Linux can be regarded as Unix-like OS.
+
+
+
 ## Bash
 
 Bash (Bourne again shell) is a type of Unix Shell and it is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. 
