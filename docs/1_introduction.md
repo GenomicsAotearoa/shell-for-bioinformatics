@@ -49,6 +49,18 @@ Being able to interact with the kernel makes shells a powerful tool. Without the
 
 Let’s understand the major shells that are available for the Linux environment
 
+=== "Bourne Shell (sh)"
+
+=== "GNU Bourne-Again shell (bash)"
+
+=== "C Shell (csh)"
+
+=== "Korn Shell (ksh)"
+
+=== "Z Shell (zsh)"
+
+=== "Fish Shell (fish)"
+
 
 - - - 
 <p style="text-align:left;">
