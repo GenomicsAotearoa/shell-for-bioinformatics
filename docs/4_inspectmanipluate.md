@@ -342,8 +342,18 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 * Some find and replace examples
 
-find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
-    
+Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
+
+```bash
+$ sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
+```
+Find and replace `chr` to `chromosome`, only if you also find **40** in the line
+
+```bash
+$ sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
+```
+
+
 - - - 
 <p style="text-align:left;">
   <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">&laquo; 3 - Shell Basics and recap </a></b> 
