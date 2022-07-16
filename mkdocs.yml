@@ -15,8 +15,8 @@ theme:
   # Default values, taken from mkdocs_theme.yml
   language: en
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Mukta
+    code: Fira Code
 
 markdown_extensions:
   - abbr
