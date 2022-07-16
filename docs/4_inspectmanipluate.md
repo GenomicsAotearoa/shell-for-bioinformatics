@@ -340,7 +340,9 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
         - `w` file If substitution was made, write out the result to the given file
         - `d` when specified without `REPLACEMENT`, deletes the found `REGEXP`
 
+* Some find and replace examples
 
+find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
     
 - - - 
 <p style="text-align:left;">
