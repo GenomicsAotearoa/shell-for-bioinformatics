@@ -8,6 +8,9 @@ theme:
   static_templates:
     - 404.html
 
+  palette:
+    primary: indigo
+
   # Necessary for search to work properly
   include_search_page: false
   search_index_only: true
