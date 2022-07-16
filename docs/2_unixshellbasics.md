@@ -196,7 +196,7 @@ Here is the full command:
 $ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
-!!! quote "Let's see what each piece does" 
+!!! info "Let's see what each piece does" 
 
     `grep -v "^>" tb1.fasta`
  
