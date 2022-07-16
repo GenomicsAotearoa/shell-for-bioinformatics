@@ -314,7 +314,34 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort
    2290 start_codon
    2027 gene
 ```
+## sed
 
+The `s`treamline `ed`itor or `sed` command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. 
+
+### Find and Replace
+
+Most common use of `sed` is to substitute text, matching a pattern. This syntax for doing this in `sed` is as follows:
+
+```bash
+sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
+```
+
+!!! info ""
+
+
+    - Here, `/` is the delimiter (you can also use `_` (underscore), `|` (pipe) or `:` (colon) as delimiter as well)
+    - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is s which does the substitution operation (other useful operators include `y` for transformation, `i` for insertion, `d` for deletion etc.).
+    - `REGEXP` and `REPLACEMENT` specify search term and the substitution term respectively for the operation that is being performed.
+    - `FLAGS` are additional parameters that control the operation. Some common `FLAGS` include:
+        - `g`	replace all the instances of `REGEXP` with `REPLACEMENT` (globally)
+        - `N` where N is any number, to replace Nth instance of the `REGEXP` with `REPLACEMENT`
+        - `p` if substitution was made, then prints the new pattern space
+        - `i` ignores case for matching `REGEXP`
+        - `w` file If substitution was made, write out the result to the given file
+        - `d` when specified without `REPLACEMENT`, deletes the found `REGEXP`
+
+
+    
 - - - 
 <p style="text-align:left;">
   <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">&laquo; 3 - Shell Basics and recap </a></b> 
