@@ -28,11 +28,11 @@ Awk is a utility that enables a programmer to write tiny but effective programs 
 ```bash
 awk options 'selection_criteria {action}' input-file >  output-file
 ```
-**Options** 
+!!! Options 
 
->>`-f program-file` : Reads the AWK program source from the file program-file, instead of from the first command line argument.
->>
->>`-F fs`            : Use fs for the input field separator
+      `-f program-file` : Reads the AWK program source from the file program-file, instead of from the first command line argument.
+
+      `-F fs`            : Use fs for the input field separator
 
 Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
 
@@ -144,7 +144,10 @@ $ awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed
 
   mean: 14
 ```
->>In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment s by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
+
+!!! info 
+
+      In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment s by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
 
 * `awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐
 lus.GRCm38.75_chr1.gtf*** as follows:
@@ -156,6 +159,7 @@ $ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | he
 1	3054232	3054733
 1	3054232	3054733
 ```
+
 * `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
 
 ```bash
