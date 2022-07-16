@@ -2,8 +2,8 @@ site_name: Inter-Advanced Shell for Bioinformatics
 
 theme:
   name: material
-  logo: img/nesi_ga.png
-  favicon: img/nesi_ga.png
+  logo: images/nesi_ga.png
+  favicon: images/nesi_ga.png
    # 404 page
   static_templates:
     - 404.html
