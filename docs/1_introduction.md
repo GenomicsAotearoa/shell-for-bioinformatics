@@ -47,7 +47,7 @@ Linux is not Unix, but it is a "Unix-like" operating system. Linux system is der
 
 Being able to interact with the kernel makes shells a powerful tool. Without the ability to interact with the kernel, a user cannot access the utilities offered by their machine’s operating system.
 
-Let’s understand the major shells that are available for the Linux environment
+Let’s take a look at some of  the major shells that are available for the Linux environment
 
 !!! info "Types of Shells"
 
