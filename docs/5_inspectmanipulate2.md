@@ -6,22 +6,22 @@ Awk is a scripting language used for manipulating data and generating reports. T
 
 Awk is a utility that enables a programmer to write tiny but effective programs in the form of statements that define text patterns that are to be searched for in each line of a document and the action that is to be taken when a match is found within a line. Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that matches with the specified patterns and then perform the associated actions. 
 
-WHAT CAN WE DO WITH AWK? 
+???+ "WHAT CAN WE DO WITH AWK?" 
 
-1. AWK Operations: 
-   - Scans a file line by line 
-   -  Splits each input line into fields 
-   -  Compares input line/fields to pattern 
-   -  Performs action(s) on matched lines 
+      1. AWK Operations: 
+         - Scans a file line by line 
+         -  Splits each input line into fields 
+         -  Compares input line/fields to pattern 
+         -  Performs action(s) on matched lines 
 
-2. Useful For: 
-   -  Transform data files 
-   -  Produce formatted reports 
+      2. Useful For: 
+         -  Transform data files 
+         -  Produce formatted reports 
 
-3. Programming Constructs: 
-   - Format output lines 
-   - Arithmetic and string operations 
-   - Conditionals and loops 
+      3. Programming Constructs: 
+         - Format output lines 
+         - Arithmetic and string operations 
+         - Conditionals and loops 
 
 **Syntax**:
 
