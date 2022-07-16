@@ -49,19 +49,27 @@ Being able to interact with the kernel makes shells a powerful tool. Without the
 
 Let’s understand the major shells that are available for the Linux environment
 
-=== "Bourne Shell (sh)"
+!!! info "Types of Shells"
 
-    Developed at AT&T Bell Labs by Steve ***Bourne***, the Bourne shell is regarded as the first UNIX shell ever. It is denoted as sh. It gained popularity due to its compact nature and high speeds of operation.
+    === "Bourne Shell (sh)"
 
-=== "GNU Bourne-Again shell (bash)"
+        Developed at AT&T Bell Labs by Steve ***Bourne***, the Bourne shell is regarded as the first UNIX shell ever. It is denoted as sh. It gained popularity due to its compact nature and high speeds of operation.
 
-=== "C Shell (csh)"
+    === "GNU Bourne-Again shell (bash)"
 
-=== "Korn Shell (ksh)"
+    === "C Shell (csh)"
 
-=== "Z Shell (zsh)"
+        The C shell was created at the University of California by Bill Joy. It is denoted as csh. It was developed to include useful programming features like in-built support for arithmetic operations and a syntax similar to the C programming language.
 
-=== "Fish Shell (fish)"
+        Further, it incorporated command history which was missing in different types of shells in Linux like the Bourne shell. Another prominent feature of a C shell is “aliases”.
+
+        The complete path-name for the C shell is `/bin/csh`. By default, it uses the prompt `hostname#` for the root user and `hostname%` for the non-root users.
+
+    === "Korn Shell (ksh)"
+
+    === "Z Shell (zsh)"
+
+    === "Fish Shell (fish)"
 
 
 - - - 
