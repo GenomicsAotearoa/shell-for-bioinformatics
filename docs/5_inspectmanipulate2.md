@@ -82,6 +82,7 @@ chr1	9	28
 chr2	35	54
 ```
 - - - 
+<center>
 
 |Comparison |  Description                                |
 |:----------|:--------------------------------------------|
@@ -97,6 +98,7 @@ chr2	35	54
 |`a \|\| b`     |logical or a and b                           |
 |`!a`         |not a (logical negation)                     |
 
+</center>
 ---
 
 We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:
