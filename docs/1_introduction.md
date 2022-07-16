@@ -25,6 +25,10 @@ There are many reasons to learn about the shell:
 
     “Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” ***– Brian Kernighan & Rob Pike***
 
+### Unix vs Linux
+
+Linux is not Unix, but it is a "Unix-like" operating system. Linux system is derived from Unix and it is a continuation of the basis of Unix design. Linux distributions are the most famous and healthiest example of the direct Unix derivatives. BSD (Berkley Software Distribution) is also an example of a Unix derivative.
+
 ## Bash
 
 Bash (Bourne again shell) is a type of Unix Shell and it is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows. 
