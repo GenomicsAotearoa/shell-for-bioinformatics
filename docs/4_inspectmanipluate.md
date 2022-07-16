@@ -59,12 +59,12 @@ $ head -n 4 Mus_musculus.GRCm38.75_chr1.bed
 $ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
 ```
 
-???+ "Exercise 4.1"
+???+ question "Exercise 4.1"
 
     Sometimes it’s useful to see both the beginning and end of a file — for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both `head` and `tail` in a single command to inspect first and last 2 lines of ***Mus_musculus.GRCm38.75_chr1.bed***?
 
 
-???+ "Exercise 4.2"
+???+ question "Exercise 4.2"
 
     We can also use tail to remove the header of a file. Normally the `-n` argument specifies how many of the last lines of a file to include, but if `-n` is given a number `x` preceded with a `+` sign (e.g., `+x` ), tail will start from the x<sup>th</sup> line. So to chop off a header, we start from the second line with `-n +2`.  Use the `seq` command to generate a file containing the numbers 1 to 10, and then use the `tail` command to chop off the first line.
 
@@ -79,7 +79,9 @@ $ wc Mus_musculus.GRCm38.75_chr1.bed
 ```
 Often, we only need to list the number of lines, which can be done by using the `-l` flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. 
 
->>**Question** - count the number of lines in *Mus_musculus.GRCm38.75_chr1.bed* and *Mus_musculus.GRCm38.75_chr1.gtf* . Anything out of the ordinary ? 
+!!! question "Qu."
+
+    Count the number of lines in *Mus_musculus.GRCm38.75_chr1.bed* and *Mus_musculus.GRCm38.75_chr1.gtf* . Anything out of the ordinary ? 
 
 Although `wc -l` is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" 
 
@@ -229,7 +231,7 @@ Here, we specify the columns (and their order) we want to sort by as `-k` argume
 with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
 
 
-???+ "Exercise 4.3"
+???+ question "Exercise 4.3"
 
 
     ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
