@@ -75,7 +75,13 @@ Let’s understand the major shells that are available for the Linux environment
 
     === "Z Shell (zsh)"
 
+        zsh is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added.
+
     === "Fish Shell (fish)"
+
+        Fish is a fully-equipped command line shell (like bash or zsh) that is smart and user-friendly. Fish supports powerful features like syntax highlighting, autosuggestions, and tab completions that just work, with nothing to learn or configure.
+
+        If you want to make your command line more productive, more useful, and more fun, without learning a bunch of arcane syntax and configuration options, then fish might be just what you’re looking for!
 
 
 - - - 
