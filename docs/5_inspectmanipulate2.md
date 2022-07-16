@@ -178,7 +178,16 @@ UTR	24
 
 `bioawk` is an extension of `awk`, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and an command line option to use TAB as the input/output delimiter. When the new functionality is not used, `bioawk` is intended to behave exactly the same as the original BWK awk.
 
-!!! quote "`bioawk` features"
+The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bison). `bioawk` further depends on [zlib](http://zlib.net/) so as to work with gzip'd files.
+
+??? "YACC" 
+
+      A parser generator is a program that takes as input a specification of a syntax, and produces as output a procedure for recognizing that language. Historically, they are also called compiler-compilers.
+      YACC (yet another compiler-compiler) is an LALR(LookAhead, Left-to-right, Rightmost derivation producer with 1 lookahead token) parser generator. YACC was originally designed for being complemented by **Lex**.
+
+      - **Lex** (A Lexical Analyzer Generator) helps write programs whose control flow is directed by instances of regular expressions in the input stream. It is well suited for editor-script type transformations and for segmenting input in preparation for a parsing routine. 
+
+!!! info "`bioawk` features"
 
       - It can automatically recognize some popular formats and will parse different features associated with those formats. The format option is passed to `bioawk` using `-c arg` flag. Here `arg` can be bed, sam, vcf, gff or fastx (for both fastq and FASTA). It can also deal with other types of table formats using the `-c header` option. When `header` is specified, the field names will used for variable names, thus greatly expanding the utility.`
       - There are several builtin functions (other than the standard `awk` built-ins), that are specific to biological file formats. When a format is read with `bioawk`, the fields get automatically parsed. You can apply several functions on these variables to get the desired output. Let’s say, we read fasta format, now we have `$name` and `$seq` that holds sequence name and sequence respectively. You can use the `print` function (`awk` builtin) to print `$name` and `$seq`. You can also use `bioawk` built-in with the `print` function to get length, reverse complement etc by just using `'{print length($seq)}'`. Other functions include `reverse`, `revcomp`, `trimq`, `and`, `or`, `xor` etc.
