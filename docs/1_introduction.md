@@ -67,6 +67,12 @@ Let’s understand the major shells that are available for the Linux environment
 
     === "Korn Shell (ksh)"
 
+        The Korn shell was developed at AT&T Bell Labs by David Korn, to improve the Bourne shell. It is denoted as ksh. The Korn shell is essentially a superset of the Bourne shell.
+
+        Besides supporting everything that would be supported by the Bourne shell, it provides users with new functionalities. It allows in-built support for arithmetic operations while offering interactive features which are similar to the C shell.
+
+        The Korn shell runs scripts made for the Bourne shell, while offering string, array and function manipulation similar to the C programming language. It also supports scripts which were written for the C shell. Further, it is faster than most different types of shells 
+
     === "Z Shell (zsh)"
 
     === "Fish Shell (fish)"
