@@ -229,15 +229,12 @@ Here, we specify the columns (and their order) we want to sort by as `-k` argume
 with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
 
 
-### Exercise 4.3
-{% capture e4dot3 %}
+???+ "Exercise 4.3"
 
-***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
-header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.
 
-{% endcapture %}
+    ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
+    header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.
 
-{% include exercise.html title="e4dot3" content=e4dot3%}
 
 ## Finding Unique Values with uniq
 
