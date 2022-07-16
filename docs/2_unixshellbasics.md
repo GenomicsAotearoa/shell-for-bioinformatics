@@ -13,8 +13,8 @@ It is expected that you are already familiar with using the basics of the Unix S
 
 For more information about a command, use the Unix `man` command. For example, to get more information about the `mkdir` command, type:
 
-```
-man mkdir
+```bash
+$ man mkdir
 ```
 
 Key commands for navigating around the filesystem are:
@@ -146,7 +146,9 @@ If we want to capture the standard error, we use the (slightly unweildy) `2>` op
 $ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 ```
 
->>File descriptor `2` represents standard error. (other special file descriptors include `0` for standard input and `1` for standard output).
+!!! Descriptors
+
+    File descriptor `2` represents standard error. (other special file descriptors include `0` for standard input and `1` for standard output).
 
 Check the contents:
 
@@ -191,21 +193,22 @@ We will use grep to carry out the first step, and then use the pipe operator to 
 Here is the full command:
 
 ```bash 
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
-Let's see what each piece does. 
+!!! quote "Let's see what each piece does" 
 
- `grep -v "^>" tb1.fasta`
+    `grep -v "^>" tb1.fasta`
  
- This tells `grep` to search for all lines in the file `tb1.fasta`  that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
+    This tells `grep` to search for all lines in the file `tb1.fasta`  that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
 
- `grep --color -i "[^ATCG]"`
+    `grep --color -i "[^ATCG]"`
 
-There are a few things going on here:
- - `--color`: tells `grep` to highlight any matches
- - `-i`: tells `grep` to ignore the case (i.e., will match lower or upper case)
- - `[^ATCG]`: when `^` is used *inside square brackets* it has a different function - *inverts* the pattern, so that `grep` finds any letters that are *not* A, T, C or G.
+    There are a few things going on here:
+
+    - `--color`: tells `grep` to highlight any matches
+    - `-i`: tells `grep` to ignore the case (i.e., will match lower or upper case)
+    - `[^ATCG]`: when `^` is used *inside square brackets* it has a different function - *inverts* the pattern, so that `grep` finds any letters that are *not* A, T, C or G.
 
 Let's run the code:
 
@@ -220,28 +223,28 @@ $ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
 ```
-grep --color -i "[^ATCG]" tb1.fasta
+$ grep --color -i "[^ATCG]" tb1.fasta
 ```
 
 ### Combining pipes and redirection
 
-```
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
+```bash
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
 ```
 
-```
-cat non-atcg.txt 
+```bash
+$ cat non-atcg.txt 
 ```
 
 since we are redirecting to a text file, the `--color` by itself will not record the colour information. We can achieve this by invoking `always` flag for `--color`.i.e..
 
-```
-grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
+```bash
+$ grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
 ```
 ### Using tee to capture intermediate outputs
 
-```
-grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
+```bash
+$ grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
 ```
 
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
