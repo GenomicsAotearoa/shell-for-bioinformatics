@@ -8,9 +8,6 @@
 </p>
 
 
-* Do not remove this line (it will not be displayed)
-{:toc}
-
 
 It is expected that you are already familiar with using the basics of the Unix Shell.  As a quick refresher, some frequently used commands are listed below.
 
