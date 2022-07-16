@@ -36,6 +36,7 @@ theme:
   features:
     - navigation.tracking
     - navigation.sections
+    - navigation.expand
 
     
 
