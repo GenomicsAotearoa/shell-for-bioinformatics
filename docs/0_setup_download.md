@@ -23,7 +23,7 @@
 !!! info "Download with `wget` from a terminal client"
 
     ```bash
-    $ wget -c https://github.com/GenomicsAotearoa/bash-for-bioinformatics/releases/download/v1.0rc1/data_shell4b.tar.gz
+    $ wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/data_shell4b.tar.gz
     ```
     OR
 
