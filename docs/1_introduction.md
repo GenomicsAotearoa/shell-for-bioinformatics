@@ -57,6 +57,14 @@ Let’s take a look at some of  the major shells that are available for the Linu
 
     === "GNU Bourne-Again shell (bash)"
 
+        The GNU Bourne-Again shell was designed to be compatible with the Bourne shell. It incorporates useful features from different types of shells in Linux such as Korn shell and C shell.
+
+          - The shell's name **bash** is an acronym for "Bourne Again Shell", a pun on the name of the Bourne shell that it replaces and the notion of being "born again"
+
+        First released in 1989, it has been used as the default login shell for most Linux distributions. Bash was also the default shell in all versions of Apple macOS prior to the 2019 release of macOS Catalina, which changed the default shell to zsh, although Bash remains available as an alternative shell
+
+        The Bash command syntax is a superset of the Bourne shell command syntax. Bash supports brace expansion, command line completion (Programmable Completion),basic debugging and signal handling (using `trap`) among other features. Bash can execute the vast majority of Bourne shell scripts without modification, with the exception of Bourne shell scripts stumbling into fringe syntax behavior interpreted differently in Bash or attempting to run a system command matching a newer Bash builtin, etc. 
+
     === "C Shell (csh)"
 
         The C shell was created at the University of California by Bill Joy. It is denoted as csh. It was developed to include useful programming features like in-built support for arithmetic operations and a syntax similar to the C programming language.
