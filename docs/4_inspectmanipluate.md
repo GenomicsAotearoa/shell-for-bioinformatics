@@ -389,6 +389,16 @@ $ sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
 
     Can you use the above `~` trick to extract all the **odd** numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file **odd_sed.bed**
 
+One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header
+
+```bash
+$ sed -n '1~4p;2~4p' SRR097977.fastq
+```
+!!! hint "Sanity Check"
+
+    It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `$ sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `$ cat SRR097977.fastq | wc -l`
+
+
 
 - - - 
 <p style="text-align:left;">
