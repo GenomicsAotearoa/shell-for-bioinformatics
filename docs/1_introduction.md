@@ -102,11 +102,5 @@ There are many reasons to learn about the shell:
 * Many bioinformatic tasks require large amounts of computing power and can’t realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.
 
 - - - 
-<p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/0_setup_download.html" style="background: var(--bs-green);font-weight:bold">&laquo; Setup </a></b> 
-  <span style="float:right;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">3 - Shell Basics and recap &raquo;</a></b>
-  </span>
-</p>
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>

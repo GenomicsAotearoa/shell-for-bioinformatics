@@ -251,12 +251,5 @@ The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.
 
 
 - - - 
-<p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1 - Unix Shell and Bash </a></b> 
-  <span style="float:right;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/4_inspectmanipluate.html" style="background: var(--bs-green);font-weight:bold">4 - Text Manipu. Pt1 &raquo;</a></b>
-  </span>
-</p>
-
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
