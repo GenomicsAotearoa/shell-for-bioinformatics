@@ -1,5 +1,10 @@
 site_name: Intermediate-Advanced Shell for Bioinformatics
 
+#Repository information
+
+repo_url: https://genomicsaotearoa.github.io/shell-for-bioinformatics/
+repo_name:  GenomicsAotearoa/shell-for-bioinformatics 
+
 theme:
   name: material
   logo: images/nesi_ga.png
