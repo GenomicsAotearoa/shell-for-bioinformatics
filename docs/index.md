@@ -15,3 +15,4 @@
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)||
 
 
+# Attribution Notice
