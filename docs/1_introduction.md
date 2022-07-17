@@ -14,7 +14,12 @@
 
     “Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” ***– Brian Kernighan & Rob Pike***
 
-## UNIX Vs. Linux
+## The UNIX operating system
+
+The UNIX operating system is made up of three parts; the kernel, the shell and the programs.
+
+
+## UNIX vs. Linux
 
 Linux is not Unix, but it is a "Unix-like" operating system. Linux system is derived from Unix and it is a continuation of the basis of Unix design. Linux distributions are the most famous and healthiest example of the direct Unix derivatives. BSD (Berkley Software Distribution) is also an example of a Unix derivative.
 
@@ -33,6 +38,7 @@ Linux is not Unix, but it is a "Unix-like" operating system. Linux system is der
     Linux distribution (also called as a **distro** in short) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which is essential for a few device drivers.
 
 ## Different Types of Shells 
+
 Being able to interact with the kernel makes shells a powerful tool. Without the ability to interact with the kernel, a user cannot access the utilities offered by their machine’s operating system.
 
 Let’s take a look at some of  the major shells that are available for the Linux environment
