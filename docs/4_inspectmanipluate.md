@@ -399,7 +399,11 @@ $ sed -n '1~4p;2~4p' SRR097977.fastq
     It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `$ sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `$ cat SRR097977.fastq | wc -l`
 
 
+We can use the above trick to convert the .fastq to .fasta
 
+```bash
+$ sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
+```
 - - - 
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
