@@ -1,8 +1,8 @@
 # What is a Unix Shell and Bash 
 
-<br>
-<p align="center"><img src="images/unix_funnel.png" alt="drawing" width="300"/></p> 
-<br>
+<center>
+![image](./images/unix_funnel.png){width="350"}
+</center>
 
 <!--- check -->
 
