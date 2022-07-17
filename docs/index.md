@@ -10,8 +10,8 @@
 
 | **Lesson**                                         | **Overview** | 
 |:---------------------------------------------------|:-------------|
-|1. [Setup and Download Data](./0_setup_download.md)||
-|2. [UNIX, Shell, Linux & Bash](./1_introduction.md)||
+|1. [UNIX, Shell, Linux & Bash](./0_introduction.md)||
+|2. [Download and verify data](./1_download_data.md)||
 |3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)||
 |4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)||
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)||
