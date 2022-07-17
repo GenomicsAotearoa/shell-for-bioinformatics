@@ -15,15 +15,21 @@
     === "Windows Hosts"
 
         * Install either 
-            - Git for Windows from [https://git-scm.com/download/win](https://git-scm.com/download/win) **OR**
-            - MobaXterm Home (*Portable* or *Installer* edition) from [https://mobaxterm.mobatek.net/download-home-edition.html](https://mobaxterm.mobatek.net/download-home-edition.html)
+          - Git for Windows from [https://git-scm.com/download/win](https://git-scm.com/download/win) **OR**
+          - MobaXterm Home (*Portable* or *Installer* edition) from [https://mobaxterm.mobatek.net/download-home-edition.html](https://mobaxterm.mobatek.net/download-home-edition.html)
               * Portable edition does not require administrative privileges 
 
     === "MacOS"
 
-        * 
+          * Native terminal client is sufficient.
+          * It might not comes with `wget`
 
     === "Linux"
+
+
+    !!! warning "`bioawk` install on all hosts"
+
+        One of the tools used in this workshop is `bioawk` which is not native to any terminal clients. Installing it on MacOS and Linux can be done with `$ brew install bioawk` & `$ sudo apt install bioawk`, respectively.Windows hosts might have to do it via `conda` according to [these instructions](https://anaconda.org/bioconda/bioawk). However, this will require a prior install of **Anaconda** Or **Miniconda** 
 
 <center>
 ## Download data
