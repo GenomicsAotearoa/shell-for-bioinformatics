@@ -404,6 +404,7 @@ We can use the above trick to convert the .fastq to .fasta
 ```bash
 $ sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
 ```
+Let's wrap up `sed` with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. 
 - - - 
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
