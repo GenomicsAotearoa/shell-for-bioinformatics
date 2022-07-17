@@ -2,6 +2,10 @@
 
 !!! abstract "Lesson Objectives"
 
+    - Navigate your file system using the command line.
+    - Quick recap on commands used in routine tasks such copy, move, remove
+    - Strong emphasis on `grep` which filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern. 
+
 It is expected that you are already familiar with using the basics of the Unix Shell.  As a quick refresher, some frequently used commands are listed below.
 
 For more information about a command, use the Unix `man` command. For example, to get more information about the `mkdir` command, type:
