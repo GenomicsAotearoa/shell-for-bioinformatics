@@ -1,6 +1,6 @@
 # What is a Unix Shell and Bash 
 
-!!! abstract "Lesson objectives"
+!!! abstract "Lesson Objectives"
 
     - Quick overview on UNIX operating system and it's importance
     - Differences/similarities between UNIX vs. Linux
