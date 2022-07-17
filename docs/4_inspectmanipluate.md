@@ -401,12 +401,5 @@ $ sed -n '1~4p;2~4p' SRR097977.fastq
 
 
 - - - 
-<p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">&laquo; 3 - Shell Basics and recap </a></b> 
-  <span style="float:right;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/5_inspectmanipulate2.html" style="background: var(--bs-green);font-weight:bold">5 - Text Manipu. Pt2 &raquo;</a></b>
-  </span>
-</p>
-
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
