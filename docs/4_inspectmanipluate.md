@@ -358,6 +358,33 @@ Find and replace directly on the input, but save a old version too
 $ sed -i.old 's/chr/chromosome/g' example.bed
 ```
 
+* Print specific lines of the file
+
+To print a specific line, you can use the address function, note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n`.
+
+print 5th line of example.bed
+
+```bash
+$ sed -n '5p' example.bed
+```
+
+We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5, 
+
+```bash
+$ sed -n -e '2p' -e '5p' example.bed
+```
+
+It also accepts range, using `,`. Let's print line 2-6,
+
+```bash
+$ sed -n '2,6p' example.bed
+```
+Also, we can create specific pattern, like multiple of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file
+
+```bash
+$ sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
+```
+
 
 - - - 
 <p style="text-align:left;">
