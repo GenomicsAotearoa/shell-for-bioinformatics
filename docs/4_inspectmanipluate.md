@@ -1,5 +1,6 @@
 # Inspecting and Manipulating Text Data with Unix Tools - Part 1
  
+!!! abstract "Lesson Objectives"
 
 Many formats in bioinformatics are simple tabular plain-text files delimited by a character. The most common tabular plain-text file format used in bioinformatics is tab-delimited. Bioinformatics evolved to favor tab-delimited formats because of the convenience of working with these files using Unix tools.
 
