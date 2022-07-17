@@ -404,7 +404,21 @@ We can use the above trick to convert the .fastq to .fasta
 ```bash
 $ sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
 ```
-Let's wrap up `sed` with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. 
+Let's wrap up `sed` with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to , 
+
+```bash
+$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
+```
+
+Not really what we are after as the output is as below
+
+```bash
+1	pseudogene	gene	3054233	3054733	.	+	.	gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+ENSMUST00000160944
+ENSMUST00000160944
+```
+
+The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` "`transcript_id`" before sed to only work with lines containing the string "`transcript_id`" . However, `sed` offers a cleaner way. First, disable sed from outputting all lines with `-n` . Then, by appending `p` after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
 - - - 
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
