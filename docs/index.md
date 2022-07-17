@@ -1,4 +1,6 @@
-# Intermediate-Advanced Shell for Bioinformatics
+<center>
+# **Intermediate-Advanced Shell for Bioinformatics**
+</center>
 
 <br>
 <p align="center"><img src="images/tuxpenguin_bash_unix.png" alt="drawing" width="300"/></p> 
@@ -22,3 +24,6 @@
     2. The Carpentries. ***The Unix Shell*** . https://swcarpentry.github.io/shell-novice/
     3. The Carpentries. ***Introduction to Command Line for Genomics***. https://datacarpentry.org/shell-genomics/
 
+# License 
+
+Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate-Advanced Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
