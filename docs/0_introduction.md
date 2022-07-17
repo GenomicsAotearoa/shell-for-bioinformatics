@@ -1,4 +1,4 @@
-# What is a Unix Shell and Bash 
+# UNIX, Linux  & UNIX Shell 
 
 !!! abstract "Lesson Objectives"
 
