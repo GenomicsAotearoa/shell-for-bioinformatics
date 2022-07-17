@@ -16,3 +16,7 @@
 
 
 # Attribution Notice
+
+* This workshop material is heavily inspired by : 
+    1. Buffalo, V (2015). ***Bioinformatics Data Skills***.O'Reilly Media, Inc
+
