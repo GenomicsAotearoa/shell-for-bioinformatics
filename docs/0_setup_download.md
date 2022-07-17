@@ -1,6 +1,12 @@
 # Setup & Download Data
 
+<center>
 ## Setup
+</center>
+
+### Remote
+
+### Local
 
 ???+ "Windows hosts"
 
@@ -13,7 +19,9 @@
 
     * No additional installs required.
 
+<center>
 ## Download data
+</center>
 
 !!! info "Download via Web Browser"
 
