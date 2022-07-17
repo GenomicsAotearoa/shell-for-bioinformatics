@@ -1,0 +1,887 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="..">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Inspecting and Manipulating Text Data with Unix Tools - Part 1 - Intermediate-Advanced Shell for Bioinformatics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inspecting-and-manipulating-text-data-with-unix-tools-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-header__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intermediate-Advanced Shell for Bioinformatics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inspecting and Manipulating Text Data with Unix Tools - Part 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-nav__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Intermediate-Advanced Shell for Bioinformatics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Intermediate-Advanced Shell for Bioinformatics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_setup_download/" class="md-nav__link">
+        Setup & Download Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_introduction/" class="md-nav__link">
+        What is a Unix Shell and Bash
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_unixshellbasics/" class="md-nav__link">
+        Unix Shell Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Inspecting and Manipulating Text Data with Unix Tools - Part 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-data-with-head-and-tail" class="md-nav__link">
+    Inspecting data with head and tail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-summary-information-with-wc" class="md-nav__link">
+    Extract summary information with wc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-cut-with-column-data-and-formatting-tabular-data-with-column" class="md-nav__link">
+    Using cut with column data and formatting tabular data with column
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorting-plain-text-data-with-sort" class="md-nav__link">
+    Sorting Plain-Text Data with sort
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-unique-values-with-uniq" class="md-nav__link">
+    Finding Unique Values with uniq
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    Find and Replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_inspectmanipulate2/" class="md-nav__link">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 2
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-data-with-head-and-tail" class="md-nav__link">
+    Inspecting data with head and tail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-summary-information-with-wc" class="md-nav__link">
+    Extract summary information with wc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-cut-with-column-data-and-formatting-tabular-data-with-column" class="md-nav__link">
+    Using cut with column data and formatting tabular data with column
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorting-plain-text-data-with-sort" class="md-nav__link">
+    Sorting Plain-Text Data with sort
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-unique-values-with-uniq" class="md-nav__link">
+    Finding Unique Values with uniq
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    Find and Replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="inspecting-and-manipulating-text-data-with-unix-tools-part-1">Inspecting and Manipulating Text Data with Unix Tools - Part 1<a class="headerlink" href="#inspecting-and-manipulating-text-data-with-unix-tools-part-1" title="Permanent link">&para;</a></h1>
+<p style="text-align:left;">
+  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/1.UnixShellBasics/" style="background: var(--bs-green);font-weight:bold">&laquo; 3 - Shell Basics and recap </a></b> 
+  <span style="float:right;">
+    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/5_inspectmanipulate2.html" style="background: var(--bs-green);font-weight:bold">5 - Text Manipu. Pt2 &raquo;</a></b>
+  </span>
+</p>
+
+<p>Many formats in bioinformatics are simple tabular plain-text files delimited by a character. The most common tabular plain-text file format used in bioinformatics is tab-delimited. Bioinformatics evolved to favor tab-delimited formats because of the convenience of working with these files using Unix tools.</p>
+<div class="admonition quote">
+<p class="admonition-title">Tabular Plain-Text Data Formats</p>
+<p>Tabular plain-text data formats are used extensively in computing. The basic format is
+incredibly simple: each row (also known as a record) is kept on its own line, and each
+column (also known as a field) is separated by some delimiter. There are three flavors
+you will encounter: tab-delimited, comma-separated, and variable space-delimited.</p>
+</div>
+<h2 id="inspecting-data-with-head-and-tail">Inspecting data with <code>head</code> and <code>tail</code><a class="headerlink" href="#inspecting-data-with-head-and-tail" title="Permanent link">&para;</a></h2>
+<p>Although <code>cat</code> command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with <code>head</code> and <code>tail</code> command which prints the first 10 lines and the last 10 lines (<code>-n 10</code>) of a a file, respectively. .i.e. Let's use <code>head</code> and <code>tail</code> to inspect <em>Mus_musculus.GRCm38.75_chr1.bed</em> </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ head Mus_musculus.GRCm38.75_chr1.bed 
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="m">1</span>   <span class="m">3102016</span> <span class="m">3102125</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="m">1</span>   <span class="m">3102016</span> <span class="m">3102125</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="m">1</span>   <span class="m">3102016</span> <span class="m">3102125</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="m">1</span>   <span class="m">3205901</span> <span class="m">3671498</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="m">1</span>   <span class="m">3205901</span> <span class="m">3216344</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="m">1</span>   <span class="m">3213609</span> <span class="m">3216344</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="m">1</span>   <span class="m">3205901</span> <span class="m">3207317</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ tail Mus_musculus.GRCm38.75_chr1.bed 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="m">1</span>   <span class="m">195166217</span>   <span class="m">195166390</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="m">1</span>   <span class="m">195165745</span>   <span class="m">195165851</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="m">1</span>   <span class="m">195165748</span>   <span class="m">195165851</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="m">1</span>   <span class="m">195165745</span>   <span class="m">195165747</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="m">1</span>   <span class="m">195228278</span>   <span class="m">195228398</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="m">1</span>   <span class="m">195228278</span>   <span class="m">195228398</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="m">1</span>   <span class="m">195228278</span>   <span class="m">195228398</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="m">1</span>   <span class="m">195240910</span>   <span class="m">195241007</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="m">1</span>   <span class="m">195240910</span>   <span class="m">195241007</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="m">1</span>   <span class="m">195240910</span>   <span class="m">195241007</span>
+</code></pre></div>
+Changing the number of lines printed for either of those commands can be done by passing <code>-n &lt;number_of_lines&gt;</code> flag .i.e. Over-ride the <code>-n 10</code> default</p>
+<p>Try those commands with <code>0n 4</code> to print top 4 lines and bottom 4 lines</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ head -n <span class="m">4</span> Mus_musculus.GRCm38.75_chr1.bed 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ tail -n <span class="m">4</span> Mus_musculus.GRCm38.75_chr1.bed 
+</code></pre></div></p>
+<details class="question" open="open">
+<summary>Exercise 4.1</summary>
+<p>Sometimes it’s useful to see both the beginning and end of a file — for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both <code>head</code> and <code>tail</code> in a single command to inspect first and last 2 lines of <strong><em>Mus_musculus.GRCm38.75_chr1.bed</em></strong>?</p>
+</details>
+<details class="question" open="open">
+<summary>Exercise 4.2</summary>
+<p>We can also use tail to remove the header of a file. Normally the <code>-n</code> argument specifies how many of the last lines of a file to include, but if <code>-n</code> is given a number <code>x</code> preceded with a <code>+</code> sign (e.g., <code>+x</code> ), tail will start from the x<sup>th</sup> line. So to chop off a header, we start from the second line with <code>-n +2</code>.  Use the <code>seq</code> command to generate a file containing the numbers 1 to 10, and then use the <code>tail</code> command to chop off the first line.</p>
+</details>
+<h2 id="extract-summary-information-with-wc">Extract summary information with <code>wc</code><a class="headerlink" href="#extract-summary-information-with-wc" title="Permanent link">&para;</a></h2>
+<p>The "wc" in the <code>wc</code> command which stands for "word count" - this command can count the numbers of <strong>words, lines</strong>, and <strong>characters</strong> in a file (take a note on the order).</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ wc Mus_musculus.GRCm38.75_chr1.bed 
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  <span class="m">81226</span>  <span class="m">243678</span> <span class="m">1698545</span> Mus_musculus.GRCm38.75_chr1.bed
+</code></pre></div>
+Often, we only need to list the number of lines, which can be done by using the <code>-l</code> flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. </p>
+<div class="admonition question">
+<p class="admonition-title">Qu.</p>
+<p>Count the number of lines in <em>Mus_musculus.GRCm38.75_chr1.bed</em> and <em>Mus_musculus.GRCm38.75_chr1.gtf</em> . Anything out of the ordinary ? </p>
+</div>
+<p>Although <code>wc -l</code> is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" </p>
+<p>For an example, If we are to create a file with 3 rows of data and then two empty lines, </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ cat &gt; fool_wc.bed
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="m">1</span> <span class="m">100</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="m">2</span> <span class="m">200</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="m">3</span> <span class="m">300</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>$
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$ wc -l fool_wc.bed 
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="m">5</span> fool_wc.bed
+</code></pre></div>
+This is a good place bring in <code>grep</code> again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ grep -c <span class="s2">&quot;[^ \\n\\t]&quot;</span> fool_wc.bed 
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="m">3</span>
+</code></pre></div>
+<h2 id="using-cut-with-column-data-and-formatting-tabular-data-with-column">Using cut with column data and formatting tabular data with <code>column</code><a class="headerlink" href="#using-cut-with-column-data-and-formatting-tabular-data-with-column" title="Permanent link">&para;</a></h2>
+<p>When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the <strong><em>Mus_musculus.GRCm38.75_chr1.bed</em></strong> file. The simplest way to do this is with <code>cut</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ cut -f <span class="m">2</span> Mus_musculus.GRCm38.75_chr1.bed <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="m">3054233</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="m">3054233</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="m">3054233</span>
+</code></pre></div>
+<blockquote>
+<blockquote>
+<p><code>-f</code>  argument is how we specify which columns to keep. It can be used to specify a range as well</p>
+</blockquote>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ cut -f <span class="m">2</span>-3 Mus_musculus.GRCm38.75_chr1.bed <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a> <span class="m">3054233</span>    <span class="m">3054733</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a> <span class="m">3054233</span>    <span class="m">3054733</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a> <span class="m">3054233</span>    <span class="m">3054733</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a> <span class="sb">```</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Using <span class="sb">`</span>cut<span class="sb">`</span> , we can convert our GTF <span class="k">for</span> ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges <span class="o">(</span>e.g., chromosome, start, and end position<span class="o">)</span>. We’ll chop off the metadata rows using the grep <span class="nb">command</span> covered earlier, and <span class="k">then</span> use cut to extract the first, fourth, and fifth columns <span class="o">(</span>chromosome, start, end<span class="o">)</span>:
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="sb">```</span>bash
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f1,4,5 <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+</code></pre></div>
+Note that although our three-column file of genomic positions looks like a BED- formatted file, it’s not due to subtle differences in genomic range formats</p>
+<p><code>cut</code> also allows us to specify the column delimiter character. So, if we were to come across a CSV file containing chromosome names, start positions, and end positions, we could select columns from it, too:</p>
+<p>As you may have noticed when working with tab-delimited files, it’s not always easy to see which elements belong to a particular column. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f1-8 <span class="p">|</span> head -n3
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="m">1</span>   pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="m">1</span>   unprocessed_pseudogene  transcript  <span class="m">3054233</span> <span class="m">3054733</span> .   +   .
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="m">1</span>   unprocessed_pseudogene  exon    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .
+</code></pre></div>
+<p>While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column <code>-t</code> (the <code>-t</code> option tells column to treat data as a table). column -t produces neat columns that are much easier to read:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f <span class="m">1</span>-8 <span class="p">|</span> column -t <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="m">1</span>  pseudogene                          gene         <span class="m">3054233</span>    <span class="m">3054733</span>    .  +  .
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="m">1</span>  unprocessed_pseudogene              transcript   <span class="m">3054233</span>    <span class="m">3054733</span>    .  +  .
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="m">1</span>  unprocessed_pseudogene              exon         <span class="m">3054233</span>    <span class="m">3054733</span>    .  +  .
+</code></pre></div>
+Note that you should only use <code>column -t</code> to visualize data in the terminal, not to reformat data to write to a file. Tab-delimited data is preferable to data delimited by a variable number of spaces, since it’s easier for programs to parse. Like <code>cut</code> , <code>column</code>’s default delimiter is the tab character (<code>\t</code> ). We can specify a different delimiter with the <code>-s</code> option. So, if we wanted to visualize the columns of the <strong><em>Mus_musculus.GRCm38.75_chr1_bed.csv</em></strong> file more easily, we could use:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$ column -s<span class="s2">&quot;,&quot;</span> -t Mus_musculus.GRCm38.75_chr1.bed <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
+</code></pre></div>
+<h2 id="sorting-plain-text-data-with-sort">Sorting Plain-Text Data with <code>sort</code><a class="headerlink" href="#sorting-plain-text-data-with-sort" title="Permanent link">&para;</a></h2>
+<p>Very often we need to work with sorted plain-text data in bioinformatics. The two
+most common reasons to sort data are as follows:
+- Certain operations are much more efficient when performed on sorted data.
+- Sorting data is a prerequisite to finding all unique lines</p>
+<p><code>sort</code>  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use <code>sort</code> command without any arguments</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$ cat &gt; test_sort.bed
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>chr3    <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>chr3    <span class="m">16</span>  <span class="m">27</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ sort test_sort.bed 
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>chr3    <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>chr3    <span class="m">16</span>  <span class="m">27</span>
+</code></pre></div>
+<code>sort</code> without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.</p>
+<p>However, using <code>sort</code>’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:</p>
+<ul>
+<li>
+<p>The ability to sort by particular columns</p>
+</li>
+<li>
+<p>The ability to tell sort that certain columns are numeric values (and not alpha‐numeric text)</p>
+</li>
+</ul>
+<p><code>sort</code> has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$ sort -k1,1 -k2n test_sort.bed 
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>chr3    <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>chr3    <span class="m">16</span>  <span class="m">27</span>
+</code></pre></div>
+<p>Here, we specify the columns (and their order) we want to sort by as <code>-k</code> arguments. In technical terms, <code>-k</code> specifies the sorting keys and their order. Each <code>-k</code> argument takes a range of columns as <code>start,end</code>, so to sort by a single column we use <code>start,start</code>. In the preceding example, we first sorted by the first column (chromosome), as the first <code>-k</code> argument was <code>-k1,1</code> . Sorting by the first column alone leads to many ties in rows
+with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second <code>-k</code> argument with a different column tells sort how to break these ties. In our example, <code>-k2,2n</code> tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an <code>n</code> in <code>-k2,2n</code>).</p>
+<details class="question" open="open">
+<summary>Exercise 4.3</summary>
+<p><strong><em>Mus_musculus.GRCm38.75_chr1_random.gtf</em></strong> file is <strong><em>Mus_musculus.GRCm38.75_chr1.gtf</em></strong> with permuted rows (and without a metadata
+header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.</p>
+</details>
+<h2 id="finding-unique-values-with-uniq">Finding Unique Values with <code>uniq</code><a class="headerlink" href="#finding-unique-values-with-uniq" title="Permanent link">&para;</a></h2>
+<p><code>uniq</code> takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use <code>uniq</code> very frequently in command-line data processing.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$ cat letters.txt 
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>A
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>A
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>B
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>C
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>B
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>C
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>C
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>C
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ uniq letters.txt 
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>A
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>B
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>C
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>B
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>C
+</code></pre></div>
+As you can see, <code>uniq</code> does not return the unique values in letters.txt — it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using <code>sort</code> so that all identical lines are grouped next to each other, and then run <code>uniq</code>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$ sort letters.txt <span class="p">|</span> uniq
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>A
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>B
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>C
+</code></pre></div>
+<code>uniq</code> with <code>-c</code> shows the counts of occurrences next to the unique lines.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$ uniq -c letters.txt 
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>      <span class="m">2</span> A
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>      <span class="m">1</span> B
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>      <span class="m">1</span> C
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>      <span class="m">1</span> B
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>      <span class="m">3</span> C
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ sort letters.txt <span class="p">|</span> uniq -c
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>      <span class="m">2</span> A
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>      <span class="m">2</span> B
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>      <span class="m">4</span> C
+</code></pre></div>
+Combined with other Unix tools like <code>cut</code>, <code>grep</code> and <code>sort</code>, <code>uniq</code> can be used to summarize columns of tabular data:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  <span class="m">25901</span> CDS
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  <span class="m">36128</span> exon
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>   <span class="m">2027</span> gene
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>   <span class="m">2290</span> start_codon
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>   <span class="m">2299</span> stop_codon
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>   <span class="m">4993</span> transcript
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>   <span class="m">7588</span> UTR
+</code></pre></div>
+Count in order from most frequent to last</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -rn
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>  <span class="m">36128</span> exon
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>  <span class="m">25901</span> CDS
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>   <span class="m">7588</span> UTR
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>   <span class="m">4993</span> transcript
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>   <span class="m">2299</span> stop_codon
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>   <span class="m">2290</span> start_codon
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>   <span class="m">2027</span> gene
+</code></pre></div>
+<h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
+<p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
+<h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
+<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. This syntax for doing this in <code>sed</code> is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is s which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
+<li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
+<li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
+<li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
+<li><code>N</code> where N is any number, to replace Nth instance of the <code>REGEXP</code> with <code>REPLACEMENT</code></li>
+<li><code>p</code> if substitution was made, then prints the new pattern space</li>
+<li><code>i</code> ignores case for matching <code>REGEXP</code></li>
+<li><code>w</code> file If substitution was made, write out the result to the given file</li>
+<li><code>d</code> when specified without <code>REPLACEMENT</code>, deletes the found <code>REGEXP</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li>Some find and replace examples</li>
+</ul>
+<p>Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>$ sed <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed &gt; example_chromosome.bed
+</code></pre></div>
+Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>$ sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
+</code></pre></div>
+Find and replace directly on the input, but save a old version too</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>$ sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
+</code></pre></div>
+<ul>
+<li>Print specific lines of the file</li>
+</ul>
+<p>To print a specific line, you can use the address function, note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
+<p>print 5<sup>th</sup> line of example.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>$ sed -n <span class="s1">&#39;5p&#39;</span> example.bed
+</code></pre></div>
+<p>We can provide any number of additional lines to print using <code>-e</code> option. Let's print line 2 and 5, </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>$ sed -n -e <span class="s1">&#39;2p&#39;</span> -e <span class="s1">&#39;5p&#39;</span> example.bed
+</code></pre></div>
+<p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>$ sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
+</code></pre></div>
+Also, we can create specific pattern, like multiple of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$ sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
+</code></pre></div>
+<details class="question" open="open">
+<summary>Exercise 4.4</summary>
+<p>Can you use the above <code>~</code> trick to extract all the <strong>odd</strong> numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file <strong>odd_sed.bed</strong></p>
+</details>
+<p>One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>$ sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq
+</code></pre></div>
+<div class="admonition hint">
+<p class="admonition-title">Sanity Check</p>
+<p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>$ sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>$ cat SRR097977.fastq | wc -l</code></p>
+</div>
+<p>We can use the above trick to convert the .fastq to .fasta</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>$ sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
+</code></pre></div>
+Let's wrap up <code>sed</code> with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to , </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
+</code></pre></div>
+<p>Not really what we are after as the output is as below</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="m">1</span>   pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>ENSMUST00000160944
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>ENSMUST00000160944
+</code></pre></div>
+<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> . Then, by appending <code>p</code> after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>$ grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+</code></pre></div>
+<hr />
+<p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../2_unixshellbasics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Unix Shell Basics" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Unix Shell Basics
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../5_inspectmanipulate2/" class="md-footer__link md-footer__link--next" aria-label="Next: Inspecting and Manipulating Text Data with Unix Tools - Part 2" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Inspecting and Manipulating Text Data with Unix Tools - Part 2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+    
+  </body>
+</html>
