@@ -196,7 +196,9 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
 
 ??? "Variables for each format"
 
-    For the `-c` you can either specify bed, sam, vcf, gff, fastx or header. `bioawk` will parse these variables for the respective format
+    For the `-c` you can either specify bed, sam, vcf, gff, fastx or header. `bioawk` will parse these variables for the respective format. If `-c` header is specified, the field names (first line) will be used as variables (spaces and special characters will be changed to under_score)
+
+    <center>
 
     |**bed** 	|**sam** 	|**vcf** 	|**gff** 	|**fastx**|
     |:----------|:----------|:----------|:----------|:--------|
@@ -213,6 +215,7 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
     |blocksizes |qual 	| 	  	|           |         |
     |blockstarts| 	  	|           |           |         |
 
+    </center>
 
 
 
