@@ -3,7 +3,7 @@
 
 Many formats in bioinformatics are simple tabular plain-text files delimited by a character. The most common tabular plain-text file format used in bioinformatics is tab-delimited. Bioinformatics evolved to favor tab-delimited formats because of the convenience of working with these files using Unix tools.
 
-!!! quote "Tabular Plain-Text Data Formats" 
+!!! info "Tabular Plain-Text Data Formats" 
 
     Tabular plain-text data formats are used extensively in computing. The basic format is
     incredibly simple: each row (also known as a record) is kept on its own line, and each
