@@ -352,6 +352,11 @@ Find and replace `chr` to `chromosome`, only if you also find **40** in the line
 ```bash
 $ sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
 ```
+Find and replace directly on the input, but save a old version too
+
+```bash
+$ sed -i.old 's/chr/chromosome/g' example.bed
+```
 
 
 - - - 
