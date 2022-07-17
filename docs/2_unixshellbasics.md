@@ -1,14 +1,5 @@
 # Unix Shell Basics
 
-<p style="text-align:left;">
-  <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/1_introduction.html" style="background: var(--bs-green);font-weight:bold">&laquo; 1 - Unix Shell and Bash </a></b> 
-  <span style="float:right;">
-    <b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/workshop_material/4_inspectmanipluate.html" style="background: var(--bs-green);font-weight:bold">4 - Text Manipu. Pt1 &raquo;</a></b>
-  </span>
-</p>
-
-
-
 It is expected that you are already familiar with using the basics of the Unix Shell.  As a quick refresher, some frequently used commands are listed below.
 
 For more information about a command, use the Unix `man` command. For example, to get more information about the `mkdir` command, type:
