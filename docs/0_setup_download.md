@@ -22,10 +22,12 @@
     === "MacOS"
 
           * Native terminal client is sufficient.
-          * It might not comes with `wget`
+          * It might not comes with `wget` download data via command line (can be installed with `$ brew install wget`)
+          * However, it is not required as we provide a direct link to download data in .zip format 
 
     === "Linux"
 
+          * Native terminal client is sufficient.
 
     !!! warning "`bioawk` install on all hosts"
 
