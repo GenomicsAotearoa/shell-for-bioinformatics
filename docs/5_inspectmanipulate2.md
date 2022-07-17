@@ -204,14 +204,14 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
 |start 	|flag 	|pos 	      |source 	|seq      |
 |end 	      |rname 	|id 	      |feature 	|qual     |
 |name 	|pos 	      |ref 	      |start 	|comment  | 
-|score 	|mapq 	|alt 	      |end 	      |
-|strand 	|cigar 	|qual       |score 	| 
-|thickstart |rnext 	|filter 	|filter 	| 
-|thickend 	|pnext 	|info 	|strand 	| 
-|rgb 	      |tlen 	|group 	| 	      |
-|blockcount |seq 	      |attribute 	|  	      |
-|blocksizes |qual 	| 	  	|           |
-|blockstarts| 	  	|           |           |
+|score 	|mapq 	|alt 	      |end 	      |         |
+|strand 	|cigar 	|qual       |score 	|         |
+|thickstart |rnext 	|filter 	|filter 	|         |
+|thickend 	|pnext 	|info 	|strand 	|         |
+|rgb 	      |tlen 	|group 	| 	      |         |
+|blockcount |seq 	      |attribute 	|  	      |         |
+|blocksizes |qual 	| 	  	|           |         |
+|blockstarts| 	  	|           |           |         |
 
 - - - 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/bash-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
