@@ -261,8 +261,8 @@
   
   
     <li class="md-nav__item">
-      <a href="0_setup_download/" class="md-nav__link">
-        Setup & Download Data
+      <a href="0_introduction/" class="md-nav__link">
+        What is a Unix Shell and Bash
       </a>
     </li>
   
@@ -276,8 +276,8 @@
   
   
     <li class="md-nav__item">
-      <a href="1_introduction/" class="md-nav__link">
-        What is a Unix Shell and Bash
+      <a href="1_download_data/" class="md-nav__link">
+        Download Data
       </a>
     </li>
   
@@ -381,11 +381,11 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">1. <a href="0_setup_download/">Setup and Download Data</a></td>
+<td align="left">1. <a href="0_introduction/">UNIX, Shell, Linux &amp; Bash</a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left">2. <a href="1_introduction/">UNIX, Shell, Linux &amp; Bash</a></td>
+<td align="left">2. <a href="1_download_data/">Download and verify data</a></td>
 <td align="left"></td>
 </tr>
 <tr>
@@ -402,6 +402,7 @@
 </tr>
 </tbody>
 </table>
+<hr />
 <h1 id="attribution-notice">Attribution Notice<a class="headerlink" href="#attribution-notice" title="Permanent link">&para;</a></h1>
 <ul>
 <li>This workshop material is heavily inspired by : <ol>
@@ -411,8 +412,60 @@
 </ol>
 </li>
 </ul>
+<hr />
 <h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
 <p>Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate-Advanced Shell for Bioinformatics" is licensed under the <strong>GNU General Public License v3.0, 29 June 2007</strong> . (<a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE">Follow this link for more information</a>)</p>
+<hr />
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
+<p>If possible, we do recommend using the <strong>Remote</strong> option over <strong>Local</strong>  ( Especially for <em>Windows</em> hosts). This will eliminate  the need to install any additional applications</p>
+<ul>
+<li><strong>Remote</strong> option will require an exiting NeSI Account</li>
+</ul>
+<h3 id="remote">Remote<a class="headerlink" href="#remote" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>Log into NeSI Mahuika Jupyter Service</summary>
+<ol>
+<li>Follow <a href="https://jupyter.nesi.org.nz/hub/login">https://jupyter.nesi.org.nz/hub/login</a></li>
+<li><p>Enter NeSI username, HPC password and 6 digit second factor token<br><img alt="image" src="images/jupyter_login_labels_updated.png" /></p></li>
+<li><p>Choose server options as below
+<br>&gt;&gt;make sure to choose the correct project code <code>nesi02659</code>, number of CPUs <code>CPUs=4</code>, memory <code>8 GB</code> prior to pressing <img alt="images" src="images/start_button.png" width="40" />  button.</li>
+</ol>
+<p><br><img alt="images" src="images/jupyter_server2022.png" /></p>
+</details>
+<h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>Local host setup - Windows, MacOS &amp; Linux</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows Hosts</label><label for="__tabbed_1_2">MacOS</label><label for="__tabbed_1_3">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Install either </li>
+<li>Git for Windows from <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a> <strong>OR</strong></li>
+<li>MobaXterm Home (<em>Portable</em> or <em>Installer</em> edition) from <a href="https://mobaxterm.mobatek.net/download-home-edition.html">https://mobaxterm.mobatek.net/download-home-edition.html</a><ul>
+<li>Portable edition does not require administrative privileges </li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Native terminal client is sufficient.</li>
+<li>It might not comes with <code>wget</code> download data via command line (can be installed with <code>$ brew install wget</code>)</li>
+<li>However, it is not required as we provide a direct link to download data in .zip format </li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Native terminal client is sufficient.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>bioawk</code> install on all hosts</p>
+<p>One of the tools used in this workshop is <code>bioawk</code> which is not native to any terminal clients. Installing it on MacOS and Linux can be done with <code>$ brew install bioawk</code> &amp; <code>$ sudo apt install bioawk</code>, respectively.Windows hosts might have to do it via <code>conda</code> according to <a href="https://anaconda.org/bioconda/bioawk">these instructions</a>. However, this will require a prior install of <strong>Anaconda</strong> Or <strong>Miniconda</strong> </p>
+</div>
+</details>
 
               
             </article>
@@ -429,13 +482,13 @@
       
       
         
-        <a href="0_setup_download/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup &amp; Download Data" rel="next">
+        <a href="0_introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: What is a Unix Shell and Bash" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Setup & Download Data
+              What is a Unix Shell and Bash
             </div>
           </div>
           <div class="md-footer__button md-icon">
