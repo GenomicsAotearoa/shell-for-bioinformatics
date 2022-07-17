@@ -1,7 +1,7 @@
 # Intermediate-Advanced Shell for Bioinformatics
 
 <br>
-<p align="center"><img src="images/unix_logo.png" alt="drawing" width="300"/></p> 
+<p align="center"><img src="images/tuxpenguin_bash_unix.png" alt="drawing" width="300"/></p> 
 <br>
 
 <!--- check -->
