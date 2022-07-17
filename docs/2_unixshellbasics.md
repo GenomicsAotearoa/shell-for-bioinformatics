@@ -20,7 +20,7 @@ $ man mkdir
     - `cd` (also `cd ~/`)- change to your home directory
     - `cd ..` - change to the directory one level above
 
-!!! abstract "Other useful commands:"
+!!! note "Other useful commands:"
 
     - `mv` - move files or directories
     - `cp` - copy files or directories
