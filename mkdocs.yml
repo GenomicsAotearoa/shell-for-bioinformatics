@@ -2,7 +2,7 @@ site_name: Intermediate-Advanced Shell for Bioinformatics
 
 #Repository information
 
-repo_url: https://genomicsaotearoa.github.io/shell-for-bioinformatics/
+repo_url: https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git
 repo_name:  GenomicsAotearoa/shell-for-bioinformatics 
 
 theme:
