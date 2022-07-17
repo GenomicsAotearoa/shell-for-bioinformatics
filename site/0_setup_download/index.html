@@ -350,7 +350,7 @@
   
     <li class="md-nav__item">
       <a href="../2_unixshellbasics/" class="md-nav__link">
-        Unix Shell Basics
+        Unix Shell Basics & Recap
       </a>
     </li>
   
@@ -468,7 +468,21 @@
 <p><center></p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p></center></p>
+<p>If possible, we do recommend using the <strong>Remote</strong> option over <strong>Local</strong>  ( Especially for <em>Windows</em> hosts). This will eliminate  the need to install any additional applications</p>
+<ul>
+<li><strong>Remote</strong> option will require an exiting NeSI Account</li>
+</ul>
 <h3 id="remote">Remote<a class="headerlink" href="#remote" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>Log into NeSI Mahuika Jupyter Service</summary>
+<ol>
+<li>Follow <a href="https://jupyter.nesi.org.nz/hub/login">https://jupyter.nesi.org.nz/hub/login</a></li>
+<li><p>Enter NeSI username, HPC password and 6 digit second factor token<br><img src="/images/jupyter_login_labels_updated.png" alt="drawing" width="720"/></p></li>
+<li><p>Choose server options as below
+<br>&gt;&gt;make sure to choose the correct project code <code>nesi02659</code>, number of CPUs <code>CPUs=4</code>, memory <code>8 GB</code> prior to pressing <img src="/images/start_button.png" alt="drawing" width="40"/> button.</li>
+</ol>
+<p><br><img src="/images/jupyter_server2022.png" alt="drawing" width="700"/></p>
+</details>
 <h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
 <details class="info">
 <summary>Local host setup - Windows, MacOS &amp; Linux</summary>
@@ -503,6 +517,7 @@
 <p>One of the tools used in this workshop is <code>bioawk</code> which is not native to any terminal clients. Installing it on MacOS and Linux can be done with <code>$ brew install bioawk</code> &amp; <code>$ sudo apt install bioawk</code>, respectively.Windows hosts might have to do it via <code>conda</code> according to <a href="https://anaconda.org/bioconda/bioawk">these instructions</a>. However, this will require a prior install of <strong>Anaconda</strong> Or <strong>Miniconda</strong> </p>
 </div>
 </details>
+<hr />
 <hr />
 <p><center></p>
 <h2 id="download-data">Download data<a class="headerlink" href="#download-data" title="Permanent link">&para;</a></h2>
