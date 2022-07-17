@@ -10,7 +10,7 @@ $ man mkdir
 
 
 
-!!! abstract "Key commands for navigating around the filesystem are:"
+!!! note "Key commands for navigating around the filesystem are:"
 
     - `ls` - list the contents of the current directory
     - `ls -l` - list the contents of the current directory in more detail.
