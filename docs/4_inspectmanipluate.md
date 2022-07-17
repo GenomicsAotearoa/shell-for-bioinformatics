@@ -385,6 +385,10 @@ Also, we can create specific pattern, like multiple of a number using `~`. Let's
 $ sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
 ```
 
+???+ question "Exercise 4.4"
+
+    Can you use the above `~` trick to extract all the **odd** numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file **odd_sed.bed**
+
 
 - - - 
 <p style="text-align:left;">
