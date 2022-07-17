@@ -10,14 +10,14 @@ If possible, we do recommend using the **Remote** option over **Local**  ( Espec
 
 ### Remote
 
-??? info "Log into NeSI Mahuika Jupyter Service"
+???+ info "Log into NeSI Mahuika Jupyter Service"
 
     1. Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)
-    2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br><img src="/images/jupyter_login_labels_updated.png" alt="drawing" width="720"/></p>
+    2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br>![image](./images/jupyter_login_labels_updated.png)</p>
     3. <p>Choose server options as below
-    <br>>>make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=4`, memory `8 GB` prior to pressing <img src="/images/start_button.png" alt="drawing" width="40"/> button.
+    <br>>>make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=4`, memory `8 GB` prior to pressing ![images](./images/start_button.png){width="40"}  button.
 
-    <br><img src="/images/jupyter_server2022.png" alt="drawing" width="700"/>
+    <br>![images](./images/jupyter_server2022.png)
 
 
 ### Local
