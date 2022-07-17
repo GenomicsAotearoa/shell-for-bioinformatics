@@ -10,8 +10,8 @@
 
 | **Lesson**                                         | **Overview** | 
 |:---------------------------------------------------|:-------------|
-|1. [UNIX,Linux & UNIX Shell](./0_introduction.md)||
-|2. [Download and verify data](./1_download_data.md)||
+|1. [UNIX,Linux & UNIX Shell](./0_introduction.md)|Introduction to UNIX operating system, Linux and UNIX Shell|
+|2. [Download and verify data](./1_download_data.md)| Downloading data with `wget`/`curl` and check the transferred data’s integrity with check‐sums|
 |3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)||
 |4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)||
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)||
