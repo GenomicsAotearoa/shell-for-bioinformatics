@@ -1,4 +1,4 @@
-# UNIX, Linux  & UNIX Shell 
+# UNIX, Linux  & UNIX Shell 🥵
 
 !!! abstract "Lesson Objectives"
 
