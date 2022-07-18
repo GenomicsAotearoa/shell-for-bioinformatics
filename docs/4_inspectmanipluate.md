@@ -101,7 +101,7 @@ $ grep -c "[^ \\n\\t]" fool_wc.bed
 
   3
 ```
-## Using cut with column data and formatting tabular data with `column`
+## Using `cut` with column data and formatting tabular data with `column`
 
 When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
 
