@@ -15,7 +15,7 @@
 |3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)|Navigating Files & Directories and a review of  commands used in routine tasks|
 |4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)||
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)| Text processing with `awk` and `bioawk`|
-|6. [Puzzles](./puzzles.md) 🥵                                       | 
+|6. [Puzzles](./puzzles.md) 🧩 😕                                     | 
 
 - - - 
 
