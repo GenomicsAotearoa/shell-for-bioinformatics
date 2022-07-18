@@ -82,15 +82,14 @@ For an example, If we are to create a file with 3 rows of data and then two empt
 
 ```bash
 $ cat > fool_wc.bed
-1 100
-2 200
-3 300
 
-
-$
+  1 100
+  2 200
+  3 300
 ```
 ```bash
 $ wc -l fool_wc.bed 
+
   5 fool_wc.bed
 ```
 This is a good place bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)
