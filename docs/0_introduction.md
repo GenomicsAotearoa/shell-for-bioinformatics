@@ -38,8 +38,6 @@ Linux is not Unix, but it is a "Unix-like" operating system. Linux system is der
 
     Linux is just the **kernel** and not the complete OS. This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.
 
-      -  A **Kernel** is a computer program that is the heart and core of an Operating System. Since the Operating System has control over the system so, the Kernel also has control over everything in the system. It is the most important part of an Operating System. Whenever a system starts, the Kernel is the first program that is loaded after the bootloader because the Kernel has to handle the rest of the thing of the system for the Operating System. The Kernel remains in the memory until the Operating System is shut-down. 
-    
     Linux distribution (also called as a **distro** in short) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which is essential for a few device drivers.
 
 
