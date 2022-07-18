@@ -40,6 +40,7 @@ Default behaviour of `awk` is to print every line of data from the specified fil
 
 ```bash
 $ awk '{print}' example.bed 
+
 chr1	26	39
 chr1	32	47
 chr3	11	28
@@ -53,6 +54,7 @@ Print lines which match the given pattern
 
 ```bash
 $ awk '/chr1/ {print}' example.bed 
+
 chr1	26	39
 chr1	32	47
 chr1	40	49
