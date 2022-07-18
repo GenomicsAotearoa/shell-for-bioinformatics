@@ -111,6 +111,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
 ```bash
 $ awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
+
 chr1	26	39
 chr1	32	47
 chr1	9	28
