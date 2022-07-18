@@ -115,14 +115,15 @@ $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 >>`-f`  argument is how we specify which columns to keep. It can be used to specify a range as well
 
 ```bash
-
 $ cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 
  3054233	3054733
  3054233	3054733
  3054233	3054733
- ```
-Using `cut` , we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier, and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
+```
+
+
+Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier, and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
 
 ```bash
 $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
