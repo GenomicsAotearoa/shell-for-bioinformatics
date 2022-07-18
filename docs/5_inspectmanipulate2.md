@@ -83,6 +83,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 
 ```bash
 $ awk '$3 - $2 > 18' example.bed 
+
 chr1	9	28
 chr2	35	54
 ```
