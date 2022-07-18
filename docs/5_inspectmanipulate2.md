@@ -116,6 +116,12 @@ chr1	26	39
 chr1	32	47
 chr1	9	28
 ```
+!!! info ""
+
+    - First pattern, `$1 ~ /chr1` specifies the regular expression. (All Regular expressions are in slashes.)  We are mating the first field, `$1` against the regular expression `chr1`. 
+    - Tile `~` means **match**.
+    
+
 
 **Built-In Variables and special patterns In Awk**
 
