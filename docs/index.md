@@ -15,6 +15,7 @@
 |3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)|Navigating Files & Directories and a review of  commands used in routine tasks|
 |4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)||
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)| Text processing with `awk` and `bioawk`|
+|6. [Puzzles](./puzzles.md) 🥵                                       | 
 
 - - - 
 
@@ -29,6 +30,8 @@
 - - - 
 
 # License 
+
+
 
 Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate-Advanced Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
 
