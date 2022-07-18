@@ -238,6 +238,7 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k
 
 ```bash
 $ cat letters.txt 
+
 A
 A
 B
@@ -249,6 +250,7 @@ C
 ```
 ```bash
 $ uniq letters.txt 
+
 A
 B
 C
