@@ -126,6 +126,7 @@ Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to
 
 ```bash
 $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
+
 1	3054233	3054733
 1	3054233	3054733
 1	3054233	3054733
@@ -139,9 +140,9 @@ As you may have noticed when working with tab-delimited files, it’s not always
 ```bash
 $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
     
-    1	pseudogene	gene	3054233	3054733	.	+	.
-    1	unprocessed_pseudogene	transcript	3054233	3054733	.	+	.
-    1	unprocessed_pseudogene	exon	3054233	3054733	.	+	.
+  1	pseudogene	gene	3054233	3054733	.	+	.
+  1	unprocessed_pseudogene	transcript	3054233	3054733	.	+	.
+  1	unprocessed_pseudogene	exon	3054233	3054733	.	+	.
 ```
 
 While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
