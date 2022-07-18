@@ -165,8 +165,7 @@ $ awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed
 
       In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment s by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
 
-* `awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐
-lus.GRCm38.75_chr1.gtf*** as follows:
+* `awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf*** as follows:
 
 ```bash
 $ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
