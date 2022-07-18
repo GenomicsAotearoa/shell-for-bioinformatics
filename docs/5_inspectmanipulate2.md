@@ -66,6 +66,7 @@ chr1	10	19
 
 ```bash
 $ awk '{print $2 "\t" $3}' example.bed 
+
 26	39
 32	47
 11	28
