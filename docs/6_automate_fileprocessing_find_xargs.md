@@ -155,3 +155,13 @@ find hihi_project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
 ```
 
 One big benefit of `xargs` is that it separates the process that specifies the files to operate on (`find`) from applying a command to these files (through `xargs`). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:
+
+```bash
+touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+
+find hihi_project/data/raw/ -name "*-temp.fastq" > oh_oh_filestodelete.txt
+
+cat oh_oh_filestodelete.txt
+
+cat oh_oh_filestodelete.txt  | xargs rm
+```
