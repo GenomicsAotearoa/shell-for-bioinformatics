@@ -97,7 +97,13 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         find hihi_project/data/raw/ -name "hihiA*fastq" -or -name "hihiC*fastq" -type f
         ```
-    6. Another way to select these files is with negation:
+    6. Another way to select these files is with negation: Some bash versions will accept `"!"` as the flag for this where others will require `-not` 
 
         ```bash
-        
+        find hihi_project/data/raw/ -type f -not -name "hihiB*fastq"
+        ```
+    7. Suppose you were sharing this project folder with a colleague and a file named hihiB_R1-temp.fastq was created by them in *hihi_project/data/raw* but you want to ignore it in your file querying:
+
+        ```bash
+        find hihi_project/data/raw/ -type f -not -name "hihiB*fastq" -and -not -name "*-temp*"
+        ```
