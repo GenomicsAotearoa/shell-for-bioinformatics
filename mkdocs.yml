@@ -9,7 +9,7 @@ repo_name:  GenomicsAotearoa/shell-for-bioinformatics
 theme:
   name: material
   logo: images/nesi_ga.png
-  favicon: 
+  favicon: images/nesi_ga.png
    # 404 page
   static_templates:
     - 404.html
