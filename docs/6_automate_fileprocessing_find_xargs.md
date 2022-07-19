@@ -146,3 +146,12 @@ touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
 ```bash
 find hihi_project/data/raw -name "*-temp.fastq" | xargs rm
 ```
+`xargs` passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like `rm`, `touch`, `mkdir`, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with `xargs`’s `-n` argument. For example, we could call rm four separate times (each on one file) with:
+
+```bash
+touch zmays-snps/data/seqs/zmays{A,C}_R{1,2}-temp.fastq
+
+find hihi_project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
+```
+
+One big benefit of `xargs` is that it separates the process that specifies the files to operate on (`find`) from applying a command to these files (through `xargs`). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:
