@@ -91,3 +91,10 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         find hihi_project/data/raw/ -name "hihiB*fastq" -type f
         ```
+    5. By default, `find` connects different parts of an expression with logical **AND**. The find command in this case returns results where the name matches “hihiB*fastq” and is a file (type “f ”). `find` also allows explicitly connecting different parts of an expression with different operators.
+    If we want to get the names of all `fastq` files from samples A or C, we’ll use the operator -or to chain expressions:
+
+        ```bash
+        find hihi_project/data/raw/ -name "hihiA*fastq" -or -name "hihiC*fastq" -type f
+        ```
+    6. 
