@@ -1,5 +1,4 @@
 
-
 - Chapter 6: [Bioinformatics Data](draft_notes/2-bioinformatics-data.md)
 
 and perhaps even some [other stuff](draft_notes/4-other-things.md)
