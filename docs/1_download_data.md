@@ -36,6 +36,12 @@ Decomressing the tar.gz file can be done  with the built-in `tar` utility .
 tar -xvzf shell4b_data.tar.gz
 ```
 
+> - `x`: Extract an archive.
+> - `z`: Compress the archive with gzip.
+> - `v`: Display progress in the terminal while creating the archive, also known as “verbose” mode. The v is always optional in these commands, but it’s helpful.
+ > - `f`: Allows you to specify the filename of the archive.
+
+
 
 ## Data Integrity
 
