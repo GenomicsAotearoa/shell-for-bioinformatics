@@ -54,7 +54,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 ???+ question "Exercise 6.1"
 
-    - Create a small directory system as below in your current working directory
+    1. Create a small directory system as below in your current working directory
 
         ```bash
         mkdir -p hihi_project/{data/raw,scripts,results}
@@ -63,6 +63,26 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         touch hihi_project/data/raw/hihi{A,B,C}_R{1,2}.fastq
         ```
-    -  Run `find hihi_project`
+    2.  Run `find hihi_project` and examine the output
 
-    - 
+        ??? success "Output"
+
+            ```bash
+            hihi_project/
+            hihi_project/results
+            hihi_project/data
+            hihi_project/data/raw
+            hihi_project/data/raw/hihiB_R1.fastq
+            hihi_project/data/raw/hihiA_R1.fastq
+            hihi_project/data/raw/hihiA_R2.fastq
+            hihi_project/data/raw/hihiC_R1.fastq
+            hihi_project/data/raw/hihiB_R2.fastq
+            hihi_project/data/raw/hihiC_R2.fastq
+            hihi_project/scripts
+            ```
+
+    3. Use find to print the names of all files matching the pattern “hihiB*fastq” (e.g., FASTQ files from sample “B”, both read pairs): 
+
+        ```bash
+        find hihi_project/data/raw/ -name "hihiB*fastq"
+        ```
