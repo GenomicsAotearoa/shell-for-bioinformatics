@@ -54,3 +54,4 @@ Data we download  is the starting point of all future analyses and conclusions. 
 
     f44dca62012017196b545a2dd2d2906d  tb1.fasta
     ```
+    Because it can get rather tedious to check each checksum individually, both `md5sum` and `sha256sum` has a convenient solution: it can create and validate against a file containing the checksums of files. We can create a SHA-1 checksum file for all FASTQ files in the data/ directory as follows:
