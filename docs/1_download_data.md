@@ -35,3 +35,9 @@ Two most common checksum algorithms are MD5 and SHA ( There are we will be refer
 * **MD5** : cryptographic hash function algorithm that takes the message as input of any length and changes it into a fixed-length message of 16 bytes. MD5 algorithm stands for the message-digest algorithm. 
 
 * **SHA**  : SHA-256 is a more secure and newer cryptographic hash function that was launched in 2000 as a new version of SHA functions and was adopted as *Federal Information Processing Standards* (FIPS) in 2002. It is allowed to use a hash generator tool to produce a SHA256 hash for any string or input value. Also, it generates 256 hash values, and the internal state size is 256 bit and the original message size is up to 264-1 bits.
+
+To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through standard in 
+
+```bash
+
+echo "shell for Bioinformatics" | md5sum
