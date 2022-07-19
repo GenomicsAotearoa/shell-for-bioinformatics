@@ -25,7 +25,7 @@
 
 ## Decompress downloaded tar.gz OR .zip
 
-A TAR.GZ file is a combination of two different packaging algorithms. The first is tar, short for tape archive. It’s an old utility, invented mainly for accurate data transfer to devices without their own file systems. A tar file (or tarball) contains files in a sequential format, along with metadata about the directory structure and other technical parameters.
+A **TAR.GZ** file is a combination of two different packaging algorithms. The first is *tar*, short for tape archive. It’s an old utility, invented mainly for accurate data transfer to devices without their own file systems. A tar file (or tarball) contains files in a sequential format, along with metadata about the directory structure and other technical parameters.
 
 It is useful to note that tar doesn’t compress the files in question, only packages them. Indeed, sometimes the resulting tarball can be of greater size due to padding. So that’s where **Gzip** comes in. **Gzip** (denoted by a .gz file extension) is a compressed file format used to archive data to take up smaller space. Gzip uses the same compression algorithm as the more commonly known zip but can only be used on a single file. In short, Gzip compresses all the individual files and tar packages them in a single archive.
 
