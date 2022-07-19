@@ -1,5 +1,4 @@
 
-## Alright, enough kidding around...
 
 We'll likely base the workshop on material from the book *Bioinformatics Data Skills* by Vince Buffalo.  In particular:
 
