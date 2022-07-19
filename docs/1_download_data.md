@@ -29,6 +29,13 @@ A **TAR.GZ** file is a combination of two different packaging algorithms. The fi
 
 It is useful to note that tar doesn’t compress the files in question, only packages them. Indeed, sometimes the resulting tarball can be of greater size due to padding. So that’s where **Gzip** comes in. **Gzip** (denoted by a .gz file extension) is a compressed file format used to archive data to take up smaller space. Gzip uses the same compression algorithm as the more commonly known zip but can only be used on a single file. In short, Gzip compresses all the individual files and tar packages them in a single archive.
 
+Decomressing the tar.gz file can be done  with the built-in `tar` utility . 
+
+```bash
+
+tar -xvzf shell4b_data.tar.gz
+```
+
 
 ## Data Integrity
 
