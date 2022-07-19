@@ -393,6 +393,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puzzles/" class="md-nav__link">
+        Puzzles
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -500,6 +515,17 @@
 <p class="admonition-title">On Unix philosophy</p>
 <p>“Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” <strong><em>– Brian Kernighan &amp; Rob Pike</em></strong></p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">The UNIX operating system is made up of three parts; the <ins>kernel</ins>, the <ins>shell</ins> and the programs</p>
+<p>Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.</p>
+<p><ins><strong>Shell</strong></ins> − The shell is the utility that processes your requests (acts as an interface between the user and the kernel). When you type in a command at your terminal, the shell <em>interprets</em> (operating as in <ins><em>interpreter</em></ins>) the command and calls the program that you want. The shell uses standard syntax for all commands. The shell recognizes a limited set of commands, and you must give commands to the shell in a way that it understands: Each shell command consists of a command name, followed by command options (if any are desired) and command arguments (if any are desired). The command name, options, and arguments, are separated by blank space. </p>
+<ul>
+<li>An <ins><em>interpreter</em></ins> operates in a simple loop: It accepts a command, interprets the command, executes the command, and then waits for another command. The shell displays a "prompt," to notify you that it is ready to accept your command.
+<center>
+<img alt="image" src="../images/interpreter_loop.png" width="200" />
+</center></li>
+</ul>
+</div>
 <h2 id="unix-vs-linux">UNIX vs. Linux<a class="headerlink" href="#unix-vs-linux" title="Permanent link">&para;</a></h2>
 <p>Linux is not Unix, but it is a "Unix-like" operating system. Linux system is derived from Unix and it is a continuation of the basis of Unix design. Linux distributions are the most famous and healthiest example of the direct Unix derivatives. BSD (Berkley Software Distribution) is also an example of a Unix derivative.</p>
 <details>
@@ -508,9 +534,6 @@
 <p>SUS is a standard which is required to be met for any OS to qualify for using ‘UNIX’ trademark. This trademark is granted by <a href="https://www.opengroup.org/">‘The Open Group’</a></p>
 <p>Few Examples of currently registered UNIX systems include macOS, Solaris, and AIX. If we consider the POSIX system, then Linux can be regarded as Unix-like OS.</p>
 <p>Linux is just the <strong>kernel</strong> and not the complete OS. This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
-<ul>
-<li>A <strong>Kernel</strong> is a computer program that is the heart and core of an Operating System. Since the Operating System has control over the system so, the Kernel also has control over everything in the system. It is the most important part of an Operating System. Whenever a system starts, the Kernel is the first program that is loaded after the bootloader because the Kernel has to handle the rest of the thing of the system for the Operating System. The Kernel remains in the memory until the Operating System is shut-down. </li>
-</ul>
 <p>Linux distribution (also called as a <strong>distro</strong> in short) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which is essential for a few device drivers.</p>
 </details>
 <h2 id="unix-shell-for-bioinformatics">UNIX Shell for Bioinformatics<a class="headerlink" href="#unix-shell-for-bioinformatics" title="Permanent link">&para;</a></h2>
