@@ -86,3 +86,8 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         find hihi_project/data/raw/ -name "hihiB*fastq"
         ```
+    4. This gives similar results to `ls hihiB*fastq`, as we’d expect. The primary difference is that find reports results separated by newlines and, by default, `find` is recursive. Because we only want to return `fastq` files (and not directories with that matching name), we might want to limit our results using the `-type` option: There are numerous different types you can search for; the most commonly used are `f`for files, `d` for directories, and `l` for links.
+
+        ```bash
+        find hihi_project/data/raw/ -name "hihiB*fastq" -type f
+        ```
