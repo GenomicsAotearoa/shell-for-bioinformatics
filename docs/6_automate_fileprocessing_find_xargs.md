@@ -9,3 +9,8 @@ ls *.fastq | analyse_fastq
 ```
 
 Your shell expands this wildcard to all matching files in the current directory, and `ls` prints these filenames. Unfortunately, this leads to a common complication that makes `ls` and wildcards a fragile solution. Suppose your directory contains a filename called ***treatment 03.fastq***. In this case, `ls` returns ***treatment 03.fastq*** along with other files. However, because files are separated by spaces, and this file contains a space, `analyse_fastq` will interpret *treatment 03.fastq* as two separate files, named ***treatment*** and ***03.fastq***. This problem crops up periodically in different ways, and it’s necessary to be aware of when writing file-processing pipelines. Note that this does not occur with file globbing in arguments—if `analyse_fastq` takes multiple files as arguments, your shell handles this properly:
+
+```bash
+analyse_fastq *.fastq
+```
+Here, shell automatically escapes the space in the filename ***treatment 03.fastq***, so `analyse_fastq` will correctly receive the arguments ***treatment-02.fastq***, ***treatment-03.fastq***,. The potential problem here is that there’s a limit to the number of files that can be specified as arguments. The limit is high, but you can reach it with NGS data. In this case you may get a meassage: : cannot execute [Argument list too long] The solution to both of these problems is through `find` and `xargs`, as we will see in the following sections.
