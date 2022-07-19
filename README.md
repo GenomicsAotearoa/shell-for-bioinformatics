@@ -1,7 +1,5 @@
 
 
-We'll likely base the workshop on material from the book *Bioinformatics Data Skills* by Vince Buffalo.  In particular:
-
 - Chapter 7: [Unix Data Tools](draft_notes/3-unix-data-tools.md)
 
 and maybe some bits of:
