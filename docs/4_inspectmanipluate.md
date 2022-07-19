@@ -16,7 +16,7 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
 Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. .i.e. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
 
 ```bash
-$ head Mus_musculus.GRCm38.75_chr1.bed
+head Mus_musculus.GRCm38.75_chr1.bed
 ```
 
 ??? success "Output"
@@ -35,7 +35,7 @@ $ head Mus_musculus.GRCm38.75_chr1.bed
     ```
 
 ```bash
-$ tail Mus_musculus.GRCm38.75_chr1.bed 
+tail Mus_musculus.GRCm38.75_chr1.bed 
 ```
 ??? success "Output"
 
@@ -56,10 +56,10 @@ Changing the number of lines printed for either of those commands can be done by
 Try those commands with `0n 4` to print top 4 lines and bottom 4 lines
 
 ```bash
-$ head -n 4 Mus_musculus.GRCm38.75_chr1.bed 
+head -n 4 Mus_musculus.GRCm38.75_chr1.bed 
 ```
 ```bash
-$ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
+tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
 ```
 
 ???+ question "Exercise 4.1"
@@ -76,7 +76,7 @@ $ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **words, lines**, and **characters** in a file (take a note on the order).
 
 ```bash
-$ wc Mus_musculus.GRCm38.75_chr1.bed 
+wc Mus_musculus.GRCm38.75_chr1.bed 
 
   81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
 ```
@@ -91,14 +91,14 @@ Although `wc -l` is the quickest way to count the number of lines in a file, it 
 For an example, If we are to create a file with 3 rows of data and then two empty lines, 
 
 ```bash
-$ cat > fool_wc.bed
+cat > fool_wc.bed
 
   1 100
   2 200
   3 300
 ```
 ```bash
-$ wc -l fool_wc.bed 
+wc -l fool_wc.bed 
 
   5 fool_wc.bed
 ```
@@ -106,7 +106,7 @@ This is a good place bring in `grep` again which can be used to count the number
 
 ```bash
 
-$ grep -c "[^ \\n\\t]" fool_wc.bed 
+grep -c "[^ \\n\\t]" fool_wc.bed 
 
   3
 ```
@@ -115,7 +115,7 @@ $ grep -c "[^ \\n\\t]" fool_wc.bed
 When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
 
 ```bash
-$ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
+cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 
 3054233
 3054233
@@ -124,7 +124,7 @@ $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 >>`-f`  argument is how we specify which columns to keep. It can be used to specify a range as well
 
 ```bash
-$ cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
+cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 
  3054233	3054733
  3054233	3054733
@@ -135,7 +135,7 @@ $ cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier, and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
 
 1	3054233	3054733
 1	3054233	3054733
@@ -148,7 +148,7 @@ Note that although our three-column file of genomic positions looks like a BED- 
 As you may have noticed when working with tab-delimited files, it’s not always easy to see which elements belong to a particular column. For example:
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
     
   1	pseudogene	gene	3054233	3054733	.	+	.
   1	unprocessed_pseudogene	transcript	3054233	3054733	.	+	.
@@ -158,7 +158,7 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
 While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
 
    1  pseudogene                          gene         3054233    3054733    .  +  .
    1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
@@ -167,7 +167,7 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -
 Note that you should only use `column -t` to visualize data in the terminal, not to reformat data to write to a file. Tab-delimited data is preferable to data delimited by a variable number of spaces, since it’s easier for programs to parse. Like `cut` , `column`’s default delimiter is the tab character (`\t` ). We can specify a different delimiter with the `-s` option. So, if we wanted to visualize the columns of the ***Mus_musculus.GRCm38.75_chr1_bed.csv*** file more easily, we could use:
 
 ```bash
-$ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
+column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 
    1	3054233	3054733
    1	3054233	3054733
@@ -256,7 +256,7 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k
 `uniq` takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use `uniq` very frequently in command-line data processing.
 
 ```bash
-$ cat letters.txt 
+cat letters.txt 
 ```
 
 ??? success "Output"
@@ -272,8 +272,9 @@ $ cat letters.txt
     C
     ```
 ```bash
-$ uniq letters.txt 
-
+uniq letters.txt 
+```
+```
 A
 B
 C
@@ -283,7 +284,7 @@ C
 As you can see, `uniq` does not return the unique values in letters.txt — it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
 
 ```bash
-$ sort letters.txt | uniq
+sort letters.txt | uniq
 
 A
 B
@@ -292,7 +293,7 @@ C
 `uniq` with `-c` shows the counts of occurrences next to the unique lines.
 
 ```bash
-$ uniq -c letters.txt 
+uniq -c letters.txt 
 
       2 A
       1 B
@@ -301,7 +302,7 @@ $ uniq -c letters.txt
       3 C
 ```
 ```bash
-$ sort letters.txt | uniq -c
+sort letters.txt | uniq -c
 
       2 A
       2 B
@@ -310,7 +311,7 @@ $ sort letters.txt | uniq -c
 Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
 
   25901 CDS
   36128 exon
@@ -323,7 +324,7 @@ $ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
 Count in order from most frequent to last
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
 
   36128 exon
   25901 CDS
@@ -364,17 +365,17 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
 
 ```bash
-$ sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
+sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
 ```
 Find and replace `chr` to `chromosome`, only if you also find **40** in the line
 
 ```bash
-$ sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
+sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
 ```
 Find and replace directly on the input, but save a old version too
 
 ```bash
-$ sed -i.old 's/chr/chromosome/g' example.bed
+sed -i.old 's/chr/chromosome/g' example.bed
 ```
 
 * Print specific lines of the file
@@ -384,24 +385,24 @@ To print a specific line, you can use the address function, note that by default
 print 5th line of example.bed
 
 ```bash
-$ sed -n '5p' example.bed
+sed -n '5p' example.bed
 ```
 
 We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5, 
 
 ```bash
-$ sed -n -e '2p' -e '5p' example.bed
+sed -n -e '2p' -e '5p' example.bed
 ```
 
 It also accepts range, using `,`. Let's print line 2-6,
 
 ```bash
-$ sed -n '2,6p' example.bed
+sed -n '2,6p' example.bed
 ```
 Also, we can create specific pattern, like multiple of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file
 
 ```bash
-$ sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
+sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
 ```
 
 ???+ question "Exercise 4.4"
@@ -411,22 +412,22 @@ $ sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
 One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header
 
 ```bash
-$ sed -n '1~4p;2~4p' SRR097977.fastq
+sed -n '1~4p;2~4p' SRR097977.fastq
 ```
 !!! hint "Sanity Check"
 
-    It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `$ sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `$ cat SRR097977.fastq | wc -l`
+    It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `cat SRR097977.fastq | wc -l`
 
 
 We can use the above trick to convert the .fastq to .fasta
 
 ```bash
-$ sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
+sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
 ```
 Let's wrap up `sed` with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to , 
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
 ```
 
 Not really what we are after as the output is as below
@@ -440,7 +441,7 @@ ENSMUST00000160944
 The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` `transcript_id` before sed to only work with lines containing the string `transcript_id` . However, `sed` offers a cleaner way. First, disable sed from outputting all lines with `-n` . Then, by appending `p` after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
 
 ```bash
-$ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
 ```
 - - - 
 
