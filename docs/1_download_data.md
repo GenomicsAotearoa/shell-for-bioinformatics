@@ -41,3 +41,9 @@ To create checksums, we can pass arbitrary strings to the program `md5sum` (or `
 ```bash
 
 echo "shell for Bioinformatics" | md5sum
+echo "shell for BioInformatics" | md5sum
+```
+```bash
+198638c380be53bf3f6ff70d5626ae44  -
+afa4dbcc56b540e24558085fdc10342f  -
+```
