@@ -36,7 +36,7 @@ Two most common checksum algorithms are MD5 and SHA ( There are we will be refer
 
 * **SHA**  : SHA-256 is a more secure and newer cryptographic hash function that was launched in 2000 as a new version of SHA functions and was adopted as *Federal Information Processing Standards* (FIPS) in 2002. It is allowed to use a hash generator tool to produce a SHA256 hash for any string or input value. Also, it generates 256 hash values, and the internal state size is 256 bit and the original message size is up to 264-1 bits.
 
-To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through standard in 
+To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through **standard** in 
 
 ```bash
 
@@ -47,3 +47,4 @@ echo "shell for BioInformatics" | md5sum
 198638c380be53bf3f6ff70d5626ae44  -
 afa4dbcc56b540e24558085fdc10342f  -
 ```
+Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from **standard** in.
