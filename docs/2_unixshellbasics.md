@@ -11,7 +11,7 @@ It is expected that you are already familiar with using the basics of the Unix S
 For more information about a command, use the Unix `man` command. For example, to get more information about the `mkdir` command, type:
 
 ```bash
-$ man mkdir
+man mkdir
 ```
 
 
@@ -54,7 +54,7 @@ tga1-protein.fasta
 We can use the `cat` command to view these files either one at a time:
 
 ```bash
-$ cat tb1-protein.fasta
+cat tb1-protein.fasta
 
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
@@ -66,7 +66,7 @@ VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
 NLSHHSSLSMNMPCAAA
 ```
 ```bash
-$ cat tga1-protein.fasta 
+cat tga1-protein.fasta 
 
 >teosinte-glume-architecture-1 protein
 DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
@@ -78,13 +78,13 @@ OR all at once with `cat *.fasta`
 We can also redirect the output to create a new file containing the sequence for both proteins:
 
 ```
-$ cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
+cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
 ```
 
 Now we have a new file called `zea-proteins.fasta`. Let's check the contents:
 
 ```bash
-$ cat zea-proteins.fasta 
+cat zea-proteins.fasta 
 
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
@@ -103,7 +103,7 @@ GGEGSSDGGT
 Capturing error messages
 
 ```bash
-$ cat tb1-protein.fasta mik.fasta
+cat tb1-protein.fasta mik.fasta
 
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
@@ -119,7 +119,7 @@ cat: mik.fasta: No such file or directory
 There are two different types of output there: "standard outout" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relatign to the missign `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is catured, bu the standard error is not - it is still printed to the screen.  Let's check:
 
 ``` bash
-$ cat tb1-protein.fasta mik.fasta > test.fasta
+cat tb1-protein.fasta mik.fasta > test.fasta
 
   cat: mik.fasta: No such file or directory
 ```
@@ -127,7 +127,7 @@ $ cat tb1-protein.fasta mik.fasta > test.fasta
 The new file has been created, and contans the standard outout (contents of the file `tb1-protein.fasta`):
 
 ```bash
-$ cat test.fasta
+cat test.fasta
 
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
@@ -142,7 +142,7 @@ NLSHHSSLSMNMPCAAA
 If we want to capture the standard error, we use the (slightly unweildy) `2>` operator:
 
 ```bash
-$ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
+cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 ```
 
 !!! Descriptors
@@ -152,7 +152,7 @@ $ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 Check the contents:
 
 ```bash
-$ cat stderror.txt
+cat stderror.txt
 
   cat: mik.fasta: No such file or directory
 ```
@@ -160,9 +160,9 @@ $ cat stderror.txt
 Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
 
 ```bash
-$ cat tga1-protein.fasta >> test.fasta
+cat tga1-protein.fasta >> test.fasta
 
-$ cat test.fasta 
+cat test.fasta 
 
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
@@ -192,7 +192,7 @@ We will use grep to carry out the first step, and then use the pipe operator to 
 Here is the full command:
 
 ```bash 
-$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 ```
 
 !!! info "Let's see what each piece does" 
@@ -212,7 +212,7 @@ $ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 Let's run the code:
 
 ```bash
-$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
   CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 ```
@@ -222,28 +222,28 @@ $ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
 ```
-$ grep --color -i "[^ATCG]" tb1.fasta
+grep --color -i "[^ATCG]" tb1.fasta
 ```
 
 ### Combining pipes and redirection
 
 ```bash
-$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
+grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
 ```
 
 ```bash
-$ cat non-atcg.txt 
+cat non-atcg.txt 
 ```
 
 since we are redirecting to a text file, the `--color` by itself will not record the colour information. We can achieve this by invoking `always` flag for `--color`.i.e..
 
 ```bash
-$ grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
+grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
 ```
 ### Using tee to capture intermediate outputs
 
 ```bash
-$ grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
+grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
 ```
 
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
