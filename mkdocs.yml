@@ -97,3 +97,5 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.snippets
 
+plugins:
+    - mkdocs-video

@@ -80,3 +80,5 @@ If possible, we do recommend using the **Remote** option over **Local**  ( Espec
     !!! warning "`bioawk` install on all hosts"
 
         One of the tools used in this workshop is `bioawk` which is not native to any terminal clients. Installing it on MacOS and Linux can be done with `$ brew install bioawk` & `$ sudo apt install bioawk`, respectively.Windows hosts might have to do it via `conda` according to [these instructions](https://anaconda.org/bioconda/bioawk). However, this will require a prior install of **Anaconda** Or **Miniconda** 
+
+
