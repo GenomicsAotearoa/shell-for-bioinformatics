@@ -1,5 +1,5 @@
 
-and perhaps even some [other stuff](draft_notes/4-other-things.md)
+
 
 ## (Some) actual content!
 
