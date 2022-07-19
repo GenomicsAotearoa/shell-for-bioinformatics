@@ -99,3 +99,5 @@ markdown_extensions:
 
 plugins:
     - mkdocs-video
+    - search:
+        lang: en
