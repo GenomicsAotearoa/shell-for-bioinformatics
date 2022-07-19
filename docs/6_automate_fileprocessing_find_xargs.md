@@ -2,7 +2,7 @@
 
 In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix `find`. We’ll also see how files printed by `find` can be passed to another tool called `xargs` to create powerful Unix-based processing workflows.
 
-Suppose you have a program named *analyse_fastq* that takes multiple filenames through standard in to process. If you wanted to run this program on all files with the suffix .fastq, you might run:
+Suppose you have a program named `analyse_fastq` that takes multiple filenames through standard in to process. If you wanted to run this program on all files with the suffix .fastq, you might run:
 
 ```bash
 ls *.fastq | analyse_fastq
