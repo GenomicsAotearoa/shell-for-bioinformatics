@@ -121,3 +121,10 @@ touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
 Although we can delete these files with `rm *-temp.fastq`, using `rm` with a wildcard in a directory filled with important data files is too risky. Using `find`’s `-exec` is a much safer way to delete these files.
 
 For example, let’s use `find -exec` and `rm` to delete these temporary files:
+
+```bash
+find hihi_project/data/raw/ -name "*-temp.fastq" -exec rm {} \;
+```
+Notice the (required!) semicolumn and curly brackets at the end of the command! . In one line, we’re able to pragmatically identify and execute a command on files that match a certain pattern. With `find` and `-exec`, a daunting task like processing a directory of 100,000 text files with a program is simple.
+
+In general, `find -exec` is most appropriate for quick, simple tasks (like deleting files, changing permissions, etc.). For larger tasks, `xargs` is a better choice.
