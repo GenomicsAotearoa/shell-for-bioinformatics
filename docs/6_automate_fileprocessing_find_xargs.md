@@ -165,3 +165,7 @@ cat oh_oh_filestodelete.txt
 
 cat oh_oh_filestodelete.txt  | xargs rm
 ```
+
+!!! note "Using `xargs` with Replacement Strings to Apply Commands to Files"
+
+    In addition to adding arguments at the end of the command, `xargs` can place them in predefined positions. This is done with the `-I` option and a placeholder string ({}). Suppose an imaginary program `fastq_stat` takes an input file through the option –in, gathers FASTQ statistics information, and then writes a summary to the file specified by the –out option. We may want our output filenames to be paired with our input filenames and have corresponding names. We can tackle this with `find`, `xargs`, and `basename`:
