@@ -16,7 +16,7 @@
 |4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)| Inspect file/s with utilities such as `head`,`less`. Extracting and formatting tabular data. Magical `grep`. Substitute matching patterns with `sed`|
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)| Text processing with `awk` and `bioawk`|
 |6. [Automating File-Processing with find and xargs](./6_automate_fileprocessing_find_xargs.md)
-|7. [Puzzles](./puzzles.md) 🧩                                      | 
+|7. [Puzzles](./puzzles.md) 🧩 | Can you use shell scripts to solve these "real" life challenged in molecular biology ?|
 
 - - - 
 
