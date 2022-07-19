@@ -16,31 +16,41 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
 Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. .i.e. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
 
 ```bash
-$ head Mus_musculus.GRCm38.75_chr1.bed 
-1	3054233	3054733
-1	3054233	3054733
-1	3054233	3054733
-1	3102016	3102125
-1	3102016	3102125
-1	3102016	3102125
-1	3205901	3671498
-1	3205901	3216344
-1	3213609	3216344
-1	3205901	3207317
+$ head Mus_musculus.GRCm38.75_chr1.bed
 ```
+
+??? success "Output"
+
+    ```bash
+    1	3054233	3054733
+    1	3054233	3054733
+    1	3054233	3054733
+    1	3102016	3102125
+    1	3102016	3102125
+    1	3102016	3102125
+    1	3205901	3671498
+    1	3205901	3216344
+    1	3213609	3216344
+    1	3205901	3207317
+    ```
+
 ```bash
 $ tail Mus_musculus.GRCm38.75_chr1.bed 
-1	195166217	195166390
-1	195165745	195165851
-1	195165748	195165851
-1	195165745	195165747
-1	195228278	195228398
-1	195228278	195228398
-1	195228278	195228398
-1	195240910	195241007
-1	195240910	195241007
-1	195240910	195241007
 ```
+??? success "Output"
+
+    ```bash
+    1	195166217	195166390
+    1	195165745	195165851
+    1	195165748	195165851
+    1	195165745	195165747
+    1	195228278	195228398
+    1	195228278	195228398
+    1	195228278	195228398
+    1	195240910	195241007
+    1	195240910	195241007
+    1	195240910	195241007
+    ```
 Changing the number of lines printed for either of those commands can be done by passing `-n <number_of_lines>` flag .i.e. Over-ride the `-n 10` default
 
 Try those commands with `0n 4` to print top 4 lines and bottom 4 lines
@@ -174,30 +184,36 @@ most common reasons to sort data are as follows:
 `sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments
 
 ```bash
-
-$ cat > test_sort.bed
-
-chr1	26	39
-chr1	32	47
-chr3	11	28
-chr1	40	49
-chr3	16	27
-chr1	9	28
-chr2	35	54
-chr1	10	19
+cat > test_sort.bed
 ```
+
+??? success "Output"
+
+    ```bash
+    chr1	26	39
+    chr1	32	47
+    chr3	11	28
+    chr1	40	49
+    chr3	16	27
+    chr1	9	28
+    chr2	35	54
+    chr1	10	19
+    ```
 ```bash
-$ sort test_sort.bed 
-
-chr1	10	19
-chr1	26	39
-chr1	32	47
-chr1	40	49
-chr1	9	28
-chr2	35	54
-chr3	11	28
-chr3	16	27
+sort test_sort.bed 
 ```
+??? success "Output"
+
+    ```bash
+    chr1	10	19
+    chr1	26	39
+    chr1	32	47
+    chr1	40	49
+    chr1	9	28
+    chr2	35	54
+    chr3	11	28
+    chr3	16	27
+    ```
 `sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.
 
 However, using `sort`’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
@@ -209,17 +225,20 @@ However, using `sort`’s defaults of sorting alphanumerically by line doesn’t
 `sort` has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):
 
 ```bash
-$ sort -k1,1 -k2n test_sort.bed 
+sort -k1,1 -k2n test_sort.bed
+``` 
+??? success "Output"
 
-chr1	9	28
-chr1	10	19
-chr1	26	39
-chr1	32	47
-chr1	40	49
-chr2	35	54
-chr3	11	28
-chr3	16	27
-```
+    ```bash
+    chr1	9	28
+    chr1	10	19
+    chr1	26	39
+    chr1	32	47
+    chr1	40	49
+    chr2	35	54
+    chr3	11	28
+    chr3	16	27
+    ```
 
 Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as `start,end`, so to sort by a single column we use `start,start`. In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
 with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
@@ -238,16 +257,20 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k
 
 ```bash
 $ cat letters.txt 
-
-A
-A
-B
-C
-B
-C
-C
-C
 ```
+
+??? success "Output"
+
+    ```bash
+    A 
+    A
+    B
+    C
+    B
+    C
+    C
+    C
+    ```
 ```bash
 $ uniq letters.txt 
 
