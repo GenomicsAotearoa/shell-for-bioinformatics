@@ -26,6 +26,7 @@
     1. Buffalo, V (2015). ***Bioinformatics Data Skills***.O'Reilly Media, Inc
     2. The Carpentries. ***The Unix Shell*** . https://swcarpentry.github.io/shell-novice/
     3. The Carpentries. ***Introduction to Command Line for Genomics***. https://datacarpentry.org/shell-genomics/
+    4. Rosalind Project. https://rosalind.info/about/
 
 - - - 
 
