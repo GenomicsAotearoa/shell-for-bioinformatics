@@ -52,7 +52,7 @@ find path expression
 
 Argument `-maxdepth` limits the depth of the search: to search only within the current directory, use `find -maxdepth 1 .`
 
-???+ question "Exercise 6.1"
+??? question "Exercise 6.1"
 
     1. Create a small directory system as below in your current working directory
 
@@ -135,8 +135,14 @@ In general, `find -exec` is most appropriate for quick, simple tasks (like delet
 
 `xargs` allows us to take input from standard in, and use this input as arguments to another program, which allows us to build commands programmatically. Using `find` with `xargs` is much like `find -exec`, but with some added advantages that make xargs a better choice for larger tasks.
 
-Let’s re-create our messy temporary file directory example again: .i.e
+Let’s re-create our messy temporary file directory example again: .i.e Make sure to run `ls` after the `touch` command to verify the files were created. 
 
 ```bash
 touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+```
+
+`xargs` works by taking input from standard in and splitting it by spaces, tabs, and newlines into arguments. Then, these arguments are passed to the command supplied. For example, to emulate the behavior of `find -exec` with `rm`, we use `xargs` with `rm`:
+
+```bash
+find hihi_project/data/raw -name "*-temp.fastq" | xargs rm
 ```
