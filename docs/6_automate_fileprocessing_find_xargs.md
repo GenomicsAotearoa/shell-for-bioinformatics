@@ -97,4 +97,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         find hihi_project/data/raw/ -name "hihiA*fastq" -or -name "hihiC*fastq" -type f
         ```
-    6. 
+    6. Another way to select these files is with negation:
+
+        ```bash
+        
