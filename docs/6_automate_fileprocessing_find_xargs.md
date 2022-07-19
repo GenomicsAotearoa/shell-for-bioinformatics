@@ -52,13 +52,13 @@ find path expression
 
 Argument `-maxdepth` limits the depth of the search: to search only within the current directory, use `find -maxdepth 1 .`
 
-!!! question "Exercise 6.1"
+??? question "Exercise 6.1"
 
     - Create a small directory system as below in your current working directory
 
     ```bash
     mkdir -p hihi_project/{data/raw,scripts,results}
-    
+
     ```
 
     - 
