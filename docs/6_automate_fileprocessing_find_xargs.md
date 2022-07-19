@@ -20,3 +20,5 @@ Here, shell automatically escapes the space in the filename ***treatment 03.fast
 !!! Success "Solution"
 
     Solution to both of the above problems is through `find` and `xargs`, as we will see in the following sections.
+
+### Finding files with `find`
