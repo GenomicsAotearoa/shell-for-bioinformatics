@@ -29,19 +29,26 @@ A **TAR.GZ** file is a combination of two different packaging algorithms. The fi
 
 It is useful to note that tar doesn’t compress the files in question, only packages them. Indeed, sometimes the resulting tarball can be of greater size due to padding. So that’s where **Gzip** comes in. **Gzip** (denoted by a .gz file extension) is a compressed file format used to archive data to take up smaller space. Gzip uses the same compression algorithm as the more commonly known zip but can only be used on a single file. In short, Gzip compresses all the individual files and tar packages them in a single archive.
 
-Decomressing the tar.gz file can be done  with the built-in `tar` utility . 
+!!! abstract "Decomressing the tar.gz file can be done  with the built-in `tar` utility" 
 
-```bash
+    ```bash
+    tar -xvzf shell4b_data.tar.gz
+    ```
 
-tar -xvzf shell4b_data.tar.gz
-```
-
-> - `x`: Extract an archive.
-> - `z`: Compress the archive with gzip.
-> - `v`: Display progress in the terminal while creating the archive, also known as “verbose” mode. The v is always optional in these commands, but it’s helpful.
- > - `f`: Allows you to specify the filename of the archive.
+    - `x`: Extract an archive.
+    - `z`: Compress the archive with gzip.
+    - `v`: Display progress in the terminal while creating the archive, also known as “verbose” mode. The `v`is always **optional** in these commands, but it’s helpful. 
+    - `f`: Allows you to specify the filename of the archive.
 
 
+
+ZIP files have capability to store multiple files using different compression techniques while at the same time supports storing a file without any compression. Each file is stored/compressed individually which helps to extract them, or add new ones, without applying compression or decompression to the entire archive.
+
+Each file in a ZIP archive is represented as an individual entry where each entry consists of a Local File Header followed by the compressed file data.The Directory at the end of archive holds the references to all these file entries. ZIP file readers should avoid reading the local file headers and all sort of file listing should be read from the Directory. This Directory is the only source for valid file entries in the archive as files can be appended towards the end of the archive as well. That is why if a reader reads local headers of a ZIP archive from the beginning, it may read invalid (deleted) entries as well those are not part of the Directory being deleted from archive.
+
+The order of the file entries in the central directory need not coincide with the order of file entries in the archive.
+
+Decompressing .zip files can be done with `unzip` command
 
 ## Data Integrity
 
