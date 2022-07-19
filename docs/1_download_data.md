@@ -1,4 +1,4 @@
-# Download Data
+# Download & Verify Data
 
 !!! abstract "Lesson Objectives"
 
