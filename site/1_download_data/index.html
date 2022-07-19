@@ -341,6 +341,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../6_automate_fileprocessing_find_xargs/" class="md-nav__link">
+        Automating File-Processing with find and xargs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../puzzles/" class="md-nav__link">
         Puzzles
       </a>
@@ -433,9 +448,28 @@ OR</p>
 <h2 id="decompress-downloaded-targz-or-zip">Decompress downloaded tar.gz OR .zip<a class="headerlink" href="#decompress-downloaded-targz-or-zip" title="Permanent link">&para;</a></h2>
 <p>A <strong>TAR.GZ</strong> file is a combination of two different packaging algorithms. The first is <em>tar</em>, short for tape archive. It’s an old utility, invented mainly for accurate data transfer to devices without their own file systems. A tar file (or tarball) contains files in a sequential format, along with metadata about the directory structure and other technical parameters.</p>
 <p>It is useful to note that tar doesn’t compress the files in question, only packages them. Indeed, sometimes the resulting tarball can be of greater size due to padding. So that’s where <strong>Gzip</strong> comes in. <strong>Gzip</strong> (denoted by a .gz file extension) is a compressed file format used to archive data to take up smaller space. Gzip uses the same compression algorithm as the more commonly known zip but can only be used on a single file. In short, Gzip compresses all the individual files and tar packages them in a single archive.</p>
-<p>Decomressing the tar.gz file can be done  with the built-in <code>tar</code> utility . </p>
+<div class="admonition abstract">
+<p class="admonition-title">Decomressing the tar.gz file can be done  with the built-in <code>tar</code> utility</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tar -xvzf shell4b_data.tar.gz
 </code></pre></div>
+<ul>
+<li><code>x</code>: Extract an archive.</li>
+<li><code>z</code>: Compress the archive with gzip.</li>
+<li><code>v</code>: Display progress in the terminal while creating the archive, also known as “verbose” mode. The <code>v</code>is always <strong>optional</strong> in these commands, but it’s helpful. </li>
+<li><code>f</code>: Allows you to specify the filename of the archive.</li>
+</ul>
+</div>
+<p>ZIP files have capability to store multiple files using different compression techniques while at the same time supports storing a file without any compression. Each file is stored/compressed individually which helps to extract them, or add new ones, without applying compression or decompression to the entire archive.</p>
+<p>Each file in a ZIP archive is represented as an individual entry where each entry consists of a Local File Header followed by the compressed file data.The Directory at the end of archive holds the references to all these file entries. ZIP file readers should avoid reading the local file headers and all sort of file listing should be read from the Directory. This Directory is the only source for valid file entries in the archive as files can be appended towards the end of the archive as well. That is why if a reader reads local headers of a ZIP archive from the beginning, it may read invalid (deleted) entries as well those are not part of the Directory being deleted from archive.</p>
+<p>The order of the file entries in the central directory need not coincide with the order of file entries in the archive.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Decompressing .zip files can be done with <code>unzip</code> command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>unzip -v shell4b_data.zip
+</code></pre></div>
+<ul>
+<li><code>v</code>: Display progress in the terminal while creating the archive, also known as “verbose” mode. The <code>v</code>is always <strong>optional</strong> in these commands, but it’s helpful. </li>
+</ul>
+</div>
 <h2 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h2>
 <p>Data we download  is the starting point of all future analyses and conclusions. So it’s important to explicitly check the transferred data’s integrity with check‐sums. Checksums are very compressed summaries of data, computed in a way that even if just one bit of the data is changed, the checksum will be different. As such data integrity checks are also helpful in keeping track of data versions. Checksums facilitate reproducibility, as we can link a particular analysis and set of results to an exact version of data summarized by the data’s checksum value.</p>
 <div class="admonition book-lock">
@@ -450,16 +484,16 @@ OR</p>
 </li>
 </ul>
 <p>To create checksums, we can pass arbitrary strings to the program <code>md5sum</code> (or <code>sha256sum</code>) through <strong>standard</strong> in </p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span> <span class="s2">&quot;shell for Bioinformatics&quot;</span> <span class="p">|</span> md5sum
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">echo</span> <span class="s2">&quot;shell for BioInformatics&quot;</span> <span class="p">|</span> md5sum
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">echo</span> <span class="s2">&quot;shell for Bioinformatics&quot;</span> <span class="p">|</span> md5sum
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">echo</span> <span class="s2">&quot;shell for BioInformatics&quot;</span> <span class="p">|</span> md5sum
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>198638c380be53bf3f6ff70d5626ae44  -
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>afa4dbcc56b540e24558085fdc10342f  -
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>198638c380be53bf3f6ff70d5626ae44  -
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>afa4dbcc56b540e24558085fdc10342f  -
 </code></pre></div>
 Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from <strong>standard</strong> in. Checksums with <strong>file</strong> input can be done with <code>md5usm filename</code> .i.e.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>md5sum tb1.fasta
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>f44dca62012017196b545a2dd2d2906d  tb1.fasta
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>md5sum tb1.fasta
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>f44dca62012017196b545a2dd2d2906d  tb1.fasta
 </code></pre></div>
 Because it can get rather tedious to check each checksum individually, both <code>md5sum</code> and <code>sha256sum</code> has a convenient solution: Let's say that we want to verify checksum for all of the .fasta files in current directory. This can be done by creating and validating against a file containing the checksums of all the .fasta files. </p>
 <ul>
