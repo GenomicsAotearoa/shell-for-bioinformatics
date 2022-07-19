@@ -51,9 +51,9 @@ The order of the file entries in the central directory need not coincide with th
 !!! abstract "Decompressing .zip files can be done with `unzip` command"
 
     ```bash
-    unzip -v hell4b_data.zip
+    unzip -v shell4b_data.zip
     ```
-    
+
     - `v`: Display progress in the terminal while creating the archive, also known as “verbose” mode. The `v`is always **optional** in these commands, but it’s helpful. 
 
 ## Data Integrity
