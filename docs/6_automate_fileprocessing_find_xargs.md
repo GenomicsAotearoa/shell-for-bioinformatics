@@ -32,3 +32,22 @@ find path expression
 
     - Path specifies the starting directory for search. Expressions are how we describe which files we want to `find` to return
     - Unlike `ls`, `find`is recursive (it will search through the directory structure). In fact, running `find` on a directory (without other arguments) is a quick way to see it’s structure, e.g.,
+
+    ```bash
+    find /nesi/project/nesi02659/| head
+    ```
+    ```bash
+    find: /nesi/project/nesi02659/
+    /nesi/project/nesi02659/.jupyter
+    /nesi/project/nesi02659/.jupyter/share
+    /nesi/project/nesi02659/.jupyter/share/jupyter
+    /nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert
+    /nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert/templates
+    ‘/nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert/templates’: Permission denied
+    /nesi/project/nesi02659/.jupyter/share/jupyter/kernels
+    /nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr
+    /nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr/kernel.json
+    /nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr/logo-64x64.png
+    ```
+
+    
