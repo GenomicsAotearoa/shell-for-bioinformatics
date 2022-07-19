@@ -54,7 +54,7 @@ If possible, we do recommend using the **Remote** option over **Local**  ( Espec
 
     <br>![images](./images/jupyter_server2022.png)
 
-### Local
+### Local  :warning:
 
 
 
