@@ -3,7 +3,7 @@
 </center>
 
 <br>
-<p align="center"><img src="images/tuxpenguin_bash_unix.png" alt="drawing" width="300"/></p> 
+<p align="center"><img src="images/dna_tux.png" alt="drawing" width="300"/></p> 
 <br>
 
 <!--- check -->
