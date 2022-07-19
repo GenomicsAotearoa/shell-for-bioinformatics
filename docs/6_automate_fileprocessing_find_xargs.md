@@ -112,4 +112,12 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 Find’s real strength in bioinformatics is that it allows you to run commands on each of the files find returns, using -exec option.
 
-Continuing from our last example, suppose that a messy collaborator created numerous temporary files. Let’s emulate this (in the zmays-snps/data/seqs directory):
+Continuing from our last example, suppose that a messy collaborator (no offense) created numerous temporary files. Let’s emulate this (in the *hihi_project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
+
+```bash
+touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+```
+
+Although we can delete these files with `rm *-temp.fastq`, using `rm` with a wildcard in a directory filled with important data files is too risky. Using `find`’s `-exec` is a much safer way to delete these files.
+
+For example, let’s use `find -exec` and `rm` to delete these temporary files:
