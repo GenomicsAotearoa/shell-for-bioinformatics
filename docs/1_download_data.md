@@ -51,5 +51,6 @@ Checksums are reported in hexadecimal format, where each digit can be one of 16 
 
 ```bash
 $ md5sum tb1.fasta
+
 f44dca62012017196b545a2dd2d2906d  tb1.fasta
 ```
