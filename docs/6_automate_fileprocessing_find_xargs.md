@@ -159,11 +159,14 @@ One big benefit of `xargs` is that it separates the process that specifies the f
 
 ```bash
 touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
-
+```
+```bash
 find hihi_project/data/raw/ -name "*-temp.fastq" > oh_oh_filestodelete.txt
-
+```
+```bash
 cat oh_oh_filestodelete.txt
-
+```
+```bash
 cat oh_oh_filestodelete.txt  | xargs rm
 ```
 
