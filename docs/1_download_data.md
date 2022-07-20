@@ -13,7 +13,7 @@
     OR
 
     ```bash
-    wget -c https://github.com/GenomicsAotearoa/bash-for-bioinformatics/releases/download/v1.0rc1/data_shell4b.zip
+    wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.zip
     ```
 
 - - - 
