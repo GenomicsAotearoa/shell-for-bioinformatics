@@ -312,15 +312,18 @@ Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
-
-  25901 CDS
-  36128 exon
-   2027 gene
-   2290 start_codon
-   2299 stop_codon
-   4993 transcript
-   7588 UTR
 ```
+??? success "Output"
+
+    ```bash
+    25901 CDS
+    36128 exon
+    2027 gene
+    2290 start_codon
+    2299 stop_codon
+    4993 transcript
+    7588 UTR
+    ```
 Count in order from most frequent to last
 
 ```bash
