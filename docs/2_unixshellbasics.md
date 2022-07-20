@@ -43,7 +43,7 @@ man mkdir
 
 ### Output redirection
 
-The `data_shell4b` directory contains the following fasta files:
+The `shell4b_data` directory contains the following fasta files:
 
 ```
 tb1.fasta
