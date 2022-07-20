@@ -786,32 +786,35 @@ As you can see, <code>uniq</code> does not return the unique values in letters.t
 <a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>      <span class="m">4</span> C
 </code></pre></div>
 Combined with other Unix tools like <code>cut</code>, <code>grep</code> and <code>sort</code>, <code>uniq</code> can be used to summarize columns of tabular data:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>  <span class="m">25901</span> CDS
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>  <span class="m">36128</span> exon
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>   <span class="m">2027</span> gene
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>   <span class="m">2290</span> start_codon
-<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>   <span class="m">2299</span> stop_codon
-<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>   <span class="m">4993</span> transcript
-<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>   <span class="m">7588</span> UTR
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c
 </code></pre></div>
-Count in order from most frequent to last</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -rn
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>  <span class="m">36128</span> exon
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>  <span class="m">25901</span> CDS
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>   <span class="m">7588</span> UTR
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>   <span class="m">4993</span> transcript
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>   <span class="m">2299</span> stop_codon
-<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>   <span class="m">2290</span> start_codon
-<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>   <span class="m">2027</span> gene
+<details class="success">
+<summary>Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="m">25901</span> CDS
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="m">36128</span> exon
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="m">2027</span> gene
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="m">2290</span> start_codon
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="m">2299</span> stop_codon
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="m">4993</span> transcript
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="m">7588</span> UTR
+</code></pre></div>
+</details>
+<p>Count in order from most frequent to last</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -rn
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>  <span class="m">36128</span> exon
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>  <span class="m">25901</span> CDS
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>   <span class="m">7588</span> UTR
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>   <span class="m">4993</span> transcript
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>   <span class="m">2299</span> stop_codon
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>   <span class="m">2290</span> start_codon
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>   <span class="m">2027</span> gene
 </code></pre></div>
 <h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
 <p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
 <h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
 <p>Most common use of <code>sed</code> is to substitute text, matching a pattern. This syntax for doing this in <code>sed</code> is as follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
 </code></pre></div>
 <div class="admonition info">
 <ul>
@@ -833,54 +836,54 @@ Count in order from most frequent to last</p>
 <li>Some find and replace examples</li>
 </ul>
 <p>Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sed <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed &gt; example_chromosome.bed
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sed <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed &gt; example_chromosome.bed
 </code></pre></div>
 Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
 </code></pre></div>
 Find and replace directly on the input, but save a old version too</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
 </code></pre></div>
 <ul>
 <li>Print specific lines of the file</li>
 </ul>
 <p>To print a specific line, you can use the address function, note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
 <p>print 5<sup>th</sup> line of example.bed</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
 </code></pre></div>
 <p>We can provide any number of additional lines to print using <code>-e</code> option. Let's print line 2 and 5, </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>sed -n -e <span class="s1">&#39;2p&#39;</span> -e <span class="s1">&#39;5p&#39;</span> example.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>sed -n -e <span class="s1">&#39;2p&#39;</span> -e <span class="s1">&#39;5p&#39;</span> example.bed
 </code></pre></div>
 <p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
 </code></pre></div>
 Also, we can create specific pattern, like multiple of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
 </code></pre></div>
 <details class="question" open="open">
 <summary>Exercise 4.4</summary>
 <p>Can you use the above <code>~</code> trick to extract all the <strong>odd</strong> numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file <strong>odd_sed.bed</strong></p>
 </details>
 <p>One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq
 </code></pre></div>
 <div class="admonition hint">
 <p class="admonition-title">Sanity Check</p>
 <p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>cat SRR097977.fastq | wc -l</code></p>
 </div>
 <p>We can use the above trick to convert the .fastq to .fasta</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
 </code></pre></div>
 Let's wrap up <code>sed</code> with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to , </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
 </code></pre></div>
 <p>Not really what we are after as the output is as below</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="m">1</span>   pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>ENSMUST00000160944
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>ENSMUST00000160944
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="m">1</span>   pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>ENSMUST00000160944
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>ENSMUST00000160944
 </code></pre></div>
 <p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> . Then, by appending <code>p</code> after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
 </code></pre></div>
 <hr />
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>

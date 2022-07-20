@@ -630,7 +630,8 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <li>To do the inverse of <strong>match</strong>, we can use <code>!~</code> OR <code>!($1 ~ /chr1/</code></li>
 </ul>
 </div>
-<p><strong>Built-In Variables and special patterns In Awk</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Built-In Variables and special patterns In Awk</p>
 <ul>
 <li>
 <p>Awk’s built-in variables include the field variables <code>$1</code>, <code>$2</code>, <code>$3</code>, and so on (<code>$0</code> is the entire line) — that break a line of text into individual words or pieces called fields. </p>
@@ -651,6 +652,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </ul>
 </li>
 </ul>
+</div>
 <p><strong>Examples</strong></p>
 <ul>
 <li>We can use <code>NR</code> to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):</li>
@@ -693,7 +695,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>exon    <span class="m">69</span>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>UTR <span class="m">24</span>
 </code></pre></div>
-<h2 id="bioawk">bioawk<a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
+<h2 id="bioawk"><code>bioawk</code><a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
 <p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and an command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
 <p>The original <code>awk</code> requires a YACC-compatible parser generator (e.g. Byacc or Bison). <code>bioawk</code> further depends on <a href="http://zlib.net/">zlib</a> so as to work with gzip'd files.</p>
 <details>
