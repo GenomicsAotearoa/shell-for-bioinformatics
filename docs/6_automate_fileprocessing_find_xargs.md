@@ -150,7 +150,8 @@ find hihi_project/data/raw -name "*-temp.fastq" | xargs rm
 
 ```bash
 touch zmays-snps/data/seqs/zmays{A,C}_R{1,2}-temp.fastq
-
+```
+```bash
 find hihi_project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
 ```
 
