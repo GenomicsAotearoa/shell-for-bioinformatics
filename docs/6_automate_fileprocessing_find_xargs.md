@@ -164,10 +164,10 @@ touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
 find hihi_project/data/raw/ -name "*-temp.fastq" > oh_oh_filestodelete.txt
 ```
 ```bash
-cat oh_oh_filestodelete.txt
+cat ohno_filestodelete.txt
 ```
 ```bash
-cat oh_oh_filestodelete.txt  | xargs rm
+cat ohno_filestodelete.txt  | xargs rm
 ```
 
 !!! note "Using `xargs` with Replacement Strings to Apply Commands to Files"
