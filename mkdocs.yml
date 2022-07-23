@@ -1,10 +1,13 @@
 site_name: Intermediate-Advanced Shell for Bioinformatics
 site_author: Genomics Aotearoa & NeSI
+site_dir: public
+site_url: "https://genomicsaotearoa.github.io/shell-for-bioinformatics/"
 
 #Repository information
 
-repo_url: https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git
 repo_name:  GenomicsAotearoa/shell-for-bioinformatics 
+repo_url: https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git
+
 
 
 theme:
