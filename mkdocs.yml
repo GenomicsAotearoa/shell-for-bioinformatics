@@ -9,7 +9,6 @@ repo_name:  GenomicsAotearoa/shell-for-bioinformatics
 repo_url: https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git
 
 
-
 theme:
   name: material
   logo: images/nesi_ga.png
