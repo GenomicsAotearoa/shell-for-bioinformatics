@@ -93,7 +93,7 @@ Data we download  is the starting point of all future analyses and conclusions. 
         - `-c` option represent **check** 
 
     
-!!! note "True story - Applications will not trigger clear error messages for corrupted data"
+!!! warning "True story - Applications will not trigger clear error messages for corrupted data"
 
         Following is an error message recorded on the log for a failed `bedtools genomecov` process ran on NeSI Mahuika cluster
 
@@ -103,6 +103,13 @@ Data we download  is the starting point of all future analyses and conclusions. 
         ```
 
         * Doing a Google search for `std::bad_alloc` will take us to [this official reference documentation](https://en.cppreference.com/w/cpp/memory/new/bad_alloc)
-        * Expand the search a bit more with `BedTools std::bad_alloc` which will return [this reported issue on Biostarts](https://www.biostars.org/p/377676/) as the first result
+        * Expand the search a bit more with `BedTools std::bad_alloc` which will return [this reported issue on Biostarts](https://www.biostars.org/p/377676/) as the first result.
 
+    !!! quote ""
+        
+        `std::bad_alloc` is the C++ error code for when a new operator tries to allocate something, but fails. As C++ cannot dynamically   allocate memory, the lack of memory is the most common cause. 
+        
+    So, it's quite difficult avoid the temptation  to throw more memory at this process and re-run it. In fact, it was re-ran with 0.5TB of memory as a sanity check which triggered the same error. 
+    
+    As it turned out, true cause for this failed process was the input **.bed** file was corrupted.  🕵️‍♀️
         
