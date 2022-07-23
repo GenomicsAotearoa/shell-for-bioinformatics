@@ -537,6 +537,22 @@ Because it can get rather tedious to check each checksum individually, both <cod
 </li>
 </ul>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">True story - Applications will not trigger clear error messages for corrupted data<p>Following is an error message recorded on the log for a failed <code>bedtools genomecov</code> process ran on NeSI Mahuika cluster</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>terminate called after throwing an instance of <span class="s1">&#39;std::bad_alloc&#39;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>what<span class="o">()</span>: std::bad_alloc 
+</code></pre></div>
+<ul>
+<li>Doing a Google search for <code>std::bad_alloc</code> will take us to <a href="https://en.cppreference.com/w/cpp/memory/new/bad_alloc">this official reference documentation</a></li>
+<li>Expand the search a bit more with <code>BedTools std::bad_alloc</code> which will return <a href="https://www.biostars.org/p/377676/">this reported issue on Biostarts</a> as the first result.</li>
+</ul>
+</p>
+<div class="admonition quote">
+<p><code>std::bad_alloc</code> is the C++ error code for when a new operator tries to allocate something, but fails. As C++ cannot dynamically   allocate memory, the lack of memory is the most common cause. </p>
+</div>
+<p>So, it's quite difficult avoid the temptation  to throw more memory at this process and re-run it. In fact, it was re-ran with 0.5TB of memory as a sanity check which triggered the same error. </p>
+<p>As it turned out, true cause for this failed process was the input <strong>.bed</strong> file was corrupted.  🕵️‍♀️</p>
+</div>
 
               
             </article>
