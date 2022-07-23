@@ -93,6 +93,16 @@ Data we download  is the starting point of all future analyses and conclusions. 
         - `-c` option represent **check** 
 
     
-    !!! note "Learn the hard way"
+!!! note "True story - Applications will not trigger clear error messages for corrupted data"
 
-        More often or not, corrupted data will 
+        Following is an error message recorded on the log for a failed `bedtools genomecov` process ran on NeSI Mahuika cluster
+
+        ```bash
+        terminate called after throwing an instance of 'std::bad_alloc'
+        what(): std::bad_alloc 
+        ```
+
+        * Doing a Google search for `std::bad_alloc` will take us to [this official reference documentation](https://en.cppreference.com/w/cpp/memory/new/bad_alloc)
+        * Expand the search a bit more with `BedTools std::bad_alloc` which will return [this reported issue on Biostarts](https://www.biostars.org/p/377676/) as the first result
+
+        
