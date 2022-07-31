@@ -40,7 +40,7 @@
 
 A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in Figure 3.
 
-Given: An RNA string s
+Given: An RNA string ***s***
 
 of length at most 100.
 
