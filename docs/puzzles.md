@@ -1,5 +1,5 @@
 
-??? question "The Second Nucleic Acid"
+??? question "Transcribing DNA into RNA"
 
     An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
 
