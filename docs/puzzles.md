@@ -46,9 +46,9 @@
 
     A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in ***Figure 3***.
 
-    **Given:** An RNA string ***s*** of length at most 100.
+    **Given:** An RNA string $s$ of length at most 100.
 
-    **Return:** The total possible number of maximum matchings of basepair edges in the bonding graph of ***s***
+    **Return:** The total possible number of maximum matchings of basepair edges in the bonding graph of $s$
 
 ??? question "Computing GC Content"
 
