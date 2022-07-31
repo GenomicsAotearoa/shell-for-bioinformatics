@@ -392,18 +392,52 @@
   <h1>Puzzles</h1>
 
 <details class="question">
-<summary>The Second Nucleic Acid</summary>
+<summary>Transcribing DNA into RNA</summary>
 <p>An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.</p>
-<p>Given a DNA string <em>t</em> corresponding to a coding strand, its transcribed RNA string u is formed by replacing all occurrences of 'T' in <em>t</em> with 'U' in u</p>
-<p><strong>Given:</strong> A DNA string <em>t</em> having length at most 1000 nt.</p>
-<p><strong>Return:</strong> The transcribed RNA string of <em>t</em></p>
+<p>Given a DNA string <span class="arithmatex">\(t\)</span> corresponding to a coding strand, its transcribed RNA string u is formed by replacing all occurrences of 'T' in <span class="arithmatex">\(t\)</span> with 'U' in <span class="arithmatex">\(u\)</span></p>
+<p><strong>Given:</strong> A DNA string <span class="arithmatex">\(t\)</span> having length at most 1000 nt.</p>
+<p><strong>Return:</strong> The transcribed RNA string of <span class="arithmatex">\(t\)</span></p>
 </details>
 <details class="question">
-<summary>The secondary and tertiary structures of DNA</summary>
+<summary>Complementing a Strand of DNA</summary>
 <p>In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.</p>
-<p>The reverse complement of a DNA string <strong><em>s</em></strong> is the string <strong><em>s<sup>c</sup></em></strong> formed by reversing the symbols of <em>s</em> then taking the complement of each symbol (e.g., the reverse complement of "GTCA" is "TGAC").</p>
+<p>The reverse complement of a DNA string <span class="arithmatex">\(s\)</span> is the string <span class="arithmatex">\(s^{c}\)</span> formed by reversing the symbols of <span class="arithmatex">\(s\)</span> then taking the complement of each symbol (e.g., the reverse complement of "GTCA" is "TGAC").</p>
 <p><strong>Given:</strong> A DNA string s of length at most 1000 bp.</p>
-<p><strong>Return:</strong> The reverse complement <strong><em>s<sup>c</sup></em></strong> of <strong><em>s</em></strong>.</p>
+<p><strong>Return:</strong> The reverse complement <span class="arithmatex">\(s^{c}\)</span> of <span class="arithmatex">\(s\)</span>.</p>
+</details>
+<details class="question">
+<summary>Counting DNA Nucleotides</summary>
+<p>A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length of a string is the number of symbols that it contains.</p>
+<p>An example of a length 21 DNA string (whose alphabet contains the symbols 'A', 'C', 'G', and 'T') is "ATGCTTCAGAAAGGTCTTACG."</p>
+<p><strong>Given:</strong> A DNA string <span class="arithmatex">\(s\)</span> of length at most 1000 nt.</p>
+<p><strong>Return:</strong> Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in s</p>
+</details>
+<details class="question">
+<summary>Maximum Matchings and RNA Secondary Structures</summary>
+<div class="admonition figure inline end">
+<p class="admonition-title">Figure</p>
+<p><img alt="image" src="../images/matching_%26_rna.png" /></p>
+</div>
+<p>The graph theoretical analogue of the quandary stated in the introduction above is that if we have an RNA string s that does not have the same number of occurrences of 'C' as 'G' and the same number of occurrences of 'A' as 'U', then the bonding graph of s cannot possibly possess a perfect matching among its basepair edges. For example, see <strong><em>Figure 1</em></strong>; in fact, most bonding graphs will not contain a perfect matching.</p>
+<p>In light of this fact, we define a maximum matching in a graph as a matching containing as many edges as possible. See <strong><em>Figure 2</em></strong> for three maximum matchings in graphs.</p>
+<p>A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in <strong><em>Figure 3</em></strong>.</p>
+<p><strong>Given:</strong> An RNA string <span class="arithmatex">\(s\)</span> of length at most 100.</p>
+<p><strong>Return:</strong> The total possible number of maximum matchings of basepair edges in the bonding graph of <span class="arithmatex">\(s\)</span></p>
+</details>
+<details class="question">
+<summary>Computing GC Content</summary>
+<p>The GC-content of a DNA string is given by the percentage of symbols in the string that are 'C' or 'G'. For example, the GC-content of "AGCTATAG" is 37.5%. Note that the reverse complement of any DNA string has the same GC-content.</p>
+<p>DNA strings must be labeled when they are consolidated into a database. A commonly used method of string labeling is called FASTA format. In this format, the string is introduced by a line that begins with '&gt;', followed by some labeling information. Subsequent lines contain the string itself; the first line to begin with '&gt;' indicates the label of the next string.</p>
+<p>In our implementation, a string in FASTA format will be labeled by the ID "GAotearoa_xxxx", where "xxxx" denotes a four-digit code between 0000 and 9999.</p>
+<p><strong>Given:</strong> At most 10 DNA strings in FASTA format (of length at most 1 kbp each).</p>
+<p><strong>Return:</strong> The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.</p>
+</details>
+<details class="question">
+<summary>Counting Disease Carriers</summary>
+<p>To model the Hardy-Weinberg principle, assume that we have a population of <span class="arithmatex">\(N\)</span> diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2<span class="arithmatex">\(N\)</span> chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply <span class="arithmatex">\(p=m/2N\)</span></p>
+<p>Because the first assumption of genetic equilibrium states that the population is so large as to be ignored, we will assume that <span class="arithmatex">\(N\)</span> is infinite, so that we only need to concern ourselves with the value of <span class="arithmatex">\(p\)</span></p>
+<p><strong>Given:</strong> An array <span class="arithmatex">\(A\)</span> for which <span class="arithmatex">\(A[k]\)</span> represents the proportion of homozygous recessive individuals for the <span class="arithmatex">\(k\)</span>-th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.</p>
+<p><strong>Return:</strong> An array <span class="arithmatex">\(B\)</span> having the same length as <span class="arithmatex">\(A\)</span> in which <span class="arithmatex">\(B[k]\)</span> represents the probability that a randomly selected individual carries at least one copy of the recessive allele for the <span class="arithmatex">\(k\)</span>-th factor.</p>
 </details>
 
               
@@ -461,6 +495,12 @@
     
     
       <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
