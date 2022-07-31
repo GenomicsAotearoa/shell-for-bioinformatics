@@ -50,4 +50,3 @@
 
     **Return:** The total possible number of maximum matchings of basepair edges in the bonding graph of ***s***
 
-
