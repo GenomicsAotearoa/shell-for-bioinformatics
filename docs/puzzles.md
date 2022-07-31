@@ -65,7 +65,7 @@
 
 ??? question "Counting Disease Carriers"
 
-    To model the Hardy-Weinberg principle, assume that we have a population of ***N*** diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2 ***N*** chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply p=m2N
+    To model the Hardy-Weinberg principle, assume that we have a population of ***N*** diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2 ***N*** chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply *p=m/2N*
 
 .
 
