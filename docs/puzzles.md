@@ -69,9 +69,7 @@
 
     Because the first assumption of genetic equilibrium states that the population is so large as to be ignored, we will assume that $N$ is infinite, so that we only need to concern ourselves with the value of $p$
 
-    **Given:** An array $A$ for which $A[k]$ represents the proportion of homozygous recessive individuals for the $k$
+    **Given:** An array $A$ for which $A[k]$ represents the proportion of homozygous recessive individuals for the $k$-th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.
 
--th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.
-
-Return: An array B
+    **Return:** An array $B$
 having the same length as A in which B[k] represents the probability that a randomly selected individual carries at least one copy of the recessive allele for the k-th factor.
