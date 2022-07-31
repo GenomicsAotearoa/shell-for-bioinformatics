@@ -10,7 +10,7 @@
     **Return:** The transcribed RNA string of *t*
 
 
-??? question "The secondary and tertiary structures of DNA"
+??? question "Complementing a Strand of DNA"
 
     In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
 
