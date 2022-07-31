@@ -69,7 +69,7 @@
 
     Because the first assumption of genetic equilibrium states that the population is so large as to be ignored, we will assume that $N$ is infinite, so that we only need to concern ourselves with the value of $p$
 
-    **Given:** An array $A$ for which A[k] represents the proportion of homozygous recessive individuals for the k
+    **Given:** An array $A$ for which $A[k]$ represents the proportion of homozygous recessive individuals for the k
 
 -th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.
 
