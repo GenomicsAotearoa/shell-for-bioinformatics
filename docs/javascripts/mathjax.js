@@ -5,10 +5,10 @@ window.MathJax = {
       processEscapes: true,
       processEnvironments: true
   },
-    options: {
+  options: {
       ignoreHtmlClass: ".*|",
       processHtmlClass: "arithmatex"
-    }
+  }
 };
   
 document$.subscribe(() => { 
