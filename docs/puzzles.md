@@ -44,7 +44,7 @@
 
     In light of this fact, we define a maximum matching in a graph as a matching containing as many edges as possible. See ***Figure 2*** for three maximum matchings in graphs.
 
-    A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in Figure 3.
+    A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in ***Figure 3***.
 
     **Given:** An RNA string ***s*** of length at most 100.
 
