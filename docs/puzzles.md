@@ -26,7 +26,7 @@ fi
 
     **Return:** The transcribed RNA string of $t$
 
-    !!! success "Solution"
+    ??? success "Solution"
 
         === "bash"
 
@@ -51,7 +51,7 @@ fi
 
     **Return:** The reverse complement $s^{c}$ of $s$.
 
-    !!! success "Solution"
+    ??? success "Solution"
 
         === "bash"
             
@@ -95,7 +95,13 @@ fi
 
     **Return:** Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in s
 
-    
+    ??? success "Solution"
+
+        === "bash"
+            ```bash
+            awk '{a=gsub("A","");c=gsub("C","");g=gsub("G","");t=gsub("T","")} END {print a,c,g,t}' /path/to/file x=$(cat dnct_data.txt); for i in A C G T; do y=${x//[^$i]}; echo -n "${#y} "; done
+            ```
+
 
 
 ??? question "Maximum Matchings and RNA Secondary Structures (mmrs)"
@@ -116,7 +122,7 @@ fi
 
     **Return:** The total possible number of maximum matchings of basepair edges in the bonding graph of $s$
 
-    !!! success "Solution"
+    ??? success "Solution"
 
         === "bash"
             ```bash
@@ -156,7 +162,7 @@ fi
 
     **Return:** The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.
 
-    !!! success "Solution"
+    ??? success "Solution"
 
         === "bash"
             ```bash
@@ -184,7 +190,7 @@ fi
 
     **Return:** An array $B$ having the same length as $A$ in which $B[k]$ represents the probability that a randomly selected individual carries at least one copy of the recessive allele for the $k$-th factor.
 
-    !!! success "Solution"
+    ??? success "Solution"
 
         === "bash"
             ```bash
