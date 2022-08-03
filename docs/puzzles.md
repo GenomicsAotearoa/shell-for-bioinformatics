@@ -36,6 +36,9 @@ fi
             ```bash
             tr T U < tdir_data.txt
             ```
+            ```bash
+            awk '{gsub(/T/,"U");print}' tdir_data.txt
+            ```            
 
         === "R"
 
