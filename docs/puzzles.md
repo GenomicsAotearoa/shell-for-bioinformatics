@@ -45,6 +45,14 @@ fi
 
         === "R"
 
+        === "Python"
+            ```py
+            with open('tdir_data.txt', 'r') as f1:
+                    dna = f1.read()
+                    rna = dna.replace("T", "U")
+                    print(rna)
+            ```
+
 - - - 
 
 ??? question "Complementing a Strand of DNA (csod)"
