@@ -178,8 +178,13 @@ fi
                 l += length($i);} \
                 if(max_gc < gc/l*100) {max_id=$1; max_gc=gc/l*100} \
             } \
-            END {print max_id"\n"max_gc;}' cgcc.txt
+            END {print max_id"\n"max_gc;}' cgcc_data.txt
             ```
+        === "Perl"
+            ```perl
+            perl -ne 'BEGIN{$/="\n>";$gc=-1}chomp;s/^>//;($id,$seq)=(split(/\n/,$_,2));$seq=~s/\n//g;$cgc=100*(($seq=~y/GC//)/length($seq));if($cgc>$gc){$gc=$cgc;$gcid=$id};END{print "$gcid\n$gc\n"}' data/cgcc_data.txt
+            ```
+            
 
 - - - 
 
