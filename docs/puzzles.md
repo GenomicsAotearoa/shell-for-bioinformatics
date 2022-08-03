@@ -84,6 +84,7 @@ fi
 
         === "R"
 
+- - - 
 
 ??? question "Counting DNA Nucleotides (dnct)"
 
@@ -101,8 +102,7 @@ fi
             ```bash
             awk '{a=gsub("A","");c=gsub("C","");g=gsub("G","");t=gsub("T","")} END {print a,c,g,t}' /path/to/file x=$(cat dnct_data.txt); for i in A C G T; do y=${x//[^$i]}; echo -n "${#y} "; done
             ```
-
-
+- - - 
 
 ??? question "Maximum Matchings and RNA Secondary Structures (mmrs)"
 
@@ -149,6 +149,7 @@ fi
             ```
         === "R"
           
+- - - 
 
 ??? question "Computing GC Content (cgcc)"
 
@@ -179,6 +180,8 @@ fi
             } \
             END {print max_id"\n"max_gc;}' cgcc.txt
             ```
+
+- - - 
 
 ??? question "Counting Disease Carriers (cdcr)"
 
