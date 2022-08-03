@@ -114,6 +114,34 @@ fi
 
     **Return:** The total possible number of maximum matchings of basepair edges in the bonding graph of $s$
 
+    !!! success "Solution"
+
+        === "bash"
+            ```bash
+            #!/bin/bash
+
+            dna="$(cat mmrs_data.txt | tail -n +2 | tr -d '\n')"
+
+            count () {
+                echo -n "${dna//[^$1]/}" | wc -c
+            }
+
+            matches () {
+            local n1=$(count $1)
+            local n2=$(count $2)
+            if test $n2 -gt $n1; then
+                local tmp=$n1
+                n1=$n2
+                n2=$tmp
+            fi
+            seq -s \* $((n1 - n2 + 1)) $n1
+            }
+
+            echo "$(matches A U) * $(matches C G)" | bc 
+            ```
+        === "R"
+          
+
 ??? question "Computing GC Content (cgcc)"
 
     The GC-content of a DNA string is given by the percentage of symbols in the string that are 'C' or 'G'. For example, the GC-content of "AGCTATAG" is 37.5%. Note that the reverse complement of any DNA string has the same GC-content.
@@ -126,6 +154,23 @@ fi
 
     **Return:** The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.
 
+    !!! success "Solution"
+
+        === "bash"
+            ```bash
+            #/bin/bash
+
+            awk -v RS=">" -v FS="\n" 'BEGIN {max_id=""; max_gc="";} \
+            $0 !="" { \
+            gc=0; \
+            l=0; \
+            for(i=2;i<=NF;i++) { \
+                gc += gsub(/[GC]/, ".", $i); \
+                l += length($i);} \
+                if(max_gc < gc/l*100) {max_id=$1; max_gc=gc/l*100} \
+            } \
+            END {print max_id"\n"max_gc;}' cgcc.txt
+            ```
 
 ??? question "Counting Disease Carriers (cdcr)"
 
@@ -136,3 +181,10 @@ fi
     **Given:** An array $A$ for which $A[k]$ represents the proportion of homozygous recessive individuals for the $k$-th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.
 
     **Return:** An array $B$ having the same length as $A$ in which $B[k]$ represents the probability that a randomly selected individual carries at least one copy of the recessive allele for the $k$-th factor.
+
+    !!! success "Solution"
+
+        === "bash"
+            ```bash
+            cat cdcr_data.txt | tr \  '\n' | sed 's/.*/2 * sqrt(&) - &/' | bc -l
+            ```
