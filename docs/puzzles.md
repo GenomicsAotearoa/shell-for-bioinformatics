@@ -2,6 +2,20 @@
 
 
 
+### How to compare your solution with the provided solution
+
+
+```bash
+#!/bin/bash
+
+if cmp --silent -- "provided_solution.txt" "my_solution.txt"; then
+echo "contents are identical"
+else 
+echo "files differ"
+fi
+```
+
+
 ??? question "Transcribing DNA into RNA (tdir)"
 
     An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
