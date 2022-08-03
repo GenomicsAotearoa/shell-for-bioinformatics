@@ -65,7 +65,7 @@
     **Return:** The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.
 
 
-??? question "Counting Disease Carriers"
+??? question "Counting Disease Carriers (cdcr)"
 
     To model the Hardy-Weinberg principle, assume that we have a population of $N$ diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2$N$ chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply $p=m/2N$
 
