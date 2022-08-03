@@ -1,19 +1,32 @@
 # Puzzles
 
+!!! abstract  "Info"
+
+    * Download data (and answers  😊)
+
+    ```bash
+    wget -c puzzles_da.tar.gz https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/puzzles_da.tar.gz -O - | tar -xz
+    ```
+
+    * Review the content of the **puzzles_da** directory
+        - There are two directories, **data** and **answers**
+        - Each filename has a unique ID which corresponds to the puzzle/question (Described below)
+
+    * We recommend appending the solution to a file and compare the content of it with the corresponding answer in **answers** directory
+
+ 
+    * How to compare your solution with the provided solution  (and here is another new command `cmp`)
 
 
-### How to compare your solution with the provided solution
+    ```bash
+    #!/bin/bash
 
-
-```bash
-#!/bin/bash
-
-if cmp --silent -- "provided_answer.txt" "my_answer.txt"; then
-echo "contents are identical"
-else 
-echo "files differ"
-fi
-```
+    if cmp --silent -- "provided_answer.txt" "my_answer.txt"; then
+    echo "contents are identical"
+    else 
+    echo "files differ" 
+    fi
+    ```
 
 
 ??? question "Transcribing DNA into RNA (tdir)"
