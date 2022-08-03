@@ -184,6 +184,15 @@ fi
             ```perl
             perl -ne 'BEGIN{$/="\n>";$gc=-1}chomp;s/^>//;($id,$seq)=(split(/\n/,$_,2));$seq=~s/\n//g;$cgc=100*(($seq=~y/GC//)/length($seq));if($cgc>$gc){$gc=$cgc;$gcid=$id};END{print "$gcid\n$gc\n"}' data/cgcc_data.txt
             ```
+        === "R (with seqinr)"
+            ```r
+            fasta <- read.fasta("cgcc_data.txt")
+            gc_content <- apply(matrix(names(fasta)), 1, function(x){GC(fasta[[x]])})
+            most_gc <- which(gc_content==max(gc_content))
+
+            #Result
+            rbind(names(fasta)[most_gc], paste(signif(gc_content[most_gc], 4) * 100, "%", sep=""))
+            ```
             
 
 - - - 
