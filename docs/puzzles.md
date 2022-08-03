@@ -44,6 +44,9 @@ fi
             ```           
 
         === "R"
+            ```r
+            gsub("T","U",readLines("tdir_data.txt"))
+            ```
 
         === "Python"
             ```py
