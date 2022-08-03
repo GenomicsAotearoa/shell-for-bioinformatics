@@ -23,7 +23,7 @@
     **Return:** The reverse complement $s^{c}$ of $s$.
 
 
-??? question "Counting DNA Nucleotides (dnct"
+??? question "Counting DNA Nucleotides (dnct)"
 
     A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length of a string is the number of symbols that it contains.
 
