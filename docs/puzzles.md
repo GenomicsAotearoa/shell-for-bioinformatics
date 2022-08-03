@@ -15,7 +15,7 @@
 
     === "bash"
 
-        Developed at AT&T Bell Labs by Steve ***Bourne***, the Bourne shell is regarded as the first UNIX shell ever. It is denoted as sh. It gained popularity due to its compact nature and high speeds of operation.
+        
 
     === "R"
 
