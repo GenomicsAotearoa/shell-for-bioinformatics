@@ -38,7 +38,10 @@ fi
             ```
             ```bash
             awk '{gsub(/T/,"U");print}' tdir_data.txt
-            ```            
+            ``` 
+            ```bash
+            sed 's/T/U/g' tdir_data.txt
+            ```           
 
         === "R"
 
