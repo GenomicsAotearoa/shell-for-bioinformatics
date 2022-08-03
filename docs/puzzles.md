@@ -15,6 +15,11 @@
 
     === "bash"
 
+    
+
+    
+
+
         
 
     === "R"
@@ -30,6 +35,39 @@
     **Given:** A DNA string s of length at most 1000 bp.
 
     **Return:** The reverse complement $s^{c}$ of $s$.
+
+    !!! success "Solution"
+
+        === "bash"
+            
+            There are multiple ways to do this 
+            ```bash
+            rev csod_data.txt | tr ATCG TAGC
+            ```
+            ```bash
+            rev csod_data.txt | sed 'y/ATCG/TAGC/'
+            ```
+            ```bash
+            cat csod_data.txt | tr 'ACGT' 'TGCA' | rev
+            ``` 
+
+            * For multi-line sequences
+            ```bash
+            tr -d "\n" < data.txt| rev  | tr ATCG TAGC
+            ```
+
+            * For FASTA files
+            ```bash
+            grep -v "^>" r.fasta | tr -d "\n"  | rev  | tr ATCG TAGC
+            ```
+    
+
+    
+
+
+        
+
+        === "R"
 
 
 ??? question "Counting DNA Nucleotides (dnct)"
