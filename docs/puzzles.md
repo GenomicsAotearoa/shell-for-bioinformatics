@@ -1,7 +1,7 @@
 # Puzzles
 
 
-??? question "Transcribing DNA into RNA"
+??? question "Transcribing DNA into RNA (tdir)"
 
     An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
 
@@ -12,7 +12,7 @@
     **Return:** The transcribed RNA string of $t$
 
 
-??? question "Complementing a Strand of DNA"
+??? question "Complementing a Strand of DNA (csod)"
 
     In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
 
