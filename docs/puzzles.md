@@ -55,6 +55,16 @@ fi
                     rna = dna.replace("T", "U")
                     print(rna)
             ```
+        === "Julia"
+            ```julia
+                seq = open("tdir_data.txt") do file
+                read(file, String)
+            end
+
+            seq = replace(seq, "T" => "U")
+            println(seq)
+            ```
+
 
 - - - 
 
