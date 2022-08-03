@@ -14,16 +14,16 @@
 
     !!! success "Solution"
 
-    === "bash"
+        === "bash"
 
-    
+            ```bash
+            cat tdir_data.txt | tr T U
+            ```
+            ```bash
+            tr T U < tdir_data.txt
+            ```
 
-    
-
-
-        
-
-    === "R"
+        === "R"
 
 
 
