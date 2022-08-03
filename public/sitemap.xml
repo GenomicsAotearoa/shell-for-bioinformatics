@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/0_introduction/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/0_introduction/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/1_download_data/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/1_download_data/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/2_unixshellbasics/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/2_unixshellbasics/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/4_inspectmanipluate/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/4_inspectmanipluate/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/5_inspectmanipulate2/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/5_inspectmanipulate2/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/6_automate_fileprocessing_find_xargs/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/6_automate_fileprocessing_find_xargs/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v1.0/puzzles/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/v2.0/puzzles/</loc>
          <lastmod>2022-08-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
