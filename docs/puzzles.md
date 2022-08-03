@@ -8,7 +8,7 @@
 ```bash
 #!/bin/bash
 
-if cmp --silent -- "provided_solution.txt" "my_solution.txt"; then
+if cmp --silent -- "provided_answer.txt" "my_answer.txt"; then
 echo "contents are identical"
 else 
 echo "files differ"
