@@ -115,14 +115,21 @@
             ```bash
             grep -v "^>" r.fasta | tr -d "\n"  | rev  | tr ATCG TAGC
             ```
-    
-
-    
-
-
-        
 
         === "R"
+
+        === "Julia"
+        ```jl
+        f = read(open("csod_data.txt"), String)
+
+        dict = Dict("A"=>"T", "C"=>"G", "T"=>"A", "G"=>"C")
+
+        for i in reverse(f[1:end-1])
+            print(dict[string(i)])
+        end
+
+        println()
+        ```
 
 - - - 
 
