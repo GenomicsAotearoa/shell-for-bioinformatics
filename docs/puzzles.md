@@ -187,7 +187,17 @@
 
             echo "$(matches A U) * $(matches C G)" | bc 
             ```
-        === "R"
+        === "Python"
+            ```py
+            from Bio import SeqIO
+            from scipy.special import perm
+
+            with open('mmrs_data.txt', encoding='utf-8') as handle:
+                rna = SeqIO.read(handle, 'fasta').seq
+
+            au, cg = (rna.count('A'), rna.count('U')), (rna.count('C'), rna.count('G'))
+            print(perm(max(au), min(au), exact=True) * perm(max(cg), min(cg), exact=True))
+            ```
           
 - - - 
 
