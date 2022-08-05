@@ -259,10 +259,8 @@
                 if max_gc_temp > GC(max_seq):
                     max_id = seq_record.id
                     max_seq = seq_record.seq
-                    max_gc = GC(seq_record.seq)
                     max_gc = max_gc_temp
             print(max_id)
-            print(max_gc)
             print(max_gc)
             ```
 
