@@ -248,17 +248,38 @@
             ```
         === "Python"
             ```py
+            from Bio.Alphabet import IUPAC
+            from Bio.SeqUtils import GC
+            max_seq = Seq('tata', IUPAC.unambiguous_dna)
+            max_gc = ()
+            max_gc = None
+            for seq_record in SeqIO.parse('cgcc_data.txt','fasta'):
+                if GC(seq_record.seq) > GC(max_seq):
+                max_gc_temp = GC(seq_record.seq)
+                if max_gc_temp > GC(max_seq):
+                    max_id = seq_record.id
+                    max_seq = seq_record.seq
+                    max_gc = GC(seq_record.seq)
+                    max_gc = max_gc_temp
+            print(max_id)
+            print(max_gc)
+            print(max_gc)
+            ```
+
+        === "Python - 🤓 version"
+            ```py
             from Bio import SeqIO
             from Bio.SeqUtils import GC
 
             input_file = 'cgcc_data.txt'
             seq_dict = {
-                str(seq_record.id): round(GC(seq_record.seq), 6)
+                seq_record.id: GC(seq_record.seq)
                 for seq_record in SeqIO.parse(input_file, "fasta")
             }
 
             max_gc = max(seq_dict, key=seq_dict.get) # find key of the dicionary's max value
-            print(f'\n{max_gc}\n{seq_dict[max_gc]}\n')
+            print(max_gc)
+            print(seq_dict[max_gc])
             ```
 
 
