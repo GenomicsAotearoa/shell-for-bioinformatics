@@ -266,7 +266,7 @@
             print(max_gc)
             ```
 
-        === "Python - 🤓 version"
+        === "Python (🤓 version)"
             ```py
             from Bio import SeqIO
             from Bio.SeqUtils import GC
