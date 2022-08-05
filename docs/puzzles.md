@@ -42,12 +42,10 @@
     ??? success "Solution"
 
         === "bash"
+            There are multiple ways to do this
 
             ```bash
             cat tdir_data.txt | tr T U
-            ```
-            ```bash
-            tr T U < tdir_data.txt
             ```
             ```bash
             awk '{gsub(/T/,"U");print}' tdir_data.txt
