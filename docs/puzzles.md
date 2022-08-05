@@ -239,6 +239,7 @@
             ```
         === "R (with seqinr)"
             ```r
+            library(seqinr)
             fasta <- read.fasta("cgcc_data.txt")
             gc_content <- apply(matrix(names(fasta)), 1, function(x){GC(fasta[[x]])})
             most_gc <- which(gc_content==max(gc_content))
