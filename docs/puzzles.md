@@ -22,9 +22,9 @@
     #!/bin/bash
 
     if cmp --silent -- "provided_answer.txt" "my_answer.txt"; then
-    echo "contents are identical"
+        printf "\U1F60A SUCCESS \n"
     else 
-    echo "files differ" 
+        printf "\U1F97A Almost there...Try again please\n" 
     fi
     ```
 
