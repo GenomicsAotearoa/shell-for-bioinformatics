@@ -1,0 +1,761 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/puzzles/">
+      
+      <link rel="icon" href="../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Puzzles - Intermediate-Advanced Shell for Bioinformatics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#puzzles" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-header__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intermediate-Advanced Shell for Bioinformatics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Puzzles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-nav__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Intermediate-Advanced Shell for Bioinformatics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_introduction/" class="md-nav__link">
+        UNIX, Linux  & UNIX Shell
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_download_data/" class="md-nav__link">
+        Download & Verify Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_unixshellbasics/" class="md-nav__link">
+        Unix Shell Basics & Recap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_inspectmanipluate/" class="md-nav__link">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_inspectmanipulate2/" class="md-nav__link">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_automate_fileprocessing_find_xargs/" class="md-nav__link">
+        Automating File-Processing with find and xargs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Puzzles
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git/edit/master/docs/puzzles.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="puzzles">Puzzles<a class="headerlink" href="#puzzles" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">Info</p>
+<ul>
+<li>Download data (and answers  😊)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget -c puzzles_da.tar.gz https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/puzzles_da.tar.gz -O - <span class="p">|</span> tar -xz
+</code></pre></div>
+<ul>
+<li>
+<p>Review the content of the <strong>puzzles_da</strong> directory</p>
+<ul>
+<li>There are two directories, <strong>data</strong> and <strong>answers</strong></li>
+<li>Each filename has a unique ID which corresponds to the puzzle/question (Described below)</li>
+</ul>
+</li>
+<li>
+<p>We recommend appending the solution to a file and compare the content of it with the corresponding answer in <strong>answers</strong> directory</p>
+</li>
+<li>
+<p>How to compare your solution with the provided solution  (and here is another new command <code>cmp</code>)</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span> cmp --silent -- <span class="s2">&quot;provided_answer.txt&quot;</span> <span class="s2">&quot;my_answer.txt&quot;</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="nb">printf</span> <span class="s2">&quot;\U1F60A SUCCESS \n&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">else</span> 
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nb">printf</span> <span class="s2">&quot;\U1F97A Almost there...Try again please\n&quot;</span> 
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">fi</span>
+</code></pre></div>
+</div>
+<details class="question">
+<summary>Transcribing DNA into RNA (tdir)</summary>
+<p>An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.</p>
+<p>Given a DNA string <span class="arithmatex">\(t\)</span> corresponding to a coding strand, its transcribed RNA string <span class="arithmatex">\(u\)</span> is formed by replacing all occurrences of 'T' in <span class="arithmatex">\(t\)</span> with 'U' in <span class="arithmatex">\(u\)</span></p>
+<p><strong>Given:</strong> A DNA string <span class="arithmatex">\(t\)</span> having length at most 1000 nt.</p>
+<p><strong>Return:</strong> The transcribed RNA string of <span class="arithmatex">\(t\)</span></p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">bash</label><label for="__tabbed_1_2">R</label><label for="__tabbed_1_3">Python</label><label for="__tabbed_1_4">Julia</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>There are multiple ways to do this</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat tdir_data.txt <span class="p">|</span> tr T U
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>awk <span class="s1">&#39;{gsub(/T/,&quot;U&quot;);print}&#39;</span> tdir_data.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sed <span class="s1">&#39;s/T/U/g&#39;</span> tdir_data.txt
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="s">&quot;U&quot;</span><span class="p">,</span><span class="nf">readLines</span><span class="p">(</span><span class="s">&quot;tdir_data.txt&quot;</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;tdir_data.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f1</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>        <span class="n">dna</span> <span class="o">=</span> <span class="n">f1</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="n">rna</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;U&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">rna</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;tdir_data.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">file</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">end</span><span class="w"></span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">replace</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;U&quot;</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">println</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Complementing a Strand of DNA (csod)</summary>
+<p>In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.</p>
+<p>The reverse complement of a DNA string <span class="arithmatex">\(s\)</span> is the string <span class="arithmatex">\(s^{c}\)</span> formed by reversing the symbols of <span class="arithmatex">\(s\)</span> then taking the complement of each symbol (e.g., the reverse complement of "GTCA" is "TGAC").</p>
+<p><strong>Given:</strong> A DNA string s of length at most 1000 bp.</p>
+<p><strong>Return:</strong> The reverse complement <span class="arithmatex">\(s^{c}\)</span> of <span class="arithmatex">\(s\)</span>.</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">bash</label><label for="__tabbed_2_2">Julia</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>There are multiple ways to do this 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>rev csod_data.txt <span class="p">|</span> tr ATCG TAGC
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rev csod_data.txt <span class="p">|</span> sed <span class="s1">&#39;y/ATCG/TAGC/&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cat csod_data.txt <span class="p">|</span> tr <span class="s1">&#39;ACGT&#39;</span> <span class="s1">&#39;TGCA&#39;</span> <span class="p">|</span> rev
+</code></pre></div></p>
+<ul>
+<li>
+<p>For multi-line sequences
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>tr -d <span class="s2">&quot;\n&quot;</span> &lt; data.txt<span class="p">|</span> rev  <span class="p">|</span> tr ATCG TAGC
+</code></pre></div></p>
+</li>
+<li>
+<p>For FASTA files
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> r.fasta <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span>  <span class="p">|</span> rev  <span class="p">|</span> tr ATCG TAGC
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;csod_data.txt&quot;</span><span class="p">),</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Dict</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="o">=&gt;</span><span class="s">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="o">=&gt;</span><span class="s">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="o">=&gt;</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;G&quot;</span><span class="o">=&gt;</span><span class="s">&quot;C&quot;</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">dict</span><span class="p">[</span><span class="n">string</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span><span class="w"></span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">end</span><span class="w"></span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">println</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Counting DNA Nucleotides (dnct)</summary>
+<p>A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length of a string is the number of symbols that it contains.</p>
+<p>An example of a length 21 DNA string (whose alphabet contains the symbols 'A', 'C', 'G', and 'T') is "ATGCTTCAGAAAGGTCTTACG."</p>
+<p><strong>Given:</strong> A DNA string <span class="arithmatex">\(s\)</span> of length at most 1000 nt.</p>
+<p><strong>Return:</strong> Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in s</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>awk <span class="s1">&#39;{a=gsub(&quot;A&quot;,&quot;&quot;);c=gsub(&quot;C&quot;,&quot;&quot;);g=gsub(&quot;G&quot;,&quot;&quot;);t=gsub(&quot;T&quot;,&quot;&quot;)} END {print a,c,g,t}&#39;</span> /path/to/file <span class="nv">x</span><span class="o">=</span><span class="k">$(</span>cat dnct_data.txt<span class="k">)</span><span class="p">;</span> <span class="k">for</span> i <span class="k">in</span> A C G T<span class="p">;</span> <span class="k">do</span> <span class="nv">y</span><span class="o">=</span><span class="si">${</span><span class="nv">x</span><span class="p">//[^</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="p">;</span> <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="si">${#</span><span class="nv">y</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Maximum Matchings and RNA Secondary Structures (mmrs)</summary>
+<div class="admonition figure inline end">
+<p class="admonition-title">Figure</p>
+<p><img alt="image" src="../images/matching_%26_rna.png" /></p>
+</div>
+<p>The graph theoretical analogue of the quandary stated in the introduction above is that if we have an RNA string <span class="arithmatex">\(s\)</span> that does not have the same number of occurrences of 'C' as 'G' and the same number of occurrences of 'A' as 'U', then the bonding graph of <span class="arithmatex">\(s\)</span> cannot possibly possess a perfect matching among its basepair edges. For example, see <strong><em>Figure 1</em></strong>; in fact, most bonding graphs will not contain a perfect matching.</p>
+<p>In light of this fact, we define a maximum matching in a graph as a matching containing as many edges as possible. See <strong><em>Figure 2</em></strong> for three maximum matchings in graphs.</p>
+<p>A maximum matching of basepair edges will correspond to a way of forming as many base pairs as possible in an RNA string, as shown in <strong><em>Figure 3</em></strong>.</p>
+<p><strong>Given:</strong> An RNA string <span class="arithmatex">\(s\)</span> of length at most 100.</p>
+<p><strong>Return:</strong> The total possible number of maximum matchings of basepair edges in the bonding graph of <span class="arithmatex">\(s\)</span></p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">bash</label><label for="__tabbed_4_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">dna</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>cat mmrs_data.txt <span class="p">|</span> tail -n +2 <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>count <span class="o">()</span> <span class="o">{</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">dna</span><span class="p">//[^</span><span class="nv">$1</span><span class="p">]/</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">|</span> wc -c
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">}</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>matches <span class="o">()</span> <span class="o">{</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nb">local</span> <span class="nv">n1</span><span class="o">=</span><span class="k">$(</span>count <span class="nv">$1</span><span class="k">)</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nb">local</span> <span class="nv">n2</span><span class="o">=</span><span class="k">$(</span>count <span class="nv">$2</span><span class="k">)</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="k">if</span> <span class="nb">test</span> <span class="nv">$n2</span> -gt <span class="nv">$n1</span><span class="p">;</span> <span class="k">then</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="nb">local</span> <span class="nv">tmp</span><span class="o">=</span><span class="nv">$n1</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="nv">n1</span><span class="o">=</span><span class="nv">$n2</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="nv">n2</span><span class="o">=</span><span class="nv">$tmp</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="k">fi</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>seq -s <span class="se">\*</span> <span class="k">$((</span>n1 <span class="o">-</span> n2 <span class="o">+</span> <span class="m">1</span><span class="k">))</span> <span class="nv">$n1</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="o">}</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>matches A U<span class="k">)</span><span class="s2"> * </span><span class="k">$(</span>matches C G<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> bc 
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">perm</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mmrs_data.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">rna</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="s1">&#39;fasta&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">seq</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">au</span><span class="p">,</span> <span class="n">cg</span> <span class="o">=</span> <span class="p">(</span><span class="n">rna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">),</span> <span class="n">rna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">),</span> <span class="n">rna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;G&#39;</span><span class="p">))</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">au</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">au</span><span class="p">),</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">perm</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">cg</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">cg</span><span class="p">),</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Computing GC Content (cgcc)</summary>
+<p>The GC-content of a DNA string is given by the percentage of symbols in the string that are 'C' or 'G'. For example, the GC-content of "AGCTATAG" is 37.5%. Note that the reverse complement of any DNA string has the same GC-content.</p>
+<p>DNA strings must be labeled when they are consolidated into a database. A commonly used method of string labeling is called FASTA format. In this format, the string is introduced by a line that begins with '&gt;', followed by some labeling information. Subsequent lines contain the string itself; the first line to begin with '&gt;' indicates the label of the next string.</p>
+<p>In our implementation, a string in FASTA format will be labeled by the ID "GAotearoa_xxxx", where "xxxx" denotes a four-digit code between 0000 and 9999.</p>
+<p><strong>Given:</strong> At most 10 DNA strings in FASTA format (of length at most 1 kbp each).</p>
+<p><strong>Return:</strong> The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on absolute error below.</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:5"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><input id="__tabbed_5_5" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">bash</label><label for="__tabbed_5_2">Perl</label><label for="__tabbed_5_3">R (with seqinr)</label><label for="__tabbed_5_4">Python</label><label for="__tabbed_5_5">Python (🤓 version)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">#/bin/bash</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>awk -v <span class="nv">RS</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span> -v <span class="nv">FS</span><span class="o">=</span><span class="s2">&quot;\n&quot;</span> <span class="s1">&#39;BEGIN {max_id=&quot;&quot;; max_gc=&quot;&quot;;} \</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="s1">$0 !=&quot;&quot; { \</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="s1">gc=0; \</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="s1">l=0; \</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s1">for(i=2;i&lt;=NF;i++) { \</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s1">    gc += gsub(/[GC]/, &quot;.&quot;, $i); \</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="s1">    l += length($i);} \</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="s1">    if(max_gc &lt; gc/l*100) {max_id=$1; max_gc=gc/l*100} \</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="s1">} \</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="s1">END {print max_id&quot;\n&quot;max_gc;}&#39;</span> cgcc_data.txt
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">perl</span> <span class="o">-</span><span class="ow">ne</span> <span class="s">&#39;BEGIN{$/=&quot;\n&gt;&quot;;$gc=-1}chomp;s/^&gt;//;($id,$seq)=(split(/\n/,$_,2));$seq=~s/\n//g;$cgc=100*(($seq=~y/GC//)/length($seq));if($cgc&gt;$gc){$gc=$cgc;$gcid=$id};END{print &quot;$gcid\n$gc\n&quot;}&#39;</span> <span class="n">data</span><span class="o">/</span><span class="n">cgcc_data</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">fasta</span> <span class="o">&lt;-</span> <span class="nf">read.fasta</span><span class="p">(</span><span class="s">&quot;cgcc_data.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">gc_content</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">fasta</span><span class="p">)),</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">GC</span><span class="p">(</span><span class="n">fasta</span><span class="p">[[</span><span class="n">x</span><span class="p">]])})</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">most_gc</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="n">gc_content</span><span class="o">==</span><span class="nf">max</span><span class="p">(</span><span class="n">gc_content</span><span class="p">))</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1">#Result</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="nf">rbind</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">fasta</span><span class="p">)[</span><span class="n">most_gc</span><span class="p">],</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">signif</span><span class="p">(</span><span class="n">gc_content</span><span class="p">[</span><span class="n">most_gc</span><span class="p">],</span> <span class="m">4</span><span class="p">)</span> <span class="o">*</span> <span class="m">100</span><span class="p">,</span> <span class="s">&quot;%&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span> <span class="nn">Bio.Alphabet</span> <span class="kn">import</span> <span class="n">IUPAC</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kn">from</span> <span class="nn">Bio.SeqUtils</span> <span class="kn">import</span> <span class="n">GC</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">max_seq</span> <span class="o">=</span> <span class="n">Seq</span><span class="p">(</span><span class="s1">&#39;tata&#39;</span><span class="p">,</span> <span class="n">IUPAC</span><span class="o">.</span><span class="n">unambiguous_dna</span><span class="p">)</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">max_gc</span> <span class="o">=</span> <span class="p">()</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">max_gc</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">for</span> <span class="n">seq_record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;cgcc_data.txt&#39;</span><span class="p">,</span><span class="s1">&#39;fasta&#39;</span><span class="p">):</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">max_gc_temp</span> <span class="o">=</span> <span class="n">GC</span><span class="p">(</span><span class="n">seq_record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="k">if</span> <span class="n">max_gc_temp</span> <span class="o">&gt;</span> <span class="n">GC</span><span class="p">(</span><span class="n">max_seq</span><span class="p">):</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>        <span class="n">max_id</span> <span class="o">=</span> <span class="n">seq_record</span><span class="o">.</span><span class="n">id</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>        <span class="n">max_seq</span> <span class="o">=</span> <span class="n">seq_record</span><span class="o">.</span><span class="n">seq</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>        <span class="n">max_gc</span> <span class="o">=</span> <span class="n">max_gc_temp</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">max_id</span><span class="p">)</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">max_gc</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="kn">from</span> <span class="nn">Bio.SeqUtils</span> <span class="kn">import</span> <span class="n">GC</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="n">input_file</span> <span class="o">=</span> <span class="s1">&#39;cgcc_data.txt&#39;</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">seq_dict</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="n">seq_record</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="n">GC</span><span class="p">(</span><span class="n">seq_record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="k">for</span> <span class="n">seq_record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">)</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="p">}</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">max_gc</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">seq_dict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">seq_dict</span><span class="o">.</span><span class="n">get</span><span class="p">)</span> <span class="c1"># find key of the dicionary&#39;s max value</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">max_gc</span><span class="p">)</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">seq_dict</span><span class="p">[</span><span class="n">max_gc</span><span class="p">])</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Counting Disease Carriers (cdcr)</summary>
+<p>To model the Hardy-Weinberg principle, assume that we have a population of <span class="arithmatex">\(N\)</span> diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2<span class="arithmatex">\(N\)</span> chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply <span class="arithmatex">\(p=m/2N\)</span></p>
+<p>Because the first assumption of genetic equilibrium states that the population is so large as to be ignored, we will assume that <span class="arithmatex">\(N\)</span> is infinite, so that we only need to concern ourselves with the value of <span class="arithmatex">\(p\)</span></p>
+<p><strong>Given:</strong> An array <span class="arithmatex">\(A\)</span> for which <span class="arithmatex">\(A[k]\)</span> represents the proportion of homozygous recessive individuals for the <span class="arithmatex">\(k\)</span>-th Mendelian factor in a diploid population. Assume that the population is in genetic equilibrium for all factors.</p>
+<p><strong>Return:</strong> An array <span class="arithmatex">\(B\)</span> having the same length as <span class="arithmatex">\(A\)</span> in which <span class="arithmatex">\(B[k]\)</span> represents the probability that a randomly selected individual carries at least one copy of the recessive allele for the <span class="arithmatex">\(k\)</span>-th factor.</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat cdcr_data.txt <span class="p">|</span> tr <span class="se">\ </span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/.*/2 * sqrt(&amp;) - &amp;/&#39;</span> <span class="p">|</span> bc -l
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../6_automate_fileprocessing_find_xargs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Automating File-Processing with find and xargs" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Automating File-Processing with find and xargs
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

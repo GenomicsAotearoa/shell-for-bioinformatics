@@ -1,0 +1,697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/6_automate_fileprocessing_find_xargs/">
+      
+      <link rel="icon" href="../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Automating File-Processing with find and xargs - Intermediate-Advanced Shell for Bioinformatics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#automating-file-processing-with-find-and-xargs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-header__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intermediate-Advanced Shell for Bioinformatics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Automating File-Processing with find and xargs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intermediate-Advanced Shell for Bioinformatics" class="md-nav__button md-logo" aria-label="Intermediate-Advanced Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Intermediate-Advanced Shell for Bioinformatics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_introduction/" class="md-nav__link">
+        UNIX, Linux  & UNIX Shell
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_download_data/" class="md-nav__link">
+        Download & Verify Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_unixshellbasics/" class="md-nav__link">
+        Unix Shell Basics & Recap
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_inspectmanipluate/" class="md-nav__link">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 1
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_inspectmanipulate2/" class="md-nav__link">
+        Inspecting and Manipulating Text Data with Unix Tools - Part 2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Automating File-Processing with find and xargs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Automating File-Processing with find and xargs
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#finding-files-with-find" class="md-nav__link">
+    Finding files with find
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finds-exec-running-commands-on-finds-results" class="md-nav__link">
+    finds -exec: Running Commands on find’s Results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xargs" class="md-nav__link">
+    xargs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puzzles/" class="md-nav__link">
+        Puzzles
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#finding-files-with-find" class="md-nav__link">
+    Finding files with find
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finds-exec-running-commands-on-finds-results" class="md-nav__link">
+    finds -exec: Running Commands on find’s Results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xargs" class="md-nav__link">
+    xargs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics.git/edit/master/docs/6_automate_fileprocessing_find_xargs.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="automating-file-processing-with-find-and-xargs">Automating File-Processing with find and xargs<a class="headerlink" href="#automating-file-processing-with-find-and-xargs" title="Permanent link">&para;</a></h1>
+<p>In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix <code>find</code>. We’ll also see how files printed by <code>find</code> can be passed to another tool called <code>xargs</code> to create powerful Unix-based processing workflows.</p>
+<p>Suppose you have a program named <code>analyse_fastq</code> that takes multiple filenames through standard in to process. If you wanted to run this program on all files with the suffix .fastq, you might run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ls *.fastq <span class="p">|</span> analyse_fastq
+</code></pre></div>
+<div class="admonition failure">
+<p class="admonition-title">Fail</p>
+<p>Your shell expands this wildcard to all matching files in the current directory, and <code>ls</code> prints these filenames. Unfortunately, this leads to a common complication that makes <code>ls</code> and wildcards a fragile solution. Suppose your directory contains a filename called <strong><em>treatment 03.fastq</em></strong>. In this case, <code>ls</code> returns <strong><em>treatment 03.fastq</em></strong> along with other files. However, because files are separated by spaces, and this file contains a space, <code>analyse_fastq</code> will interpret <em>treatment 03.fastq</em> as two separate files, named <strong><em>treatment</em></strong> and <strong><em>03.fastq</em></strong>. This problem crops up periodically in different ways, and it’s necessary to be aware of when writing file-processing pipelines. Note that this does not occur with file globbing in arguments—if <code>analyse_fastq</code> takes multiple files as arguments, your shell handles this properly:</p>
+</div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>analyse_fastq *.fastq
+</code></pre></div>
+Here, shell automatically escapes the space in the filename <strong><em>treatment 03.fastq</em></strong>, so <code>analyse_fastq</code> will correctly receive the arguments <strong><em>treatment-02.fastq</em></strong>, <strong><em>treatment-03.fastq</em></strong>,. The potential problem here is that there’s a limit to the number of files that can be specified as arguments. The limit is high, but you can reach it with NGS data. In this case you may get a meassage: <code>: cannot execute [Argument list too long]</code> </p>
+<div class="admonition success">
+<p class="admonition-title">Solution</p>
+<p>Solution to both of the above problems is through <code>find</code> and <code>xargs</code>, as we will see in the following sections.</p>
+</div>
+<h3 id="finding-files-with-find">Finding files with <code>find</code><a class="headerlink" href="#finding-files-with-find" title="Permanent link">&para;</a></h3>
+<p>Basic syntax for <code>find</code> is </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>find path expression
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">find</p>
+<ul>
+<li>Path specifies the starting directory for search. Expressions are how we describe which files we want to <code>find</code> to return</li>
+<li>Unlike <code>ls</code>, <code>find</code>is recursive (it will search through the directory structure). In fact, running <code>find</code> on a directory (without other arguments) is a quick way to see it’s structure, e.g.,</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>find /nesi/project/nesi02659/<span class="p">|</span> head
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>find: /nesi/project/nesi02659/
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/nesi/project/nesi02659/.jupyter
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>/nesi/project/nesi02659/.jupyter/share
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>/nesi/project/nesi02659/.jupyter/share/jupyter
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert/templates
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>‘/nesi/project/nesi02659/.jupyter/share/jupyter/nbconvert/templates’: Permission denied
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/kernels
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr/kernel.json
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>/nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr/logo-64x64.png
+</code></pre></div></p>
+</div>
+<p>Argument <code>-maxdepth</code> limits the depth of the search: to search only within the current directory, use <code>find -maxdepth 1 .</code></p>
+<details class="question">
+<summary>Exercise 6.1</summary>
+<ol>
+<li>
+<p>Create a small directory system as below in your current working directory</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdir -p hihi_project/<span class="o">{</span>data/raw,scripts,results<span class="o">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,B,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>.fastq
+</code></pre></div>
+</li>
+<li>
+<p>Run <code>find hihi_project</code> and examine the output</p>
+<details class="success">
+<summary>Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>hihi_project/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>hihi_project/results
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>hihi_project/data
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>hihi_project/data/raw
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>hihi_project/data/raw/hihiB_R1.fastq
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>hihi_project/data/raw/hihiA_R1.fastq
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>hihi_project/data/raw/hihiA_R2.fastq
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>hihi_project/data/raw/hihiC_R1.fastq
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>hihi_project/data/raw/hihiB_R2.fastq
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>hihi_project/data/raw/hihiC_R2.fastq
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>hihi_project/scripts
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Use find to print the names of all files matching the pattern “hihiB*fastq” (e.g., FASTQ files from sample “B”, both read pairs): </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>This gives similar results to <code>ls hihiB*fastq</code>, as we’d expect. The primary difference is that find reports results separated by newlines and, by default, <code>find</code> is recursive. Because we only want to return <code>fastq</code> files (and not directories with that matching name), we might want to limit our results using the <code>-type</code> option: There are numerous different types you can search for; the most commonly used are <code>f</code>for files, <code>d</code> for directories, and <code>l</code> for links.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span> -type f
+</code></pre></div>
+</li>
+<li>
+<p>By default, <code>find</code> connects different parts of an expression with logical <strong>AND</strong>. The find command in this case returns results where the name matches “hihiB*fastq” and is a file (type “f ”). <code>find</code> also allows explicitly connecting different parts of an expression with different operators.
+If we want to get the names of all <code>fastq</code> files from samples A or C, we’ll use the operator -or to chain expressions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiA*fastq&quot;</span> -or -name <span class="s2">&quot;hihiC*fastq&quot;</span> -type f
+</code></pre></div>
+</li>
+<li>
+<p>Another way to select these files is with negation: Some bash versions will accept <code>"!"</code> as the flag for this where others will require <code>-not</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>find hihi_project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Suppose you were sharing this project folder with a colleague and a file named hihiB_R1-temp.fastq was created by them in <em>hihi_project/data/raw</em> but you want to ignore it in your file querying:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>find hihi_project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span> -and -not -name <span class="s2">&quot;*-temp*&quot;</span>
+</code></pre></div>
+</li>
+</ol>
+</details>
+<h3 id="finds-exec-running-commands-on-finds-results"><code>find</code>s <code>-exec</code>: Running Commands on find’s Results<a class="headerlink" href="#finds-exec-running-commands-on-finds-results" title="Permanent link">&para;</a></h3>
+<p>Find’s real strength in bioinformatics is that it allows you to run commands on each of the files find returns, using -exec option.</p>
+<p>Continuing from our last example, suppose that a messy collaborator (no offense) created numerous temporary files. Let’s emulate this (in the <em>hihi_project/data/raw/</em>): (then <code>ls</code> ensure the <code>-temp.fastq</code> files were created)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+</code></pre></div>
+<p>Although we can delete these files with <code>rm *-temp.fastq</code>, using <code>rm</code> with a wildcard in a directory filled with important data files is too risky. Using <code>find</code>’s <code>-exec</code> is a much safer way to delete these files.</p>
+<p>For example, let’s use <code>find -exec</code> and <code>rm</code> to delete these temporary files:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> -exec rm <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div>
+Notice the (required!) semicolumn and curly brackets at the end of the command! . In one line, we’re able to pragmatically identify and execute a command on files that match a certain pattern. With <code>find</code> and <code>-exec</code>, a daunting task like processing a directory of 100,000 text files with a program is simple.</p>
+<p>In general, <code>find -exec</code> is most appropriate for quick, simple tasks (like deleting files, changing permissions, etc.). For larger tasks, <code>xargs</code> is a better choice.</p>
+<h2 id="xargs"><code>xargs</code><a class="headerlink" href="#xargs" title="Permanent link">&para;</a></h2>
+<p><code>xargs</code> reads data from standard input (stdin) and executes the command (supplied to it as an argument) one or more times based on the input read. Any spaces, tabs, and newlines in the input are treated as delimiters, while blank lines are ignored. If no command is specified, <code>xargs</code> executes <code>echo</code>. (Notice, that echo by itself does not read from standard input!)</p>
+<p><code>xargs</code> allows us to take input from standard in, and use this input as arguments to another program, which allows us to build commands programmatically. Using <code>find</code> with <code>xargs</code> is much like <code>find -exec</code>, but with some added advantages that make xargs a better choice for larger tasks.</p>
+<p>Let’s re-create our messy temporary file directory example again: .i.e Make sure to run <code>ls</code> after the <code>touch</code> command to verify the files were created. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+</code></pre></div>
+<p><code>xargs</code> works by taking input from standard in and splitting it by spaces, tabs, and newlines into arguments. Then, these arguments are passed to the command supplied. For example, to emulate the behavior of <code>find -exec</code> with <code>rm</code>, we use <code>xargs</code> with <code>rm</code>:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs rm
+</code></pre></div>
+<code>xargs</code> passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like <code>rm</code>, <code>touch</code>, <code>mkdir</code>, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with <code>xargs</code>’s <code>-n</code> argument. For example, we could call rm four separate times (each on one file) with:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>touch zmays-snps/data/seqs/zmays<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs -n <span class="m">1</span> rm
+</code></pre></div></p>
+<p>One big benefit of <code>xargs</code> is that it separates the process that specifies the files to operate on (<code>find</code>) from applying a command to these files (through <code>xargs</code>). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> &gt; oh_oh_filestodelete.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat ohno_filestodelete.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat ohno_filestodelete.txt  <span class="p">|</span> xargs rm
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Using <code>xargs</code> with Replacement Strings to Apply Commands to Files</p>
+<p>In addition to adding arguments at the end of the command, <code>xargs</code> can place them in predefined positions. This is done with the <code>-I</code> option and a placeholder string ({}). Suppose an imaginary program <code>fastq_stat</code> takes an input file through the option –in, gathers FASTQ statistics information, and then writes a summary to the file specified by the –out option. We may want our output filenames to be paired with our input filenames and have corresponding names. We can tackle this with <code>find</code>, <code>xargs</code>, and <code>basename</code>:</p>
+</div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../5_inspectmanipulate2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Inspecting and Manipulating Text Data with Unix Tools - Part 2" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Inspecting and Manipulating Text Data with Unix Tools - Part 2
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../puzzles/" class="md-footer__link md-footer__link--next" aria-label="Next: Puzzles" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Puzzles
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
