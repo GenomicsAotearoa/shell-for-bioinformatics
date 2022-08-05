@@ -68,7 +68,7 @@
             ```
         === "Julia"
             ```julia
-                seq = open("tdir_data.txt") do file
+            seq = open("tdir_data.txt") do file
                 read(file, String)
             end
 
