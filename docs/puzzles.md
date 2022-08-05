@@ -249,19 +249,19 @@
             ```
         === "Python"
             ```py
+            from Bio import SeqIO
+            from Bio.Seq import Seq
             from Bio.Alphabet import IUPAC
             from Bio.SeqUtils import GC
             max_seq = Seq('tata', IUPAC.unambiguous_dna)
             max_gc = ()
-            max_gc = None
             for seq_record in SeqIO.parse('cgcc_data.txt','fasta'):
-                max_gc_temp = GC(seq_record.seq)
-                if max_gc_temp > GC(max_seq):
+                if GC(seq_record.seq) > GC(max_seq):
                     max_id = seq_record.id
                     max_seq = seq_record.seq
-                    max_gc = max_gc_temp
+                    max_gc = GC(seq_record.seq)
             print(max_id)
-            print(max_gc)
+            print (max_gc)
             ```
 
         === "Python (🤓 version)"
