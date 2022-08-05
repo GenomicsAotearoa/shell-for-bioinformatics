@@ -113,9 +113,7 @@
             ```bash
             grep -v "^>" r.fasta | tr -d "\n"  | rev  | tr ATCG TAGC
             ```
-
-        === "R"
-
+            
         === "Julia"
         ```jl
         f = read(open("csod_data.txt"), String)
