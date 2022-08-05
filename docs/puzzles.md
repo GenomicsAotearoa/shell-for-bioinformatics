@@ -254,7 +254,6 @@
             max_gc = ()
             max_gc = None
             for seq_record in SeqIO.parse('cgcc_data.txt','fasta'):
-                if GC(seq_record.seq) > GC(max_seq):
                 max_gc_temp = GC(seq_record.seq)
                 if max_gc_temp > GC(max_seq):
                     max_id = seq_record.id
