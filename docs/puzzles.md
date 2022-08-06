@@ -151,6 +151,20 @@
 
             println()
             ```
+        === "Perl"
+            ```pl
+            $filename = 'csod_data.txt';
+            open(FILEN, $filename);            
+
+            $dna = <FILEN>;            
+
+            $rev = reverse $dna;
+            $rev =~ tr/ATCG/TAGC/;            
+
+            print $rev;            
+
+            exit;
+            ```
 
 - - - 
 
