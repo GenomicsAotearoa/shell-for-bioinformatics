@@ -10,12 +10,12 @@
 
     * Review the content of the **puzzles_da** directory
         - There are two directories, **data** and **answers**
-        - Each filename has a unique ID which corresponds to the puzzle/question (Described below)
+        - Each filename has a unique four character id which corresponds to the puzzle/question (Described below)
 
-    * We recommend appending the solution to a file and compare the content of it with the corresponding answer in **answers** directory
+    * We recommend appending the solution to a file and compare the content of it with the expected output in **answers** directory
 
  
-    * How to compare your solution with the provided solution  (and here is another new command `cmp`)
+    * How to compare your solution with the provided solution  ( introducing two new commands `cmp` and `printf`)
 
 
     ```bash
