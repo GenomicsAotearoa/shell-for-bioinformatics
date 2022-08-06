@@ -133,19 +133,24 @@
             ```bash
             grep -v "^>" r.fasta | tr -d "\n"  | rev  | tr ATCG TAGC
             ```
-            
+        === "Python"
+            ```py
+            for N in open("csod_data.txt","r").read()[::-1]:
+                for pair in ["GC","AT"]:
+                    if N in pair: print("".join(set(N)^set(pair)),end="")
+            ```    
         === "Julia"
-        ```jl
-        f = read(open("csod_data.txt"), String)
+            ```jl
+            f = read(open("csod_data.txt"), String)
 
-        dict = Dict("A"=>"T", "C"=>"G", "T"=>"A", "G"=>"C")
+            dict = Dict("A"=>"T", "C"=>"G", "T"=>"A", "G"=>"C")
 
-        for i in reverse(f[1:end-1])
-            print(dict[string(i)])
-        end
+            for i in reverse(f[1:end-1])
+                print(dict[string(i)])
+            end
 
-        println()
-        ```
+            println()
+            ```
 
 - - - 
 
