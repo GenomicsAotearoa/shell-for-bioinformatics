@@ -165,6 +165,46 @@
 
             exit;
             ```
+        === "C++"
+            ```c++
+            // to compile, save the code as csod.cpp
+            // g++ csod.cpp -o csod_cpp
+            // to run:
+            // cat csod_data.txt | ./csod_cpp > answer
+
+            #include <iostream>
+            #include <vector>            
+
+            char complement(const char c)
+            {
+                switch(c) {
+                    case 'A': return 'T';
+                    case 'T': return 'A';
+                    case 'C': return 'G';
+                    case 'G': return 'C';
+                }
+                return 'X';
+            }            
+
+            int main()
+            {
+                using std::cin;
+                using std::cout;
+                using std::vector;            
+
+                char nucleotide;
+                vector<char> DNAstring;            
+
+                while (cin >>nucleotide) {
+                    DNAstring.push_back(nucleotide);
+                }
+                for (int pos = DNAstring.size()-1; pos >= 0; --pos) {
+                    cout <<complement(DNAstring[pos]);
+                }            
+
+                return 0;
+            }
+            ```
 
 - - - 
 
