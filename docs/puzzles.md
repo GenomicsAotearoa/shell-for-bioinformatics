@@ -224,7 +224,8 @@
             ```bash
             awk '{a=gsub("A","");c=gsub("C","");g=gsub("G","");t=gsub("T","")} END {print a,c,g,t}' /path/to/file x=$(cat dnct_data.txt); for i in A C G T; do y=${x//[^$i]}; echo -n "${#y} "; done
             ```
-        * A bit more simpler solution in `bash`
+
+            * A bit more simpler solution in `bash`
             ```bash
             for i in A C G T;do grep -o $i dnct_data.txt | wc -l; done
             ```
@@ -235,6 +236,45 @@
 
             print(dataset.count('A'), dataset.count('C'), dataset.count('G'), dataset.count('T'))
             ```
+        === "Rust"
+```rs
+use std::fs::File;
+use std::io::{Read, Write};
+
+fn dna_parse(in_str: &str) -> (i32, i32, i32, i32) {
+    let mut a_count = 0;
+    let mut c_count = 0;
+    let mut g_count = 0;
+    let mut t_count = 0;
+    for symbol in in_str.chars() {
+        match symbol {
+            'A' | 'a' => a_count += 1,
+            'C' | 'c' => c_count += 1,
+            'G' | 'g' => g_count += 1,
+            'T' | 't' => t_count += 1,
+            '\r' | '\n' => (),
+            x => println!("Unknown DNA symbol: {}", x.escape_debug())
+        };
+    }
+    (a_count, c_count, g_count, t_count)
+}
+
+fn main() -> std::io::Result<()> {
+    // Get the input data
+    let mut in_file = File::open("dnct_data.txt")?;
+    let mut contents = String::new();
+    in_file.read_to_string(&mut contents)?;
+
+    // Process the data
+    let (a, c, g, t) = dna_parse(&contents);
+    let out_str = format!("{} {} {} {}", a, c, g, t);
+
+    // Export the data
+    let mut out_file = File::create("dnct_answer.txt")?;
+    out_file.write_all(out_str.as_bytes())?;
+    Ok(())
+}
+```
 - - - 
 
 ??? question "Maximum Matchings and RNA Secondary Structures (mmrs)"
