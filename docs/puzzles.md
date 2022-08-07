@@ -224,6 +224,17 @@
             ```bash
             awk '{a=gsub("A","");c=gsub("C","");g=gsub("G","");t=gsub("T","")} END {print a,c,g,t}' /path/to/file x=$(cat dnct_data.txt); for i in A C G T; do y=${x//[^$i]}; echo -n "${#y} "; done
             ```
+        * A bit more simpler solution in `bash`
+            ```bash
+            for i in A C G T;do grep -o $i dnct_data.txt | wc -l; done
+            ```
+        === "Python"
+            ```py
+            with open('dnct_data.txt') as file:
+                dataset = file.read()
+
+            print(dataset.count('A'), dataset.count('C'), dataset.count('G'), dataset.count('T'))
+            ```
 - - - 
 
 ??? question "Maximum Matchings and RNA Secondary Structures (mmrs)"
