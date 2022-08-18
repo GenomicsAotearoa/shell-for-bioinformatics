@@ -13,7 +13,7 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
 
 ## Inspecting data with `head` and `tail`
 
-Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. .i.e. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
+Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. The first round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
 
 ```bash
 head Mus_musculus.GRCm38.75_chr1.bed
@@ -88,7 +88,7 @@ Often, we only need to list the number of lines, which can be done by using the 
 
 Although `wc -l` is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" 
 
-For an example, If we are to create a file with 3 rows of data and then two empty lines, 
+For an example, if we are to create a file with 3 rows of data and then two empty lines, 
 
 ```bash
 cat > fool_wc.bed
@@ -102,7 +102,7 @@ wc -l fool_wc.bed
 
   5 fool_wc.bed
 ```
-This is a good place bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)
+This is a good place to bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)
 
 ```bash
 
@@ -132,7 +132,7 @@ cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 ```
 
 
-Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier, and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
+Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
@@ -141,7 +141,7 @@ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
 1	3054233	3054733
 1	3054233	3054733
 ```
-Note that although our three-column file of genomic positions looks like a BED- formatted file, it’s not due to subtle differences in genomic range formats
+Note that although our three-column file of genomic positions looks like a BED-formatted file, it’s not (due to subtle differences in genomic range formats).
 
 `cut` also allows us to specify the column delimiter character. So, if we were to come across a CSV file containing chromosome names, start positions, and end positions, we could select columns from it, too:
 
@@ -155,7 +155,7 @@ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
   1	unprocessed_pseudogene	exon	3054233	3054733	.	+	.
 ```
 
-While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). column -t produces neat columns that are much easier to read:
+While tabs are a great delimiter in plain-text data files, our variable width data causes our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). The column -t command produces neat columns that are much easier to read:
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
@@ -176,12 +176,11 @@ column -s"," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 
 ## Sorting Plain-Text Data with `sort`
 
-Very often we need to work with sorted plain-text data in bioinformatics. The two
-most common reasons to sort data are as follows:
+Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:
 - Certain operations are much more efficient when performed on sorted data.
-- Sorting data is a prerequisite to finding all unique lines
+- Sorting data is a prerequisite to finding all unique lines.
 
-`sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments
+`sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments.
 
 ```bash
 cat > test_sort.bed
@@ -216,7 +215,7 @@ sort test_sort.bed
     ```
 `sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.
 
-However, using `sort`’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:
+However, using `sort`’s defaults of sorting alphanumerically by line and doesn’t handle tabular data properly. There are two new features we need:
 
 - The ability to sort by particular columns
 
@@ -253,7 +252,7 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k
 
 ## Finding Unique Values with `uniq`
 
-`uniq` takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use `uniq` very frequently in command-line data processing.
+`uniq` takes lines from a file or standard input stream and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use `uniq` very frequently in command-line data processing.
 
 ```bash
 cat letters.txt 
@@ -353,7 +352,7 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 
     - Here, `/` is the delimiter (you can also use `_` (underscore), `|` (pipe) or `:` (colon) as delimiter as well)
-    - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is s which does the substitution operation (other useful operators include `y` for transformation, `i` for insertion, `d` for deletion etc.).
+    - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is `s` which does the substitution operation (other useful operators include `y` for transformation, `i` for insertion, `d` for deletion etc.).
     - `REGEXP` and `REPLACEMENT` specify search term and the substitution term respectively for the operation that is being performed.
     - `FLAGS` are additional parameters that control the operation. Some common `FLAGS` include:
         - `g`	replace all the instances of `REGEXP` with `REPLACEMENT` (globally)
@@ -375,7 +374,7 @@ Find and replace `chr` to `chromosome`, only if you also find **40** in the line
 ```bash
 sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
 ```
-Find and replace directly on the input, but save a old version too
+Find and replace directly on the input, but save an old version too
 
 ```bash
 sed -i.old 's/chr/chromosome/g' example.bed
@@ -383,7 +382,7 @@ sed -i.old 's/chr/chromosome/g' example.bed
 
 * Print specific lines of the file
 
-To print a specific line, you can use the address function, note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n`.
+To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n`.
 
 print 5th line of example.bed
 
@@ -402,7 +401,7 @@ It also accepts range, using `,`. Let's print line 2-6,
 ```bash
 sed -n '2,6p' example.bed
 ```
-Also, we can create specific pattern, like multiple of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file
+Also, we can create specific pattern, like multiples of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file
 
 ```bash
 sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
@@ -427,7 +426,7 @@ We can use the above trick to convert the .fastq to .fasta
 ```bash
 sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
 ```
-Let's wrap up `sed` with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to , 
+Let's wrap up `sed` with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to: 
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
