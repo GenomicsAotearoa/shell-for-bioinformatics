@@ -112,7 +112,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 Find’s real strength in bioinformatics is that it allows you to run commands on each of the files find returns, using -exec option.
 
-Continuing from our last example, suppose that a messy collaborator (no offense) created numerous temporary files. Let’s emulate this (in the *hihi_project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
+Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *hihi_project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 
 ```bash
 touch hihi_project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
