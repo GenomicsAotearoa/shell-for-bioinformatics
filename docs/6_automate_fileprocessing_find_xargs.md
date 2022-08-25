@@ -2,7 +2,7 @@
 
 In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix `find`. We’ll also see how files printed by `find` can be passed to another tool called `xargs` to create powerful Unix-based processing workflows.
 
-Suppose you have a program named `analyse_fastq` that takes multiple filenames through standard in to process. If you wanted to run this program on all files with the suffix .fastq, you might run:
+Suppose you have a program named `analyse_fastq` that takes multiple filenames through a standard process. If you wanted to run this program on all files with the suffix .fastq, you might run:
 
 ```bash
 ls *.fastq | analyse_fastq
@@ -86,7 +86,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```bash
         find hihi_project/data/raw/ -name "hihiB*fastq"
         ```
-    4. This gives similar results to `ls hihiB*fastq`, as we’d expect. The primary difference is that find reports results separated by newlines and, by default, `find` is recursive. Because we only want to return `fastq` files (and not directories with that matching name), we might want to limit our results using the `-type` option: There are numerous different types you can search for; the most commonly used are `f`for files, `d` for directories, and `l` for links.
+    4. This gives similar results to `ls hihiB*fastq`, as we’d expect. The primary difference is that find reports results separated by new lines and, by default, `find` is recursive. Because we only want to return `fastq` files (and not directories with that matching name), we might want to limit our results using the `-type` option: There are numerous different types you can search for; the most commonly used are `f`for files, `d` for directories, and `l` for links.
 
         ```bash
         find hihi_project/data/raw/ -name "hihiB*fastq" -type f
@@ -110,7 +110,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 ### `find`s `-exec`: Running Commands on find’s Results
 
-Find’s real strength in bioinformatics is that it allows you to run commands on each of the files find returns, using -exec option.
+Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -exec option.
 
 Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *hihi_project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 

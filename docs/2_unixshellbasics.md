@@ -3,12 +3,12 @@
 !!! abstract "Lesson Objectives"
 
     - Navigate your file system using the command line.
-    - Quick recap on commands used in routine tasks such copy, move, remove
-    - Strong emphasis on `grep` which filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern. 
+    - Quick recap on commands used in routine tasks such copy, move, remove.
+    - Strong emphasis on `grep` which filter searches a file for a particular pattern of characters and displays all lines that contain that pattern. 
 
-It is expected that you are already familiar with using the basics of the Unix Shell.  As a quick refresher, some frequently used commands are listed below.
+It is expected that you are already familiar with using the basics of the Unix Shell. As a quick refresher, some frequently used commands are listed below.
 
-For more information about a command, use the Unix `man` command. For example, to get more information about the `mkdir` command, type:
+For more information about a command, use the Unix `man` (manual) command. For example, to get more information about the `mkdir` command, type:
 
 ```bash
 man mkdir
@@ -19,11 +19,11 @@ man mkdir
 !!! note "Key commands for navigating around the filesystem are:"
 
     - `ls` - list the contents of the current directory
-    - `ls -l` - list the contents of the current directory in more detail.
+    - `ls -l` - list the contents of the current directory in more detail
     - `pwd` - show the location of the current directory
     - `cd DIR` - change directory to directory DIR (DIR must be in your current directory - you should see its name when you type `ls` OR you need to specify either a full or relative path to DIR)
-    - `cd -` - change back to the last directory you were in.
-    - `cd` (also `cd ~/`)- change to your home directory
+    - `cd -` - change back to the last directory you were in
+    - `cd` (also `cd ~/`) - change to your home directory
     - `cd ..` - change to the directory one level above
 
 !!! note "Other useful commands:"
@@ -116,7 +116,7 @@ NLSHHSSLSMNMPCAAA
 cat: mik.fasta: No such file or directory
 ```
 
-There are two different types of output there: "standard outout" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relatign to the missign `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is catured, bu the standard error is not - it is still printed to the screen.  Let's check:
+There are two different types of output there: "standard outout" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relating to the missing `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is catured, but the standard error is not - it is still printed to the screen.  Let's check:
 
 ``` bash
 cat tb1-protein.fasta mik.fasta > test.fasta
@@ -124,7 +124,7 @@ cat tb1-protein.fasta mik.fasta > test.fasta
   cat: mik.fasta: No such file or directory
 ```
 
-The new file has been created, and contans the standard outout (contents of the file `tb1-protein.fasta`):
+The new file has been created and contans the standard outout (contents of the file `tb1-protein.fasta`):
 
 ```bash
 cat test.fasta
@@ -139,7 +139,7 @@ VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
 NLSHHSSLSMNMPCAAA
 ```
 
-If we want to capture the standard error, we use the (slightly unweildy) `2>` operator:
+If we want to capture the standard error we use the (slightly unweildy) `2>` operator:
 
 ```bash
 cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
@@ -147,7 +147,7 @@ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 
 !!! Descriptors
 
-    File descriptor `2` represents standard error. (other special file descriptors include `0` for standard input and `1` for standard output).
+    File descriptor `2` represents standard error (other special file descriptors include `0` for standard input and `1` for standard output).
 
 Check the contents:
 
@@ -199,7 +199,7 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
     `grep -v "^>" tb1.fasta`
  
-    This tells `grep` to search for all lines in the file `tb1.fasta`  that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
+    The -v tells `grep` to search for all lines in the file `tb1.fasta` that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
 
     `grep --color -i "[^ATCG]"`
 
