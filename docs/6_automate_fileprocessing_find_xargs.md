@@ -110,7 +110,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 ### `find`s `-exec`: Running Commands on find’s Results
 
-Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -exec option.
+Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -`exec` option.
 
 Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *hihi_project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 
