@@ -43,7 +43,7 @@ Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate-Advanced S
 
 If possible, we do recommend using the **Remote** option over **Local**  ( Especially for *Windows* hosts). This will eliminate  the need to install any additional applications
 
--  **Remote** option will require an exiting NeSI Account
+-  **Remote** option will require an existing NeSI Account
 
 ### Remote
 
