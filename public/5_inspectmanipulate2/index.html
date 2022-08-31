@@ -484,7 +484,7 @@
 </div>
 <h2 id="aho-weinberger-kernighan-awk">Aho, Weinberger, Kernighan = AWK<a class="headerlink" href="#aho-weinberger-kernighan-awk" title="Permanent link">&para;</a></h2>
 <p>Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. </p>
-<p>Awk is a utility that enables a programmer to write tiny but effective programs in the form of statements that define text patterns that are to be searched for in each line of a document and the action that is to be taken when a match is found within a line. Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that matches with the specified patterns and then perform the associated actions. </p>
+<p>Awk is a utility that enables a programmer to write tiny but effective programs. These take the form of statements that define text patterns that are to be searched for in each line of a document, and the action that is to be taken when a match is found within a line. Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that match with the specified patterns and then perform the associated actions. </p>
 <details open="open">
 <summary>WHAT CAN WE DO WITH AWK?</summary>
 <ol>
@@ -635,7 +635,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </code></pre></div>
 <div class="admonition info">
 <ul>
-<li>First pattern, <code>$1 ~ /chr1</code> specifies the regular expression. (All Regular expressions are in slashes.)  We are mating the first field, <code>$1</code> against the regular expression <code>chr1</code>. </li>
+<li>First pattern, <code>$1 ~ /chr1</code> specifies the regular expression (All Regular expressions are in slashes).  We are mating the first field, <code>$1</code> against the regular expression <code>chr1</code>. </li>
 <li>Tilde <code>~</code> means <strong>match</strong>.</li>
 <li>To do the inverse of <strong>match</strong>, we can use <code>!~</code> OR <code>!($1 ~ /chr1/</code></li>
 </ul>
@@ -706,7 +706,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>UTR <span class="m">24</span>
 </code></pre></div>
 <h2 id="bioawk"><code>bioawk</code><a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
-<p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and an command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
+<p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
 <p>The original <code>awk</code> requires a YACC-compatible parser generator (e.g. Byacc or Bison). <code>bioawk</code> further depends on <a href="http://zlib.net/">zlib</a> so as to work with gzip'd files.</p>
 <details>
 <summary>YACC</summary>
@@ -720,12 +720,12 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <p class="admonition-title"><code>bioawk</code> features</p>
 <ul>
 <li>It can automatically recognize some popular formats and will parse different features associated with those formats. The format option is passed to <code>bioawk</code> using <code>-c arg</code> flag. Here <code>arg</code> can be bed, sam, vcf, gff or fastx (for both fastq and FASTA). It can also deal with other types of table formats using the <code>-c header</code> option. When <code>header</code> is specified, the field names will used for variable names, thus greatly expanding the utility.`</li>
-<li>There are several builtin functions (other than the standard <code>awk</code> built-ins), that are specific to biological file formats. When a format is read with <code>bioawk</code>, the fields get automatically parsed. You can apply several functions on these variables to get the desired output. Let’s say, we read fasta format, now we have <code>$name</code> and <code>$seq</code> that holds sequence name and sequence respectively. You can use the <code>print</code> function (<code>awk</code> builtin) to print <code>$name</code> and <code>$seq</code>. You can also use <code>bioawk</code> built-in with the <code>print</code> function to get length, reverse complement etc by just using <code>'{print length($seq)}'</code>. Other functions include <code>reverse</code>, <code>revcomp</code>, <code>trimq</code>, <code>and</code>, <code>or</code>, <code>xor</code> etc.</li>
+<li>There are several built-in functions (other than the standard <code>awk</code> built-ins), that are specific to biological file formats. When a format is read with <code>bioawk</code>, the fields get automatically parsed. You can apply several functions on these variables to get the desired output. Let’s say, we read fasta format, now we have <code>$name</code> and <code>$seq</code> that holds sequence name and sequence respectively. You can use the <code>print</code> function (<code>awk</code> built-in) to print <code>$name</code> and <code>$seq</code>. You can also use <code>bioawk</code> built-in with the <code>print</code> function to get length, reverse complement etc by using <code>'{print length($seq)}'</code>. Other functions include <code>reverse</code>, <code>revcomp</code>, <code>trimq</code>, <code>and</code>, <code>or</code>, <code>xor</code> etc.</li>
 </ul>
 </div>
 <details>
 <summary>Variables for each format</summary>
-<p>For the <code>-c</code> you can either specify bed, sam, vcf, gff, fastx or header. <code>bioawk</code> will parse these variables for the respective format. If <code>-c</code> header is specified, the field names (first line) will be used as variables (spaces and special characters will be changed to under_score)</p>
+<p>For the <code>-c</code> you can either specify bed, sam, vcf, gff, fastx or header. <code>bioawk</code> will parse these variables for the respective format. If <code>-c</code> header is specified, the field names (first line) will be used as variables (spaces and special characters will be changed to under_score).</p>
 <p><center></p>
 <table>
 <thead>

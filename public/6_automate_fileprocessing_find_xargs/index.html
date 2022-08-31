@@ -480,7 +480,7 @@
 
 <h1 id="automating-file-processing-with-find-and-xargs">Automating File-Processing with find and xargs<a class="headerlink" href="#automating-file-processing-with-find-and-xargs" title="Permanent link">&para;</a></h1>
 <p>In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix <code>find</code>. We’ll also see how files printed by <code>find</code> can be passed to another tool called <code>xargs</code> to create powerful Unix-based processing workflows.</p>
-<p>Suppose you have a program named <code>analyse_fastq</code> that takes multiple filenames through standard in to process. If you wanted to run this program on all files with the suffix .fastq, you might run:</p>
+<p>Suppose you have a program named <code>analyse_fastq</code> that takes multiple filenames through a standard process. If you wanted to run this program on all files with the suffix .fastq, you might run:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ls *.fastq <span class="p">|</span> analyse_fastq
 </code></pre></div>
 <div class="admonition failure">
@@ -554,7 +554,7 @@ Here, shell automatically escapes the space in the filename <strong><em>treatmen
 </code></pre></div>
 </li>
 <li>
-<p>This gives similar results to <code>ls hihiB*fastq</code>, as we’d expect. The primary difference is that find reports results separated by newlines and, by default, <code>find</code> is recursive. Because we only want to return <code>fastq</code> files (and not directories with that matching name), we might want to limit our results using the <code>-type</code> option: There are numerous different types you can search for; the most commonly used are <code>f</code>for files, <code>d</code> for directories, and <code>l</code> for links.</p>
+<p>This gives similar results to <code>ls hihiB*fastq</code>, as we’d expect. The primary difference is that find reports results separated by new lines and, by default, <code>find</code> is recursive. Because we only want to return <code>fastq</code> files (and not directories with that matching name), we might want to limit our results using the <code>-type</code> option: There are numerous different types you can search for; the most commonly used are <code>f</code>for files, <code>d</code> for directories, and <code>l</code> for links.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span> -type f
 </code></pre></div>
 </li>
@@ -577,8 +577,8 @@ If we want to get the names of all <code>fastq</code> files from samples A or C,
 </ol>
 </details>
 <h3 id="finds-exec-running-commands-on-finds-results"><code>find</code>s <code>-exec</code>: Running Commands on find’s Results<a class="headerlink" href="#finds-exec-running-commands-on-finds-results" title="Permanent link">&para;</a></h3>
-<p>Find’s real strength in bioinformatics is that it allows you to run commands on each of the files find returns, using -exec option.</p>
-<p>Continuing from our last example, suppose that a messy collaborator (no offense) created numerous temporary files. Let’s emulate this (in the <em>hihi_project/data/raw/</em>): (then <code>ls</code> ensure the <code>-temp.fastq</code> files were created)</p>
+<p>Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -<code>exec</code> option.</p>
+<p>Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the <em>hihi_project/data/raw/</em>): (then <code>ls</code> ensure the <code>-temp.fastq</code> files were created)</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
 <p>Although we can delete these files with <code>rm *-temp.fastq</code>, using <code>rm</code> with a wildcard in a directory filled with important data files is too risky. Using <code>find</code>’s <code>-exec</code> is a much safer way to delete these files.</p>

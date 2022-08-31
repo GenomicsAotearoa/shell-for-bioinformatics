@@ -559,7 +559,7 @@ column (also known as a field) is separated by some delimiter. There are three f
 you will encounter: tab-delimited, comma-separated, and variable space-delimited.</p>
 </div>
 <h2 id="inspecting-data-with-head-and-tail">Inspecting data with <code>head</code> and <code>tail</code><a class="headerlink" href="#inspecting-data-with-head-and-tail" title="Permanent link">&para;</a></h2>
-<p>Although <code>cat</code> command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. First round of inspection can be done with <code>head</code> and <code>tail</code> command which prints the first 10 lines and the last 10 lines (<code>-n 10</code>) of a a file, respectively. .i.e. Let's use <code>head</code> and <code>tail</code> to inspect <em>Mus_musculus.GRCm38.75_chr1.bed</em> </p>
+<p>Although <code>cat</code> command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. The first round of inspection can be done with <code>head</code> and <code>tail</code> command which prints the first 10 lines and the last 10 lines (<code>-n 10</code>) of a a file, respectively. Let's use <code>head</code> and <code>tail</code> to inspect <em>Mus_musculus.GRCm38.75_chr1.bed</em> </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>head Mus_musculus.GRCm38.75_chr1.bed
 </code></pre></div>
 <details class="success">
@@ -618,7 +618,7 @@ Often, we only need to list the number of lines, which can be done by using the 
 <p>Count the number of lines in <em>Mus_musculus.GRCm38.75_chr1.bed</em> and <em>Mus_musculus.GRCm38.75_chr1.gtf</em> . Anything out of the ordinary ? </p>
 </div>
 <p>Although <code>wc -l</code> is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" </p>
-<p>For an example, If we are to create a file with 3 rows of data and then two empty lines, </p>
+<p>For an example, if we are to create a file with 3 rows of data and then two empty lines, </p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat &gt; fool_wc.bed
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="m">1</span> <span class="m">100</span>
@@ -629,7 +629,7 @@ Often, we only need to list the number of lines, which can be done by using the 
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  <span class="m">5</span> fool_wc.bed
 </code></pre></div>
-This is a good place bring in <code>grep</code> again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)</p>
+This is a good place to bring in <code>grep</code> again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>grep -c <span class="s2">&quot;[^ \\n\\t]&quot;</span> fool_wc.bed 
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  <span class="m">3</span>
@@ -653,14 +653,14 @@ This is a good place bring in <code>grep</code> again which can be used to count
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a> <span class="m">3054233</span>    <span class="m">3054733</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a> <span class="m">3054233</span>    <span class="m">3054733</span>
 </code></pre></div>
-<p>Using <code>cut</code>, we can convert our GTF for <strong><em>Mus_musculus.GRCm38.75_chr1.gtf</em></strong> to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier, and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):</p>
+<p>Using <code>cut</code>, we can convert our GTF for <strong><em>Mus_musculus.GRCm38.75_chr1.gtf</em></strong> to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f1,4,5 <span class="p">|</span> head -n <span class="m">3</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
 </code></pre></div>
-Note that although our three-column file of genomic positions looks like a BED- formatted file, it’s not due to subtle differences in genomic range formats</p>
+Note that although our three-column file of genomic positions looks like a BED-formatted file, it’s not (due to subtle differences in genomic range formats).</p>
 <p><code>cut</code> also allows us to specify the column delimiter character. So, if we were to come across a CSV file containing chromosome names, start positions, and end positions, we could select columns from it, too:</p>
 <p>As you may have noticed when working with tab-delimited files, it’s not always easy to see which elements belong to a particular column. For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f1-8 <span class="p">|</span> head -n3
@@ -669,7 +669,7 @@ Note that although our three-column file of genomic positions looks like a BED- 
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  <span class="m">1</span> unprocessed_pseudogene  transcript  <span class="m">3054233</span> <span class="m">3054733</span> .   +   .
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  <span class="m">1</span> unprocessed_pseudogene  exon    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .
 </code></pre></div>
-<p>While tabs are a great delimiter in plain-text data files, our variable width data leads our columns to not stack up well. There’s a fix for this in Unix: program column <code>-t</code> (the <code>-t</code> option tells column to treat data as a table). column -t produces neat columns that are much easier to read:</p>
+<p>While tabs are a great delimiter in plain-text data files, our variable width data causes our columns to not stack up well. There’s a fix for this in Unix: program column <code>-t</code> (the <code>-t</code> option tells column to treat data as a table). The column -t command produces neat columns that are much easier to read:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f <span class="m">1</span>-8 <span class="p">|</span> column -t <span class="p">|</span> head -n <span class="m">3</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>   <span class="m">1</span>  pseudogene                          gene         <span class="m">3054233</span>    <span class="m">3054733</span>    .  +  .
@@ -684,11 +684,10 @@ Note that you should only use <code>column -t</code> to visualize data in the te
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>   <span class="m">1</span>    <span class="m">3054233</span> <span class="m">3054733</span>
 </code></pre></div>
 <h2 id="sorting-plain-text-data-with-sort">Sorting Plain-Text Data with <code>sort</code><a class="headerlink" href="#sorting-plain-text-data-with-sort" title="Permanent link">&para;</a></h2>
-<p>Very often we need to work with sorted plain-text data in bioinformatics. The two
-most common reasons to sort data are as follows:
+<p>Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:
 - Certain operations are much more efficient when performed on sorted data.
-- Sorting data is a prerequisite to finding all unique lines</p>
-<p><code>sort</code>  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use <code>sort</code> command without any arguments</p>
+- Sorting data is a prerequisite to finding all unique lines.</p>
+<p><code>sort</code>  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use <code>sort</code> command without any arguments.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cat &gt; test_sort.bed
 </code></pre></div>
 <details class="success">
@@ -718,7 +717,7 @@ most common reasons to sort data are as follows:
 </code></pre></div>
 </details>
 <p><code>sort</code> without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.</p>
-<p>However, using <code>sort</code>’s defaults of sorting alphanumerically by line doesn’t handle tabular data properly. There are two new features we need:</p>
+<p>However, using <code>sort</code>’s defaults of sorting alphanumerically by line and doesn’t handle tabular data properly. There are two new features we need:</p>
 <ul>
 <li>
 <p>The ability to sort by particular columns</p>
@@ -750,7 +749,7 @@ with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second <co
 header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.</p>
 </details>
 <h2 id="finding-unique-values-with-uniq">Finding Unique Values with <code>uniq</code><a class="headerlink" href="#finding-unique-values-with-uniq" title="Permanent link">&para;</a></h2>
-<p><code>uniq</code> takes lines from a file or standard input stream, and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use <code>uniq</code> very frequently in command-line data processing.</p>
+<p><code>uniq</code> takes lines from a file or standard input stream and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use <code>uniq</code> very frequently in command-line data processing.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat letters.txt 
 </code></pre></div>
 <details class="success">
@@ -829,7 +828,7 @@ Combined with other Unix tools like <code>cut</code>, <code>grep</code> and <cod
 <div class="admonition info">
 <ul>
 <li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
-<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is s which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is <code>s</code> which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
 <li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
 <li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
 <li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
@@ -851,13 +850,13 @@ Combined with other Unix tools like <code>cut</code>, <code>grep</code> and <cod
 Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
 </code></pre></div>
-Find and replace directly on the input, but save a old version too</p>
+Find and replace directly on the input, but save an old version too</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
 </code></pre></div>
 <ul>
 <li>Print specific lines of the file</li>
 </ul>
-<p>To print a specific line, you can use the address function, note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
+<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
 <p>print 5<sup>th</sup> line of example.bed</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
 </code></pre></div>
@@ -867,7 +866,7 @@ Find and replace directly on the input, but save a old version too</p>
 <p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
 </code></pre></div>
-Also, we can create specific pattern, like multiple of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
+Also, we can create specific pattern, like multiples of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
 </code></pre></div>
 <details class="question" open="open">
@@ -884,7 +883,7 @@ Also, we can create specific pattern, like multiple of a number using <code>~</c
 <p>We can use the above trick to convert the .fastq to .fasta</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
 </code></pre></div>
-Let's wrap up <code>sed</code> with one more use case (slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to , </p>
+Let's wrap up <code>sed</code> with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
 </code></pre></div>
 <p>Not really what we are after as the output is as below</p>

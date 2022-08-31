@@ -524,7 +524,7 @@
 <ul>
 <li>Quick overview on UNIX operating system and it's importance</li>
 <li>Differences/similarities between UNIX vs. Linux</li>
-<li>What is a shell and importance of UNIX shell/s for Bioinformatics (or for Scientific computing in general)</li>
+<li>What is a shell and the importance of UNIX shell/s for Bioinformatics (or for Scientific computing in general)</li>
 <li>Types of Shell and intro to Bash Shell (we will be using the latter throughout the workshop)</li>
 </ul>
 </div>
@@ -535,7 +535,7 @@
 
 <h2 id="the-unix-operating-system">The UNIX operating system<a class="headerlink" href="#the-unix-operating-system" title="Permanent link">&para;</a></h2>
 <p>Unix is a multi-user operating system which allows more than one person to use the computer resources at a time. It was originally designed as a time-sharing system to serve several users simultaneous. Unix allows direct communication with the computer via a terminal, hence being very interactive and giving the user direct control over the computer resources. Unix also gives users the ability to share data and programs among one another.</p>
-<p>Unix is a generic operating system which takes full advantage of all available hardware such as 32-bit processor chips, expanded memory, and large, fast hard drives. Since Unix is written in a machine-independent language (C/C++) it is portable to many different types of machines including PC's. Therefore, Unix can be adapted to meet special requirements.The UNIX operating system is made up of three parts; the kernel, the shell and the programs.</p>
+<p>Unix is a generic operating system which takes full advantage of all available hardware such as 32-bit processor chips, expanded memory, and large, fast hard drives. Since Unix is written in a machine-independent language (C/C++) it is portable to many different types of machines including PC's. Therefore, Unix can be adapted to meet special requirements. The UNIX operating system is made up of three parts; the kernel, the shell and the programs.</p>
 <div class="admonition quote">
 <p class="admonition-title">On Unix philosophy</p>
 <p>“Although that philosophy can’t be written down in a single sentence, as its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.” <strong><em>– Brian Kernighan &amp; Rob Pike</em></strong></p>
@@ -556,10 +556,10 @@
 <details>
 <summary>Unix-like &amp; a bit more on Linux</summary>
 <p>A Unix-like OS (also called as UN*X or *nix) is the one that works in a way similar to Unix systems, however, it is not necessary that they conform to Single UNIX Specification (SUS) or similar POSIX (Portable Operating System Interface) standard.</p>
-<p>SUS is a standard which is required to be met for any OS to qualify for using ‘UNIX’ trademark. This trademark is granted by <a href="https://www.opengroup.org/">‘The Open Group’</a></p>
-<p>Few Examples of currently registered UNIX systems include macOS, Solaris, and AIX. If we consider the POSIX system, then Linux can be regarded as Unix-like OS.</p>
+<p>SUS is a standard which is required to be met for any OS (Operating System) to qualify for using ‘UNIX’ trademark. This trademark is granted by <a href="https://www.opengroup.org/">‘The Open Group’</a></p>
+<p>Some examples of currently registered UNIX systems include macOS, Solaris, and AIX. If we consider the POSIX system, then Linux can be regarded as Unix-like OS.</p>
 <p>Linux is just the <strong>kernel</strong> and not the complete OS. This Linux kernel is generally packaged in Linux distributions which thereby makes it a complete OS.</p>
-<p>Linux distribution (also called as a <strong>distro</strong> in short) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which is essential for a few device drivers.</p>
+<p>Linux distribution (also called a <strong>distro</strong>) is an operating system that is created from a collection of software built upon the Linux Kernel and is a package management system. A standard Linux distribution consists of a Linux kernel, GNU system, GNU utilities, libraries, compiler, additional software, documentation, a window system, window manager and a desktop environment. Most of the software included in a Linux distribution is free and open source. They may include some proprietary software like binary blobs which are essential for a few device drivers.</p>
 </details>
 <h2 id="unix-shell-for-bioinformatics">UNIX Shell for Bioinformatics<a class="headerlink" href="#unix-shell-for-bioinformatics" title="Permanent link">&para;</a></h2>
 <p>A shell is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard instead of controlling graphical user interfaces (GUIs) with a mouse/keyboard/touchscreen combination.</p>
@@ -568,7 +568,7 @@
 <li>Many bioinformatics tools can only be used through a command line interface. Many more have features and parameter options which are not available in the GUI. BLAST is an example. Many of the advanced functions are only accessible to users who know how to use a shell.</li>
 <li>The shell makes your work less boring. In bioinformatics you often need to repeat tasks with a large number of files. With the shell, you can automate those repetitive tasks and leave you free to do more exciting things.</li>
 <li>The shell makes your work less error-prone. When humans do the same thing a hundred different times (or even ten times), they’re likely to make a mistake. Your computer can do the same thing a thousand times with no mistakes.</li>
-<li>The shell makes your work more reproducible. When you carry out your work in the command-line (rather than a GUI), your computer keeps a record of every step that you’ve carried out, which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you’ve done, so that others can inspect or apply your process to new data.</li>
+<li>The shell makes your work more reproducible. When you carry out your work in the command-line (rather than a GUI), your computer keeps a record of every step that you’ve carried out which you can use to re-do your work when you need to. It also gives you a way to communicate unambiguously what you’ve done, so that others can inspect or apply your process to new data.</li>
 <li>Many bioinformatic tasks require large amounts of computing power and can’t realistically be run on your own machine. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.</li>
 </ul>
 <h2 id="different-types-of-shells">Different Types of Shells<a class="headerlink" href="#different-types-of-shells" title="Permanent link">&para;</a></h2>
@@ -589,7 +589,7 @@
 <div class="tabbed-block">
 <p>The Korn shell was developed at AT&amp;T Bell Labs by David Korn, to improve the Bourne shell. It is denoted as ksh. The Korn shell is essentially a superset of the Bourne shell.</p>
 <p>Besides supporting everything that would be supported by the Bourne shell, it provides users with new functionalities. It allows in-built support for arithmetic operations while offering interactive features which are similar to the C shell.</p>
-<p>The Korn shell runs scripts made for the Bourne shell, while offering string, array and function manipulation similar to the C programming language. It also supports scripts which were written for the C shell. Further, it is faster than most different types of shells </p>
+<p>The Korn shell runs scripts made for the Bourne shell, while offering string, array and function manipulation similar to the C programming language. It also supports scripts which were written for the C shell. Further, it is faster than most different types of shells. </p>
 </div>
 <div class="tabbed-block">
 <p>zsh is a shell designed for interactive use, although it is also a powerful scripting language. Many of the useful features of bash, ksh, and tcsh were incorporated into zsh; many original features were added.</p>
@@ -607,7 +607,7 @@
 <li>The shell's name <strong>bash</strong> is an acronym for "Bourne Again Shell", a pun on the name of the Bourne shell that it replaces and the notion of being "born again"</li>
 </ul>
 <p>First released in 1989, it has been used as the default login shell for most Linux distributions. Bash was also the default shell in all versions of Apple macOS prior to the 2019 release of macOS Catalina, which changed the default shell to zsh, although Bash remains available as an alternative shell</p>
-<p>The Bash command syntax is a superset of the Bourne shell command syntax. Bash supports brace expansion, command line completion (Programmable Completion),basic debugging and signal handling (using <code>trap</code>) among other features. Bash can execute the vast majority of Bourne shell scripts without modification, with the exception of Bourne shell scripts stumbling into fringe syntax behavior interpreted differently in Bash or attempting to run a system command matching a newer Bash builtin, etc. </p>
+<p>The Bash command syntax is a superset of the Bourne shell command syntax. Bash supports brace expansion, command line completion (Programmable Completion), basic debugging and signal handling (using <code>trap</code>) among other features. Bash can execute the vast majority of Bourne shell scripts without modification, with the exception of Bourne shell scripts stumbling into fringe syntax behavior interpreted differently in Bash or attempting to run a system command matching a newer Bash builtin, etc. </p>
 <hr />
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
 

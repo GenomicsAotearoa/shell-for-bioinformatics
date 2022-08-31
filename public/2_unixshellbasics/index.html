@@ -497,23 +497,23 @@
 <p class="admonition-title">Lesson Objectives</p>
 <ul>
 <li>Navigate your file system using the command line.</li>
-<li>Quick recap on commands used in routine tasks such copy, move, remove</li>
-<li>Strong emphasis on <code>grep</code> which filter searches a file for a particular pattern of characters, and displays all lines that contain that pattern. </li>
+<li>Quick recap on commands used in routine tasks such copy, move, remove.</li>
+<li>Strong emphasis on <code>grep</code> which filter searches a file for a particular pattern of characters and displays all lines that contain that pattern. </li>
 </ul>
 </div>
-<p>It is expected that you are already familiar with using the basics of the Unix Shell.  As a quick refresher, some frequently used commands are listed below.</p>
-<p>For more information about a command, use the Unix <code>man</code> command. For example, to get more information about the <code>mkdir</code> command, type:</p>
+<p>It is expected that you are already familiar with using the basics of the Unix Shell. As a quick refresher, some frequently used commands are listed below.</p>
+<p>For more information about a command, use the Unix <code>man</code> (manual) command. For example, to get more information about the <code>mkdir</code> command, type:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>man mkdir
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Key commands for navigating around the filesystem are:</p>
 <ul>
 <li><code>ls</code> - list the contents of the current directory</li>
-<li><code>ls -l</code> - list the contents of the current directory in more detail.</li>
+<li><code>ls -l</code> - list the contents of the current directory in more detail</li>
 <li><code>pwd</code> - show the location of the current directory</li>
 <li><code>cd DIR</code> - change directory to directory DIR (DIR must be in your current directory - you should see its name when you type <code>ls</code> OR you need to specify either a full or relative path to DIR)</li>
-<li><code>cd -</code> - change back to the last directory you were in.</li>
-<li><code>cd</code> (also <code>cd ~/</code>)- change to your home directory</li>
+<li><code>cd -</code> - change back to the last directory you were in</li>
+<li><code>cd</code> (also <code>cd ~/</code>) - change to your home directory</li>
 <li><code>cd ..</code> - change to the directory one level above</li>
 </ul>
 </div>
@@ -591,12 +591,12 @@ OR all at once with <code>cat *.fasta</code></p>
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>NLSHHSSLSMNMPCAAA
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>cat: mik.fasta: No such file or directory
 </code></pre></div>
-<p>There are two different types of output there: "standard outout" (the contents of the <code>tb1-protein.fasta</code> file) and <em>standard error</em> (the error message relatign to the missign <code>mik.fasta</code> file). If we use the <code>&gt;</code> operator to redirect the outout, the standard output is catured, bu the standard error is not - it is still printed to the screen.  Let's check:</p>
+<p>There are two different types of output there: "standard outout" (the contents of the <code>tb1-protein.fasta</code> file) and <em>standard error</em> (the error message relating to the missing <code>mik.fasta</code> file). If we use the <code>&gt;</code> operator to redirect the outout, the standard output is catured, but the standard error is not - it is still printed to the screen.  Let's check:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat tb1-protein.fasta mik.fasta &gt; test.fasta
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  cat: mik.fasta: No such file or directory
 </code></pre></div>
-<p>The new file has been created, and contans the standard outout (contents of the file <code>tb1-protein.fasta</code>):</p>
+<p>The new file has been created and contans the standard outout (contents of the file <code>tb1-protein.fasta</code>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat test.fasta
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>&gt;teosinte-branched-1 protein
@@ -608,12 +608,12 @@ OR all at once with <code>cat *.fasta</code></p>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
 <a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>NLSHHSSLSMNMPCAAA
 </code></pre></div>
-<p>If we want to capture the standard error, we use the (slightly unweildy) <code>2&gt;</code> operator:</p>
+<p>If we want to capture the standard error we use the (slightly unweildy) <code>2&gt;</code> operator:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat tb1-protein.fasta mik.fasta &gt; test.fasta <span class="m">2</span>&gt; stderror.txt
 </code></pre></div>
 <div class="admonition descriptors">
 <p class="admonition-title">Descriptors</p>
-<p>File descriptor <code>2</code> represents standard error. (other special file descriptors include <code>0</code> for standard input and <code>1</code> for standard output).</p>
+<p>File descriptor <code>2</code> represents standard error (other special file descriptors include <code>0</code> for standard input and <code>1</code> for standard output).</p>
 </div>
 <p>Check the contents:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cat stderror.txt
@@ -652,7 +652,7 @@ OR all at once with <code>cat *.fasta</code></p>
 <div class="admonition info">
 <p class="admonition-title">Let's see what each piece does</p>
 <p><code>grep -v "^&gt;" tb1.fasta</code></p>
-<p>This tells <code>grep</code> to search for all lines in the file <code>tb1.fasta</code>  that <em>do not</em> contain a "&gt;" at the start (<code>^</code> is a special character that denotes "at the start of the line - we'll learn more about this later).</p>
+<p>The -v tells <code>grep</code> to search for all lines in the file <code>tb1.fasta</code> that <em>do not</em> contain a "&gt;" at the start (<code>^</code> is a special character that denotes "at the start of the line - we'll learn more about this later).</p>
 <p><code>grep --color -i "[^ATCG]"</code></p>
 <p>There are a few things going on here:</p>
 <ul>
