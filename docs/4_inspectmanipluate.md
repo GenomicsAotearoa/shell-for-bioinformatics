@@ -155,7 +155,7 @@ cut -f 2-3 Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
 
 ```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1,4,5 | head -n 3
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1,4,5 | head -n 3
 
 1	3054233	3054733
 1	3054233	3054733
@@ -168,7 +168,7 @@ Note that although our three-column file of genomic positions looks like a BED-f
 As you may have noticed when working with tab-delimited files, it’s not always easy to see which elements belong to a particular column. For example:
 
 ```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f1-8 | head -n3
+grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | head -n 3
     
   1	pseudogene	gene	3054233	3054733	.	+	.
   1	unprocessed_pseudogene	transcript	3054233	3054733	.	+	.
