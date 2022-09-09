@@ -219,7 +219,6 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
     CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 
-**NB: colours not supported in Markdown (I tried using HTML)**
 
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
