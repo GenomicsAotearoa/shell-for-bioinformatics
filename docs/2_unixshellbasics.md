@@ -116,7 +116,7 @@ NLSHHSSLSMNMPCAAA
 cat: mik.fasta: No such file or directory
 ```
 
-There are two different types of output there: "standard outout" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relating to the missing `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is captured, but the standard error is not - it is still printed to the screen.  Let's check:
+There are two different types of output there: "standard output" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relating to the missing `mik.fasta` file). If we use the `>` operator to redirect the outout, the standard output is captured, but the standard error is not - it is still printed to the screen.  Let's check:
 
 ``` bash
 cat tb1-protein.fasta mik.fasta > test.fasta
@@ -124,7 +124,7 @@ cat tb1-protein.fasta mik.fasta > test.fasta
   cat: mik.fasta: No such file or directory
 ```
 
-The new file has been created and contains the standard outout (contents of the file `tb1-protein.fasta`):
+The new file has been created and contains the standard output (contents of the file `tb1-protein.fasta`):
 
 ```bash
 cat test.fasta
