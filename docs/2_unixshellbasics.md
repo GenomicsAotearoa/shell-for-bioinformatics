@@ -124,7 +124,7 @@ cat tb1-protein.fasta mik.fasta > test.fasta
   cat: mik.fasta: No such file or directory
 ```
 
-The new file has been created and contans the standard outout (contents of the file `tb1-protein.fasta`):
+The new file has been created and contains the standard outout (contents of the file `tb1-protein.fasta`):
 
 ```bash
 cat test.fasta
