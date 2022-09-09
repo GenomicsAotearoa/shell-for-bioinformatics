@@ -213,9 +213,11 @@ Let's run the code:
 
 ```bash
 grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
-
-  CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 ```
+
+!!! quote ""
+
+    CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 
 **NB: colours not supported in Markdown (I tried using HTML)**
 
