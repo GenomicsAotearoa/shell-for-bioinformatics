@@ -66,10 +66,16 @@ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 
     Sometimes it’s useful to see both the beginning and end of a file — for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both `head` and `tail` in a single command to inspect first and last 2 lines of ***Mus_musculus.GRCm38.75_chr1.bed***?
 
+    ??? success "solution"
+        ```bash
+        $ (head -n 2; tail -n 2) < Mus_musculus.GRCm38.75_chr1.bed
+        ```
 
 ???+ question "Exercise 4.2"
 
     We can also use tail to remove the header of a file. Normally the `-n` argument specifies how many of the last lines of a file to include, but if `-n` is given a number `x` preceded with a `+` sign (e.g., `+x` ), tail will start from the x<sup>th</sup> line. So to chop off a header, we start from the second line with `-n +2`.  Use the `seq` command to generate a file containing the numbers 1 to 10, and then use the `tail` command to chop off the first line.
+
+    ??? success "solution"
 
 ## Extract summary information with `wc`
 
