@@ -73,7 +73,7 @@ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 
 ???+ question "Exercise 4.2"
 
-    We can also use tail to remove the header of a file. Normally the `-n` argument specifies how many of the last lines of a file to include, but if `-n` is given a number `x` preceded with a `+` sign (e.g., `+x` ), tail will start from the x<sup>th</sup> line. So to chop off a header, we start from the second line with `-n +2`.  
+    We can also use tail to remove the header of a file. Normally the `-n` argument specifies how many of the last lines of a file to include, but if `-n` is given a number `x` preceded with a `+` sign (e.g., `+x` ), tail will start from the x<sup>th</sup> line. So to chop off a header, we start from the second line with `-n+2`.  
     Use the `seq` command to generate a file containing the numbers 1 to 10, and then use the `tail` command to chop off the first line.
 
     ??? success "solution"
@@ -84,7 +84,7 @@ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
         cat nums.txt
         ```
         ```bash
-        tail -n n+2 nums.txt
+        tail -n+2 nums.txt
         ```
 
 ## Extract summary information with `wc`
@@ -104,7 +104,7 @@ Often, we only need to list the number of lines, which can be done by using the 
 
 Although `wc -l` is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" 
 
-For an example, if we are to create a file with 3 rows of data and then two empty lines, 
+For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing **Enter** twice, 
 
 ```bash
 cat > fool_wc.bed
@@ -112,17 +112,21 @@ cat > fool_wc.bed
   1 100
   2 200
   3 300
+
+
 ```
+>**Ctrl+D** to end the edits started with `cat >`
+
 ```bash
 wc -l fool_wc.bed 
 
   5 fool_wc.bed
 ```
-This is a good place to bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs or newlines)
+This is a good place to bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs (`t`) or newlines (`n`))
 
 ```bash
 
-grep -c "[^ \\n\\t]" fool_wc.bed 
+grep -c "[^ \n\t]" fool_wc.bed 
 
   3
 ```
