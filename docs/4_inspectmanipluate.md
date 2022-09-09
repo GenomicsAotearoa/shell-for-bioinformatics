@@ -236,7 +236,7 @@ sort test_sort.bed
     ```
 `sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.
 
-However, using `sort`’s defaults of sorting alphanumerically by line and doesn’t handle tabular data properly. There are two new features we need:
+However, using `sort`’s default of sorting alphanumerically by line and doesn’t handle tabular data properly. There are two new features we need:
 
 - The ability to sort by particular columns
 
