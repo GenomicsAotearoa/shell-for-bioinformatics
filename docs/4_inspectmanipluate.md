@@ -197,8 +197,13 @@ column -s "," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
 ???+ warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
 
     **GTF** Format has 9 columns 
-    
 
+    
+    |1       |2      |3       |4     |5   |6     |7      |8     |9         |
+    |:-------|:------|:-------|:-----|:---|:-----|:------|:-----|:---------|
+    |seqname |source |feature |start |end |score |strand |frame |attribute |
+    
+    
 
 
 
