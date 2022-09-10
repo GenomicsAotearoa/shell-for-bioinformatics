@@ -362,13 +362,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#bioawk" class="md-nav__link">
     bioawk
   </a>
@@ -447,13 +440,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#bioawk" class="md-nav__link">
     bioawk
   </a>
@@ -514,6 +500,17 @@
 </li>
 </ol>
 </details>
+<div class="admonition quote">
+<p>There are two key parts for understanding the Awk language: how Awk processes records, and pattern-action pairs. The rest of the language is quite simple.</p>
+<ul>
+<li>
+<p>Awk processes input data a record (line) at a time. Each record is composed of fields (column entries) that Awk automatically separates. Awk assigns the entire record to the variable $0, field one’s value to $1, field two’s value to $2, etc.</p>
+</li>
+<li>
+<p>We build Awk programs using one or more of the following structures: <code>pattern { action }</code>. Each pattern is an expression or regular expression pattern. In Awk lingo, these are pattern-action pairs and we can chain multiple pattern-action pairs together (separated by semicolons). If we omit the pattern, Awk will run the action on all records. If we omit the action but specify a pattern, Awk will print all records that match the pattern.</p>
+</li>
+</ul>
+</div>
 <p><strong>Syntax</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>awk options <span class="s1">&#39;selection_criteria {action}&#39;</span> input-file &gt;  output-file
 </code></pre></div>
@@ -561,7 +558,7 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="m">10</span>  <span class="m">19</span>
 </code></pre></div>
 </details>
-<p>Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, <code>$2"\t"$3</code> concatenates the second field, a tab character, and the third field. However, this is an instance where using <code>cut</code> is much simpler as the equivalent of above is <code>cut -f2,3 example.bed</code> </p>
+<p>Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, <code>$2"\t"$3</code> concatenates the second field, a tab character, and the third field. However, this is an instance where using <code>cut</code> is much simpler as the equivalent of above is <code>cut -f 2,3 example.bed</code> </p>
 <p>Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end
 position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>awk <span class="s1">&#39;$3 - $2 &gt; 18&#39;</span> example.bed 
@@ -570,7 +567,8 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
 </code></pre></div>
 <hr />
-<p><center></p>
+<details class="info">
+<summary><code>awk</code> Comparison and Logical operations</summary>
 <table>
 <thead>
 <tr>
@@ -625,7 +623,8 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </tr>
 </tbody>
 </table>
-<h2 id="_1"></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+</details>
+<hr />
 <p>We can also chain patterns, by using logical operators <code>&amp;&amp;</code> (AND), <code>||</code> (OR), and <code>!</code> (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>awk <span class="s1">&#39;$1 ~ /chr1/ &amp;&amp; $3 - $2 &gt; 10&#39;</span> example.bed 
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>

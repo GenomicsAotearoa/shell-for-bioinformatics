@@ -786,7 +786,7 @@ Therefore, we need to <em>translate*</em> these values to a single "new line" wi
 </li>
 </ul>
 <p><code>sort</code> has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sort -k1,1 -k2n test_sort.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sort -k1,1 -k2,2n test_sort.bed
 </code></pre></div>
 <details class="success">
 <summary>Output</summary>
@@ -803,6 +803,7 @@ Therefore, we need to <em>translate*</em> these values to a single "new line" wi
 <div class="admonition quote">
 <p>Here, we specify the columns (and their order) we want to sort by as <code>-k</code> arguments. In technical terms, <code>-k</code> specifies the sorting keys and their order. Each <code>-k</code> argument takes a range of columns as <code>start,end</code>, so to sort by a single column we use <code>start,start</code>. In the preceding example, we first sorted by the first column (chromosome), as the first <code>-k</code> argument was <code>-k1,1</code> . Sorting by the first column alone leads to many ties in rows
 with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second <code>-k</code> argument with a different column tells sort how to break these ties. In our example, <code>-k2,2n</code> tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an <code>n</code> in <code>-k2,2n</code>).</p>
+<p>The end result is that rows are grouped by chromosome and sorted by start position.</p>
 </div>
 <details class="question">
 <summary>Exercise 4.3</summary>
@@ -885,10 +886,15 @@ Combined with other Unix tools like <code>cut</code>, <code>grep</code> and <cod
 <a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>   <span class="m">2290</span> start_codon
 <a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>   <span class="m">2027</span> gene
 </code></pre></div>
+<div class="admonition abstract">
+<ul>
+<li><code>n</code> and <code>r</code> represents <em>numerical sort</em> and <em>reverse</em> order (Or descending as the default as ascending) </li>
+</ul>
+</div>
 <h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
 <p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
 <h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
-<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. This syntax for doing this in <code>sed</code> is as follows:</p>
+<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. The syntax for doing this in <code>sed</code> is as follows:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
 </code></pre></div>
 <div class="admonition info">
@@ -919,6 +925,9 @@ Find and replace <code>chr</code> to <code>chromosome</code>, only if you also f
 Find and replace directly on the input, but save an old version too</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
 </code></pre></div>
+<div class="admonition info">
+<p><code>-i</code> to edit files in-place instead of printing to standard output</p>
+</div>
 <ul>
 <li>Print specific lines of the file</li>
 </ul>
@@ -952,15 +961,23 @@ Also, we can create specific pattern, like multiples of a number using <code>~</
 Let's wrap up <code>sed</code> with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
 </code></pre></div>
-<p>Not really what we are after as the output is as below</p>
+<div class="admonition info">
+<p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
+</div>
+<p>Output is not really what we are after,</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="m">1</span>   pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>ENSMUST00000160944
 <a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>ENSMUST00000160944
 </code></pre></div>
-<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> . Then, by appending <code>p</code> after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
+<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
 </code></pre></div>
 <hr />
+<div class="admonition abstract">
+<p class="admonition-title">In preparation for next lesson, rename <em>example.bed.old</em> back to  <em>example.bed</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>mv example.bed.old example.bed
+</code></pre></div>
+</div>
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
 
               
