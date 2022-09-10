@@ -1,7 +1,9 @@
 <center>
 # **Intermediate-Advanced Shell for Bioinformatics**
 </center>
-
+<center>
+![image](./images/nesiGAworkshop_logos.png){width="300"}
+</center>
 <br>
 <p align="center"><img src="images/new_unix_tuxlogo.png" alt="drawing" width="300"/></p> 
 <br>
