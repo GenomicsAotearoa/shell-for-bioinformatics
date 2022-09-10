@@ -591,12 +591,12 @@ OR all at once with <code>cat *.fasta</code></p>
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>NLSHHSSLSMNMPCAAA
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>cat: mik.fasta: No such file or directory
 </code></pre></div>
-<p>There are two different types of output there: "standard outout" (the contents of the <code>tb1-protein.fasta</code> file) and <em>standard error</em> (the error message relating to the missing <code>mik.fasta</code> file). If we use the <code>&gt;</code> operator to redirect the outout, the standard output is catured, but the standard error is not - it is still printed to the screen.  Let's check:</p>
+<p>There are two different types of output there: "standard output" (the contents of the <code>tb1-protein.fasta</code> file) and <em>standard error</em> (the error message relating to the missing <code>mik.fasta</code> file). If we use the <code>&gt;</code> operator to redirect the output, the standard output is captured, but the standard error is not - it is still printed to the screen.  Let's check:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat tb1-protein.fasta mik.fasta &gt; test.fasta
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  cat: mik.fasta: No such file or directory
 </code></pre></div>
-<p>The new file has been created and contans the standard outout (contents of the file <code>tb1-protein.fasta</code>):</p>
+<p>The new file has been created and contains the standard output (contents of the file <code>tb1-protein.fasta</code>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat test.fasta
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>&gt;teosinte-branched-1 protein
@@ -663,10 +663,10 @@ OR all at once with <code>cat *.fasta</code></p>
 </div>
 <p>Let's run the code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> grep --color -i <span class="s2">&quot;[^ATCG]&quot;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTAYCCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 </code></pre></div>
-<p><strong>NB: colours not supported in Markdown (I tried using HTML)</strong></p>
+<div class="admonition quote">
+<p>CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC</p>
+</div>
 <p>What if we had just run the code for step 2 on the <code>tb1.fasta</code> file?</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep --color -i &quot;[^ATCG]&quot; tb1.fasta
 </code></pre></div>

@@ -220,12 +220,6 @@ column -s "," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
     ```
 
 
-
-    
-
-    
-
-
 ## Sorting Plain-Text Data with `sort`
 
 Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:
