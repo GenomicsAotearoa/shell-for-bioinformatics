@@ -25,6 +25,16 @@ Awk is a utility that enables a programmer to write tiny but effective programs.
          - Arithmetic and string operations 
          - Conditionals and loops 
 
+!!! quote ""
+
+    There are two key parts for understanding the Awk language: how Awk processes records, and pattern-action pairs. The rest of the language is quite simple.
+
+    * Awk processes input data a record (line) at a time. Each record is composed of fields (column entries) that Awk automatically separates. Awk assigns the entire record to the variable $0, field one’s value to $1, field two’s value to $2, etc.
+
+    * We build Awk programs using one or more of the following structures: `pattern { action }`. Each pattern is an expression or regular expression pattern. In Awk lingo, these are pattern-action pairs and we can chain multiple pattern-action pairs together (separated by semicolons). If we omit the pattern, Awk will run the action on all records. If we omit the action but specify a pattern, Awk will print all records that match the pattern.
+
+
+
 **Syntax**:
 
 ```bash
@@ -94,25 +104,26 @@ awk '$3 - $2 > 18' example.bed
 chr1	9	28
 chr2	35	54
 ```
-- - - 
-<center>
+- - -
 
-|Comparison |  Description                                |
-|:----------|:--------------------------------------------|
-|`a == b`     |a is equal to b                              |
-|`a != b`     |a is not equal to b                          |
-|`a < b`      |a is less than b                             |
-|`a > b`      |a is greater than b                          |
-|`a <= b`     |a is less than or equal to b                 |
-|`a >= b`     |a is greater than or equal to b              |
-|`a ~ b`      |a matches regular expression pattern b       |
-|`a !~ b`     |a does not match regular expression pattern b|
-|`a && b`     |logical a and b                              |
-|`a \|\| b`     |logical or a and b                           |
-|`!a`         |not a (logical negation)                     |
+??? info "`awk` Comparison and Logical operations"
 
-</center>
----
+    |Comparison |  Description                                |
+    |:----------|:--------------------------------------------|
+    |`a == b`     |a is equal to b                              |
+    |`a != b`     |a is not equal to b                          |
+    |`a < b`      |a is less than b                             |
+    |`a > b`      |a is greater than b                          |
+    |`a <= b`     |a is less than or equal to b                 |
+    |`a >= b`     |a is greater than or equal to b              |
+    |`a ~ b`      |a matches regular expression pattern b       |
+    |`a !~ b`     |a does not match regular expression pattern b|
+    |`a && b`     |logical a and b                              |
+    |`a \|\| b`     |logical or a and b                           |
+    |`!a`         |not a (logical negation)                     |
+
+
+- - -
 
 We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:
 
