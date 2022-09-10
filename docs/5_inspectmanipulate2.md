@@ -313,12 +313,12 @@ Bioawk’s function `revcomp()` can be used to reverse complement a sequence:
 ```bash
 bioawk -c fastx '{print ">"$name"\n"revcomp($seq)}' SRR097977.fastq | head -n 4
 ```
-```
->SRR097977.1
-ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
->SRR097977.2
-ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
-```
+>```
+>>SRR097977.1
+>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+>>SRR097977.2
+>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+>```
 
 
 - - - 
