@@ -286,5 +286,27 @@ bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}
 >1	5485
 >1	12533
 >```
+
+Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:
+
+```bash
+bioawk -c fastx '{print ">"$name"\n"$seq}' SRR097977.fastq | head -n 4
+```
+>```
+>>SRR097977.1
+>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+>>SRR097977.2
+>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+>```
+
+!!! info ""
+    Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use `-c fastx`.
+
+
+Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:
+
+```bash
+bioawk -c fastx 'END{print NR}' SRR097977.fastq 
+```
 - - - 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
