@@ -240,7 +240,7 @@ The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.
     ```bash
     program input.txt > results.txt; echo $?
     ```
-    Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (||).
+    Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (`||`).
 
     For example, the sequence `program1 input.txt > intermediate-results.txt && program2 intermediate-results.txt > results.txt` will execute the second command only if previous commands have completed with a nonzero exit status.
 
