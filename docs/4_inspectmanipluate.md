@@ -438,7 +438,7 @@ sed -i.old 's/chr/chromosome/g' example.bed
 ```
 !!! info ""
     `-i` to edit files in-place instead of printing to standard output
-    
+
 * Print specific lines of the file
 
 To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n`.
@@ -490,8 +490,10 @@ Let's wrap up `sed` with one more use case (a slightly complicated looking one).
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
 ```
+!!! info ""
+    `-E` option to enable POSIX Extended Regular Expressions (ERE)
 
-Not really what we are after as the output is as below
+Output is not really what we are after,
 
 ```bash
 1	pseudogene	gene	3054233	3054733	.	+	.	gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
