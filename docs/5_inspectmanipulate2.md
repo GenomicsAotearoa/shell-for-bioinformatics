@@ -308,5 +308,18 @@ Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:
 ```bash
 bioawk -c fastx 'END{print NR}' SRR097977.fastq 
 ```
+Bioawk’s function `revcomp()` can be used to reverse complement a sequence:
+
+```bash
+bioawk -c fastx '{print ">"$name"\n"revcomp($seq)}' SRR097977.fastq | head -n 4
+```
+```
+>SRR097977.1
+ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+>SRR097977.2
+ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+```
+
+
 - - - 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
