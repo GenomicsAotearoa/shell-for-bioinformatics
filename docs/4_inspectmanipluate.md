@@ -389,6 +389,10 @@ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -
    2290 start_codon
    2027 gene
 ```
+!!! abstract ""
+ 
+    * `n` and `r` represents *numerical sort* and *reverse* order (Or descending as the default as ascending) 
+
 ## sed
 
 The `s`treamline `ed`itor or `sed` command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. 
