@@ -399,7 +399,7 @@ The `s`treamline `ed`itor or `sed` command is a stream editor that reads one or 
 
 ### Find and Replace
 
-Most common use of `sed` is to substitute text, matching a pattern. This syntax for doing this in `sed` is as follows:
+Most common use of `sed` is to substitute text, matching a pattern. The syntax for doing this in `sed` is as follows:
 
 ```bash
 sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
