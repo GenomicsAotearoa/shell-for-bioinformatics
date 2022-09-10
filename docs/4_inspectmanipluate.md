@@ -332,13 +332,14 @@ cat letters.txt
 ```bash
 uniq letters.txt 
 ```
-```
-A
-B
-C
-B
-C
-```
+>```bash
+>A
+>B
+>C
+>B
+>C
+>```
+
 As you can see, `uniq` does not return the unique values in letters.txt — it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
 
 ```bash
@@ -352,20 +353,24 @@ C
 
 ```bash
 uniq -c letters.txt 
-
-      2 A
-      1 B
-      1 C
-      1 B
-      3 C
 ```
+>```bash
+>      2 A
+>      1 B
+>      1 C
+>      1 B
+>      3 C
+>```
+
 ```bash
 sort letters.txt | uniq -c
-
-      2 A
-      2 B
-      4 C
 ```
+>```bash
+>      2 A
+>      2 B
+>      4 C
+>```
+
 Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
 
 ```bash
@@ -386,15 +391,17 @@ Count in order from most frequent to last
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
-
-  36128 exon
-  25901 CDS
-   7588 UTR
-   4993 transcript
-   2299 stop_codon
-   2290 start_codon
-   2027 gene
 ```
+>```bash
+>  36128 exon
+>  25901 CDS
+>   7588 UTR
+>   4993 transcript
+>   2299 stop_codon
+>   2290 start_codon
+>   2027 gene
+>```
+
 !!! abstract ""
  
     * `n` and `r` represents *numerical sort* and *reverse* order (Or descending as the default as ascending) 
@@ -501,11 +508,11 @@ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcrip
 
 Output is not really what we are after,
 
-```bash
-1	pseudogene	gene	3054233	3054733	.	+	.	gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
-ENSMUST00000160944
-ENSMUST00000160944
-```
+>```bash
+>1	pseudogene	gene	3054233	3054733	.	+	.	gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+>ENSMUST00000160944
+>ENSMUST00000160944
+>```
 
 The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` `transcript_id` before sed to only work with lines containing the string `transcript_id` . However, `sed` offers a cleaner way. First, disable sed from outputting all lines with `-n` ( can use `--quiet` or `--silent` as well .i.e. *suppress automatic printing of pattern space*). Then, by appending `p` (*Print the current pattern space*) after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
 
