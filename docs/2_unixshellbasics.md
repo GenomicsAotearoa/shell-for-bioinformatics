@@ -267,6 +267,11 @@ The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.
     ```bash
     program input.txt > results.txt; echo $?
     ```
+    By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an error occurred"` will print the message if error has occurred.
+
+    !!! quote "" 
+
+        When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
 
 - - - 
 
