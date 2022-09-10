@@ -501,7 +501,7 @@ ENSMUST00000160944
 ENSMUST00000160944
 ```
 
-The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` `transcript_id` before sed to only work with lines containing the string `transcript_id` . However, `sed` offers a cleaner way. First, disable sed from outputting all lines with `-n` ( can use `--quiet` or `--silent` as well .i.e. suppress automatic printing of pattern space) . Then, by appending `p` after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
+The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` `transcript_id` before sed to only work with lines containing the string `transcript_id` . However, `sed` offers a cleaner way. First, disable sed from outputting all lines with `-n` ( can use `--quiet` or `--silent` as well .i.e. *suppress automatic printing of pattern space*). Then, by appending `p` (*Print the current pattern space*) after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
