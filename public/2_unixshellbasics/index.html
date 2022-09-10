@@ -17,7 +17,7 @@
     
     
       
-        <title>Unix Shell Basics & Recap - Intermediate-Advanced Shell for Bioinformatics</title>
+        <title>3. Unix Shell Basics & Recap - Intermediate-Advanced Shell for Bioinformatics</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unix-shell-basics-recap" class="md-skip">
+        <a href="#3-unix-shell-basics-recap" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unix Shell Basics & Recap
+              3. Unix Shell Basics & Recap
             
           </span>
         </div>
@@ -262,7 +262,7 @@
   
     <li class="md-nav__item">
       <a href="../0_introduction/" class="md-nav__link">
-        UNIX, Linux  & UNIX Shell
+        1. UNIX, Linux  & UNIX Shell
       </a>
     </li>
   
@@ -277,7 +277,7 @@
   
     <li class="md-nav__item">
       <a href="../1_download_data/" class="md-nav__link">
-        Download & Verify Data
+        2. Download & Verify Data
       </a>
     </li>
   
@@ -300,61 +300,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Unix Shell Basics & Recap
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Unix Shell Basics & Recap
+        3. Unix Shell Basics & Recap
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#output-redirection" class="md-nav__link">
-    Output redirection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-unix-pipe" class="md-nav__link">
-    The Unix pipe
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#combining-pipes-and-redirection" class="md-nav__link">
-    Combining pipes and redirection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-tee-to-capture-intermediate-outputs" class="md-nav__link">
-    Using tee to capture intermediate outputs
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -368,8 +316,23 @@
   
   
     <li class="md-nav__item">
+      <a href="../3_streams_red_pipe/" class="md-nav__link">
+        4. Streams, Redirection and Pipe
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4_inspectmanipluate/" class="md-nav__link">
-        Inspecting and Manipulating Text Data with Unix Tools - Part 1
+        5. Inspecting and Manipulating Text Data with Unix Tools - Part 1
       </a>
     </li>
   
@@ -384,7 +347,7 @@
   
     <li class="md-nav__item">
       <a href="../5_inspectmanipulate2/" class="md-nav__link">
-        Inspecting and Manipulating Text Data with Unix Tools - Part 2
+        6. Inspecting and Manipulating Text Data with Unix Tools - Part 2
       </a>
     </li>
   
@@ -399,7 +362,7 @@
   
     <li class="md-nav__item">
       <a href="../6_automate_fileprocessing_find_xargs/" class="md-nav__link">
-        Automating File-Processing with find and xargs
+        7. Automating File-Processing with find and xargs
       </a>
     </li>
   
@@ -440,42 +403,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#output-redirection" class="md-nav__link">
-    Output redirection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-unix-pipe" class="md-nav__link">
-    The Unix pipe
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#combining-pipes-and-redirection" class="md-nav__link">
-    Combining pipes and redirection
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-tee-to-capture-intermediate-outputs" class="md-nav__link">
-    Using tee to capture intermediate outputs
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -492,13 +419,12 @@
 
 
 
-<h1 id="unix-shell-basics-recap">Unix Shell Basics &amp; Recap<a class="headerlink" href="#unix-shell-basics-recap" title="Permanent link">&para;</a></h1>
+<h1 id="3-unix-shell-basics-recap">3. Unix Shell Basics &amp; Recap<a class="headerlink" href="#3-unix-shell-basics-recap" title="Permanent link">&para;</a></h1>
 <div class="admonition abstract">
 <p class="admonition-title">Lesson Objectives</p>
 <ul>
 <li>Navigate your file system using the command line.</li>
 <li>Quick recap on commands used in routine tasks such copy, move, remove.</li>
-<li>Strong emphasis on <code>grep</code> which filter searches a file for a particular pattern of characters and displays all lines that contain that pattern. </li>
 </ul>
 </div>
 <p>It is expected that you are already familiar with using the basics of the Unix Shell. As a quick refresher, some frequently used commands are listed below.</p>
@@ -533,167 +459,6 @@
 <li><code>grep</code> - find patterns within files</li>
 </ul>
 </div>
-<h3 id="output-redirection">Output redirection<a class="headerlink" href="#output-redirection" title="Permanent link">&para;</a></h3>
-<p>The <code>shell4b_data</code> directory contains the following fasta files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tb1.fasta
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tb1-protein.fasta
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>tga1-protein.fasta
-</code></pre></div>
-<p>We can use the <code>cat</code> command to view these files either one at a time:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat tb1-protein.fasta
-</code></pre></div>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt;teosinte-branched-1 protein
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>NLSHHSSLSMNMPCAAA
-</code></pre></div>
-</blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cat tga1-protein.fasta 
-</code></pre></div>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&gt;teosinte-glume-architecture-1 protein
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>GGEGSSDGGT
-</code></pre></div>
-</blockquote>
-<p>OR all at once with <code>cat *.fasta</code></p>
-<p>We can also redirect the output to create a new file containing the sequence for both proteins:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cat tb1-protein.fasta tga1-protein.fasta &gt; zea-proteins.fasta
-</code></pre></div>
-<p>Now we have a new file called <code>zea-proteins.fasta</code>. Let's check the contents:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cat zea-proteins.fasta
-</code></pre></div>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>&gt;teosinte-branched-1 protein
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>NLSHHSSLSMNMPCAAA
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>&gt;teosinte-glume-architecture-1 protein
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>GGEGSSDGGT
-</code></pre></div>
-</blockquote>
-<p>Capturing error messages</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat tb1-protein.fasta mik.fasta
-</code></pre></div>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&gt;teosinte-branched-1 protein
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>NLSHHSSLSMNMPCAAA
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>cat: mik.fasta: No such file or directory
-</code></pre></div>
-</blockquote>
-<p>There are two different types of output there: "standard output" (the contents of the <code>tb1-protein.fasta</code> file) and <em>standard error</em> (the error message relating to the missing <code>mik.fasta</code> file). If we use the <code>&gt;</code> operator to redirect the output, the standard output is captured, but the standard error is not - it is still printed to the screen.  Let's check:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat tb1-protein.fasta mik.fasta &gt; test.fasta
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  cat: mik.fasta: No such file or directory
-</code></pre></div>
-<p>The new file has been created and contains the standard output (contents of the file <code>tb1-protein.fasta</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cat test.fasta
-</code></pre></div>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>&gt;teosinte-branched-1 protein
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>NLSHHSSLSMNMPCAAA
-</code></pre></div>
-</blockquote>
-<p>If we want to capture the standard error we use the (slightly unweildy) <code>2&gt;</code> operator:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cat tb1-protein.fasta mik.fasta &gt; test.fasta <span class="m">2</span>&gt; stderror.txt
-</code></pre></div>
-<div class="admonition descriptors">
-<p class="admonition-title">Descriptors</p>
-<p>File descriptor <code>2</code> represents standard error (other special file descriptors include <code>0</code> for standard input and <code>1</code> for standard output).</p>
-</div>
-<p>Check the contents:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cat stderror.txt
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  cat: mik.fasta: No such file or directory
-</code></pre></div>
-<p>Note that <code>&gt;</code> will overwrite an existing file. We can use <code>&gt;&gt;</code> to add to a file instead of overwriting it:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cat tga1-protein.fasta &gt;&gt; test.fasta
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cat test.fasta 
-</code></pre></div></p>
-<blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>&gt;teosinte-branched-1 protein
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>NLSHHSSLSMNMPCAAA
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>&gt;teosinte-glume-architecture-1 protein
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>GGEGSSDGGT
-</code></pre></div>
-</blockquote>
-<h3 id="the-unix-pipe">The Unix pipe<a class="headerlink" href="#the-unix-pipe" title="Permanent link">&para;</a></h3>
-<p>The pipe operator (<code>|</code>) passes the output from one command to another command as input.  The following is an example of using a pipe with the <code>grep</code> command.</p>
-<p>Steps:</p>
-<ol>
-<li>Remove the header information for the sequence (line starts with "&gt;")</li>
-<li>Highlight any characters in the sequence that <em>are not</em> A, T, C or G.</li>
-</ol>
-<p>We will use grep to carry out the first step, and then use the pipe operator to pass the output to a second grep command to carry out the second step.</p>
-<p>Here is the full command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> grep --color -i <span class="s2">&quot;[^ATCG]&quot;</span>
-</code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Let's see what each piece does</p>
-<p><code>grep -v "^&gt;" tb1.fasta</code></p>
-<p>The -v tells <code>grep</code> to search for all lines in the file <code>tb1.fasta</code> that <em>do not</em> contain a "&gt;" at the start (<code>^</code> is a special character that denotes "at the start of the line - we'll learn more about this later).</p>
-<p><code>grep --color -i "[^ATCG]"</code></p>
-<p>There are a few things going on here:</p>
-<ul>
-<li><code>--color</code>: tells <code>grep</code> to highlight any matches</li>
-<li><code>-i</code>: tells <code>grep</code> to ignore the case (i.e., will match lower or upper case)</li>
-<li><code>[^ATCG]</code>: when <code>^</code> is used <em>inside square brackets</em> it has a different function - <em>inverts</em> the pattern, so that <code>grep</code> finds any letters that are <em>not</em> A, T, C or G.</li>
-</ul>
-</div>
-<p>Let's run the code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> grep --color -i <span class="s2">&quot;[^ATCG]&quot;</span>
-</code></pre></div>
-<div class="admonition quote">
-<p>CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC</p>
-</div>
-<p>What if we had just run the code for step 2 on the <code>tb1.fasta</code> file?</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>grep --color -i &quot;[^ATCG]&quot; tb1.fasta
-</code></pre></div>
-<h3 id="combining-pipes-and-redirection">Combining pipes and redirection<a class="headerlink" href="#combining-pipes-and-redirection" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> grep --color -i <span class="s2">&quot;[^ATCG]&quot;</span> &gt; non-atcg.txt
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat non-atcg.txt 
-</code></pre></div>
-<p>since we are redirecting to a text file, the <code>--color</code> by itself will not record the colour information. We can achieve this by invoking <code>always</code> flag for <code>--color</code>.i.e..</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> grep --color<span class="o">=</span>always -i <span class="s2">&quot;[^ATCG]&quot;</span> &gt; non-atcg.txt
-</code></pre></div>
-<h3 id="using-tee-to-capture-intermediate-outputs">Using tee to capture intermediate outputs<a class="headerlink" href="#using-tee-to-capture-intermediate-outputs" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>grep -v <span class="s2">&quot;^&gt;&quot;</span> tb1.fasta <span class="p">|</span> tee intermediate-file.txt <span class="p">|</span> grep --color<span class="o">=</span>always -i <span class="s2">&quot;[^ATCG]&quot;</span> &gt; non-atcg.txt
-</code></pre></div>
-<p>The file <code>intermediate-file.txt</code> will contain the output from <code>grep -v "^&gt;" tb1.fasta</code>, but <code>tee</code> also passes that output through the pipe to the next <code>grep</code> command.</p>
 <hr />
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
 
@@ -711,7 +476,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../1_download_data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Download &amp; Verify Data" rel="prev">
+        <a href="../1_download_data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Download &amp; Verify Data" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -720,20 +485,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Download & Verify Data
+              2. Download & Verify Data
             </div>
           </div>
         </a>
       
       
         
-        <a href="../4_inspectmanipluate/" class="md-footer__link md-footer__link--next" aria-label="Next: Inspecting and Manipulating Text Data with Unix Tools - Part 1" rel="next">
+        <a href="../3_streams_red_pipe/" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Streams, Redirection and Pipe" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Inspecting and Manipulating Text Data with Unix Tools - Part 1
+              4. Streams, Redirection and Pipe
             </div>
           </div>
           <div class="md-footer__button md-icon">
