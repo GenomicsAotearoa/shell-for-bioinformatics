@@ -1,4 +1,4 @@
-# Unix Shell Basics & Recap 
+# 3. Unix Shell Basics & Recap 
 
 !!! abstract "Lesson Objectives"
 
