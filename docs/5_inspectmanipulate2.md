@@ -262,18 +262,29 @@ module load bioawk/1.0
 ```bash
 bioawk -c help bed
 ```
-```bash
-ed:
-	1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart 8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts 
-sam:
-	1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext 9:tlen 10:seq 11:qual 
-vcf:
-	1:chrom 2:pos 3:id 4:ref 5:alt 6:qual 7:filter 8:info 
-gff:
-	1:seqname 2:source 3:feature 4:start 5:end 6:score 7:filter 8:strand 9:group 10:attribute 
-fastx:
-	1:name 2:seq 3:qual 4:comment 
-```
+>```bash
+>ed:
+>	1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart 8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts 
+>sam:
+>	1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext 9:tlen 10:seq 11:qual 
+>vcf:
+>	1:chrom 2:pos 3:id 4:ref 5:alt 6:qual 7:filter 8:info 
+>gff:
+>	1:seqname 2:source 3:feature 4:start 5:end 6:score 7:filter 8:strand 9:group 10:attribute 
+>fastx:
+>	1:name 2:seq 3:qual 4:comment 
+>```
 
+As an example of how this works, let’s read in example.bed and append a column with the length of the feature (end position - start position) for all protein coding genes:
+
+```bash
+bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}' ../data/Mus_musculus.GRCm38.75_chr1.gtf | head -n 4
+```
+>```
+>1	465597
+>1	16807
+>1	5485
+>1	12533
+>```
 - - - 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
