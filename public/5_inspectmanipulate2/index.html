@@ -695,15 +695,16 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <ul>
 <li><code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>awk <span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf 
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>CDS <span class="m">56</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>transcript  <span class="m">9</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>start_codon <span class="m">5</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>gene    <span class="m">1</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>exon    <span class="m">69</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>UTR <span class="m">24</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>awk <span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf 
 </code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>exon    69
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>CDS 56
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>UTR 24
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>gene    1
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>start_codon 5
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>stop_codon  5
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>transcript  9
+</code></pre></div></p>
 <h2 id="bioawk"><code>bioawk</code><a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
 <p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
 <p>The original <code>awk</code> requires a YACC-compatible parser generator (e.g. Byacc or Bison). <code>bioawk</code> further depends on <a href="http://zlib.net/">zlib</a> so as to work with gzip'd files.</p>
@@ -825,6 +826,61 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </table>
 <p></center></p>
 </details>
+<p><strong>bioawk</strong> is not a default linux/unix utility. .i.e. Has to be installed. This is available as a module on NeSI HPC platforms which can be loaded with </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module load bioawk/1.0
+</code></pre></div>
+ The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bioawk -c <span class="nb">help</span> bed
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ed:
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:start <span class="m">3</span>:end <span class="m">4</span>:name <span class="m">5</span>:score <span class="m">6</span>:strand <span class="m">7</span>:thickstart <span class="m">8</span>:thickend <span class="m">9</span>:rgb <span class="m">10</span>:blockcount <span class="m">11</span>:blocksizes <span class="m">12</span>:blockstarts 
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sam:
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>   <span class="m">1</span>:qname <span class="m">2</span>:flag <span class="m">3</span>:rname <span class="m">4</span>:pos <span class="m">5</span>:mapq <span class="m">6</span>:cigar <span class="m">7</span>:rnext <span class="m">8</span>:pnext <span class="m">9</span>:tlen <span class="m">10</span>:seq <span class="m">11</span>:qual 
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>vcf:
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:pos <span class="m">3</span>:id <span class="m">4</span>:ref <span class="m">5</span>:alt <span class="m">6</span>:qual <span class="m">7</span>:filter <span class="m">8</span>:info 
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>gff:
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>   <span class="m">1</span>:seqname <span class="m">2</span>:source <span class="m">3</span>:feature <span class="m">4</span>:start <span class="m">5</span>:end <span class="m">6</span>:score <span class="m">7</span>:filter <span class="m">8</span>:strand <span class="m">9</span>:group <span class="m">10</span>:attribute 
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>fastx:
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>   <span class="m">1</span>:name <span class="m">2</span>:seq <span class="m">3</span>:qual <span class="m">4</span>:comment 
+</code></pre></div>
+</blockquote>
+<p>As an example of how this works, let’s read in example.bed and append a column with the length of the feature (end position - start position) for all protein coding genes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>bioawk -c gff <span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span> ../data/Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>1  465597
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>1  16807
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>1  5485
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>1  12533
+</code></pre></div>
+</blockquote>
+<p>Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>&gt;SRR097977.1
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>&gt;SRR097977.2
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+</code></pre></div>
+</blockquote>
+<div class="admonition info">
+<p>Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use <code>-c fastx</code>.</p>
+</div>
+<p>Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bioawk -c fastx <span class="s1">&#39;END{print NR}&#39;</span> SRR097977.fastq 
+</code></pre></div>
+Bioawk’s function <code>revcomp()</code> can be used to reverse complement a sequence:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&gt;SRR097977.1
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>&gt;SRR097977.2
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+</code></pre></div>
+</blockquote>
 <hr />
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
 
