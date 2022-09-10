@@ -194,7 +194,7 @@ column -s "," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
     1	3054233	3054733
 ```
 
-???+ warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
+??? warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
 
     **GTF** Format has 9 columns 
 
@@ -203,8 +203,21 @@ column -s "," -t Mus_musculus.GRCm38.75_chr1.bed | head -n 3
     |:-------|:------|:-------|:-----|:---|:-----|:------|:-----|:---------|
     |seqname |source |feature |start |end |score |strand |frame |attribute |
     
+    In theory, we should be able to use the following command to isolate the column headers and count the number
     
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -1 | wc -w
+    ```
+    However, this will return **16** and the problem is with the **attribute** column which is a *"A semicolon-separated list of tag-value pairs, providing additional information about each feature."*
 
+    ```
+    gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+    ```
+    Therefore, we need to *translate** these values to a single "new line" with `tr` command and then count the number of lines than than the number of words
+    
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -1 | tr '\t' '\n' | wc -l
+    ```
 
 
 
