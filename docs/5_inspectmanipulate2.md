@@ -48,6 +48,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
 
 Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
 
+
 ```bash
 awk '{print}' example.bed 
 ```
