@@ -258,7 +258,16 @@ grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^A
 
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
-### Pipes and Chains : Exit Status (Programmatically Tell Whether Your Command Worked)
+### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
+
+!!! info ""
+
+    How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command: 
+
+    ```bash
+    program input.txt > results.txt; echo $?
+    ```
+
 - - - 
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
