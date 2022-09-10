@@ -597,14 +597,14 @@ Notice the (required!) semicolumn and curly brackets at the end of the command! 
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs rm
 </code></pre></div>
 <code>xargs</code> passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like <code>rm</code>, <code>touch</code>, <code>mkdir</code>, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with <code>xargs</code>’s <code>-n</code> argument. For example, we could call rm four separate times (each on one file) with:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>touch zmays-snps/data/seqs/zmays<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>touch hihi_project/data/raw/zmays<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs -n <span class="m">1</span> rm
 </code></pre></div></p>
 <p>One big benefit of <code>xargs</code> is that it separates the process that specifies the files to operate on (<code>find</code>) from applying a command to these files (through <code>xargs</code>). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> &gt; oh_oh_filestodelete.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> &gt; ohno_filestodelete.txt
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat ohno_filestodelete.txt
 </code></pre></div>
