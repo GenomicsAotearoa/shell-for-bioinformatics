@@ -115,8 +115,8 @@ cat > fool_wc.bed
 >  3 300
 >```
 
-```
->**Ctrl+D** to end the edits started with `cat >`
+
+**Ctrl+D** to end the edits started with `cat >`
 
 ```bash
 wc -l fool_wc.bed 
@@ -157,7 +157,8 @@ Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to
 
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1,4,5 | head -n 3
-
+```
+```bash
 1	3054233	3054733
 1	3054233	3054733
 1	3054233	3054733
