@@ -158,11 +158,12 @@ Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1,4,5 | head -n 3
 ```
-```bash
-1	3054233	3054733
-1	3054233	3054733
-1	3054233	3054733
-```
+>```bash
+>1	3054233	3054733
+>1	3054233	3054733
+>1	3054233	3054733
+>```
+
 Note that although our three-column file of genomic positions looks like a BED-formatted file, it’s not (due to subtle differences in genomic range formats).
 
 `cut` also allows us to specify the column delimiter character. So, if we were to come across a CSV file containing chromosome names, start positions, and end positions, we could select columns from it, too:
