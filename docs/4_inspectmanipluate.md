@@ -108,11 +108,12 @@ For an example, if we are to create a file with 3 rows of data and then two empt
 
 ```bash
 cat > fool_wc.bed
-
-  1 100
-  2 200
-  3 300
-
+```
+>```bash
+>  1 100
+>  2 200
+>  3 300
+>```
 
 ```
 >**Ctrl+D** to end the edits started with `cat >`
