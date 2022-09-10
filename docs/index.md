@@ -15,10 +15,11 @@
 |1. [UNIX,Linux & UNIX Shell](./0_introduction.md)|Introduction to UNIX operating system, Linux and UNIX Shell|
 |2. [Download and verify data](./1_download_data.md)| Downloading data with `wget`/`curl` and check the transferred data’s integrity with check‐sums|
 |3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)|Navigating Files & Directories and a review of  commands used in routine tasks|
-|4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)| Inspect file/s with utilities such as `head`,`less`. Extracting and formatting tabular data. Magical `grep`. Substitute matching patterns with `sed`|
-|5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)| Text processing with `awk` and `bioawk`|
-|6. [Automating File-Processing with find and xargs](./6_automate_fileprocessing_find_xargs.md)| Search files by pattern with `find` and use `xargs` to execute a command for those objects matching the pattern|
-|7. [Puzzles](./puzzles.md) 🧩 | Can you use shell scripts to solve these "real" life challenged in molecular biology ?|
+|4. [Streams, Redirection and Pipe](./3_streams_red_pipe.md)||
+|5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)| Inspect file/s with utilities such as `head`,`less`. Extracting and formatting tabular data. Magical `grep`. Substitute matching patterns with `sed`|
+|6. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)| Text processing with `awk` and `bioawk`|
+|7. [Automating File-Processing with find and xargs](./6_automate_fileprocessing_find_xargs.md)| Search files by pattern with `find` and use `xargs` to execute a command for those objects matching the pattern|
+|8. [Puzzles](./puzzles.md) 🧩 | Can you use shell scripts to solve these "real" life challenged in molecular biology ?|
 
 - - - 
 
