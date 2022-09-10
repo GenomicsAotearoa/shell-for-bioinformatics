@@ -168,9 +168,11 @@ Note that `>` will overwrite an existing file. We can use `>>` to add to a file 
 
 ```bash
 cat tga1-protein.fasta >> test.fasta
-
+```
+```bash
 cat test.fasta 
-
+```
+```bash
 >teosinte-branched-1 protein
 LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
 FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
