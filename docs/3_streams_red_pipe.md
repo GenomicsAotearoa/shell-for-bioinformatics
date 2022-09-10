@@ -1,4 +1,4 @@
-# Streams, Redirection and Pipe
+# 4. Streams, Redirection and Pipe
 
 Bioinformatics data is often text-based and large. This is why Unix’s philosophy of handling text streams is useful in bioinformatics: text streams allow us to do processing on a stream of data rather than holding it all in memory. Handling and redirecting the streams of data is essential skill in Unix.
 
