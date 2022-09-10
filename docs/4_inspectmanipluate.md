@@ -270,7 +270,7 @@ However, using `sort`’s default of sorting alphanumerically by line and doesn�
 `sort` has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):
 
 ```bash
-sort -k1,1 -k2n test_sort.bed
+sort -k1,1 -k2,2n test_sort.bed
 ``` 
 ??? success "Output"
 
@@ -289,7 +289,7 @@ sort -k1,1 -k2n test_sort.bed
 
     Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as `start,end`, so to sort by a single column we use `start,start`. In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
     with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
-    
+
     The end result is that rows are grouped by chromosome and sorted by start position.
 
 
