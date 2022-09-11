@@ -374,6 +374,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#command-substitution" class="md-nav__link">
+    Command Substitution
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -503,6 +510,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#command-substitution" class="md-nav__link">
+    Command Substitution
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -526,7 +540,8 @@
 <p class="admonition-title">Lesson Objectives</p>
 <ul>
 <li>To be able to redirect streams of data in Unix.</li>
-<li>To be able to solve problems by piping several Unix commands.</li>
+<li>Solve problems by piping several Unix commands.</li>
+<li>Command substitution </li>
 </ul>
 </div>
 <p>Bioinformatics data is often text-based and large. This is why Unix’s philosophy of handling text streams is useful in bioinformatics: text streams allow us to do processing on a stream of data rather than holding it all in memory. Handling and redirecting the streams of data is essential skill in Unix.</p>
@@ -696,8 +711,7 @@
 </code></pre></div>
 <p>The file <code>intermediate-file.txt</code> will contain the output from <code>grep -v "^&gt;" tb1.fasta</code>, but <code>tee</code> also passes that output through the pipe to the next <code>grep</code> command.</p>
 <h3 id="pipes-and-chains-and-long-running-processes-exit-status-programmatically-tell-whether-your-command-worked">Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)<a class="headerlink" href="#pipes-and-chains-and-long-running-processes-exit-status-programmatically-tell-whether-your-command-worked" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p>How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   <code>$?</code>. We can use the <code>echo</code> command to look at this variable’s value after running a command: </p>
+<p>How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   <code>$?</code>. We can use the <code>echo</code> command to look at this variable’s value after running a command:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>program input.txt &gt; results.txt<span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
 </code></pre></div>
 Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (<code>&amp;&amp;</code>), and one operator that runs the next command only if the first completed unsuccessfully (<code>||</code>).</p>
@@ -706,7 +720,34 @@ Exit statuses are useful because they allow us to programmatically chain command
 <div class="admonition quote">
 <p>When a script ends with an <strong>exit</strong> that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the <strong>exit</strong>).</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Challenge</p>
+<p>To test your understanding of <code>&amp;&amp;</code> and <code>||</code>, we’ll use two Unix commands that do nothing but return either exit success (true) or exit failure (false). Predict and check the outcome of the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">true</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">false</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">echo</span> <span class="nv">$?</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nb">true</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;first command was a success&quot;</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nb">true</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;first command was not a success&quot;</span> 
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nb">false</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;first command was not a success&quot;</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;first command was a success&quot;</span>
+</code></pre></div>
+<div class="admonition hint">
+<p class="admonition-title">hint</p>
+<p>The <code>$?</code> variable represents the exit status of the previous command.</p>
 </div>
+</div>
+<h3 id="command-substitution">Command Substitution<a class="headerlink" href="#command-substitution" title="Permanent link">&para;</a></h3>
+<p>Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">echo</span> <span class="s2">&quot;There are </span><span class="k">$(</span>grep -c <span class="s1">&#39;^&gt;&#39;</span> SRR097977.fasta<span class="k">)</span><span class="s2"> entries in my FASTA file.&quot;</span>
+</code></pre></div>
+<p>This command uses <code>grep</code> to count (the <code>-c</code> option stands for count) the number of lines matching the pattern. Using command substitution, we can calculate and return the number of FASTA entries directly into this string!</p>
+<p>Another example of using command substitution would be creating dated directories:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>mkdir results-<span class="k">$(</span>date +%F<span class="k">)</span>
+</code></pre></div>
+<ul>
+<li><code>%F</code> - full date; same as %Y-%m-%d</li>
+</ul>
 
               
             </article>
