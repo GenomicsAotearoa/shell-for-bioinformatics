@@ -3,7 +3,7 @@
 !!! abstract "Lesson Objectives"
 
     * Use specialised language `awk` to do a variety of text-processing tasks
-    * 
+    * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
 ## Aho, Weinberger, Kernighan = AWK
 
