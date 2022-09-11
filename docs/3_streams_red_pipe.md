@@ -233,19 +233,33 @@ The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.
 
 ### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
 
-!!! info ""
 
-    How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command: 
+How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command:
+
+```bash
+program input.txt > results.txt; echo $?
+```
+Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (`||`).
+
+For example, the sequence `program1 input.txt > intermediate-results.txt && program2 intermediate-results.txt > results.txt` will execute the second command only if previous commands have completed with a nonzero exit status.
+
+By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an error occurred"` will print the message if error has occurred.
+
+!!! quote "" 
+    When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
+
+!!! info "Challenge"
+    To test your understanding of `&&` and `||`, we’ll use two Unix commands that do nothing but return either exit success (true) or exit failure (false). Predict and check the outcome of the following commands:
 
     ```bash
-    program input.txt > results.txt; echo $?
+    true
+    echo $?
+    false
+    echo $?
+    true && echo "first command was a success"
+    true || echo "first command was not a success" 
+    false || echo "first command was not a success"
+    false && echo "first command was a success"
     ```
-    Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (`||`).
-
-    For example, the sequence `program1 input.txt > intermediate-results.txt && program2 intermediate-results.txt > results.txt` will execute the second command only if previous commands have completed with a nonzero exit status.
-
-    By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an error occurred"` will print the message if error has occurred.
-
-    !!! quote "" 
-
-        When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
+    !!! hint "hint"
+        The `$?` variable represents the exit status of the previous command.
