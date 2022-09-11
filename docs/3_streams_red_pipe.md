@@ -266,3 +266,19 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
         The `$?` variable represents the exit status of the previous command.
 
 ### Command Substitution
+
+Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
+
+```bash
+echo "There are $(grep -c '^>' SRR097977.fasta) entries in my FASTA file."
+```
+
+This command uses `grep` to count (the `-c` option stands for count) the number of lines matching the pattern. Using command substitution, we can calculate and return the number of FASTA entries directly into this string!
+
+Another example of using command substitution would be creating dated directories:
+
+```bash
+mkdir results-$(date +%F)
+```
+
+* `%F` - full date; same as %Y-%m-%d
