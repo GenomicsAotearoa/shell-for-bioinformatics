@@ -11,12 +11,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/1_download_data/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/1_unixshellbasics/</loc>
          <lastmod>2022-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/2_unixshellbasics/</loc>
+         <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/2_download_data/</loc>
          <lastmod>2022-09-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
