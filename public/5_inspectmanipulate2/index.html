@@ -40,6 +40,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -370,6 +372,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    Find and Replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aho-weinberger-kernighan-awk" class="md-nav__link">
     Aho, Weinberger, Kernighan = AWK
   </a>
@@ -448,6 +470,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    Find and Replace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aho-weinberger-kernighan-awk" class="md-nav__link">
     Aho, Weinberger, Kernighan = AWK
   </a>
@@ -483,9 +525,99 @@
 <div class="admonition abstract">
 <p class="admonition-title">Lesson Objectives</p>
 <ul>
+<li>insertion, deletion, search and replace(substitution) with <code>sed</code></li>
 <li>Use specialised language <code>awk</code> to do a variety of text-processing tasks</li>
 <li>Quick overview of <code>bioawk</code> (an extension of <code>awk</code> to process common biological data formats)</li>
 </ul>
+</div>
+<h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
+<p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
+<h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
+<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. The syntax for doing this in <code>sed</code> is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is <code>s</code> which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
+<li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
+<li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
+<li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
+<li><code>N</code> where N is any number, to replace Nth instance of the <code>REGEXP</code> with <code>REPLACEMENT</code></li>
+<li><code>p</code> if substitution was made, then prints the new pattern space</li>
+<li><code>i</code> ignores case for matching <code>REGEXP</code></li>
+<li><code>w</code> file If substitution was made, write out the result to the given file</li>
+<li><code>d</code> when specified without <code>REPLACEMENT</code>, deletes the found <code>REGEXP</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li>Some find and replace examples</li>
+</ul>
+<p>Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sed <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed &gt; example_chromosome.bed
+</code></pre></div>
+Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
+</code></pre></div>
+Find and replace directly on the input, but save an old version too</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
+</code></pre></div>
+<div class="admonition info">
+<p><code>-i</code> to edit files in-place instead of printing to standard output</p>
+</div>
+<ul>
+<li>Print specific lines of the file</li>
+</ul>
+<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
+<p>print 5<sup>th</sup> line of example.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
+</code></pre></div>
+<p>We can provide any number of additional lines to print using <code>-e</code> option. Let's print line 2 and 5, </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sed -n -e <span class="s1">&#39;2p&#39;</span> -e <span class="s1">&#39;5p&#39;</span> example.bed
+</code></pre></div>
+<p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
+</code></pre></div>
+Also, we can create specific pattern, like multiples of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
+</code></pre></div>
+<details class="question" open="open">
+<summary>Exercise 4.4</summary>
+<p>Can you use the above <code>~</code> trick to extract all the <strong>odd</strong> numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file <strong>odd_sed.bed</strong></p>
+</details>
+<p>One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq
+</code></pre></div>
+<div class="admonition hint">
+<p class="admonition-title">Sanity Check</p>
+<p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>cat SRR097977.fastq | wc -l</code></p>
+</div>
+<p>We can use the above trick to convert the .fastq to .fasta</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
+</code></pre></div>
+Let's wrap up <code>sed</code> with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
+</code></pre></div>
+<div class="admonition info">
+<p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
+</div>
+<p>Output is not really what we are after,</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="m">1</span>  pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ENSMUST00000160944
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ENSMUST00000160944
+</code></pre></div>
+</blockquote>
+<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+</code></pre></div>
+<hr />
+<div class="admonition abstract">
+<p class="admonition-title">In preparation for next lesson, rename <em>example.bed.old</em> back to  <em>example.bed</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mv example.bed.old example.bed
+</code></pre></div>
 </div>
 <h2 id="aho-weinberger-kernighan-awk">Aho, Weinberger, Kernighan = AWK<a class="headerlink" href="#aho-weinberger-kernighan-awk" title="Permanent link">&para;</a></h2>
 <p>Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. </p>
@@ -531,7 +663,7 @@
 </ul>
 </div>
 <p><strong>Syntax</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>awk options <span class="s1">&#39;selection_criteria {action}&#39;</span> input-file &gt;  output-file
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>awk options <span class="s1">&#39;selection_criteria {action}&#39;</span> input-file &gt;  output-file
 </code></pre></div>
 <div class="admonition options">
 <p class="admonition-title">Options</p>
@@ -539,51 +671,51 @@
 <p><code>-F fs</code>            : Use fs for the input field separator</p>
 </div>
 <p>Default behaviour of <code>awk</code> is to print every line of data from the specified file. .i.e. mimics <code>cat</code></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>awk <span class="s1">&#39;{print}&#39;</span> example.bed 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>awk <span class="s1">&#39;{print}&#39;</span> example.bed 
 </code></pre></div>
 <details class="success">
 <summary>Output</summary>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>chr3    <span class="m">11</span>  <span class="m">28</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>chr3    <span class="m">16</span>  <span class="m">27</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>chr3    <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>chr3    <span class="m">16</span>  <span class="m">27</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
 </code></pre></div>
 </details>
 <p>Print lines which match the given pattern</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>awk <span class="s1">&#39;/chr1/ {print}&#39;</span> example.bed 
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>awk <span class="s1">&#39;/chr1/ {print}&#39;</span> example.bed 
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>chr1    <span class="m">10</span>  <span class="m">19</span>
 </code></pre></div>
 <p><code>awk</code> can be used to mimic functionality of <code>cut</code> </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>awk <span class="s1">&#39;{print $2 &quot;\t&quot; $3}&#39;</span> example.bed 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>awk <span class="s1">&#39;{print $2 &quot;\t&quot; $3}&#39;</span> example.bed 
 </code></pre></div>
 <details class="success">
 <summary>Output</summary>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="m">26</span>  <span class="m">39</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="m">32</span>  <span class="m">47</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="m">11</span>  <span class="m">28</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="m">40</span>  <span class="m">49</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="m">16</span>  <span class="m">27</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a> <span class="m">9</span>  <span class="m">28</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="m">35</span>  <span class="m">54</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="m">10</span>  <span class="m">19</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="m">16</span>  <span class="m">27</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a> <span class="m">9</span>  <span class="m">28</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="m">10</span>  <span class="m">19</span>
 </code></pre></div>
 </details>
 <p>Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, <code>$2"\t"$3</code> concatenates the second field, a tab character, and the third field. However, this is an instance where using <code>cut</code> is much simpler as the equivalent of above is <code>cut -f 2,3 example.bed</code> </p>
 <p>Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end
 position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>awk <span class="s1">&#39;$3 - $2 &gt; 18&#39;</span> example.bed 
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>awk <span class="s1">&#39;$3 - $2 &gt; 18&#39;</span> example.bed 
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>chr2    <span class="m">35</span>  <span class="m">54</span>
 </code></pre></div>
 <hr />
 <details class="info">
@@ -645,11 +777,11 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </details>
 <hr />
 <p>We can also chain patterns, by using logical operators <code>&amp;&amp;</code> (AND), <code>||</code> (OR), and <code>!</code> (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>awk <span class="s1">&#39;$1 ~ /chr1/ &amp;&amp; $3 - $2 &gt; 10&#39;</span> example.bed 
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>awk <span class="s1">&#39;$1 ~ /chr1/ &amp;&amp; $3 - $2 &gt; 10&#39;</span> example.bed 
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>chr1    <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>chr1    <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>chr1    <span class="m">9</span>   <span class="m">28</span>
 </code></pre></div>
 <div class="admonition info">
 <ul>
@@ -685,18 +817,18 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <ul>
 <li>We can use <code>NR</code> to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>awk <span class="s1">&#39;NR &gt;= 3 &amp;&amp; NR &lt;=5&#39;</span> example.bed 
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    chr3    <span class="m">11</span>  <span class="m">28</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    chr1    <span class="m">40</span>  <span class="m">49</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    chr3    <span class="m">16</span>  <span class="m">27</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>awk <span class="s1">&#39;NR &gt;= 3 &amp;&amp; NR &lt;=5&#39;</span> example.bed 
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    chr3    <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    chr1    <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    chr3    <span class="m">16</span>  <span class="m">27</span>
 </code></pre></div>
 <ul>
 <li>suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>awk <span class="s1">&#39;BEGIN{s = 0}; {s += ($3-$2)}; END{ print &quot;mean: &quot; s/NR};&#39;</span> example.bed 
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  mean: <span class="m">14</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>awk <span class="s1">&#39;BEGIN{s = 0}; {s += ($3-$2)}; END{ print &quot;mean: &quot; s/NR};&#39;</span> example.bed 
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>  mean: <span class="m">14</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -705,24 +837,24 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <ul>
 <li><code>awk</code> makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from <strong><em>Mus_muscu‐lus.GRCm38.75_chr1.gtf</em></strong> as follows:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>awk <span class="s1">&#39;!/^#/ { print $1 &quot;\t&quot; $4-1 &quot;\t&quot; $5}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>awk <span class="s1">&#39;!/^#/ { print $1 &quot;\t&quot; $4-1 &quot;\t&quot; $5}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="m">1</span>   <span class="m">3054232</span> <span class="m">3054733</span>
 </code></pre></div>
 <ul>
 <li><code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>awk <span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf 
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>awk <span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf 
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>exon    69
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>CDS 56
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>UTR 24
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>gene    1
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>start_codon 5
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>stop_codon  5
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>transcript  9
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>exon    69
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>CDS 56
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>UTR 24
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>gene    1
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>start_codon 5
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>stop_codon  5
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>transcript  9
 </code></pre></div></p>
 <h2 id="bioawk"><code>bioawk</code><a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
 <p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
@@ -846,58 +978,58 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <p></center></p>
 </details>
 <p><strong>bioawk</strong> is not a default linux/unix utility. .i.e. Has to be installed. This is available as a module on NeSI HPC platforms which can be loaded with </p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module load bioawk/1.0
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>module load bioawk/1.0
 </code></pre></div>
  The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bioawk -c <span class="nb">help</span> bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>bioawk -c <span class="nb">help</span> bed
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ed:
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:start <span class="m">3</span>:end <span class="m">4</span>:name <span class="m">5</span>:score <span class="m">6</span>:strand <span class="m">7</span>:thickstart <span class="m">8</span>:thickend <span class="m">9</span>:rgb <span class="m">10</span>:blockcount <span class="m">11</span>:blocksizes <span class="m">12</span>:blockstarts 
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sam:
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>   <span class="m">1</span>:qname <span class="m">2</span>:flag <span class="m">3</span>:rname <span class="m">4</span>:pos <span class="m">5</span>:mapq <span class="m">6</span>:cigar <span class="m">7</span>:rnext <span class="m">8</span>:pnext <span class="m">9</span>:tlen <span class="m">10</span>:seq <span class="m">11</span>:qual 
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>vcf:
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:pos <span class="m">3</span>:id <span class="m">4</span>:ref <span class="m">5</span>:alt <span class="m">6</span>:qual <span class="m">7</span>:filter <span class="m">8</span>:info 
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>gff:
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>   <span class="m">1</span>:seqname <span class="m">2</span>:source <span class="m">3</span>:feature <span class="m">4</span>:start <span class="m">5</span>:end <span class="m">6</span>:score <span class="m">7</span>:filter <span class="m">8</span>:strand <span class="m">9</span>:group <span class="m">10</span>:attribute 
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>fastx:
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>   <span class="m">1</span>:name <span class="m">2</span>:seq <span class="m">3</span>:qual <span class="m">4</span>:comment 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ed:
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:start <span class="m">3</span>:end <span class="m">4</span>:name <span class="m">5</span>:score <span class="m">6</span>:strand <span class="m">7</span>:thickstart <span class="m">8</span>:thickend <span class="m">9</span>:rgb <span class="m">10</span>:blockcount <span class="m">11</span>:blocksizes <span class="m">12</span>:blockstarts 
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>sam:
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>   <span class="m">1</span>:qname <span class="m">2</span>:flag <span class="m">3</span>:rname <span class="m">4</span>:pos <span class="m">5</span>:mapq <span class="m">6</span>:cigar <span class="m">7</span>:rnext <span class="m">8</span>:pnext <span class="m">9</span>:tlen <span class="m">10</span>:seq <span class="m">11</span>:qual 
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>vcf:
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:pos <span class="m">3</span>:id <span class="m">4</span>:ref <span class="m">5</span>:alt <span class="m">6</span>:qual <span class="m">7</span>:filter <span class="m">8</span>:info 
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>gff:
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>   <span class="m">1</span>:seqname <span class="m">2</span>:source <span class="m">3</span>:feature <span class="m">4</span>:start <span class="m">5</span>:end <span class="m">6</span>:score <span class="m">7</span>:filter <span class="m">8</span>:strand <span class="m">9</span>:group <span class="m">10</span>:attribute 
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>fastx:
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>   <span class="m">1</span>:name <span class="m">2</span>:seq <span class="m">3</span>:qual <span class="m">4</span>:comment 
 </code></pre></div>
 </blockquote>
 <p>As an example of how this works, let’s read in example.bed and append a column with the length of the feature (end position - start position) for all protein coding genes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>bioawk -c gff <span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span> ../data/Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>bioawk -c gff <span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span> ../data/Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>1  465597
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>1  16807
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>1  5485
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>1  12533
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>1  465597
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>1  16807
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>1  5485
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>1  12533
 </code></pre></div>
 </blockquote>
 <p>Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>&gt;SRR097977.1
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>&gt;SRR097977.2
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>&gt;SRR097977.1
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>&gt;SRR097977.2
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
 </code></pre></div>
 </blockquote>
 <div class="admonition info">
 <p>Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use <code>-c fastx</code>.</p>
 </div>
 <p>Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bioawk -c fastx <span class="s1">&#39;END{print NR}&#39;</span> SRR097977.fastq 
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>bioawk -c fastx <span class="s1">&#39;END{print NR}&#39;</span> SRR097977.fastq 
 </code></pre></div>
 Bioawk’s function <code>revcomp()</code> can be used to reverse complement a sequence:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&gt;SRR097977.1
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>&gt;SRR097977.2
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>&gt;SRR097977.1
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>&gt;SRR097977.2
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
 </code></pre></div>
 </blockquote>
 <hr />

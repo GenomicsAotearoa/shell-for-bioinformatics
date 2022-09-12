@@ -40,6 +40,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -390,22 +392,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sed" class="md-nav__link">
-    sed
+  <a href="#joining-two-files-with-join" class="md-nav__link">
+    Joining two files with join
   </a>
-  
-    <nav class="md-nav" aria-label="sed">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#find-and-replace" class="md-nav__link">
-    Find and Replace
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -524,22 +513,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sed" class="md-nav__link">
-    sed
+  <a href="#joining-two-files-with-join" class="md-nav__link">
+    Joining two files with join
   </a>
-  
-    <nav class="md-nav" aria-label="sed">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#find-and-replace" class="md-nav__link">
-    Find and Replace
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -920,95 +896,87 @@ header). Can you group rows by chromosome, and sort by position? If yes, append 
 <li><code>n</code> and <code>r</code> represents <em>numerical sort</em> and <em>reverse</em> order (Or descending as the default as ascending) </li>
 </ul>
 </div>
-<h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
-<p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
-<h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
-<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. The syntax for doing this in <code>sed</code> is as follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>sed <span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span> FILENAME
+<h2 id="joining-two-files-with-join">Joining two files with <code>join</code><a class="headerlink" href="#joining-two-files-with-join" title="Permanent link">&para;</a></h2>
+<div class="admonition pied-piper">
+<p class="admonition-title">Prepare</p>
+<p>Create a file named <em>example_lengths.txt</em> with following content</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>chr1    <span class="m">58352</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>chr2    <span class="m">39521</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>chr3    <span class="m">24859</span>
 </code></pre></div>
-<div class="admonition info">
-<ul>
-<li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
-<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is <code>s</code> which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
-<li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
-<li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
-<li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
-<li><code>N</code> where N is any number, to replace Nth instance of the <code>REGEXP</code> with <code>REPLACEMENT</code></li>
-<li><code>p</code> if substitution was made, then prints the new pattern space</li>
-<li><code>i</code> ignores case for matching <code>REGEXP</code></li>
-<li><code>w</code> file If substitution was made, write out the result to the given file</li>
-<li><code>d</code> when specified without <code>REPLACEMENT</code>, deletes the found <code>REGEXP</code></li>
-</ul>
-</li>
-</ul>
 </div>
-<ul>
-<li>Some find and replace examples</li>
-</ul>
-<p>Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>sed <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed &gt; example_chromosome.bed
+<p>The Unix tool join is used to join different files together by a common column. For example, we may want to add chromosome lengths recorded in example_lengths.txt to example.bed BED file, we saw earlier. The files look like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>cat example.bed
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>echo &quot;==========&quot;
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>cat example_lengths.txt
 </code></pre></div>
-Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>sed <span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span> example.bed &gt; example_40.bed
-</code></pre></div>
-Find and replace directly on the input, but save an old version too</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sed -i.old <span class="s1">&#39;s/chr/chromosome/g&#39;</span> example.bed
-</code></pre></div>
-<div class="admonition info">
-<p><code>-i</code> to edit files in-place instead of printing to standard output</p>
-</div>
-<ul>
-<li>Print specific lines of the file</li>
-</ul>
-<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
-<p>print 5<sup>th</sup> line of example.bed</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
-</code></pre></div>
-<p>We can provide any number of additional lines to print using <code>-e</code> option. Let's print line 2 and 5, </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>sed -n -e <span class="s1">&#39;2p&#39;</span> -e <span class="s1">&#39;5p&#39;</span> example.bed
-</code></pre></div>
-<p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>sed -n <span class="s1">&#39;2,6p&#39;</span> example.bed
-</code></pre></div>
-Also, we can create specific pattern, like multiples of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>sed -n <span class="s1">&#39;10~10p&#39;</span> Mus_musculus.GRCm38.75_chr1.bed
-</code></pre></div>
-<details class="question" open="open">
-<summary>Exercise 4.4</summary>
-<p>Can you use the above <code>~</code> trick to extract all the <strong>odd</strong> numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file <strong>odd_sed.bed</strong></p>
-</details>
-<p>One of the powerful feature is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq
-</code></pre></div>
-<div class="admonition hint">
-<p class="admonition-title">Sanity Check</p>
-<p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>cat SRR097977.fastq | wc -l</code></p>
-</div>
-<p>We can use the above trick to convert the .fastq to .fasta</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>sed -n <span class="s1">&#39;1~4p;2~4p&#39;</span> SRR097977.fastq  <span class="p">|</span> sed <span class="s1">&#39;s/^@/&gt;/g&#39;</span> &gt; SRR097977.fasta
-</code></pre></div>
-Let's wrap up <code>sed</code> with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to: </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
-</code></pre></div>
-<div class="admonition info">
-<p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
-</div>
-<p>Output is not really what we are after,</p>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="m">1</span>  pseudogene  gene    <span class="m">3054233</span> <span class="m">3054733</span> .   +   .   gene_id <span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span> gene_source <span class="s2">&quot;havana&quot;</span><span class="p">;</span> gene_biotype <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
-<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>ENSMUST00000160944
-<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>ENSMUST00000160944
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>chr1   <span class="m">26</span>  <span class="m">39</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>chr1   <span class="m">32</span>  <span class="m">47</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>chr3   <span class="m">11</span>  <span class="m">28</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>chr1   <span class="m">40</span>  <span class="m">49</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>chr3   <span class="m">16</span>  <span class="m">27</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>chr1   <span class="m">9</span>   <span class="m">28</span>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a>chr2   <span class="m">35</span>  <span class="m">54</span>
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>chr1   <span class="m">10</span>  <span class="nv">19</span>
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="o">==========</span>
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a>chr1   <span class="m">58352</span>
+<a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a>chr2   <span class="m">39521</span>
+<a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a>chr3   <span class="m">24859</span>
 </code></pre></div>
 </blockquote>
-<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of Mus_musculus.GRCm38.75_chr1.gtf don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before sed to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable sed from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+<p>To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sort -k1,1 example.bed &gt; ../data/example_sorted.bed
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>sort -c -k1,1 example_lengths.txt <span class="c1"># verifies is already sorted</span>
 </code></pre></div>
-<hr />
-<div class="admonition abstract">
-<p class="admonition-title">In preparation for next lesson, rename <em>example.bed.old</em> back to  <em>example.bed</em></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>mv example.bed.old example.bed
+The basic syntax is <code>join -1 &lt;file_1_field&gt; -2 &lt;file_2_field&gt; &lt;file_1&gt; &lt;file_2&gt;</code>. So, with <em>example.bed</em> and <em>example_lengths.txt</em> this would be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths.txt &gt; example_with_lengths.txt
 </code></pre></div>
-</div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>cat example_with_lengths.txt
+</code></pre></div>
+There are many types of joins. For now, it’s important that we make sure join is working as we expect. Our expectation is that this join should not lead to fewer rows than in our example.bed file. We can verify this with <code>wc -l</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>wc -l example_sorted.bed example_with_lengths.txt 
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>  <span class="m">8</span> example_sorted.bed
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>  <span class="m">8</span> example_with_lengths.txt
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a> <span class="m">16</span> total
+</code></pre></div>
+</blockquote>
+<p>However, look what happens if our second file, <em>example_lengths.txt</em> doesn’t have the lengths for <strong>chr3</strong>:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>head -n2 example_lengths.txt &gt; example_lengths_alt.txt <span class="c1">#truncate file</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt
+</code></pre></div></p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
+<a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt <span class="p">|</span> wc -l
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="m">6</span>
+</code></pre></div>
+</blockquote>
+<p>Because <strong>chr3</strong> is absent from <em>example_lengths_alt.txt</em>, our join omits rows from example_sorted.bed that do not have an entry in the first column of example_lengths_alt.txt. If we don’t want this behavior, we can use option -a to include unpairable lines—ones that do not have an entry in either file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> -a <span class="m">1</span> example_sorted.bed example_lengths_alt.txt 
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
+<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a>chr3 <span class="m">11</span> <span class="m">28</span>
+<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a>chr3 <span class="m">16</span> <span class="m">27</span>
+</code></pre></div>
+</blockquote>
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
 
               
