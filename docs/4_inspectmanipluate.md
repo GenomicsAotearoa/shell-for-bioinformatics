@@ -409,7 +409,21 @@ grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -
 
 ## Joining two files with `join`
 
-!!! pied-piper ""
+!!! pied-piper "Prepare"
 
+    Create a file named *example_lengths.txt* with following content
 
+    ```bash
+    chr1	58352
+    chr2	39521
+    chr3	24859
+    ```
+The Unix tool join is used to join different files together by a common column. For example, we may want to add chromosome lengths recorded in example_lengths.txt to example.bed BED file, we saw earlier. The files look like this:
+
+```
+cat example.bed
+echo "=========="
+cat example_lengths.txt
+```
+ 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
