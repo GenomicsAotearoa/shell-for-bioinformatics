@@ -13,8 +13,8 @@
 | **Lesson**                                         | **Overview** | 
 |:---------------------------------------------------|:-------------|
 |1. [UNIX,Linux & UNIX Shell](./0_introduction.md)|Introduction to UNIX operating system, Linux and UNIX Shell|
-|2. [Download and verify data](./1_download_data.md)| Downloading data with `wget`/`curl` and check the transferred data’s integrity with check‐sums|
-|3. [UNIX Shell Basics & Recap](./2_unixshellbasics.md)|Navigating Files & Directories and a review of  commands used in routine tasks|
+|2. [UNIX Shell Basics & Recap](./1_unixshellbasics.md)|Navigating Files & Directories and a review of  commands used in routine tasks |
+|3. [Download and verify data](./2_download_data.md)|Downloading data with `wget`/`curl` and check the transferred data’s integrity with check‐sums|
 |4. [Streams, Redirection and Pipe](./3_streams_red_pipe.md)|Combining pipes and redirection, Using "Exit" statuses|
 |5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)| Inspect file/s with utilities such as `head`,`less`. Extracting and formatting tabular data. Magical `grep`. |
 |6. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)|Substitute matching patterns with `sed`. Text processing with `awk` and `bioawk`|
