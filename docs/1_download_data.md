@@ -111,4 +111,4 @@ Data we download is the starting point of all future analyses and conclusions. T
 
     So, it's quite difficult avoid the temptation to throw more memory at this process and re-run it. In fact, it was re-run with 0.5TB of memory as a sanity check which triggered the same error.
 
-    As it turned out, the true cause for this failed process was the input **.bed** file was corrupted.  🕵️‍♀️
+    As it turned out, **.bed** file was corrupted .  🕵️‍♀️
