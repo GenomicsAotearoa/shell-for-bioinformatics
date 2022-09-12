@@ -281,4 +281,4 @@ Another example of using command substitution would be creating dated directorie
 mkdir results-$(date +%F)
 ```
 
-* `%F` - full date; same as %Y-%m-%d
+* `%F` - full date; same as `%Y-%m-%d`
