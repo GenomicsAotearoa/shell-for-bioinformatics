@@ -425,5 +425,28 @@ cat example.bed
 echo "=========="
 cat example_lengths.txt
 ```
+
+>```bash
+>chr1	26	39
+>chr1	32	47
+>chr3	11	28
+>chr1	40	49
+>chr3	16	27
+>chr1	9	28
+>chr2	35	54
+>chr1	10	19
+>==========
+>chr1	58352
+>chr2	39521
+>chr3	24859
+>```
  
+To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):
+
+```bash
+sort -k1,1 example.bed > ../data/example_sorted.bed
+sort -c -k1,1 example_lengths.txt # verifies is already sorted
+```
+The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
+
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
