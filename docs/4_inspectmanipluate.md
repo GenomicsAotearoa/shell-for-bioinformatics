@@ -449,4 +449,21 @@ sort -c -k1,1 example_lengths.txt # verifies is already sorted
 ```
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
 
+```bash
+join -1 1 -2 1 example_sorted.bed example_lengths.txt > example_with_lengths.txt
+```
+
+```bash
+cat example_with_lengths.txt
+```
+There are many types of joins. For now, it’s important that we make sure join is working as we expect. Our expectation is that this join should not lead to fewer rows than in our example.bed file. We can verify this with `wc -l`:
+
+```bash
+wc -l example_sorted.bed example_with_lengths.txt 
+```
+```
+  8 example_sorted.bed
+  8 example_with_lengths.txt
+ 16 total
+```
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
