@@ -201,14 +201,15 @@ awk '{print}' example.bed
 Print lines which match the given pattern
 
 ```bash
-awk '/chr1/{print}' example.bed 
-
-chr1	26	39
-chr1	32	47
-chr1	40	49
-chr1	9	28
-chr1	10	19
+awk '/chr1/{print}' example.bed
 ```
+>```bash
+>chr1	26	39
+>chr1	32	47
+>chr1	40	49
+>chr1	9	28
+>chr1	10	19
+>```
 
 `awk` can be used to mimic functionality of `cut` 
 
@@ -234,11 +235,13 @@ Let’s look at how we can incorporate simple pattern matching. Suppose we wante
 position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:
 
 ```bash
-awk '$3 - $2 > 18' example.bed 
+awk '$3 - $2 > 18' example.bed
+``` 
+>```bash
+>chr1	9	28
+>chr2	35	54
+>```
 
-chr1	9	28
-chr2	35	54
-```
 - - -
 
 ??? info "`awk` Comparison and Logical operations"
@@ -264,11 +267,12 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
 ```bash
 awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
-
-chr1	26	39
-chr1	32	47
-chr1	9	28
 ```
+>```bash
+>chr1	26	39
+>chr1	32	47
+>chr1	9	28
+>```
 !!! info ""
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are mating the first field, `$1` against the regular expression `chr1`. 
@@ -299,12 +303,13 @@ chr1	9	28
 * We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):
 
 ```bash
-awk 'NR >= 3 && NR <=5' example.bed 
-
-    chr3	11	28
-    chr1	40	49
-    chr3	16	27
-```
+awk 'NR >= 3 && NR <=5' example.bed
+``` 
+>```bash
+>    chr3	11	28
+>    chr1	40	49
+>    chr3	16	27
+>```
 
 * suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:
 
@@ -322,11 +327,12 @@ awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed
 
 ```bash
 awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
-
-1	3054232	3054733
-1	3054232	3054733
-1	3054232	3054733
 ```
+>```bash
+>1	3054232	3054733
+>1	3054232	3054733
+>1	3054232	3054733
+>```
 
 * `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
 
