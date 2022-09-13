@@ -6,6 +6,11 @@
     * Magical `grep`
     * use `sort`, `uniq`, `join` to manipulate the one or multiple files at once
 
+<center>
+![image](./images/inspect_1.png){width="350"}
+</center>
+
+
 Many formats in bioinformatics are simple tabular plain-text files delimited by a character. The most common tabular plain-text file format used in bioinformatics is tab-delimited. Bioinformatics evolved to favor tab-delimited formats because of the convenience of working with these files using Unix tools.
 
 !!! info "Tabular Plain-Text Data Formats" 
