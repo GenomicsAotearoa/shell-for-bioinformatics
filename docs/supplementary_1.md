@@ -21,6 +21,8 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
 
     </center>
 
+## Special Characters 
+
 ???+ info "Special Characters"
 
     | Character  | Meaning            |
@@ -41,5 +43,19 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
     |`$`         | **Variable substitution** (contents of a variable).|
     |`${}`        |**Parameter substitution**|
     |`$?`        | **Exit status variable**|
-    |`$$`        | **process ID variable|
+    |`$$`        | **process ID variable**|
+    |`()`        | **command group**|
+    |`{}`        | **Block of code [curly brackets]**. Also referred to as an inline group, this construct, in effect, creates an anonymous function (a function without a name).|
+    |`{} \;`     | **pathname**. Mostly used in `find` constructs. This is not a shell builtin. |
+    |`>|`        |**force redirection** (even if the noclobber option is set). This will forcibly overwrite an existing file.|
+    | `||`       |**OR logical operator**. In a test construct, the || operator causes a return of 0 (success) if either of the linked test conditions is true.|
+    | `&`        | **Run job in background**. A command followed by an `&` will run in the background.|
+    |`&&`        |**AND logical operator**. In a test construct, the && operator causes a return of 0 (success) only if both the linked test conditions are true.|
+    |`~+`        | **current working directory.** This corresponds to the `$PWD` internal variable.|
+    |`~-`         |**previous working directory**. This corresponds to the `$OLDPWD` internal variable.|
+    |`=~`        |**regular expression match.** This operator was introduced with version 3 of Bash.|
+    |`^`         |**beginning-of-line**. In a regular expression, a "^" addresses the beginning of a line of text.|
+    |`^, ^^`     |**Uppercase conversion in parameter substitution**|
+
+
     
