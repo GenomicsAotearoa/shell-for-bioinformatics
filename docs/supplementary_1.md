@@ -23,7 +23,7 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
 
 ## Special Characters 
 
-???+ info "Special Characters"
+??? info "Special Characters"
 
     | Character  | Meaning            |
     |:-----------|:-------------------|
