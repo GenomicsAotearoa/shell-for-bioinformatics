@@ -454,7 +454,7 @@ cat example_lengths.txt
 To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):
 
 ```bash
-sort -k1,1 example.bed > ../data/example_sorted.bed
+sort -k1,1 example.bed > example_sorted.bed
 sort -c -k1,1 example_lengths.txt # verifies is already sorted
 ```
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
