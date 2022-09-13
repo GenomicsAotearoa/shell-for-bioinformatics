@@ -201,7 +201,7 @@ awk '{print}' example.bed
 Print lines which match the given pattern
 
 ```bash
-awk '/chr1/ {print}' example.bed 
+awk '/chr1/{print}' example.bed 
 
 chr1	26	39
 chr1	32	47
