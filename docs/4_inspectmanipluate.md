@@ -511,6 +511,9 @@ Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows f
 ```bash
 join -1 1 -2 1 -a 1 example_sorted.bed example_lengths_alt.txt 
 ```
+!!! info ""
+    `-a` FILENUM  - also print unpairable lines from file FILENUM, where FILENUM is 1 or 2, corresponding to FILE1 or FILE2
+
 >```bash
 >chr1 10 19 58352
 >chr1 26 39 58352
