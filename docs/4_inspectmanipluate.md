@@ -238,6 +238,7 @@ column -s "," -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
 ## Sorting Plain-Text Data with `sort`
 
 Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:
+
 - Certain operations are much more efficient when performed on sorted data.
 - Sorting data is a prerequisite to finding all unique lines.
 
