@@ -1,6 +1,10 @@
 # 5. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
  
 !!! abstract "Lesson Objectives"
+    * Inspect file/s with utilities such as `head`,`less`. 
+    * Extracting and formatting tabular data. 
+    * Magical `grep`
+    * use `sort`, `uniq`, `join` to manipulate the one or multiple files at once
 
 Many formats in bioinformatics are simple tabular plain-text files delimited by a character. The most common tabular plain-text file format used in bioinformatics is tab-delimited. Bioinformatics evolved to favor tab-delimited formats because of the convenience of working with these files using Unix tools.
 
