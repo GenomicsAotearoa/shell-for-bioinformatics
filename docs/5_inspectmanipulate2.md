@@ -26,7 +26,9 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 
     - Here, `/` is the delimiter (you can also use `_` (underscore), `|` (pipe) or `:` (colon) as delimiter as well)
-    - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is `s` which does the substitution operation (other useful operators include `y` for transformation, `i` for insertion, `d` for deletion etc.).
+    - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). 
+         - The most common and widely used operation is `s` which does the **substitution** operation 
+         - Other useful operators include `y` for **transformation**, `i` for **insertion**, `d` for **deletion** etc.).
     - `REGEXP` and `REPLACEMENT` specify search term and the substitution term respectively for the operation that is being performed.
     - `FLAGS` are additional parameters that control the operation. Some common `FLAGS` include:
         - `g`	replace all the instances of `REGEXP` with `REPLACEMENT` (globally)
