@@ -37,3 +37,4 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
     |**`**       |**command substitution**. The **command** construct makes available the output of command for assignment to a variable. This is also known as backquotes or backticks.|
     |`:`         |**null command [colon]**. This is the shell equivalent of a "NOP" (no op, a do-nothing operation). It may be considered a synonym for the shell builtin true|
     |`!`         | reverse (or negate) the sense of a test or exit status [bang]. The ! operator inverts the exit status of the command to which it is applied|
+    |`?`            |**test operator**. Within certain expressions, the ? indicates a test for a condition.|
