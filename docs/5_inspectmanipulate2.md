@@ -339,16 +339,15 @@ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head
 ```bash
 awk '/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k "\t" feature[k]}' Mus_musculus.GRCm38.75_chr1.gtf 
 ```
-```
-exon	69
-CDS	56
-UTR	24
-gene	1
-start_codon	5
-stop_codon	5
-transcript	9
-
-```
+>```bash
+>exon	69
+>CDS	56
+>UTR	24
+>gene	1
+>start_codon	5
+>stop_codon	5
+>transcript	9
+>```
 
 
 ## `bioawk` 
