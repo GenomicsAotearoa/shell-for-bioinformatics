@@ -461,7 +461,7 @@ sort -c -k1,1 example_lengths.txt
 ```
 !!! info ""
     `-c`, `--check`, `--check=diagnose-first` = check for sorted input; do not sort
-    
+
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
 
 ```bash
@@ -485,7 +485,7 @@ wc -l example_sorted.bed example_with_lengths.txt
 However, look what happens if our second file, *example_lengths.txt* doesn’t have the lengths for **chr3**:
 
 ```bash
-head -n2 example_lengths.txt > example_lengths_alt.txt #truncate file
+head -n 2 example_lengths.txt > example_lengths_alt.txt #truncate file
 ```
 ```bash
 join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt
