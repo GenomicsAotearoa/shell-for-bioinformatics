@@ -455,8 +455,13 @@ To do this, we need to join both of these tabular files by their common column, 
 
 ```bash
 sort -k1,1 example.bed > example_sorted.bed
-sort -c -k1,1 example_lengths.txt # verifies is already sorted
 ```
+```bash
+sort -c -k1,1 example_lengths.txt
+```
+!!! info ""
+    `-c`, `--check`, `--check=diagnose-first` = check for sorted input; do not sort
+    
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
 
 ```bash
