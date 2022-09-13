@@ -60,7 +60,10 @@ sed -i.old 's/chr/chromosome/g' example.bed
 
 * Print specific lines of the file
 
-To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n`.
+To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n` 
+
+!!! info ""
+    `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
 
 print 5th line of example.bed
 
