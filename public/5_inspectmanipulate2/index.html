@@ -557,7 +557,11 @@
 <div class="admonition info">
 <ul>
 <li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
-<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is <code>s</code> which does the substitution operation (other useful operators include <code>y</code> for transformation, <code>i</code> for insertion, <code>d</code> for deletion etc.).</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). <ul>
+<li>The most common and widely used operation is <code>s</code> which does the <strong>substitution</strong> operation </li>
+<li>Other useful operators include <code>y</code> for <strong>transformation</strong>, <code>i</code> for <strong>insertion</strong>, <code>d</code> for <strong>deletion</strong> etc.).</li>
+</ul>
+</li>
 <li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
 <li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
 <li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
