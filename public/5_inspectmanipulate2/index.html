@@ -592,7 +592,10 @@ Find and replace directly on the input, but save an old version too</p>
 <ul>
 <li>Print specific lines of the file</li>
 </ul>
-<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code>.</p>
+<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code> </p>
+<div class="admonition info">
+<p><code>-n</code>, <code>--quiet</code>, <code>--silent</code> = suppress automatic printing of pattern space</p>
+</div>
 <p>print 5<sup>th</sup> line of example.bed</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sed -n <span class="s1">&#39;5p&#39;</span> example.bed
 </code></pre></div>
