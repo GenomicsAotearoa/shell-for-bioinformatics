@@ -6,6 +6,10 @@
     * Use specialised language `awk` to do a variety of text-processing tasks
     * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
+<center>
+![image](./images/awk_image.png){width="200"}
+</center>
+
 ## sed
 
 The `s`treamline `ed`itor or `sed` command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. 
