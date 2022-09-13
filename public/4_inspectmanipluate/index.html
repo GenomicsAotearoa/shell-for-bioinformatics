@@ -716,7 +716,7 @@ This is a good place to bring in <code>grep</code> again which can be used to co
 </code></pre></div>
 </blockquote>
 <p>Note that you should only use <code>column -t</code> to visualize data in the terminal, not to reformat data to write to a file. Tab-delimited data is preferable to data delimited by a variable number of spaces, since it’s easier for programs to parse. Like <code>cut</code> , <code>column</code>’s default delimiter is the tab character (<code>\t</code> ). We can specify a different delimiter with the <code>-s</code> option. So, if we wanted to visualize the columns of the <strong><em>Mus_musculus.GRCm38.75_chr1_bed.csv</em></strong> file more easily, we could use:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>column -s <span class="s2">&quot;,&quot;</span> -t Mus_musculus.GRCm38.75_chr1.bed <span class="p">|</span> head -n <span class="m">3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>column -s <span class="s2">&quot;,&quot;</span> -t Mus_musculus.GRCm38.75_chr1_bed.csv <span class="p">|</span> head -n <span class="m">3</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="m">1</span>   <span class="m">3054233</span> <span class="m">3054733</span>
@@ -764,9 +764,11 @@ Therefore, we need to <em>translate*</em> these values to a single "new line" wi
 </code></pre></div>
 </details>
 <h2 id="sorting-plain-text-data-with-sort">Sorting Plain-Text Data with <code>sort</code><a class="headerlink" href="#sorting-plain-text-data-with-sort" title="Permanent link">&para;</a></h2>
-<p>Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:
-- Certain operations are much more efficient when performed on sorted data.
-- Sorting data is a prerequisite to finding all unique lines.</p>
+<p>Very often we need to work with sorted plain-text data in bioinformatics. The two most common reasons to sort data are as follows:</p>
+<ul>
+<li>Certain operations are much more efficient when performed on sorted data.</li>
+<li>Sorting data is a prerequisite to finding all unique lines.</li>
+</ul>
 <p><code>sort</code>  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use <code>sort</code> command without any arguments.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cat &gt; test_sort.bed
 </code></pre></div>
@@ -950,55 +952,62 @@ header). Can you group rows by chromosome, and sort by position? If yes, append 
 </code></pre></div>
 </blockquote>
 <p>To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sort -k1,1 example.bed &gt; ../data/example_sorted.bed
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>sort -c -k1,1 example_lengths.txt <span class="c1"># verifies is already sorted</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>sort -k1,1 example.bed &gt; example_sorted.bed
 </code></pre></div>
-The basic syntax is <code>join -1 &lt;file_1_field&gt; -2 &lt;file_2_field&gt; &lt;file_1&gt; &lt;file_2&gt;</code>. So, with <em>example.bed</em> and <em>example_lengths.txt</em> this would be:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths.txt &gt; example_with_lengths.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>sort -c -k1,1 example_lengths.txt
+</code></pre></div></p>
+<div class="admonition info">
+<p><code>-c</code>, <code>--check</code>, <code>--check=diagnose-first</code> = check for sorted input; do not sort</p>
+</div>
+<p>The basic syntax is <code>join -1 &lt;file_1_field&gt; -2 &lt;file_2_field&gt; &lt;file_1&gt; &lt;file_2&gt;</code>. So, with <em>example.bed</em> and <em>example_lengths.txt</em> this would be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths.txt &gt; example_with_lengths.txt
 </code></pre></div>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>cat example_with_lengths.txt
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>cat example_with_lengths.txt
 </code></pre></div>
 There are many types of joins. For now, it’s important that we make sure join is working as we expect. Our expectation is that this join should not lead to fewer rows than in our example.bed file. We can verify this with <code>wc -l</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>wc -l example_sorted.bed example_with_lengths.txt 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>wc -l example_sorted.bed example_with_lengths.txt 
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>  <span class="m">8</span> example_sorted.bed
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>  <span class="m">8</span> example_with_lengths.txt
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a> <span class="m">16</span> total
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>  <span class="m">8</span> example_sorted.bed
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>  <span class="m">8</span> example_with_lengths.txt
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a> <span class="m">16</span> total
 </code></pre></div>
 </blockquote>
 <p>However, look what happens if our second file, <em>example_lengths.txt</em> doesn’t have the lengths for <strong>chr3</strong>:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>head -n2 example_lengths.txt &gt; example_lengths_alt.txt <span class="c1">#truncate file</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>head -n <span class="m">2</span> example_lengths.txt &gt; example_lengths_alt.txt <span class="c1">#truncate file</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt
 </code></pre></div></p>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
-<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
-<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
-<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
-<a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
+<a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
+<a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
 </code></pre></div>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt <span class="p">|</span> wc -l
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> example_sorted.bed example_lengths_alt.txt <span class="p">|</span> wc -l
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="m">6</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="m">6</span>
 </code></pre></div>
 </blockquote>
 <p>Because <strong>chr3</strong> is absent from <em>example_lengths_alt.txt</em>, our join omits rows from example_sorted.bed that do not have an entry in the first column of example_lengths_alt.txt. If we don’t want this behavior, we can use option -a to include unpairable lines—ones that do not have an entry in either file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> -a <span class="m">1</span> example_sorted.bed example_lengths_alt.txt 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>join -1 <span class="m">1</span> -2 <span class="m">1</span> -a <span class="m">1</span> example_sorted.bed example_lengths_alt.txt 
 </code></pre></div>
+<div class="admonition info">
+<p><code>-a</code> FILENUM  - also print unpairable lines from file FILENUM, where FILENUM is 1 or 2, corresponding to FILE1 or FILE2</p>
+</div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
-<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
-<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
-<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
-<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
-<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a>chr3 <span class="m">11</span> <span class="m">28</span>
-<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a>chr3 <span class="m">16</span> <span class="m">27</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>chr1 <span class="m">10</span> <span class="m">19</span> <span class="m">58352</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>chr1 <span class="m">26</span> <span class="m">39</span> <span class="m">58352</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>chr1 <span class="m">32</span> <span class="m">47</span> <span class="m">58352</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>chr1 <span class="m">40</span> <span class="m">49</span> <span class="m">58352</span>
+<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>chr1 <span class="m">9</span> <span class="m">28</span> <span class="m">58352</span>
+<a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>chr2 <span class="m">35</span> <span class="m">54</span> <span class="m">39521</span>
+<a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>chr3 <span class="m">11</span> <span class="m">28</span>
+<a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>chr3 <span class="m">16</span> <span class="m">27</span>
 </code></pre></div>
 </blockquote>
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
