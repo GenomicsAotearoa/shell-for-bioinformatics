@@ -15,7 +15,7 @@
 
 ## The UNIX operating system
 
-Unix is a multi-user operating system which allows more than one person to use the computer resources at a time. It was originally designed as a time-sharing system to serve several users simultaneous. Unix allows direct communication with the computer via a terminal, hence being very interactive and giving the user direct control over the computer resources. Unix also gives users the ability to share data and programs among one another.
+Unix is a multi-user operating system which allows more than one person to use the computer resources at a time. It was originally designed as a time-sharing system to serve several users simultaneously. Unix allows direct communication with the computer via a terminal, hence being very interactive and giving the user direct control over the computer resources. Unix also gives users the ability to share data and programs among one another.
 
 Unix is a generic operating system which takes full advantage of all available hardware such as 32-bit processor chips, expanded memory, and large, fast hard drives. Since Unix is written in a machine-independent language (C/C++) it is portable to many different types of machines including PC's. Therefore, Unix can be adapted to meet special requirements. The UNIX operating system is made up of three parts; the kernel, the shell and the programs.
 

@@ -627,6 +627,23 @@ Let's wrap up <code>sed</code> with one more use case (a slightly complicated lo
 </code></pre></div>
 <div class="admonition info">
 <p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
+<details class="pied-piper">
+<summary>POSIX Regular and Exetended Regular Expressions</summary>
+<p><strong>POSIX Basic Regular Expressions</strong> </p>
+<ul>
+<li>
+<p>POSIX or “Portable Operating System Interface for uniX” is a collection of standards that define some of the functionality that a (UNIX) operating system should support. One of these standards defines two flavors of regular expressions. Commands involving regular expressions, such as grep and egrep, implement these flavors on POSIX-compliant UNIX systems. Several database systems also use POSIX regular expressions.</p>
+<p>The Basic Regular Expressions or BRE flavor standardizes a flavor similar to the one used by the traditional UNIX grep command. This is pretty much the oldest regular expression flavor still in use today. One thing that sets this flavor apart is that most meta-characters require a backslash to give the metacharacter its flavor. Most other flavors, including POSIX ERE, use a backslash to suppress the meaning of metacharacters. Using a backslash to escape a character that is never a metacharacter is an error.</p>
+</li>
+</ul>
+<p><strong>POSIX Extended Regular Expressions</strong></p>
+<ul>
+<li>
+<p>The Extended Regular Expressions or ERE flavor standardizes a flavor similar to the one used by the UNIX egrep command. “Extended” is relative to the original UNIX grep, which only had bracket expressions, dot, caret, dollar and star. An ERE support these just like a BRE. Most modern regex flavors are extensions of the ERE flavor. By today’s standard, the POSIX ERE flavor is rather bare bones. The POSIX standard was defined in 1986, and regular expressions have come a long way since then.</p>
+<p>The developers of egrep did not try to maintain compatibility with grep, creating a separate tool instead. Thus egrep, and POSIX ERE, add additional metacharacters without backslashes. You can use backslashes to suppress the meaning of all metacharacters, just like in modern regex flavors. Escaping a character that is not a meta-character is an error.</p>
+</li>
+</ul>
+</details>
 </div>
 <p>Output is not really what we are after,</p>
 <blockquote>
@@ -865,7 +882,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>In this example, we’ve initialized a variable <code>s</code> to <strong>0</strong> in <code>BEGIN</code> (variables you define do not need a dollar sign). Then, for each record we increment s by the length of the feature. At the end of the records, we print this sum <code>s</code> divided by the number of records <code>NR</code> , giving the mean.</p>
+<p>In this example, we’ve initialized a variable <code>s</code> to <strong>0</strong> in <code>BEGIN</code> (variables you define do not need a dollar sign). Then, for each record we increment <code>s</code> by the length of the feature. At the end of the records, we print this sum <code>s</code> divided by the number of records <code>NR</code> , giving the mean.</p>
 </div>
 <ul>
 <li><code>awk</code> makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from <strong><em>Mus_muscu‐lus.GRCm38.75_chr1.gtf</em></strong> as follows:</li>
@@ -878,6 +895,10 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="m">1</span>  <span class="m">3054232</span> <span class="m">3054733</span>
 </code></pre></div>
 </blockquote>
+<div class="admonition danger">
+<p class="admonition-title">Note</p>
+<p>Note that we subtract 1 from the start position to convert to <strong>BED</strong> format. This is because <strong>BED</strong> uses zero-indexing while GTF uses 1-indexing; This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.</p>
+</div>
 <ul>
 <li><code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</li>
 </ul>
@@ -893,8 +914,12 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>transcript <span class="m">9</span>
 </code></pre></div>
 </blockquote>
+<p>It’s worth noting that there’s an entirely Unix way to count features of a particular gene: <code>grep</code> , <code>cut</code> , <code>sort</code> , and <code>uniq -c</code></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>grep <span class="s2">&quot;Lypla1&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> cut -f <span class="m">3</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c
+</code></pre></div>
+However, if we needed to also filter on column-specific information (e.g., strand), an approach using just base Unix tools would be quite messy. With Awk, adding an additional filter would be trivial: we’d just use <code>&amp;&amp;</code> to add another expression in the pattern.</p>
 <h2 id="bioawk"><code>bioawk</code><a class="headerlink" href="#bioawk" title="Permanent link">&para;</a></h2>
-<p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original BWK awk.</p>
+<p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original <code>awk</code>.</p>
 <p>The original <code>awk</code> requires a YACC-compatible parser generator (e.g. Byacc or Bison). <code>bioawk</code> further depends on <a href="http://zlib.net/">zlib</a> so as to work with gzip'd files.</p>
 <details>
 <summary>YACC</summary>
@@ -1015,58 +1040,58 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <p></center></p>
 </details>
 <p><strong>bioawk</strong> is not a default linux/unix utility. .i.e. Has to be installed. This is available as a module on NeSI HPC platforms which can be loaded with </p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>module load bioawk/1.0
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>module load bioawk/1.0
 </code></pre></div>
  The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>bioawk -c <span class="nb">help</span> bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>bioawk -c <span class="nb">help</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ed:
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:start <span class="m">3</span>:end <span class="m">4</span>:name <span class="m">5</span>:score <span class="m">6</span>:strand <span class="m">7</span>:thickstart <span class="m">8</span>:thickend <span class="m">9</span>:rgb <span class="m">10</span>:blockcount <span class="m">11</span>:blocksizes <span class="m">12</span>:blockstarts 
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>sam:
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>   <span class="m">1</span>:qname <span class="m">2</span>:flag <span class="m">3</span>:rname <span class="m">4</span>:pos <span class="m">5</span>:mapq <span class="m">6</span>:cigar <span class="m">7</span>:rnext <span class="m">8</span>:pnext <span class="m">9</span>:tlen <span class="m">10</span>:seq <span class="m">11</span>:qual 
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>vcf:
-<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:pos <span class="m">3</span>:id <span class="m">4</span>:ref <span class="m">5</span>:alt <span class="m">6</span>:qual <span class="m">7</span>:filter <span class="m">8</span>:info 
-<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>gff:
-<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>   <span class="m">1</span>:seqname <span class="m">2</span>:source <span class="m">3</span>:feature <span class="m">4</span>:start <span class="m">5</span>:end <span class="m">6</span>:score <span class="m">7</span>:filter <span class="m">8</span>:strand <span class="m">9</span>:group <span class="m">10</span>:attribute 
-<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>fastx:
-<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>   <span class="m">1</span>:name <span class="m">2</span>:seq <span class="m">3</span>:qual <span class="m">4</span>:comment 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>ed:
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:start <span class="m">3</span>:end <span class="m">4</span>:name <span class="m">5</span>:score <span class="m">6</span>:strand <span class="m">7</span>:thickstart <span class="m">8</span>:thickend <span class="m">9</span>:rgb <span class="m">10</span>:blockcount <span class="m">11</span>:blocksizes <span class="m">12</span>:blockstarts 
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>sam:
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>   <span class="m">1</span>:qname <span class="m">2</span>:flag <span class="m">3</span>:rname <span class="m">4</span>:pos <span class="m">5</span>:mapq <span class="m">6</span>:cigar <span class="m">7</span>:rnext <span class="m">8</span>:pnext <span class="m">9</span>:tlen <span class="m">10</span>:seq <span class="m">11</span>:qual 
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>vcf:
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>   <span class="m">1</span>:chrom <span class="m">2</span>:pos <span class="m">3</span>:id <span class="m">4</span>:ref <span class="m">5</span>:alt <span class="m">6</span>:qual <span class="m">7</span>:filter <span class="m">8</span>:info 
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>gff:
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>   <span class="m">1</span>:seqname <span class="m">2</span>:source <span class="m">3</span>:feature <span class="m">4</span>:start <span class="m">5</span>:end <span class="m">6</span>:score <span class="m">7</span>:filter <span class="m">8</span>:strand <span class="m">9</span>:group <span class="m">10</span>:attribute 
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>fastx:
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>   <span class="m">1</span>:name <span class="m">2</span>:seq <span class="m">3</span>:qual <span class="m">4</span>:comment 
 </code></pre></div>
 </blockquote>
-<p>As an example of how this works, let’s read in example.bed and append a column with the length of the feature (end position - start position) for all protein coding genes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>bioawk -c gff <span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span> ../data/Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">4</span>
+<p>As an example of how this works, let’s read in <em>example.bed</em> and append a column with the length of the feature (end position - start position) for all protein coding genes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>bioawk -c gff <span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>1  465597
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>1  16807
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>1  5485
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>1  12533
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>1  465597
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>1  16807
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>1  5485
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>1  12533
 </code></pre></div>
 </blockquote>
 <p>Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>&gt;SRR097977.1
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>&gt;SRR097977.2
-<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>&gt;SRR097977.1
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>&gt;SRR097977.2
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
 </code></pre></div>
 </blockquote>
 <div class="admonition info">
 <p>Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use <code>-c fastx</code>.</p>
 </div>
 <p>Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>bioawk -c fastx <span class="s1">&#39;END{print NR}&#39;</span> SRR097977.fastq 
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>bioawk -c fastx <span class="s1">&#39;END{print NR}&#39;</span> SRR097977.fastq 
 </code></pre></div>
 Bioawk’s function <code>revcomp()</code> can be used to reverse complement a sequence:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>bioawk -c fastx <span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span> SRR097977.fastq <span class="p">|</span> head -n <span class="m">4</span>
 </code></pre></div>
 <blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>&gt;SRR097977.1
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>&gt;SRR097977.2
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>&gt;SRR097977.1
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>&gt;SRR097977.2
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
 </code></pre></div>
 </blockquote>
 <hr />
