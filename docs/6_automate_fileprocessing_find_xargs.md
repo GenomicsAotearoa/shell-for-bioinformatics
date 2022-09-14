@@ -138,7 +138,7 @@ In general, `find -exec` is most appropriate for quick, simple tasks (like delet
 
 `xargs` reads data from standard input (stdin) and executes the command (supplied to it as an argument) one or more times based on the input read. Any spaces, tabs, and newlines in the input are treated as delimiters, while blank lines are ignored. If no command is specified, `xargs` executes `echo`. (Notice, that echo by itself does not read from standard input!)
 
-`xargs` allows us to take input from standard in, and use this input as arguments to another program, which allows us to build commands programmatically. Using `find` with `xargs` is much like `find -exec`, but with some added advantages that make xargs a better choice for larger tasks.
+`xargs` allows us to take input from standard in, and use this input as arguments to another program, which allows us to build commands programmatically. Using `find` with `xargs` is much like `find -exec`, but with some added advantages that make `xargs` a better choice for larger tasks.
 
 Let’s re-create our messy temporary file directory example again: .i.e Make sure to run `ls` after the `touch` command to verify the files were created. 
 
