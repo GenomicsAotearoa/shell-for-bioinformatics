@@ -191,9 +191,9 @@ awk options 'selection_criteria {action}' input-file >  output-file
 ```
 !!! Options 
 
-      `-f program-file` : Reads the AWK program source from the file program-file, instead of from the first command line argument.
+      `-f program-file` OR `--file program-file`: Reads the AWK program source from the file program-file, instead of from the first command line argument.
 
-      `-F fs`            : Use fs for the input field separator
+      `-F fs`OR `--field-separator fs`  : Use fs for the input field separator
 
 Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
 
