@@ -371,6 +371,18 @@ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head
 
     <center>![image](./images/contiguous_array.png){width="400"}</center>
 
+    Only the values are stored; the indices are implicit from the order of the values. Here, eight is the value at index zero, because eight appears in the position with zero elements before it.
+
+    Arrays in `awk` are different—they are **associative**. This means that each array is a collection of pairs—an index and its corresponding array element value:
+
+    <center>![image](./images/associative_arrays.png){width="220"}</center>
+
+    The pairs are shown in jumbled order because their order is irrelevant
+
+    One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:
+
+    <center>![image](./images/adv_associative_arrays.png){width="220"}</center>
+
 
 
 For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
