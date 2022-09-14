@@ -424,7 +424,7 @@ module load bioawk/1.0
  The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:
 
 ```bash
-bioawk -c help bed
+bioawk -c help
 ```
 >```bash
 >ed:
