@@ -350,7 +350,11 @@ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head
 >```
 
 !!! danger "Note"
-    Note that we subtract 1 from the start position to convert to **BED** format. This is because **BED** uses zero-indexing while GTF uses 1-indexing; This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.
+    Note that we subtract 1 from the start position to convert to **BED** format. This is because **BED** uses zero-indexing while GTF uses 1-indexing; .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
+    
+    This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.
+
+
 
 
 * `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
