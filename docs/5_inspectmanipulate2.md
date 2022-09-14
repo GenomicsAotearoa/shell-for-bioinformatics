@@ -373,7 +373,7 @@ It’s worth noting that there’s an entirely Unix way to count features of a p
 ```bash
 grep "Lypla1" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 3 | sort | uniq -c
 ```
-However, if we needed to also filter on column-specific information (e.g., strand), an approach using just base Unix tools would be quite messy. With Awk, adding an additional filter would be trivial: we’d just use && to add another expression in the pattern.
+However, if we needed to also filter on column-specific information (e.g., strand), an approach using just base Unix tools would be quite messy. With Awk, adding an additional filter would be trivial: we’d just use `&&` to add another expression in the pattern.
 
 ## `bioawk` 
 
