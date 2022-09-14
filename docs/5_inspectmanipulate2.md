@@ -439,10 +439,10 @@ bioawk -c help
 >	1:name 2:seq 3:qual 4:comment 
 >```
 
-As an example of how this works, let’s read in example.bed and append a column with the length of the feature (end position - start position) for all protein coding genes:
+As an example of how this works, let’s read in *example.bed* and append a column with the length of the feature (end position - start position) for all protein coding genes:
 
 ```bash
-bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}' ../data/Mus_musculus.GRCm38.75_chr1.gtf | head -n 4
+bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 4
 ```
 >```
 >1	465597
