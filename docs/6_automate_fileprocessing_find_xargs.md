@@ -12,6 +12,11 @@ ls *.fastq | analyse_fastq
 
     Your shell expands this wildcard to all matching files in the current directory, and `ls` prints these filenames. Unfortunately, this leads to a common complication that makes `ls` and wildcards a fragile solution. Suppose your directory contains a filename called ***treatment 03.fastq***. In this case, `ls` returns ***treatment 03.fastq*** along with other files. However, because files are separated by spaces, and this file contains a space, `analyse_fastq` will interpret *treatment 03.fastq* as two separate files, named ***treatment*** and ***03.fastq***. This problem crops up periodically in different ways, and it’s necessary to be aware of when writing file-processing pipelines. Note that this does not occur with file globbing in arguments—if `analyse_fastq` takes multiple files as arguments, your shell handles this properly:
 
+??? quote "Globbing"
+
+    Bash itself cannot recognize Regular Expressions. Inside scripts, it is commands and utilities such as `sed` and `awk` that interpret RE's.
+    Bash does carry out filename expansion,a process known as **globbing**, but this does not use the standard RE set. Instead, globbing recognizes and expands wild cards. Globbing interprets the standard wild card characters `*` and `?`, character lists in square brackets, and certain other special characters (such as `^` for negating the sense of a match). There are important limitations on wild card characters in globbing, however. Strings containing `*` will not match filenames that start with a dot, as, for example, *.bashrc*.Likewise, the `?` has a different meaning in globbing than as part of an RE.
+
 ```bash
 analyse_fastq *.fastq
 ```
