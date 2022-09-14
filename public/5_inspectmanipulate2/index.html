@@ -901,8 +901,24 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 <p>This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.</p>
 </div>
 <ul>
-<li><code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</li>
+<li><code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. </li>
 </ul>
+<details class="info">
+<summary>Quick Intro to Arrays</summary>
+<p>The <code>awk</code> language provides one-dimensional arrays for storing groups of related strings or numbers. Every <code>awk</code> array must have a name. Array names have the same syntax as variable names; any valid variable name would also be a valid array name. But one name cannot be used in both ways (as an array and as a variable) in the same <code>awk</code> program.</p>
+<p>Arrays in <code>awk</code> superficially resemble arrays in other programming languages, but there are fundamental differences. In <code>awk</code>, it isn’t necessary to specify the size of an array before starting to use it. Additionally, any number or string, not just consecutive integers, may be used as an array index.</p>
+<p>In most other languages, arrays must be declared before use, including a specification of how many elements or components they contain. In such languages, the declaration causes a contiguous block of memory to be allocated for that many elements. Usually, an index in the array must be a nonnegative integer. For example, the index zero specifies the first element in the array, which is actually stored at the beginning of the block of memory. Index one specifies the second element, which is stored in memory right after the first element, and so on. It is impossible to add more elements to the array, because it has room only for as many elements as given in the declaration. (Some languages allow arbitrary starting and ending indices—e.g., ‘15 .. 27’—but the size of the array is still fixed when the array is declared.)</p>
+<p>A <strong>contiguous</strong> array of four elements might look like below, conceptually, if the element values are eight, "foo", "", and 30.</p>
+<p><center><img alt="image" src="../images/contiguous_array.png" width="400" /></center></p>
+<p>Only the values are stored; the indices are implicit from the order of the values. Here, eight is the value at index zero, because eight appears in the position with zero elements before it.</p>
+<p>Arrays in <code>awk</code> are different—they are <strong>associative</strong>. This means that each array is a collection of pairs—an index and its corresponding array element value:</p>
+<p><center><img alt="image" src="../images/associative_arrays.png" width="220" /></center></p>
+<p>The pairs are shown in jumbled order because their order is irrelevant</p>
+<p>One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:</p>
+<p><center><img alt="image" src="../images/adv_associative_arrays.png" width="200" /></center></p>
+<p>Now the array is sparse, which just means some indices are missing. It has elements 0–3 and 10, but doesn’t have elements 4, 5, 6, 7, 8, or 9.</p>
+</details>
+<p>For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>awk <span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span> Mus_musculus.GRCm38.75_chr1.gtf 
 </code></pre></div>
 <blockquote>
