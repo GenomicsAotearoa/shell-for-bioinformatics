@@ -381,7 +381,9 @@ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head
 
     One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:
 
-    <center>![image](./images/adv_associative_arrays.png){width="220"}</center>
+    <center>![image](./images/adv_associative_arrays.png){width="200"}</center>
+
+    Now the array is sparse, which just means some indices are missing. It has elements 0–3 and 10, but doesn’t have elements 4, 5, 6, 7, 8, or 9.
 
 
 
