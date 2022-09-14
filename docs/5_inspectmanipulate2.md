@@ -310,7 +310,7 @@ awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed
     * Also, there are two special patterns `BEGIN` & `END`
 
         - `BEGIN` - specifies what to do before the first record is read in. Useful to initialise and set up variables
-        - `END` - what to do after the last record's processing is complete. Useful to print data summaries ad the end of file processing
+        - `END` - what to do after the last record's processing is complete. Useful to print data summaries at the end of file processing
 
 
 **Examples**

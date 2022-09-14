@@ -709,8 +709,8 @@ Let's wrap up <code>sed</code> with one more use case (a slightly complicated lo
 </code></pre></div>
 <div class="admonition options">
 <p class="admonition-title">Options</p>
-<p><code>-f program-file</code> : Reads the AWK program source from the file program-file, instead of from the first command line argument.</p>
-<p><code>-F fs</code>            : Use fs for the input field separator</p>
+<p><code>-f program-file</code> OR <code>--file program-file</code>: Reads the AWK program source from the file program-file, instead of from the first command line argument.</p>
+<p><code>-F fs</code>OR <code>--field-separator fs</code>  : Use fs for the input field separator</p>
 </div>
 <p>Default behaviour of <code>awk</code> is to print every line of data from the specified file. .i.e. mimics <code>cat</code></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>awk <span class="s1">&#39;{print}&#39;</span> example.bed 
