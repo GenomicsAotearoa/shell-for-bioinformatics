@@ -143,6 +143,13 @@ The is due to `sed` default behaviour where it prints every line, making replace
 ```bash
 grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
 ```
+This example uses an important regular expression idiom: capturing text between delimiters (in this case, quotation marks). This is a useful pattern, so let’s break it
+down:
+
+1. First, match zero or more of any character ( .* ) before the string "transcript_id" .
+2. Then, match and capture (because there are parentheses around the pattern) one or more characters that are not a quote. This is accomplished with [^"]+ , the important idiom in this example. In regular extension jargon, the brackets make up a character class. Character classes specify what characters the expression is allowed to match. Here, we use a caret ( ^ ) inside the brackets to match anything except what’s inside these brackets (in this case, a quote). The end result is that we match and capture one or more nonquote characters (because there’s a trailing + ). This approach is nongreedy; often beginners make the mistake of taking a greedy
+approach and use .* . Consider:
+
 - - - 
 
 !!! abstract "In preparation for next lesson, rename *example.bed.old* back to  *example.bed*"
