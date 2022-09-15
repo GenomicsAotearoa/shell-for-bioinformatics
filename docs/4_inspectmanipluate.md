@@ -98,7 +98,7 @@ tail -n 4 Mus_musculus.GRCm38.75_chr1.bed
 
 ## Extract summary information with `wc`
 
-The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **words, lines**, and **characters** in a file (take a note on the order).
+The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **lines, words**, and **characters** in a file (take a note on the order).
 
 ```bash
 wc Mus_musculus.GRCm38.75_chr1.bed 
