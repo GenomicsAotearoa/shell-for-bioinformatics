@@ -1,5 +1,5 @@
 <center>
-# **Intermediate-Advanced Shell for Bioinformatics**
+# **Intermediate Shell for Bioinformatics**
 </center>
 <center>
 ![image](./images/nesiGAworkshop_logos.png){width="300"}
