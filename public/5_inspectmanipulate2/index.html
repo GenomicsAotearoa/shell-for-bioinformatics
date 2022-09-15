@@ -653,8 +653,15 @@ Let's wrap up <code>sed</code> with one more use case (a slightly complicated lo
 </code></pre></div>
 </blockquote>
 <p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of <em>Mus_musculus.GRCm38.75_chr1.gtf</em> don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before <code>sed</code> to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable <code>sed</code> from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep -v <span class="s2">&quot;^#&quot;</span> Mus_musculus.GRCm38.75_chr1.gtf <span class="p">|</span> head -n <span class="m">3</span> <span class="p">|</span> sed -E -n <span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
 </code></pre></div>
+This example uses an important regular expression idiom: capturing text between delimiters (in this case, quotation marks). This is a useful pattern, so let’s break it
+down:</p>
+<ol>
+<li>First, match zero or more of any character ( .* ) before the string "transcript_id" .</li>
+<li>Then, match and capture (because there are parentheses around the pattern) one or more characters that are not a quote. This is accomplished with [^"]+ , the important idiom in this example. In regular extension jargon, the brackets make up a character class. Character classes specify what characters the expression is allowed to match. Here, we use a caret ( ^ ) inside the brackets to match anything except what’s inside these brackets (in this case, a quote). The end result is that we match and capture one or more nonquote characters (because there’s a trailing + ). This approach is nongreedy; often beginners make the mistake of taking a greedy
+approach and use .* . Consider:</li>
+</ol>
 <hr />
 <div class="admonition abstract">
 <p class="admonition-title">In preparation for next lesson, rename <em>example.bed.old</em> back to  <em>example.bed</em></p>
