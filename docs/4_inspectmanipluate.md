@@ -107,7 +107,7 @@ wc Mus_musculus.GRCm38.75_chr1.bed
 ```
 Often, we only need to list the number of lines, which can be done by using the `-l` flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. 
 
-!!! question "Qu."
+!!! question "Question"
 
     Count the number of lines in *Mus_musculus.GRCm38.75_chr1.bed* and *Mus_musculus.GRCm38.75_chr1.gtf* . Anything out of the ordinary ? 
 
