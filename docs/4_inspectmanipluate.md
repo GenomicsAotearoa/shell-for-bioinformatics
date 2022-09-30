@@ -62,7 +62,7 @@ tail Mus_musculus.GRCm38.75_chr1.bed
     ```
 Changing the number of lines printed for either of those commands can be done by passing `-n <number_of_lines>` flag .i.e. Over-ride the `-n 10` default
 
-Try those commands with `0n 4` to print top 4 lines and bottom 4 lines
+Try those commands with `-n 4` to print top 4 lines and bottom 4 lines
 
 ```bash
 head -n 4 Mus_musculus.GRCm38.75_chr1.bed 
