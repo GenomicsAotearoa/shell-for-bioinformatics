@@ -732,7 +732,7 @@
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>program input.txt &gt; results.txt<span class="p">;</span> <span class="nb">echo</span> <span class="nv">$?</span>
 </code></pre></div>
 Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (<code>&amp;&amp;</code>), and one operator that runs the next command only if the first completed unsuccessfully (<code>||</code>).</p>
-<p>For example, the sequence <code>program1 input.txt &gt; intermediate-results.txt &amp;&amp; program2 intermediate-results.txt &gt; results.txt</code> will execute the second command only if previous commands have completed with a nonzero exit status.</p>
+<p>For example, the sequence <code>program1 input.txt &gt; intermediate-results.txt &amp;&amp; program2 intermediate-results.txt &gt; results.txt</code> will execute the second command only if previous commands have completed with a successful zero exit status.</p>
 <p>By contrast, <code>program1 input.txt &gt; intermediate-results.txt || echo "warning: an error occurred"</code> will print the message if error has occurred.</p>
 <div class="admonition quote">
 <p>When a script ends with an <strong>exit</strong> that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the <strong>exit</strong>).</p>

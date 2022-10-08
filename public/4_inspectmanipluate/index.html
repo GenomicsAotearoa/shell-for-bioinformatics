@@ -608,7 +608,7 @@ you will encounter: tab-delimited, comma-separated, and variable space-delimited
 </code></pre></div>
 </details>
 <p>Changing the number of lines printed for either of those commands can be done by passing <code>-n &lt;number_of_lines&gt;</code> flag .i.e. Over-ride the <code>-n 10</code> default</p>
-<p>Try those commands with <code>0n 4</code> to print top 4 lines and bottom 4 lines</p>
+<p>Try those commands with <code>-n 4</code> to print top 4 lines and bottom 4 lines</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>head -n <span class="m">4</span> Mus_musculus.GRCm38.75_chr1.bed 
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>tail -n <span class="m">4</span> Mus_musculus.GRCm38.75_chr1.bed 
@@ -644,7 +644,7 @@ Use the <code>seq</code> command to generate a file containing the numbers 1 to 
 </code></pre></div>
 Often, we only need to list the number of lines, which can be done by using the <code>-l</code> flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. </p>
 <div class="admonition question">
-<p class="admonition-title">Qu.</p>
+<p class="admonition-title">Question</p>
 <p>Count the number of lines in <em>Mus_musculus.GRCm38.75_chr1.bed</em> and <em>Mus_musculus.GRCm38.75_chr1.gtf</em> . Anything out of the ordinary ? </p>
 </div>
 <p>Although <code>wc -l</code> is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" </p>

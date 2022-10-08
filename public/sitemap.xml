@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/0_introduction/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/1_unixshellbasics/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/2_download_data/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/3_streams_red_pipe/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/4_inspectmanipluate/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/5_inspectmanipulate2/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/6_automate_fileprocessing_find_xargs/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/puzzles/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/shell-for-bioinformatics/supplementary_1/</loc>
-         <lastmod>2022-09-15</lastmod>
+         <lastmod>2022-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
