@@ -27,98 +27,117 @@ tga1-protein.fasta
 
 We can use the `cat` command to view these files either one at a time:
 
-```bash
-cat tb1-protein.fasta
-```
->```bash
->>teosinte-branched-1 protein
->LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
->FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
->GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
->FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
->GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
->VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
->NLSHHSSLSMNMPCAAA
->```
+!!! terminal "code"
 
-```bash
-cat tga1-protein.fasta 
-```
->```bash
->>teosinte-glume-architecture-1 protein
->DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
->RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
->GGEGSSDGGT
->```
+    ```bash
+    cat tb1-protein.fasta
+    ```
+    ??? success "output"
+
+        ```bash
+        >teosinte-branched-1 protein
+        LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+        FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+        GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+        FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+        GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+        VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+        NLSHHSSLSMNMPCAAA
+        ```
+
+!!! terminal "code"
+
+    ```bash
+    cat tga1-protein.fasta 
+    ```
+    ??? success "output"
+
+        ```bash
+        >teosinte-glume-architecture-1 protein
+        DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
+        RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
+        GGEGSSDGGT
+        ```
 
 OR all at once with `cat *.fasta`
 
 We can also redirect the output to create a new file containing the sequence for both proteins:
 
-```
-cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
-```
+!!! terminal "code"
+
+    ```bash
+    cat tb1-protein.fasta tga1-protein.fasta > zea-proteins.fasta
+    ```
 
 Now we have a new file called `zea-proteins.fasta`. Let's check the contents:
 
-```bash
-cat zea-proteins.fasta
-``` 
->```bash
->>teosinte-branched-1 protein
->LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
->FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
->GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
->FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
->GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
->VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
->NLSHHSSLSMNMPCAAA
->>teosinte-glume-architecture-1 protein
->DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
->RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
->GGEGSSDGGT
->```
+!!! terminal "code"
+
+    ```bash
+    cat zea-proteins.fasta
+    ``` 
+    ??? success "output"   
+        ```bash
+        >teosinte-branched-1 protein
+        LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+        FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+        GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+        FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+        GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+        VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+        NLSHHSSLSMNMPCAAA
+        >teosinte-glume-architecture-1 protein
+        DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
+        RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
+        GGEGSSDGGT
+        ```
 
 Capturing error messages
 
-```bash
-cat tb1-protein.fasta mik.fasta
-```
->```bash
->>teosinte-branched-1 protein
->LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
->FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
->GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
->FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
->GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
->VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
->NLSHHSSLSMNMPCAAA
->cat: mik.fasta: No such file or directory
->```
+!!! terminal "code"
+
+    ```bash
+    cat tb1-protein.fasta mik.fasta
+    ```
+    >```bash
+    >>teosinte-branched-1 protein
+    >LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+    >FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+    >GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+    >FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+    >GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+    >VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+    >NLSHHSSLSMNMPCAAA
+    >cat: mik.fasta: No such file or directory
+    >```
 
 There are two different types of output there: "standard output" (the contents of the `tb1-protein.fasta` file) and *standard error* (the error message relating to the missing `mik.fasta` file). If we use the `>` operator to redirect the output, the standard output is captured, but the standard error is not - it is still printed to the screen.  Let's check:
 
-``` bash
-cat tb1-protein.fasta mik.fasta > test.fasta
-
-  cat: mik.fasta: No such file or directory
-```
+!!! terminal "code"
+     ``` bash
+     cat tb1-protein.fasta mik.fasta > test.fasta
+     
+       cat: mik.fasta: No such file or directory
+     ```
 
 The new file has been created and contains the standard output (contents of the file `tb1-protein.fasta`):
 
-```bash
-cat test.fasta
-```
->```bash
->>teosinte-branched-1 protein
->LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
->FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
->GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
->FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
->GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
->VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
->NLSHHSSLSMNMPCAAA
->```
+!!! terminal "code"
+    ```bash
+    cat test.fasta
+    ```
+    ??? success "output"
+
+        ```bash
+        >teosinte-branched-1 protein
+        LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+        FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+        GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+        FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+        GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+        VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+        NLSHHSSLSMNMPCAAA
+        ```
 
 If we want to capture the standard error we use the (slightly unweildy) `2>` operator:
 
