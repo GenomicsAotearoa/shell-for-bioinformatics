@@ -1,4 +1,4 @@
-# 2. Unix Shell Basics 
+# Supp - 2. Unix Shell Basics 
 
 !!! abstract "Lesson Objectives 😶‍🌫️"
 
