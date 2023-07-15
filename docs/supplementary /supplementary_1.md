@@ -8,7 +8,7 @@
     - Types of Shell and intro to Bash Shell (we will be using the latter throughout the workshop)
 
 <center>
-![image](./images/unix_funnel.png){width="350"}
+![image](../images/unix_funnel.png){width="350"}
 </center>
 
 <!--- check -->
@@ -32,7 +32,7 @@ Unix is a generic operating system which takes full advantage of all available h
 
     - An ^^*interpreter*^^ operates in a simple loop: It accepts a command, interprets the command, executes the command, and then waits for another command. The shell displays a "prompt," to notify you that it is ready to accept your command.
     <center>
-    ![image](./images/interpreter_loop.png){width="200"}
+    ![image](../images/interpreter_loop.png){width="200"}
     </center>
 
 
