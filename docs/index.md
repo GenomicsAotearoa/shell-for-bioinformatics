@@ -25,22 +25,20 @@
 - - - 
 
 
-# Attribution Notice
+!!! copyright "Attribution Notice"
 
-* This workshop material is heavily inspired by : 
-    1. Buffalo, V (2015). ***Bioinformatics Data Skills***.O'Reilly Media, Inc
-    2. The Carpentries. ***The Unix Shell*** . https://swcarpentry.github.io/shell-novice/
-    3. The Carpentries. ***Introduction to Command Line for Genomics***. https://datacarpentry.org/shell-genomics/
-    4. Rosalind Project. https://rosalind.info/about/
-
+    * This workshop material is heavily inspired by : 
+        1. Buffalo, V (2015). ***Bioinformatics Data Skills***.O'Reilly Media, Inc
+        2. The Carpentries. ***The Unix Shell*** . https://swcarpentry.github.io/shell-novice/
+        3. The Carpentries. ***Introduction to Command Line for Genomics***. https://datacarpentry.org/shell-genomics/
+        4. Rosalind Project. https://rosalind.info/about/
+    
 - - - 
 
-# License 
+!!! key "License" 
 
-
-
-Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate-Advanced Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
-
+    Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
+    
 - - - 
 
 # Setup
