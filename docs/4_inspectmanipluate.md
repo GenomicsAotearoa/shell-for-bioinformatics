@@ -1,4 +1,4 @@
-# 5. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
+# 3. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
  
 !!! abstract "Lesson Objectives"
     * Inspect file/s with utilities such as `head`,`less`. 

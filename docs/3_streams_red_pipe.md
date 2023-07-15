@@ -1,4 +1,4 @@
-# 4. Streams, Redirection and Pipe
+# 2. Streams, Redirection and Pipe
 
 !!! abstract "Lesson Objectives"
 
