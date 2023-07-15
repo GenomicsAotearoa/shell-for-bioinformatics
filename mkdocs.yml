@@ -47,8 +47,10 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
 
-    
 
   # Necessary for search to work properly
   include_search_page: false
