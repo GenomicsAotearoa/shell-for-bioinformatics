@@ -5,7 +5,7 @@
     - To be able to download data with command line utilities
     - Inspect data (checksum verification)
 
-!!! info "Download with `wget` from a terminal client"
+!!! desktop-download-24 "Download with `wget` from a terminal client"
 
     ```bash
     wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz
