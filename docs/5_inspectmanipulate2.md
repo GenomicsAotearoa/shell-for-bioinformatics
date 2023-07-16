@@ -231,9 +231,8 @@ awk options 'selection_criteria {action}' input-file >  output-file
         chr2	35	54
         chr1	10	19
         ```
-Print lines which match the given pattern
 
-!!! terminal "code"
+!!! terminal-2 "Print lines which match the given pattern"
 
     ```bash
     awk '/chr1/{print}' example.bed
@@ -246,24 +245,24 @@ Print lines which match the given pattern
     >chr1	10	19
     >```
 
-`awk` can be used to mimic functionality of `cut` 
+!!! terminal-2 "`awk` can be used to mimic functionality of `cut`" 
 
-```bash
-awk '{print $2 "\t" $3}' example.bed 
-```
-
-??? success "Output"
-
-    ```bash
-    26	39
-    32	47
-    11	28
-    40	49
-    16	27
-     9	28
-    35	54
-    10	19
-    ```
+     ```bash
+     awk '{print $2 "\t" $3}' example.bed 
+     ```
+     
+    ??? success "Output"
+     
+        ```bash
+        26	39
+        32	47
+        11	28
+        40	49
+        16	27
+         9	28
+        35	54
+        10	19
+        ```
 Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f 2,3 example.bed` 
 
 Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end
