@@ -29,7 +29,7 @@ A **TAR.GZ** file is a combination of two different packaging algorithms. The fi
 
 It is useful to note that tar doesn’t compress the files in question, only packages them. Indeed, sometimes the resulting tarball can be of greater size due to padding. That’s where **Gzip** comes in. **Gzip** (denoted by a .gz file extension) is a compressed file format used to archive data to take up smaller space. Gzip uses the same compression algorithm as the more commonly known zip but can only be used on a single file. In short, Gzip compresses all the individual files and tar packages them in a single archive.
 
-!!! abstract "Decompressing the tar.gz file can be done  with the built-in `tar` utility"
+!!! terminal-2 "Decompressing the tar.gz file can be done  with the built-in `tar` utility"
 
     ```bash
     tar -xvzf shell4b_data.tar.gz
@@ -48,7 +48,7 @@ Each file in a ZIP archive is represented as an individual entry consisting of a
 
 The order of the file entries in the central directory need not coincide with the order of file entries in the archive.
 
-!!! abstract "Decompressing .zip files can be done with `unzip` command"
+!!! terminal-2 "Decompressing .zip files can be done with `unzip` command"
 
     ```bash
     unzip -v shell4b_data.zip
@@ -70,15 +70,18 @@ Data we download is the starting point of all future analyses and conclusions. T
 
     To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through **standard** in
 
-    ```bash
+    !!! terminal "code"
 
-    echo "shell for Bioinformatics" | md5sum
-    echo "shell for BioInformatics" | md5sum
-    ```
-    ```bash
-    198638c380be53bf3f6ff70d5626ae44  -
-    afa4dbcc56b540e24558085fdc10342f  -
-    ```
+        ```bash
+    
+        echo "shell for Bioinformatics" | md5sum
+        echo "shell for BioInformatics" | md5sum
+        ```
+        >```bash
+        >198638c380be53bf3f6ff70d5626ae44  -
+        >afa4dbcc56b540e24558085fdc10342f  -
+        >```
+
     Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from **standard** in. Checksums with **file** input can be done with `md5usm filename` .i.e.
 
     ```bash
@@ -93,7 +96,7 @@ Data we download is the starting point of all future analyses and conclusions. T
         - `-c` option represent **check**
 
 
-!!! warning "True story - Applications will not trigger clear error messages for corrupted data"
+!!! danger "Applications will not trigger clear error messages for corrupted data"
 
         The following is an error message recorded on the log for a failed `bedtools genomecov` process ran on NeSI Mahuika cluster
 
