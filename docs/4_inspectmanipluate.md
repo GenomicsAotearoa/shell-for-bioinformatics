@@ -353,13 +353,13 @@ However, using `sort`’s default of sorting alphanumerically by line and doesn�
     ```bash
     uniq letters.txt 
     ```
->```bash
->A
->B
->C
->B
->C
->```
+    >```bash
+    >A
+    >B
+    >C
+    >B
+    >C
+    >```
 
 As you can see, `uniq` does not return the unique values in letters.txt — it only removes consecutive duplicate lines (keeping one). If instead we did want to find all unique lines in a file, we would first sort all lines using `sort` so that all identical lines are grouped next to each other, and then run `uniq`.
 
@@ -372,25 +372,16 @@ C
 ```
 `uniq` with `-c` shows the counts of occurrences next to the unique lines.
 
-```bash
-uniq -c letters.txt 
-```
->```bash
->      2 A
->      1 B
->      1 C
->      1 B
->      3 C
->```
+!!! terminal "code"
 
-```bash
-sort letters.txt | uniq -c
-```
->```bash
->      2 A
->      2 B
->      4 C
->```
+    ```bash
+    sort letters.txt | uniq -c
+    ```
+    >```bash
+    >      2 A
+    >      2 B
+    >      4 C
+    >```
 
 Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
 
