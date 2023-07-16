@@ -502,49 +502,53 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
 
 As an example of how this works, let’s read in *example.bed* and append a column with the length of the feature (end position - start position) for all protein coding genes:
 
-```bash
-bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 4
-```
->```
->1	465597
->1	16807
->1	5485
->1	12533
->```
+!!! terminal "code"
+
+    ```bash
+    bioawk -c gff '$3 ~ /gene/ && $2 ~ /protein_coding/ {print $seqname,$end-$start}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 4
+    ```
+    >```
+    >1	465597
+    >1	16807
+    >1	5485
+    >1	12533
+    >```
 
 Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:
 
-```bash
-bioawk -c fastx '{print ">"$name"\n"$seq}' SRR097977.fastq | head -n 4
-```
->```
->>SRR097977.1
->TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
->>SRR097977.2
->GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
->```
+!!! terminal "code"
+
+    ```bash
+    bioawk -c fastx '{print ">"$name"\n"$seq}' SRR097977.fastq | head -n 4
+    ```
+    >```
+    >>SRR097977.1
+    >TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+    >>SRR097977.2
+    >GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+    >```
 
 !!! info ""
     Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use `-c fastx`.
 
 
-Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:
+!!! terminal-2 "Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:"
 
-```bash
-bioawk -c fastx 'END{print NR}' SRR097977.fastq 
-```
-Bioawk’s function `revcomp()` can be used to reverse complement a sequence:
+    ```bash
+    bioawk -c fastx 'END{print NR}' SRR097977.fastq 
+    ```
+!!! terminal-2 "Bioawk’s function `revcomp()` can be used to reverse complement a sequence:"
 
-```bash
-bioawk -c fastx '{print ">"$name"\n"revcomp($seq)}' SRR097977.fastq | head -n 4
-```
->```
->>SRR097977.1
->ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
->>SRR097977.2
->ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
->```
-
+    ```bash
+    bioawk -c fastx '{print ">"$name"\n"revcomp($seq)}' SRR097977.fastq | head -n 4
+    ```
+    >```
+    >>SRR097977.1
+    >ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+    >>SRR097977.2
+    >ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+    >```
+    
 
 - - - 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
