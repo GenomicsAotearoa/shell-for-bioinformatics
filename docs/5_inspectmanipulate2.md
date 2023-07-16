@@ -280,7 +280,7 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 
 - - -
 
-??? info "`awk` Comparison and Logical operations"
+??? table "`awk` Comparison and Logical operations"
 
     |Comparison |  Description                                |
     |:----------|:--------------------------------------------|
@@ -301,14 +301,16 @@ position - start position) was greater than 18. Awk supports arithmetic with the
 
 We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:
 
-```bash
-awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
-```
->```bash
->chr1	26	39
->chr1	32	47
->chr1	9	28
->```
+!!! terminal "code"
+
+    ```bash
+    awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
+    ```
+    >```bash
+    >chr1	26	39
+    >chr1	32	47
+    >chr1	9	28
+    >```
 !!! info ""
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
