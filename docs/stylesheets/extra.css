@@ -830,7 +830,7 @@
 .md-typeset .terminal-2 > .admonition-title,
 .md-typeset .terminal-2 > summary {
   color:rgb(35, 35, 37);
-  background-color: rgb(188, 192, 186);
+  background-color: rgba(194, 197, 192, 0.664);
 }
 .md-typeset .terminal-2 > .admonition-title::before,
 .md-typeset .terminal-2 > summary::before {
