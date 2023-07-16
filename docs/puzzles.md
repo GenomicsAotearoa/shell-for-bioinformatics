@@ -29,7 +29,7 @@
     ```
 
 
-??? question "Transcribing DNA into RNA (tdir)"
+??? clipboard-question "Transcribing DNA into RNA (tdir)"
 
     An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
 
@@ -99,7 +99,7 @@
 
 - - - 
 
-??? question "Complementing a Strand of DNA (csod)"
+??? clipboard-question "Complementing a Strand of DNA (csod)"
 
     In DNA strings, symbols 'A' and 'T' are complements of each other, as are 'C' and 'G'.
 
@@ -208,7 +208,7 @@
 
 - - - 
 
-??? question "Counting DNA Nucleotides (dnct)"
+??? clipboard-question "Counting DNA Nucleotides (dnct)"
 
     A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length of a string is the number of symbols that it contains.
 
@@ -280,7 +280,7 @@
             ```
 - - - 
 
-??? question "Maximum Matchings and RNA Secondary Structures (mmrs)"
+??? clipboard-question "Maximum Matchings and RNA Secondary Structures (mmrs)"
 
     !!! Figure inline end
 
