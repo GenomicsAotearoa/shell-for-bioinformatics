@@ -40,23 +40,27 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 * Some find and replace examples
 
-Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
 
-```bash
-sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
-```
-Find and replace `chr` to `chromosome`, only if you also find **40** in the line
 
-```bash
-sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
-```
-Find and replace directly on the input, but save an old version too
+!!! terminal-2 "Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed"
 
-```bash
-sed -i.old 's/chr/chromosome/g' example.bed
-```
-!!! info ""
-    `-i` to edit files in-place instead of printing to standard output
+    ```bash
+    sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
+    ```
+
+
+!!! terminal-2 "Find and replace `chr` to `chromosome`, only if you also find **40** in the line"
+
+    ```bash
+    sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
+    ```
+!!! terminal-2 "Find and replace directly on the input, but save an old version too"
+
+    ```bash
+    sed -i.old 's/chr/chromosome/g' example.bed
+    ```
+    !!! info ""
+        `-i` to edit files in-place instead of printing to standard output
 
 * Print specific lines of the file
 
@@ -65,17 +69,17 @@ To print a specific line you can use the address function. Note that by default,
 !!! info ""
     `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
 
-print 5th line of example.bed
+!!! terminal-2 "print 5th line of example.bed"
 
-```bash
-sed -n '5p' example.bed
-```
+    ```bash
+    sed -n '5p' example.bed
+    ```
 
-We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5, 
+!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5,"
 
-```bash
-sed -n -e '2p' -e '5p' example.bed
-```
+    ```bash
+    sed -n -e '2p' -e '5p' example.bed
+    ```
 
 It also accepts range, using `,`. Let's print line 2-6,
 
