@@ -1,6 +1,6 @@
 # Puzzles
 
-!!! abstract  "Info"
+!!! desktop-download-24  "Info"
 
     * Download data (and answers  😊)
 

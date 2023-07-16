@@ -62,11 +62,11 @@
 }
 .md-typeset .desktop-download-24 > .admonition-title,
 .md-typeset .desktop-download-24 > summary {
-  background-color: rgba(70,130,180, 0.1);
+  background-color: rgba(88, 173, 243, 0.473);
 }
 .md-typeset .desktop-download-24 > .admonition-title::before,
 .md-typeset .desktop-download-24 > summary::before {
-  background-color: rgb(70,130,180);
+  background-color: rgb(33, 53, 161);
   -webkit-mask-image: var(--md-admonition-icon--desktop-download-24);
           mask-image: var(--md-admonition-icon--desktop-download-24);
 }
