@@ -562,65 +562,65 @@ Here, shell automatically escapes the space in the filename <strong><em>treatmen
 <ol>
 <li>
 <p>Create a small directory system as below in your current working directory</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdir -p hihi_project/<span class="o">{</span>data/raw,scripts,results<span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdir -p genome-project/<span class="o">{</span>data/raw,scripts,results<span class="o">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,B,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>.fastq
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>touch genome-project/data/raw/hihi<span class="o">{</span>A,B,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>.fastq
 </code></pre></div>
 </li>
 <li>
-<p>Run <code>find hihi_project</code> and examine the output</p>
+<p>Run <code>find genome-project</code> and examine the output</p>
 <details class="success">
 <summary>Output</summary>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>hihi_project/
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>hihi_project/results
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>hihi_project/data
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>hihi_project/data/raw
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>hihi_project/data/raw/hihiB_R1.fastq
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>hihi_project/data/raw/hihiA_R1.fastq
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>hihi_project/data/raw/hihiA_R2.fastq
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>hihi_project/data/raw/hihiC_R1.fastq
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>hihi_project/data/raw/hihiB_R2.fastq
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>hihi_project/data/raw/hihiC_R2.fastq
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>hihi_project/scripts
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>genome-project/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>genome-project/results
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>genome-project/data
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>genome-project/data/raw
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>genome-project/data/raw/hihiB_R1.fastq
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>genome-project/data/raw/hihiA_R1.fastq
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>genome-project/data/raw/hihiA_R2.fastq
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>genome-project/data/raw/hihiC_R1.fastq
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>genome-project/data/raw/hihiB_R2.fastq
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>genome-project/data/raw/hihiC_R2.fastq
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>genome-project/scripts
 </code></pre></div>
 </details>
 </li>
 <li>
 <p>Use find to print the names of all files matching the pattern “hihiB*fastq” (e.g., FASTQ files from sample “B”, both read pairs): </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>find genome-project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span>
 </code></pre></div>
 </li>
 <li>
 <p>This gives similar results to <code>ls hihiB*fastq</code>, as we’d expect. The primary difference is that find reports results separated by new lines and, by default, <code>find</code> is recursive. Because we only want to return <code>fastq</code> files (and not directories with that matching name), we might want to limit our results using the <code>-type</code> option: There are numerous different types you can search for; the most commonly used are <code>f</code>for files, <code>d</code> for directories, and <code>l</code> for links.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span> -type f
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>find genome-project/data/raw/ -name <span class="s2">&quot;hihiB*fastq&quot;</span> -type f
 </code></pre></div>
 </li>
 <li>
 <p>By default, <code>find</code> connects different parts of an expression with logical <strong>AND</strong>. The find command in this case returns results where the name matches “hihiB*fastq” and is a file (type “f ”). <code>find</code> also allows explicitly connecting different parts of an expression with different operators.
 If we want to get the names of all <code>fastq</code> files from samples A or C, we’ll use the operator -or to chain expressions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;hihiA*fastq&quot;</span> -or -name <span class="s2">&quot;hihiC*fastq&quot;</span> -type f
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>find genome-project/data/raw/ -name <span class="s2">&quot;hihiA*fastq&quot;</span> -or -name <span class="s2">&quot;hihiC*fastq&quot;</span> -type f
 </code></pre></div>
 </li>
 <li>
 <p>Another way to select these files is with negation: Some bash versions will accept <code>"!"</code> as the flag for this where others will require <code>-not</code> </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>find hihi_project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>find genome-project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span>
 </code></pre></div>
 </li>
 <li>
-<p>Suppose you were sharing this project folder with a colleague and a file named hihiB_R1-temp.fastq was created by them in <em>hihi_project/data/raw</em> but you want to ignore it in your file querying:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>find hihi_project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span> -and -not -name <span class="s2">&quot;*-temp*&quot;</span>
+<p>Suppose you were sharing this project folder with a colleague and a file named hihiB_R1-temp.fastq was created by them in <em>genome-project/data/raw</em> but you want to ignore it in your file querying:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>find genome-project/data/raw/ -type f -not -name <span class="s2">&quot;hihiB*fastq&quot;</span> -and -not -name <span class="s2">&quot;*-temp*&quot;</span>
 </code></pre></div>
 </li>
 </ol>
 </details>
 <h3 id="finds-exec-running-commands-on-finds-results"><code>find</code>s <code>-exec</code>: Running Commands on find’s Results<a class="headerlink" href="#finds-exec-running-commands-on-finds-results" title="Permanent link">&para;</a></h3>
 <p>Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -<code>exec</code> option.</p>
-<p>Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the <em>hihi_project/data/raw/</em>): (then <code>ls</code> ensure the <code>-temp.fastq</code> files were created)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+<p>Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the <em>genome-project/data/raw/</em>): (then <code>ls</code> ensure the <code>-temp.fastq</code> files were created)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>touch genome-project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
 <p>Although we can delete these files with <code>rm *-temp.fastq</code>, using <code>rm</code> with a wildcard in a directory filled with important data files is too risky. Using <code>find</code>’s <code>-exec</code> is a much safer way to delete these files.</p>
 <p>For example, let’s use <code>find -exec</code> and <code>rm</code> to delete these temporary files:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> -exec rm <span class="o">{}</span> <span class="se">\;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>find genome-project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> -exec rm <span class="o">{}</span> <span class="se">\;</span>
 </code></pre></div>
 Notice the (required!) semicolumn and curly brackets at the end of the command! . In one line, we’re able to pragmatically identify and execute a command on files that match a certain pattern. With <code>find</code> and <code>-exec</code>, a daunting task like processing a directory of 100,000 text files with a program is simple.</p>
 <p>In general, <code>find -exec</code> is most appropriate for quick, simple tasks (like deleting files, changing permissions, etc.). For larger tasks, <code>xargs</code> is a better choice.</p>
@@ -628,20 +628,20 @@ Notice the (required!) semicolumn and curly brackets at the end of the command! 
 <p><code>xargs</code> reads data from standard input (stdin) and executes the command (supplied to it as an argument) one or more times based on the input read. Any spaces, tabs, and newlines in the input are treated as delimiters, while blank lines are ignored. If no command is specified, <code>xargs</code> executes <code>echo</code>. (Notice, that echo by itself does not read from standard input!)</p>
 <p><code>xargs</code> allows us to take input from standard in, and use this input as arguments to another program, which allows us to build commands programmatically. Using <code>find</code> with <code>xargs</code> is much like <code>find -exec</code>, but with some added advantages that make <code>xargs</code> a better choice for larger tasks.</p>
 <p>Let’s re-create our <code>-temp.fastq</code> files: .i.e Make sure to run <code>ls</code> after the <code>touch</code> command to verify the files were created. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>touch genome-project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
 <p><code>xargs</code> works by taking input from standard in and splitting it by spaces, tabs, and newlines into arguments. Then, these arguments are passed to the command supplied. For example, to emulate the behavior of <code>find -exec</code> with <code>rm</code>, we use <code>xargs</code> with <code>rm</code>:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs rm
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>find genome-project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs rm
 </code></pre></div>
 <code>xargs</code> passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like <code>rm</code>, <code>touch</code>, <code>mkdir</code>, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with <code>xargs</code>’s <code>-n</code> argument. For example, we could call rm four separate times (each on one file) with:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>touch hihi_project/data/raw/zmays<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>touch genome-project/data/raw/zmays<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>find hihi_project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs -n <span class="m">1</span> rm
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>find genome-project/data/raw -name <span class="s2">&quot;*-temp.fastq&quot;</span> <span class="p">|</span> xargs -n <span class="m">1</span> rm
 </code></pre></div></p>
 <p>One big benefit of <code>xargs</code> is that it separates the process that specifies the files to operate on (<code>find</code>) from applying a command to these files (through <code>xargs</code>). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>touch hihi_project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>touch genome-project/data/raw/hihi<span class="o">{</span>A,C<span class="o">}</span>_R<span class="o">{</span><span class="m">1</span>,2<span class="o">}</span>-temp.fastq
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>find hihi_project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> &gt; ohno_filestodelete.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>find genome-project/data/raw/ -name <span class="s2">&quot;*-temp.fastq&quot;</span> &gt; ohno_filestodelete.txt
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat ohno_filestodelete.txt
 </code></pre></div>
