@@ -268,13 +268,15 @@ Here, we’re making use of Awk’s string concatenation. Two strings are concat
 Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end
 position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:
 
-```bash
-awk '$3 - $2 > 18' example.bed
-``` 
->```bash
->chr1	9	28
->chr2	35	54
->```
+!!! terminal "code"
+
+    ```bash
+    awk '$3 - $2 > 18' example.bed
+    ``` 
+    >```bash
+    >chr1	9	28
+    >chr2	35	54
+    >```
 
 - - -
 
