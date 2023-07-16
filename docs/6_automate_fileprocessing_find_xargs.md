@@ -66,7 +66,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
         ```
 
         ```bash
-        touch genome-project/data/raw/hihi{A,B,C}_R{1,2}.fastq
+        touch genome-project/data/raw/bird{A,B,C}_R{1,2}.fastq
         ```
     2.  Run `find genome-project` and examine the output
 
@@ -77,40 +77,40 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
             genome-project/results
             genome-project/data
             genome-project/data/raw
-            genome-project/data/raw/hihiB_R1.fastq
-            genome-project/data/raw/hihiA_R1.fastq
-            genome-project/data/raw/hihiA_R2.fastq
-            genome-project/data/raw/hihiC_R1.fastq
-            genome-project/data/raw/hihiB_R2.fastq
-            genome-project/data/raw/hihiC_R2.fastq
+            genome-project/data/raw/birdB_R1.fastq
+            genome-project/data/raw/birdA_R1.fastq
+            genome-project/data/raw/birdA_R2.fastq
+            genome-project/data/raw/birdC_R1.fastq
+            genome-project/data/raw/birdB_R2.fastq
+            genome-project/data/raw/birdC_R2.fastq
             genome-project/scripts
             ```
 
-    3. Use find to print the names of all files matching the pattern “hihiB*fastq” (e.g., FASTQ files from sample “B”, both read pairs): 
+    3. Use find to print the names of all files matching the pattern “birdB*fastq” (e.g., FASTQ files from sample “B”, both read pairs): 
 
         ```bash
-        find genome-project/data/raw/ -name "hihiB*fastq"
+        find genome-project/data/raw/ -name "birdB*fastq"
         ```
-    4. This gives similar results to `ls hihiB*fastq`, as we’d expect. The primary difference is that find reports results separated by new lines and, by default, `find` is recursive. Because we only want to return `fastq` files (and not directories with that matching name), we might want to limit our results using the `-type` option: There are numerous different types you can search for; the most commonly used are `f`for files, `d` for directories, and `l` for links.
+    4. This gives similar results to `ls birdB*fastq`, as we’d expect. The primary difference is that find reports results separated by new lines and, by default, `find` is recursive. Because we only want to return `fastq` files (and not directories with that matching name), we might want to limit our results using the `-type` option: There are numerous different types you can search for; the most commonly used are `f`for files, `d` for directories, and `l` for links.
 
         ```bash
-        find genome-project/data/raw/ -name "hihiB*fastq" -type f
+        find genome-project/data/raw/ -name "birdB*fastq" -type f
         ```
-    5. By default, `find` connects different parts of an expression with logical **AND**. The find command in this case returns results where the name matches “hihiB*fastq” and is a file (type “f ”). `find` also allows explicitly connecting different parts of an expression with different operators.
+    5. By default, `find` connects different parts of an expression with logical **AND**. The find command in this case returns results where the name matches “birdB*fastq” and is a file (type “f ”). `find` also allows explicitly connecting different parts of an expression with different operators.
     If we want to get the names of all `fastq` files from samples A or C, we’ll use the operator -or to chain expressions:
 
         ```bash
-        find genome-project/data/raw/ -name "hihiA*fastq" -or -name "hihiC*fastq" -type f
+        find genome-project/data/raw/ -name "birdA*fastq" -or -name "birdC*fastq" -type f
         ```
     6. Another way to select these files is with negation: Some bash versions will accept `"!"` as the flag for this where others will require `-not` 
 
         ```bash
-        find genome-project/data/raw/ -type f -not -name "hihiB*fastq"
+        find genome-project/data/raw/ -type f -not -name "birdB*fastq"
         ```
-    7. Suppose you were sharing this project folder with a colleague and a file named hihiB_R1-temp.fastq was created by them in *genome-project/data/raw* but you want to ignore it in your file querying:
+    7. Suppose you were sharing this project folder with a colleague and a file named birdB_R1-temp.fastq was created by them in *genome-project/data/raw* but you want to ignore it in your file querying:
 
         ```bash
-        find genome-project/data/raw/ -type f -not -name "hihiB*fastq" -and -not -name "*-temp*"
+        find genome-project/data/raw/ -type f -not -name "birdB*fastq" -and -not -name "*-temp*"
         ```
 
 ### `find`s `-exec`: Running Commands on find’s Results
@@ -120,7 +120,7 @@ Find’s real strength in bioinformatics is that it allows you to run commands o
 Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *genome-project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 
 ```bash
-touch genome-project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
 ```
 
 Although we can delete these files with `rm *-temp.fastq`, using `rm` with a wildcard in a directory filled with important data files is too risky. Using `find`’s `-exec` is a much safer way to delete these files.
@@ -143,7 +143,7 @@ In general, `find -exec` is most appropriate for quick, simple tasks (like delet
 Let’s re-create our `-temp.fastq` files: .i.e Make sure to run `ls` after the `touch` command to verify the files were created. 
 
 ```bash
-touch genome-project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
 ```
 
 `xargs` works by taking input from standard in and splitting it by spaces, tabs, and newlines into arguments. Then, these arguments are passed to the command supplied. For example, to emulate the behavior of `find -exec` with `rm`, we use `xargs` with `rm`:
@@ -163,7 +163,7 @@ find genome-project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
 One big benefit of `xargs` is that it separates the process that specifies the files to operate on (`find`) from applying a command to these files (through `xargs`). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:
 
 ```bash
-touch genome-project/data/raw/hihi{A,C}_R{1,2}-temp.fastq
+touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
 ```
 ```bash
 find genome-project/data/raw/ -name "*-temp.fastq" > ohno_filestodelete.txt
