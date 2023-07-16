@@ -475,26 +475,30 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
 
 **bioawk** is not a default linux/unix utility. .i.e. Has to be installed. This is available as a module on NeSI HPC platforms which can be loaded with 
 
-```bash
-module load bioawk/1.0
-```
+!!! terminal "code"
+
+    ```bash
+    module load bioawk/1.0
+    ```
  The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:
 
-```bash
-bioawk -c help
-```
->```bash
->ed:
->	1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart 8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts 
->sam:
->	1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext 9:tlen 10:seq 11:qual 
->vcf:
->	1:chrom 2:pos 3:id 4:ref 5:alt 6:qual 7:filter 8:info 
->gff:
->	1:seqname 2:source 3:feature 4:start 5:end 6:score 7:filter 8:strand 9:group 10:attribute 
->fastx:
->	1:name 2:seq 3:qual 4:comment 
->```
+!!! terminal "code"
+
+    ```bash
+    bioawk -c help
+    ```
+    >```bash
+    >ed:
+    >	1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart 8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts 
+    >sam:
+    >	1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext 9:tlen 10:seq 11:qual 
+    >vcf:
+    >	1:chrom 2:pos 3:id 4:ref 5:alt 6:qual 7:filter 8:info 
+    >gff:
+    >	1:seqname 2:source 3:feature 4:start 5:end 6:score 7:filter 8:strand 9:group 10:attribute 
+    >fastx:
+    >	1:name 2:seq 3:qual 4:comment 
+    >```
 
 As an example of how this works, let’s read in *example.bed* and append a column with the length of the feature (end position - start position) for all protein coding genes:
 
