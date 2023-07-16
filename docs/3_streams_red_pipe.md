@@ -303,7 +303,7 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
     false || echo "first command was not a success"
     false && echo "first command was a success"
     ```
-    !!! hint "hint"
+    !!! tip "hint"
         The `$?` variable represents the exit status of the previous command.
 
 ### Command Substitution
