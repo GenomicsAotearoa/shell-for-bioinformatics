@@ -406,19 +406,22 @@ Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used
         ```
 Count in order from most frequent to last
 
-```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
-```
->```bash
->  36128 exon
->  25901 CDS
->   7588 UTR
->   4993 transcript
->   2299 stop_codon
->   2290 start_codon
->   2027 gene
->```
+!!! terminal "code"
 
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
+    ```
+
+    >```bash
+    >  36128 exon
+    >  25901 CDS
+    >   7588 UTR
+    >   4993 transcript
+    >   2299 stop_codon
+    >   2290 start_codon
+    >   2027 gene
+    >```
+    
 !!! abstract ""
  
     * `n` and `r` represents *numerical sort* and *reverse* order (Or descending as the default as ascending) 
