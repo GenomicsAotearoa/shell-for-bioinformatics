@@ -775,7 +775,7 @@
   }
   .md-typeset .clipboard-question > .admonition-title,
   .md-typeset .clipboard-question > summary {
-    background-color: rgba(201, 201, 248, 0.836);
+    background-color: rgba(203, 203, 243, 0.726);
   }
   .md-typeset .clipboard-question > .admonition-title::before,
   .md-typeset .clipboard-question > summary::before {

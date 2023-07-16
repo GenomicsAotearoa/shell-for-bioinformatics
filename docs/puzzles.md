@@ -337,7 +337,7 @@
           
 - - - 
 
-??? question "Computing GC Content (cgcc)"
+??? clipboard-question "Computing GC Content (cgcc)"
 
     The GC-content of a DNA string is given by the percentage of symbols in the string that are 'C' or 'G'. For example, the GC-content of "AGCTATAG" is 37.5%. Note that the reverse complement of any DNA string has the same GC-content.
 
@@ -416,7 +416,7 @@
 
 - - - 
 
-??? question "Counting Disease Carriers (cdcr)"
+??? clipboard-question "Counting Disease Carriers (cdcr)"
 
     To model the Hardy-Weinberg principle, assume that we have a population of $N$ diploid individuals. If an allele is in genetic equilibrium, then because mating is random, we may view the 2$N$ chromosomes as receiving their alleles uniformly. In other words, if there are m dominant alleles, then the probability of a selected chromosome exhibiting the dominant allele is simply $p=m/2N$
 
