@@ -251,7 +251,7 @@ Very often we need to work with sorted plain-text data in bioinformatics. The tw
 cat > test_sort.bed
 ```
 
-??? abstract  "input"
+??? database  "input"
 
     ```bash
     chr1	26	39
