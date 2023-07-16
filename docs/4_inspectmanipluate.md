@@ -348,9 +348,11 @@ However, using `sort`â€™s default of sorting alphanumerically by line and doesnâ
         C
         C
         ```
-```bash
-uniq letters.txt 
-```
+!!! terminal "code"
+    
+    ```bash
+    uniq letters.txt 
+    ```
 >```bash
 >A
 >B
