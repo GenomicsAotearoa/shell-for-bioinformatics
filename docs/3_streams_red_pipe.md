@@ -276,7 +276,7 @@ The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.
 ### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
 
 
-How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of 0 indicates the process ran successfully, and any nonzero status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command:
+How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of `0` indicates the process ran successfully, and any **nonzero** status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command:
 
 ```bash
 program input.txt > results.txt; echo $?
@@ -305,6 +305,9 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
     ```
     !!! tip "hint"
         The `$?` variable represents the exit status of the previous command.
+
+    ??? success "Answer"
+    
 
 ### Command Substitution
 
