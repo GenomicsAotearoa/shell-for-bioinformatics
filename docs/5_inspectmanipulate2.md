@@ -108,16 +108,18 @@ One of the powerful feature is that we can combine these ranges or multiples in 
     It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `cat SRR097977.fastq | wc -l`
 
 
-We can use the above trick to convert the .fastq to .fasta
+!!! terminal-2 "We can use the above trick to convert the .fastq to .fasta"
 
-```bash
-sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
-```
+    ```bash
+    sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
+    ```
 Let's wrap up `sed` with one more use case (a slightly complicated looking one). Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to: 
 
-```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
-```
+!!! terminal "code"
+
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E 's/.*transcript_id "([^"]+)".*/\1/'
+    ```
 !!! info ""
     `-E` option to enable POSIX Extended Regular Expressions (ERE)
 
@@ -146,9 +148,11 @@ Output is not really what we are after,
 
 The is due to `sed` default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of *Mus_musculus.GRCm38.75_chr1.gtf* don't contain `transcript_id`. So, `sed` prints the entire line rather than captured group. One way to solve this would be to use `grep` `transcript_id` before `sed` to only work with lines containing the string `transcript_id` . However, `sed` offers a cleaner way. First, disable `sed` from outputting all lines with `-n` ( can use `--quiet` or `--silent` as well .i.e. *suppress automatic printing of pattern space*). Then, by appending `p` (*Print the current pattern space*) after the last slash `sed` will print all lines it’s made a replacement on. The following is an illustration of `-n` used with `p`:
 
-```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
-```
+!!! terminal "code"
+
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -n 3 | sed -E -n 's/.*transcript_id "([^"]+)".*/\1/p'
+    ```
 This example uses an important regular expression idiom: capturing text between delimiters (in this case, quotation marks). This is a useful pattern, so let’s break it
 down:
 
@@ -158,7 +162,7 @@ approach and use .* . Consider:
 
 - - - 
 
-!!! abstract "In preparation for next lesson, rename *example.bed.old* back to  *example.bed*"
+!!! terminal-2 "In preparation for next lesson, rename *`example.bed.old`* back to  *`example.bed`*"
 
     ```bash
     mv example.bed.old example.bed
