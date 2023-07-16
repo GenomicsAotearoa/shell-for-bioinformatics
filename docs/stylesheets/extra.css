@@ -834,7 +834,7 @@
 }
 .md-typeset .terminal-2 > .admonition-title::before,
 .md-typeset .terminal-2 > summary::before {
-  background-color: rgb(159, 236, 17);
+  background-color: rgb(9, 209, 26);
   -webkit-mask-image: var(--md-admonition-icon--terminal);
           mask-image: var(--md-admonition-icon--terminal);
 }
