@@ -141,9 +141,11 @@ The new file has been created and contains the standard output (contents of the 
 
 If we want to capture the standard error we use the (slightly unweildy) `2>` operator:
 
-```bash
-cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
-```
+!!! terminal "code"
+
+    ```bash
+    cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
+    ```
 
 !!! Descriptors
 
@@ -151,34 +153,41 @@ cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
 
 Check the contents:
 
-```bash
-cat stderror.txt
+!!! terminal "code"
+    
+    ```bash
+    cat stderror.txt
+    
+      cat: mik.fasta: No such file or directory
+    ```
+!!! warning "`>` vs `>>`
 
-  cat: mik.fasta: No such file or directory
-```
+    Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
 
-Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
+!!! terminal "code"
 
-```bash
-cat tga1-protein.fasta >> test.fasta
-```
-```bash
-cat test.fasta 
-```
->```bash
->>teosinte-branched-1 protein
->LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
->FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
->GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
->FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
->GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
->VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
->NLSHHSSLSMNMPCAAA
->>teosinte-glume-architecture-1 protein
->DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
->RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
->GGEGSSDGGT
->```
+    ```bash
+    cat tga1-protein.fasta >> test.fasta
+    ```
+    ```bash
+    cat test.fasta 
+    ```
+    ??? success "output"
+
+        ```bash
+        >teosinte-branched-1 protein
+        LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+        FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+        GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+        FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+        GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+        VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+        NLSHHSSLSMNMPCAAA
+        >teosinte-glume-architecture-1 protein
+        DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
+        RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
+        GGEGSSDGGT
+        ```
 
 ### The Unix pipe
 
