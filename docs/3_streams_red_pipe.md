@@ -290,7 +290,7 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
 !!! quote "" 
     When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
 
-!!! question "Exit Status and"
+!!! clipboard-question "Exit Status : using `&&` and `||`"
     To test your understanding of `&&` and `||`, we’ll use two Unix commands that do nothing but return either exit success (true) or exit failure (false). Predict and check the outcome of the following commands:
 
     ```bash
