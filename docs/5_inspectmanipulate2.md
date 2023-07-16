@@ -212,9 +212,9 @@ awk options 'selection_criteria {action}' input-file >  output-file
 
       `-F fs`OR `--field-separator fs`  : Use fs for the input field separator
 
-Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
 
-!!! terminal "code"
+
+!!! terminal-2 "Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`"
 
     ```bash
     awk '{print}' example.bed 
@@ -233,16 +233,18 @@ Default behaviour of `awk` is to print every line of data from the specified fil
         ```
 Print lines which match the given pattern
 
-```bash
-awk '/chr1/{print}' example.bed
-```
->```bash
->chr1	26	39
->chr1	32	47
->chr1	40	49
->chr1	9	28
->chr1	10	19
->```
+!!! terminal "code"
+
+    ```bash
+    awk '/chr1/{print}' example.bed
+    ```
+    >```bash
+    >chr1	26	39
+    >chr1	32	47
+    >chr1	40	49
+    >chr1	9	28
+    >chr1	10	19
+    >```
 
 `awk` can be used to mimic functionality of `cut` 
 
