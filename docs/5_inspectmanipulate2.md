@@ -338,39 +338,39 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
 **Examples**
 
-* We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):
+!!! terminal-2 "We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):"
 
-```bash
-awk 'NR >= 3 && NR <=5' example.bed
-``` 
->```bash
->    chr3	11	28
->    chr1	40	49
->    chr3	16	27
->```
+    ```bash
+    awk 'NR >= 3 && NR <=5' example.bed
+    ``` 
+    >```bash
+    >    chr3	11	28
+    >    chr1	40	49
+    >    chr3	16	27
+    >```
 
-* suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:
+!!! terminal-2 "suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:"
 
-```bash
-awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 
-
-  mean: 14
-```
+    ```bash
+    awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 
+    
+      mean: 14
+    ```
 
 !!! info 
 
       In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment `s` by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
 
-* `awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf*** as follows:
+!!! terminal-2 "`awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf*** as follows:"
 
-```bash
-awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
-```
->```bash
->1	3054232	3054733
->1	3054232	3054733
->1	3054232	3054733
->```
+    ```bash
+    awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
+    ```
+    >```bash
+    >1	3054232	3054733
+    >1	3054232	3054733
+    >1	3054232	3054733
+    >```
 
 !!! danger "Note"
     Note that we subtract 1 from the start position to convert to **BED** format. This is because **BED** uses zero-indexing while GTF uses 1-indexing; .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
@@ -380,50 +380,52 @@ awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head
 
 
 
-* `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key. 
+!!! terminal-2 "`awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key." 
 
-??? info "Quick Intro to Arrays" 
+    For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
+    
+    ```bash
+    awk '/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k "\t" feature[k]}' Mus_musculus.GRCm38.75_chr1.gtf 
+    ```
+    >```bash
+    >exon	69
+    >CDS	56
+    >UTR	24
+    >gene	1
+    >start_codon	5
+    >stop_codon	5
+    >transcript	9
+    >```
+    
+    ??? info "Quick Intro to Arrays" 
+    
+        The `awk` language provides one-dimensional arrays for storing groups of related strings or numbers. Every `awk` array must have a name. Array names have the same syntax as variable names; any valid variable name would also be a valid array name. But one name cannot be used in both ways (as an array and as a variable) in the same `awk` program.
+    
+        Arrays in `awk` superficially resemble arrays in other programming languages, but there are fundamental differences. In `awk`, it isn’t necessary to specify the size of an array before starting to use it. Additionally, any number or string, not just consecutive integers, may be used as an array index.
+    
+        In most other languages, arrays must be declared before use, including a specification of how many elements or components they contain. In such languages, the declaration causes a contiguous block of memory to be allocated for that many elements. Usually, an index in the array must be a nonnegative integer. For example, the index zero specifies the first element in the array, which is actually stored at the beginning of the block of memory. Index one specifies the second element, which is stored in memory right after the first element, and so on. It is impossible to add more elements to the array, because it has room only for as many elements as given in the declaration. (Some languages allow arbitrary starting and ending indices—e.g., ‘15 .. 27’—but the size of the array is still fixed when the array is declared.)
+    
+        A **contiguous** array of four elements might look like below, conceptually, if the element values are eight, "foo", "", and 30.
+    
+        <center>![image](./images/contiguous_array.png){width="400"}</center>
+    
+        Only the values are stored; the indices are implicit from the order of the values. Here, eight is the value at index zero, because eight appears in the position with zero elements before it.
+    
+        Arrays in `awk` are different—they are **associative**. This means that each array is a collection of pairs—an index and its corresponding array element value:
+    
+        <center>![image](./images/associative_arrays.png){width="220"}</center>
+    
+        The pairs are shown in jumbled order because their order is irrelevant
+    
+        One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:
+    
+        <center>![image](./images/adv_associative_arrays.png){width="200"}</center>
+    
+        Now the array is sparse, which just means some indices are missing. It has elements 0–3 and 10, but doesn’t have elements 4, 5, 6, 7, 8, or 9.
+    
+    
 
-    The `awk` language provides one-dimensional arrays for storing groups of related strings or numbers. Every `awk` array must have a name. Array names have the same syntax as variable names; any valid variable name would also be a valid array name. But one name cannot be used in both ways (as an array and as a variable) in the same `awk` program.
 
-    Arrays in `awk` superficially resemble arrays in other programming languages, but there are fundamental differences. In `awk`, it isn’t necessary to specify the size of an array before starting to use it. Additionally, any number or string, not just consecutive integers, may be used as an array index.
-
-    In most other languages, arrays must be declared before use, including a specification of how many elements or components they contain. In such languages, the declaration causes a contiguous block of memory to be allocated for that many elements. Usually, an index in the array must be a nonnegative integer. For example, the index zero specifies the first element in the array, which is actually stored at the beginning of the block of memory. Index one specifies the second element, which is stored in memory right after the first element, and so on. It is impossible to add more elements to the array, because it has room only for as many elements as given in the declaration. (Some languages allow arbitrary starting and ending indices—e.g., ‘15 .. 27’—but the size of the array is still fixed when the array is declared.)
-
-    A **contiguous** array of four elements might look like below, conceptually, if the element values are eight, "foo", "", and 30.
-
-    <center>![image](./images/contiguous_array.png){width="400"}</center>
-
-    Only the values are stored; the indices are implicit from the order of the values. Here, eight is the value at index zero, because eight appears in the position with zero elements before it.
-
-    Arrays in `awk` are different—they are **associative**. This means that each array is a collection of pairs—an index and its corresponding array element value:
-
-    <center>![image](./images/associative_arrays.png){width="220"}</center>
-
-    The pairs are shown in jumbled order because their order is irrelevant
-
-    One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:
-
-    <center>![image](./images/adv_associative_arrays.png){width="200"}</center>
-
-    Now the array is sparse, which just means some indices are missing. It has elements 0–3 and 10, but doesn’t have elements 4, 5, 6, 7, 8, or 9.
-
-
-
-For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
-
-```bash
-awk '/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k "\t" feature[k]}' Mus_musculus.GRCm38.75_chr1.gtf 
-```
->```bash
->exon	69
->CDS	56
->UTR	24
->gene	1
->start_codon	5
->stop_codon	5
->transcript	9
->```
 
 It’s worth noting that there’s an entirely Unix way to count features of a particular gene: `grep` , `cut` , `sort` , and `uniq -c`
 
