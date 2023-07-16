@@ -214,22 +214,23 @@ awk options 'selection_criteria {action}' input-file >  output-file
 
 Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`
 
-
-```bash
-awk '{print}' example.bed 
-```
-??? success "Output"
+!!! terminal "code"
 
     ```bash
-    chr1	26	39
-    chr1	32	47
-    chr3	11	28
-    chr1	40	49
-    chr3	16	27
-    chr1	9	28
-    chr2	35	54
-    chr1	10	19
+    awk '{print}' example.bed 
     ```
+    ??? success "Output"
+    
+        ```bash
+        chr1	26	39
+        chr1	32	47
+        chr3	11	28
+        chr1	40	49
+        chr3	16	27
+        chr1	9	28
+        chr2	35	54
+        chr1	10	19
+        ```
 Print lines which match the given pattern
 
 ```bash
