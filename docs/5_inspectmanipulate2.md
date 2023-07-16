@@ -319,7 +319,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
 
 
-!!! note "Built-In Variables and special patterns In Awk"
+!!! rectangle-list "Built-In Variables and special patterns In Awk"
 
     * Awk’s built-in variables include the field variables `$1`, `$2`, `$3`, and so on (`$0` is the entire line) — that break a line of text into individual words or pieces called fields. 
 

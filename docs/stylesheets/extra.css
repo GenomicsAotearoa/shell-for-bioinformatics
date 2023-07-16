@@ -342,7 +342,7 @@
   }
   .md-typeset .rectangle-list > .admonition-title,
   .md-typeset .rectangle-list > summary {
-    background-color: rgba(14, 130, 238, 0.63);
+    background-color: rgba(36, 141, 238, 0.63);
   }
   .md-typeset .rectangle-list > .admonition-title::before,
   .md-typeset .rectangle-list > summary::before {
