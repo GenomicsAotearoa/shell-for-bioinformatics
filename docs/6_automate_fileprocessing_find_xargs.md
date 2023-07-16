@@ -119,17 +119,21 @@ Find’s real strength in bioinformatics is that it allows you to run commands o
 
 Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *genome-project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 
-```bash
-touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
-```
+!!! terminal "code"
+
+    ```bash
+    touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
+    ```
 
 Although we can delete these files with `rm *-temp.fastq`, using `rm` with a wildcard in a directory filled with important data files is too risky. Using `find`’s `-exec` is a much safer way to delete these files.
 
 For example, let’s use `find -exec` and `rm` to delete these temporary files:
 
-```bash
-find genome-project/data/raw/ -name "*-temp.fastq" -exec rm {} \;
-```
+!!! terminal "code"
+
+    ```bash
+    find genome-project/data/raw/ -name "*-temp.fastq" -exec rm {} \;
+    ```
 Notice the (required!) semicolumn and curly brackets at the end of the command! . In one line, we’re able to pragmatically identify and execute a command on files that match a certain pattern. With `find` and `-exec`, a daunting task like processing a directory of 100,000 text files with a program is simple.
 
 In general, `find -exec` is most appropriate for quick, simple tasks (like deleting files, changing permissions, etc.). For larger tasks, `xargs` is a better choice.
@@ -142,23 +146,29 @@ In general, `find -exec` is most appropriate for quick, simple tasks (like delet
 
 Let’s re-create our `-temp.fastq` files: .i.e Make sure to run `ls` after the `touch` command to verify the files were created. 
 
-```bash
-touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
-```
+!!! terminal "code"
+
+    ```bash
+    touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
+    ```
 
 `xargs` works by taking input from standard in and splitting it by spaces, tabs, and newlines into arguments. Then, these arguments are passed to the command supplied. For example, to emulate the behavior of `find -exec` with `rm`, we use `xargs` with `rm`:
 
-```bash
-find genome-project/data/raw -name "*-temp.fastq" | xargs rm
-```
+!!! terminal "code"
+    
+    ```bash
+    find genome-project/data/raw -name "*-temp.fastq" | xargs rm
+    ```
 `xargs` passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like `rm`, `touch`, `mkdir`, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with `xargs`’s `-n` argument. For example, we could call rm four separate times (each on one file) with:
 
-```bash
-touch genome-project/data/raw/zmays{A,C}_R{1,2}-temp.fastq
-```
-```bash
-find genome-project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
-```
+!!! terminal "code"
+
+    ```bash
+    touch genome-project/data/raw/zmays{A,C}_R{1,2}-temp.fastq
+    ```
+    ```bash
+    find genome-project/data/raw -name "*-temp.fastq" | xargs -n 1 rm
+    ```
 
 One big benefit of `xargs` is that it separates the process that specifies the files to operate on (`find`) from applying a command to these files (through `xargs`). If we wanted to inspect a long list of files find returns before running rm on all files in this list, we could use:
 
