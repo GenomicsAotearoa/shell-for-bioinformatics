@@ -668,11 +668,11 @@
   }
   .md-typeset .table > .admonition-title,
   .md-typeset .table > summary {
-    background-color: rgba(205, 231, 176, 0.459);
+    background-color: rgba(232, 235, 91, 0.459);
   }
   .md-typeset .table > .admonition-title::before,
   .md-typeset .table > summary::before {
-    background-color: rgb(87, 172, 62);
+    background-color: rgb(241, 134, 47);
     -webkit-mask-image: var(--md-admonition-icon--table);
             mask-image: var(--md-admonition-icon--table);
   }
