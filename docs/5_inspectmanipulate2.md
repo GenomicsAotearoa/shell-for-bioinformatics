@@ -101,7 +101,7 @@ One of the powerful feature is that we can combine these ranges or multiples in 
 ```bash
 sed -n '1~4p;2~4p' SRR097977.fastq
 ```
-!!! hint "Sanity Check"
+!!! tip "Sanity Check"
 
     It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `cat SRR097977.fastq | wc -l`
 
