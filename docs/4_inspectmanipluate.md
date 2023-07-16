@@ -24,9 +24,11 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
 
 Although `cat` command is an easy way for us to open and view the content of a file, it is not very practical to do so for a file with thousands of lines as it will exhaust the shell "space". Instead, large files should be inspected first and then manipulated accordingly. The first round of inspection can be done with `head` and `tail` command which prints the first 10 lines and the last 10 lines (`-n 10`) of a a file, respectively. Let's use `head` and `tail` to inspect *Mus_musculus.GRCm38.75_chr1.bed* 
 
-```bash
-head Mus_musculus.GRCm38.75_chr1.bed
-```
+!!! terminal "code"
+
+    ```bash
+    head Mus_musculus.GRCm38.75_chr1.bed
+    ```
 
 ??? success "Output"
 
