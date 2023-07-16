@@ -202,11 +202,13 @@ We will use grep to carry out the first step, and then use the pipe operator to 
 
 Here is the full command:
 
-```bash 
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
-```
+!!! terminal "code"
 
-!!! info "Let's see what each piece does" 
+    ```bash 
+    grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+    ```
+
+!!! magnifying-glass "Let's see what each piece does" 
 
     `grep -v "^>" tb1.fasta`
  
@@ -222,9 +224,11 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
 Let's run the code:
 
-```bash
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
-```
+!!! terminal "code"
+
+    ```bash
+    grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+    ```
 
 !!! quote ""
 
@@ -233,30 +237,39 @@ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
 
 What if we had just run the code for step 2 on the `tb1.fasta` file?
 
-```
-grep --color -i "[^ATCG]" tb1.fasta
-```
+!!! terminal "code"
+
+    ```bash
+    grep --color -i "[^ATCG]" tb1.fasta
+    ```
 
 ### Combining pipes and redirection
 
-```bash
-grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
-```
+!!! terminal "code"
 
-```bash
-cat non-atcg.txt 
-```
+    ```bash
+    grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
+    ```
+!!! terminal "code"
+
+    ```bash
+    cat non-atcg.txt 
+    ```
 
 since we are redirecting to a text file, the `--color` by itself will not record the colour information. We can achieve this by invoking `always` flag for `--color`.i.e..
 
-```bash
-grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
-```
+!!! terminal "code"
+
+    ```bash
+    grep -v "^>" tb1.fasta | grep --color=always -i "[^ATCG]" > non-atcg.txt
+    ```
 ### Using tee to capture intermediate outputs
 
-```bash
-grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
-```
+!!! terminal "code"
+
+    ```bash
+    grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
+    ```
 
 The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
