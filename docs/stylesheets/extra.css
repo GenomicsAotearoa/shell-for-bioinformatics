@@ -830,11 +830,11 @@
 .md-typeset .terminal-2 > .admonition-title,
 .md-typeset .terminal-2 > summary {
   color:rgb(35, 35, 37);
-  background-color: rgb(185, 204, 228);
+  background-color: rgb(188, 192, 186);
 }
 .md-typeset .terminal-2 > .admonition-title::before,
 .md-typeset .terminal-2 > summary::before {
-  background-color: rgb(27, 201, 36);
+  background-color: rgb(159, 236, 17);
   -webkit-mask-image: var(--md-admonition-icon--terminal);
           mask-image: var(--md-admonition-icon--terminal);
 }
