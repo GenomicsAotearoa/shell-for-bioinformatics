@@ -307,7 +307,24 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
         The `$?` variable represents the exit status of the previous command.
 
     ??? success "Answer"
-    
+
+        ```bash
+        ~$ true 
+        ~$ echo $?
+        0
+        ~$ false
+        ~$ echo $?
+        1
+        ~$ true && echo "first command was a success"
+        first command was a success
+
+        ~$ true || echo "first command was not a success"
+        ~$ false || echo "first command was not a success"
+        first command was not a success
+        
+        ~$ false && echo "first command was a success"
+        ~$ 
+        ```
 
 ### Command Substitution
 
