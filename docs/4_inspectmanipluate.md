@@ -330,22 +330,24 @@ However, using `sort`â€™s default of sorting alphanumerically by line and doesnâ
 
 `uniq` takes lines from a file or standard input stream and outputs all lines with consecutive duplicates removed. While this is a relatively simple functionality, you will use `uniq` very frequently in command-line data processing.
 
-```bash
-cat letters.txt 
-```
-
-??? success "Output"
+!!! terminal "code"
 
     ```bash
-    A 
-    A
-    B
-    C
-    B
-    C
-    C
-    C
+    cat letters.txt 
     ```
+
+    ??? success "Output"
+    
+        ```bash
+        A 
+        A
+        B
+        C
+        B
+        C
+        C
+        C
+        ```
 ```bash
 uniq letters.txt 
 ```
