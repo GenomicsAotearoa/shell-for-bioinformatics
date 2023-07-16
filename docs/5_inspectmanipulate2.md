@@ -450,7 +450,7 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
       - It can automatically recognize some popular formats and will parse different features associated with those formats. The format option is passed to `bioawk` using `-c arg` flag. Here `arg` can be bed, sam, vcf, gff or fastx (for both fastq and FASTA). It can also deal with other types of table formats using the `-c header` option. When `header` is specified, the field names will used for variable names, thus greatly expanding the utility.`
       - There are several built-in functions (other than the standard `awk` built-ins), that are specific to biological file formats. When a format is read with `bioawk`, the fields get automatically parsed. You can apply several functions on these variables to get the desired output. Let’s say, we read fasta format, now we have `$name` and `$seq` that holds sequence name and sequence respectively. You can use the `print` function (`awk` built-in) to print `$name` and `$seq`. You can also use `bioawk` built-in with the `print` function to get length, reverse complement etc by using `'{print length($seq)}'`. Other functions include `reverse`, `revcomp`, `trimq`, `and`, `or`, `xor` etc.
 
-??? "Variables for each format"
+??? table "Variables for each format"
 
     For the `-c` you can either specify bed, sam, vcf, gff, fastx or header. `bioawk` will parse these variables for the respective format. If `-c` header is specified, the field names (first line) will be used as variables (spaces and special characters will be changed to under_score).
 
