@@ -440,35 +440,39 @@ Count in order from most frequent to last
     ```
 The Unix tool join is used to join different files together by a common column. For example, we may want to add chromosome lengths recorded in example_lengths.txt to example.bed BED file, we saw earlier. The files look like this:
 
-```
-cat example.bed
-echo "=========="
-cat example_lengths.txt
-```
+!!! terminal "code"
+    
+    ```bash
+    cat example.bed
+    echo "=========="
+    cat example_lengths.txt
+    ```
 
->```bash
->chr1	26	39
->chr1	32	47
->chr3	11	28
->chr1	40	49
->chr3	16	27
->chr1	9	28
->chr2	35	54
->chr1	10	19
->==========
->chr1	58352
->chr2	39521
->chr3	24859
->```
+    >```bash
+    >chr1	26	39
+    >chr1	32	47
+    >chr3	11	28
+    >chr1	40	49
+    >chr3	16	27
+    >chr1	9	28
+    >chr2	35	54
+    >chr1	10	19
+    >==========
+    >chr1	58352
+    >chr2	39521
+    >chr3	24859
+    >```
  
 To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):
 
-```bash
-sort -k1,1 example.bed > example_sorted.bed
-```
-```bash
-sort -c -k1,1 example_lengths.txt
-```
+!!! terminal "code"
+
+    ```bash
+    sort -k1,1 example.bed > example_sorted.bed
+    ```
+    ```bash
+    sort -c -k1,1 example_lengths.txt
+    ```
 !!! info ""
     `-c`, `--check`, `--check=diagnose-first` = check for sorted input; do not sort
 
