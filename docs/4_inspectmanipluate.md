@@ -478,65 +478,75 @@ To do this, we need to join both of these tabular files by their common column, 
 
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
 
-```bash
-join -1 1 -2 1 example_sorted.bed example_lengths.txt > example_with_lengths.txt
-```
+!!! terminal "code"
 
-```bash
-cat example_with_lengths.txt
-```
+    ```bash
+    join -1 1 -2 1 example_sorted.bed example_lengths.txt > example_with_lengths.txt
+    ```
+
+    ```bash
+    cat example_with_lengths.txt
+    ```
 There are many types of joins. For now, it’s important that we make sure join is working as we expect. Our expectation is that this join should not lead to fewer rows than in our example.bed file. We can verify this with `wc -l`:
 
-```bash
-wc -l example_sorted.bed example_with_lengths.txt 
-```
->```bash
->  8 example_sorted.bed
->  8 example_with_lengths.txt
-> 16 total
->```
+!!! terminal "code"
+    
+    ```bash
+    wc -l example_sorted.bed example_with_lengths.txt 
+    ```
+    >```bash
+    >  8 example_sorted.bed
+    >  8 example_with_lengths.txt
+    > 16 total
+    >```
 
 However, look what happens if our second file, *example_lengths.txt* doesn’t have the lengths for **chr3**:
 
-```bash
-head -n 2 example_lengths.txt > example_lengths_alt.txt #truncate file
-```
-```bash
-join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt
-```
->```bash
->chr1 10 19 58352
->chr1 26 39 58352
->chr1 32 47 58352
->chr1 40 49 58352
->chr1 9 28 58352
->chr2 35 54 39521
->```
+!!! terminal "code"
+    
+    ```bash
+    head -n 2 example_lengths.txt > example_lengths_alt.txt #truncate file
+    ```
+    ```bash
+    join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt
+    ```
+    >```bash
+    >chr1 10 19 58352
+    >chr1 26 39 58352
+    >chr1 32 47 58352
+    >chr1 40 49 58352
+    >chr1 9 28 58352
+    >chr2 35 54 39521
+    >```
 
-```bash
-join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt | wc -l
-```
->```bash
->6
->```
+!!! terminal "code"
+
+    ```bash
+    join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt | wc -l
+    ```
+    >```bash
+    >6
+    >```
 
 Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows from example_sorted.bed that do not have an entry in the first column of example_lengths_alt.txt. If we don’t want this behavior, we can use option -a to include unpairable lines—ones that do not have an entry in either file:
 
-```bash
-join -1 1 -2 1 -a 1 example_sorted.bed example_lengths_alt.txt 
-```
-!!! info ""
-    `-a` FILENUM  - also print unpairable lines from file FILENUM, where FILENUM is 1 or 2, corresponding to FILE1 or FILE2
+!!! terminal "code"
 
->```bash
->chr1 10 19 58352
->chr1 26 39 58352
->chr1 32 47 58352
->chr1 40 49 58352
->chr1 9 28 58352
->chr2 35 54 39521
->chr3 11 28
->chr3 16 27
->```
-
+    ```bash
+    join -1 1 -2 1 -a 1 example_sorted.bed example_lengths_alt.txt 
+    ```
+    !!! info ""
+        `-a` FILENUM  - also print unpairable lines from file FILENUM, where FILENUM is 1 or 2, corresponding to FILE1 or FILE2
+    
+    >```bash
+    >chr1 10 19 58352
+    >chr1 26 39 58352
+    >chr1 32 47 58352
+    >chr1 40 49 58352
+    >chr1 9 28 58352
+    >chr2 35 54 39521
+    >chr3 11 28
+    >chr3 16 27
+    >```
+    
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
