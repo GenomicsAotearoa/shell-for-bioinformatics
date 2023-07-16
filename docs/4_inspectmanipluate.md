@@ -30,38 +30,39 @@ Although `cat` command is an easy way for us to open and view the content of a f
     head Mus_musculus.GRCm38.75_chr1.bed
     ```
 
-??? success "Output"
+    ??? success "Output"
+    
+        ```bash
+        1	3054233	3054733
+        1	3054233	3054733
+        1	3054233	3054733
+        1	3102016	3102125
+        1	3102016	3102125
+        1	3102016	3102125
+        1	3205901	3671498
+        1	3205901	3216344
+        1	3213609	3216344
+        1	3205901	3207317
+        ```
+!!! terminal "code"
 
     ```bash
-    1	3054233	3054733
-    1	3054233	3054733
-    1	3054233	3054733
-    1	3102016	3102125
-    1	3102016	3102125
-    1	3102016	3102125
-    1	3205901	3671498
-    1	3205901	3216344
-    1	3213609	3216344
-    1	3205901	3207317
+    tail Mus_musculus.GRCm38.75_chr1.bed 
     ```
-
-```bash
-tail Mus_musculus.GRCm38.75_chr1.bed 
-```
-??? success "Output"
-
-    ```bash
-    1	195166217	195166390
-    1	195165745	195165851
-    1	195165748	195165851
-    1	195165745	195165747
-    1	195228278	195228398
-    1	195228278	195228398
-    1	195228278	195228398
-    1	195240910	195241007
-    1	195240910	195241007
-    1	195240910	195241007
-    ```
+    ??? success "Output"
+    
+        ```bash
+        1	195166217	195166390
+        1	195165745	195165851
+        1	195165748	195165851
+        1	195165745	195165747
+        1	195228278	195228398
+        1	195228278	195228398
+        1	195228278	195228398
+        1	195240910	195241007
+        1	195240910	195241007
+        1	195240910	195241007
+        ```
 Changing the number of lines printed for either of those commands can be done by passing `-n <number_of_lines>` flag .i.e. Over-ride the `-n 10` default
 
 Try those commands with `-n 4` to print top 4 lines and bottom 4 lines
