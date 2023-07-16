@@ -365,14 +365,14 @@ As you can see, `uniq` does not return the unique values in letters.txt — it o
 
 !!! terminal "code"
 
-```bash
-sort letters.txt | uniq
-```
-
-A
-B
-C
-```
+    ```bash
+    sort letters.txt | uniq
+    ```
+    >```
+    >A
+    >B
+    >C
+    >```
 `uniq` with `-c` shows the counts of occurrences next to the unique lines.
 
 !!! terminal "code"
