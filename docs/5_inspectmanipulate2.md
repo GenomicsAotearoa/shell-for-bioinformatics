@@ -81,16 +81,16 @@ To print a specific line you can use the address function. Note that by default,
     sed -n -e '2p' -e '5p' example.bed
     ```
 
-It also accepts range, using `,`. Let's print line 2-6,
+!!! terminal-2 "It also accepts range, using `,`. Let's print line 2-6,"
 
-```bash
-sed -n '2,6p' example.bed
-```
-Also, we can create specific pattern, like multiples of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file
+    ```bash
+    sed -n '2,6p' example.bed
+    ```
+!!! terminal-2 "Also, we can create specific pattern, like multiples of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file"
 
-```bash
-sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
-```
+    ```bash
+    sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
+    ```
 
 ???+ question "Exercise 4.4"
 
