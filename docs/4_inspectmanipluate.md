@@ -263,21 +263,23 @@ cat > test_sort.bed
     chr2	35	54
     chr1	10	19
     ```
-```bash
-sort test_sort.bed 
-```
-??? success "Output"
+!!! terminal "code"
 
     ```bash
-    chr1	10	19
-    chr1	26	39
-    chr1	32	47
-    chr1	40	49
-    chr1	9	28
-    chr2	35	54
-    chr3	11	28
-    chr3	16	27
+    sort test_sort.bed 
     ```
+    ??? success "Output"
+    
+        ```bash
+        chr1	10	19
+        chr1	26	39
+        chr1	32	47
+        chr1	40	49
+        chr1	9	28
+        chr2	35	54
+        chr3	11	28
+        chr3	16	27
+        ```
 `sort` without any arguments simply sorts a file alphanumerically by line. Because chromosome is the first column, sorting by line effectively groups chromosomes together, as these are "ties" in the sorted order.
 
 However, using `sort`’s default of sorting alphanumerically by line and doesn’t handle tabular data properly. There are two new features we need:
@@ -288,21 +290,23 @@ However, using `sort`’s default of sorting alphanumerically by line and doesn�
 
 `sort` has a simple syntax to do this. Let’s look at how we’d sort example.bed by chromosome (first column), and start position (second column):
 
-```bash
-sort -k1,1 -k2,2n test_sort.bed
-``` 
-??? success "Output"
+!!! terminal "code"
 
     ```bash
-    chr1	9	28
-    chr1	10	19
-    chr1	26	39
-    chr1	32	47
-    chr1	40	49
-    chr2	35	54
-    chr3	11	28
-    chr3	16	27
-    ```
+    sort -k1,1 -k2,2n test_sort.bed
+    ``` 
+    ??? success "Output"
+    
+        ```bash
+        chr1	9	28
+        chr1	10	19
+        chr1	26	39
+        chr1	32	47
+        chr1	40	49
+        chr2	35	54
+        chr3	11	28
+        chr3	16	27
+        ```
 
 !!! quote ""
 
