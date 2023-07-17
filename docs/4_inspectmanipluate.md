@@ -217,24 +217,28 @@ As you may have noticed when working with tab-delimited files, it’s not always
     
 While tabs are a great delimiter in plain-text data files, our variable width data causes our columns to not stack up well. There’s a fix for this in Unix: program column `-t` (the `-t` option tells column to treat data as a table). The column -t command produces neat columns that are much easier to read:
 
-```bash
-grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
-```
->```bash
->   1  pseudogene                          gene         3054233    3054733    .  +  .
->   1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
->   1  unprocessed_pseudogene              exon         3054233    3054733    .  +  .
->```
+!!! terminal "code"
+    
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1-8 | column -t | head -n 3
+    ```
+    >```bash
+    >   1  pseudogene                          gene         3054233    3054733    .  +  .
+    >   1  unprocessed_pseudogene              transcript   3054233    3054733    .  +  .
+    >   1  unprocessed_pseudogene              exon         3054233    3054733    .  +  .
+    >```
 
 Note that you should only use `column -t` to visualize data in the terminal, not to reformat data to write to a file. Tab-delimited data is preferable to data delimited by a variable number of spaces, since it’s easier for programs to parse. Like `cut` , `column`’s default delimiter is the tab character (`\t` ). We can specify a different delimiter with the `-s` option. So, if we wanted to visualize the columns of the ***Mus_musculus.GRCm38.75_chr1_bed.csv*** file more easily, we could use:
 
-```bash
-column -s "," -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
+!!! terminal "code"
 
-    1	3054233	3054733
-    1	3054233	3054733
-    1	3054233	3054733
-```
+    ```bash
+    column -s "," -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
+    
+        1	3054233	3054733
+        1	3054233	3054733
+        1	3054233	3054733
+    ```
 
 ??? warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
 
@@ -271,9 +275,11 @@ Very often we need to work with sorted plain-text data in bioinformatics. The tw
 
 `sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments.
 
-```bash
-cat > test_sort.bed
-```
+!!! terminal "code"
+
+    ```bash
+    cat > test_sort.bed
+    ```
 
 ??? database  "input"
 
