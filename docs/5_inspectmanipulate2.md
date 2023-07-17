@@ -505,7 +505,7 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
     bioawk -c help
     ```
     >```bash
-    >ed:
+    >bed:
     >	1:chrom 2:start 3:end 4:name 5:score 6:strand 7:thickstart 8:thickend 9:rgb 10:blockcount 11:blocksizes 12:blockstarts 
     >sam:
     >	1:qname 2:flag 3:rname 4:pos 5:mapq 6:cigar 7:rnext 8:pnext 9:tlen 10:seq 11:qual 
