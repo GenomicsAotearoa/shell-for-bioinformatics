@@ -104,11 +104,13 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
 
 The "wc" in the `wc` command which stands for "word count" - this command can count the numbers of **lines, words**, and **characters** in a file (take a note on the order).
 
-```bash
-wc Mus_musculus.GRCm38.75_chr1.bed 
+!!! terminal "code"
 
-  81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
-```
+    ```bash
+    wc Mus_musculus.GRCm38.75_chr1.bed 
+    
+      81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
+    ```
 Often, we only need to list the number of lines, which can be done by using the `-l` flag. It can be used as a sanity check - for example, to make sure an output has the same number of lines as the input, OR to check that a certain file format which depends on another format without losing overall data structure wasn't corrupted or over/under manipulated. 
 
 !!! question "Question"
@@ -119,14 +121,16 @@ Although `wc -l` is the quickest way to count the number of lines in a file, it 
 
 For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing **Enter** twice, 
 
-```bash
-cat > fool_wc.bed
-```
->```bash
->  1 100
->  2 200
->  3 300
->```
+!!! terminal "code"
+
+    ```bash
+    cat > fool_wc.bed
+    ```
+    >```bash
+    >  1 100
+    >  2 200
+    >  3 300
+    >```
 
 
 **Ctrl+D** to end the edits started with `cat >`
