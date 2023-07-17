@@ -73,7 +73,8 @@ Many formats in bioinformatics are simple tabular plain-text files delimited by 
     ```bash
     tail -n 4 Mus_musculus.GRCm38.75_chr1.bed 
     ```
-
+<br>
+<br>
 ???+ question "Exercise 4.1"
 
     Sometimes it’s useful to see both the beginning and end of a file — for example, if we have a sorted BED file and we want to see the positions of the first feature and last feature. Can you figure out a way to use both `head` and `tail` in a single command to inspect first and last 2 lines of ***Mus_musculus.GRCm38.75_chr1.bed***?
