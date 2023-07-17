@@ -493,6 +493,13 @@ The original `awk` requires a YACC-compatible parser generator (e.g. Byacc or Bi
  The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:
 
 !!! terminal "code"
+    
+    ```bash
+    bioawk
+    ```
+    >``` 
+    >usage: bioawk [-F fs] [-v var=value] [-c fmt] [-tH] [-f progfile | 'prog'] [file ...]
+    >```
 
     ```bash
     bioawk -c help
