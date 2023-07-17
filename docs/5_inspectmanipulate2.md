@@ -386,7 +386,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
 <br>
 
-??? terminal-2 "Optional (Advanced)  - `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key." 
+??? surprise "Optional (Advanced)  - `awk` also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key." 
 
     For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:
     

@@ -2,7 +2,6 @@
 
 !!! abstract "Lesson Objectives"
 
-    - To be able to download data with command line utilities
     - Inspect data (checksum verification)
 
 !!! desktop-download-24 "Download with `wget` from a terminal client"
