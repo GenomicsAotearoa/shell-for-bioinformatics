@@ -12,10 +12,25 @@ ls *.fastq | analyse_fastq
 
     Your shell expands this wildcard to all matching files in the current directory, and `ls` prints these filenames. Unfortunately, this leads to a common complication that makes `ls` and wildcards a fragile solution. Suppose your directory contains a filename called ***treatment 03.fastq***. In this case, `ls` returns ***treatment 03.fastq*** along with other files. However, because files are separated by spaces, and this file contains a space, `analyse_fastq` will interpret *treatment 03.fastq* as two separate files, named ***treatment*** and ***03.fastq***. This problem crops up periodically in different ways, and it’s necessary to be aware of when writing file-processing pipelines. Note that this does not occur with file globbing in arguments—if `analyse_fastq` takes multiple files as arguments, your shell handles this properly:
 
-??? quote "Globbing"
 
-    Bash itself cannot recognize Regular Expressions. Inside scripts, it is commands and utilities such as `sed` and `awk` that interpret RE's.
-    Bash does carry out filename expansion,a process known as **globbing**, but this does not use the standard RE set. Instead, globbing recognizes and expands wild cards. Globbing interprets the standard wild card characters `*` and `?`, character lists in square brackets, and certain other special characters (such as `^` for negating the sense of a match). There are important limitations on wild card characters in globbing, however. Strings containing `*` will not match filenames that start with a dot, as, for example, *.bashrc*.Likewise, the `?` has a different meaning in globbing than as part of an RE.
+??? quote-right "Globbing"
+
+    Bash does not support native regular expressions like some other standard programming languages. The Bash shell feature that is used for matching or expanding specific types of patterns is called globbing. Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern. The most common wildcard characters that are used for creating globbing patterns are described below.
+
+    1. Question mark – (`?`) 
+
+        - `?` is used to match any single character. You can use ‘?’ for multiple times for matching multiple characters.
+    2. Asterisk – (`*`)
+       
+        - `*` is used to match zero or more characters. If you have less information to search any file or information then you can use ‘*’ in globbing pattern.
+
+    3. Square Bracket – (`[]`)
+       
+        - `[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
+
+    4. Caret – (`^`)
+
+        - You can use `^` with square bracket to define globbing pattern more specifically. `^` can be used inside or outside of square bracket. `^` is used outside the square bracket to search those contents of the file that starts with a given range of characters. `^`is used inside the square bracket to show all content of the file by highlighting the lines start with a given range of characters . 
 
 ```bash
 analyse_fastq *.fastq
