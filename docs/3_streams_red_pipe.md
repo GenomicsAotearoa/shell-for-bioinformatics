@@ -9,7 +9,7 @@
 Bioinformatics data is often text-based and large. This is why Unix’s philosophy of handling text streams is useful in bioinformatics: text streams allow us to do processing on a stream of data rather than holding it all in memory. Handling and redirecting the streams of data is essential skill in Unix.
 
 
-By default, both standard error and standard output of most unix programs go to your terminal screen. We can change this behavior (redirect the streams to a file) by using `>` or `>>` operators. The operator `>` redirects standard output to a file and overwrites any existing contents of the file, whereas `>>` appends to the file. If there isn’t an existing file, both operators will create it before redirecting output to it. For example, to concatenate two FASTA files, we use `cat` command, but redirect the output to a file:
+By default, both standard error and standard output of most unix programs go to your terminal screen. We can change this behavior (redirect the streams to a file) by using `>` or `>>` operators. The operator `>` redirects standard output to a file and overwrites any existing contents of the file, whereas `>>` appends to the file. If there isn’t an existing file, both operators will create it before redirecting output to it. 
 
 <center>
 ![image](./images/redirection_st.png){width="525"}
@@ -27,37 +27,38 @@ tga1-protein.fasta
 
 We can use the `cat` command to view these files either one at a time:
 
-!!! terminal "code"
-
-    ```bash
-    cat tb1-protein.fasta
-    ```
-    ??? success "output"
-
+??? backward "Recap - `cat` command to view the content of *a* file"
+    !!! terminal "code"
+    
         ```bash
-        >teosinte-branched-1 protein
-        LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
-        FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
-        GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
-        FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
-        GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
-        VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
-        NLSHHSSLSMNMPCAAA
+        cat tb1-protein.fasta
         ```
-
-!!! terminal "code"
-
-    ```bash
-    cat tga1-protein.fasta 
-    ```
-    ??? success "output"
-
+        ??? success "output"
+    
+            ```bash
+            >teosinte-branched-1 protein
+            LGVPSVKHMFPFCDSSSPMDLPLYQQLQLSPSSPKTDQSSSFYCYPCSPP
+            FAAADASFPLSYQIGSAAAADATPPQAVINSPDLPVQALMDHAPAPATEL
+            GACASGAEGSGASLDRAAAAARKDRHSKICTAGGMRDRRMRLSLDVARKF
+            FALQDMLGFDKASKTVQWLLNTSKSAIQEIMADDASSECVEDGSSSLSVD
+            GKHNPAEQLGGGGDQKPKGNCRGEGKKPAKASKAAATPKPPRKSANNAHQ
+            VPDKETRAKARERARERTKEKHRMRWVKLASAIDVEAAAASVPSDRPSSN
+            NLSHHSSLSMNMPCAAA
+            ```
+    
+    !!! terminal "code"
+    
         ```bash
-        >teosinte-glume-architecture-1 protein
-        DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
-        RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
-        GGEGSSDGGT
+        cat tga1-protein.fasta 
         ```
+        ??? success "output"
+    
+            ```bash
+            >teosinte-glume-architecture-1 protein
+            DSDCALSLLSAPANSSGIDVSRMVRPTEHVPMAQQPVVPGLQFGSASWFP
+            RPQASTGGSFVPSCPAAVEGEQQLNAVLGPNDSEVSMNYGGMFHVGGGSG
+            GGEGSSDGGT
+            ```
 
 OR all at once with `cat *.fasta`
 
