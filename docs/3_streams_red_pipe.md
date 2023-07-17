@@ -246,7 +246,7 @@ What if we had just run the code for step 2 on the `tb1.fasta` file?
 
 ### Combining pipes and redirection
 
-!!! terminal "code"
+!!! terminal-2 "redirect the standard output of above `grep..` command to `non-atcg.txt`"
 
     ```bash
     grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > non-atcg.txt
