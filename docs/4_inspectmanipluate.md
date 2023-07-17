@@ -135,19 +135,25 @@ For an example, if we are to create a file with 3 rows of data and then two empt
 
 **Ctrl+D** to end the edits started with `cat >`
 
-```bash
-wc -l fool_wc.bed 
+!!! terminal "code"
 
-  5 fool_wc.bed
-```
+    ```bash
+    wc -l fool_wc.bed 
+    ```
+    >```
+    >  5 fool_wc.bed
+    >```
 This is a good place to bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs (`t`) or newlines (`n`))
 
-```bash
+!!! terminal "code"
 
-grep -c "[^ \n\t]" fool_wc.bed 
-
-  3
-```
+    ```bash
+    
+    grep -c "[^ \n\t]" fool_wc.bed 
+    ```
+    >```bash
+    >  3
+    >```
 ## Using `cut` with column data and formatting tabular data with `column`
 
 When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
