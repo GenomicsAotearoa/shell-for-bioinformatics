@@ -176,7 +176,7 @@ Let’s re-create our `-temp.fastq` files: .i.e Make sure to run `ls` after the 
     ```bash
     find genome-project/data/raw -name "*-temp.fastq" | xargs rm
     ```
-`xargs` passes all arguments received through standard in to the supplied program (rm in this example). This works well for programs like `rm`, `touch`, `mkdir`, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with `xargs`’s `-n` argument. For example, we could call rm four separate times (each on one file) with:
+`xargs` passes all arguments received through standard in to the supplied program (`rm` in this example). This works well for programs like `rm`, `touch`, `mkdir`, and others that take multiple arguments. However, other programs only take a single argument at a time. We can set how many arguments are passed to each command call with `xargs`’s `-n` argument. For example, we could call rm four separate times (each on one file) with:
 
 !!! terminal "code"
 
