@@ -1,4 +1,4 @@
-# Supp - 3. Escapaing and Special Characters 
+# Supp - 3. Escaping and Special Characters 
 ## Escaping 
 
 Escaping is a method of quoting single characters. The escape `(\)` preceding a character tells the shell to interpret that character literally.
