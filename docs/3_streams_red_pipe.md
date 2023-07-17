@@ -213,7 +213,7 @@ Here is the full command:
 
     `grep -v "^>" tb1.fasta`
  
-    The -v tells `grep` to search for all lines in the file `tb1.fasta` that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
+    The `-v` tells `grep` to search for all lines in the file `tb1.fasta` that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
 
     `grep --color -i "[^ATCG]"`
 
