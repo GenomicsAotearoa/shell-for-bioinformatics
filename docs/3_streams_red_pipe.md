@@ -148,7 +148,7 @@ If we want to capture the standard error we use the (slightly unweildy) `2>` ope
     cat tb1-protein.fasta mik.fasta > test.fasta 2> stderror.txt
     ```
 
-!!! Descriptors
+!!! user-secret "Descriptors"
 
     File descriptor `2` represents standard error (other special file descriptors include `0` for standard input and `1` for standard output).
 
@@ -161,7 +161,7 @@ Check the contents:
     
       cat: mik.fasta: No such file or directory
     ```
-!!! warning "`>` vs `>>`
+!!! warning "`>` vs `>>`"
 
     Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
 
