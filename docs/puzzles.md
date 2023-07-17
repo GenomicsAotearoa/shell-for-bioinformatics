@@ -27,7 +27,11 @@
         printf "\U1F97A Almost there...Try again please\n" 
     fi
     ```
+    !!! info ""
 
+        - `cmp` compare two files 
+        - `printf` format and print data
+        - `if` `else` `fi` are control statements. This will be covered in depth during the *Advanced shell for Bioinformatics" workshop
 
 ??? clipboard-question "Transcribing DNA into RNA (tdir)"
 
