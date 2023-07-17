@@ -269,10 +269,10 @@ since we are redirecting to a text file, the `--color` by itself will not record
 !!! terminal "code"
 
     ```bash
-    grep -v "^>" tb1.fasta | tee intermediate-file.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
+    grep -v "^>" tb1.fasta | tee intermediate-out.txt | grep --color=always -i "[^ATCG]" > non-atcg.txt
     ```
 
-The file `intermediate-file.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
+The file `intermediate-out.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
 ### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
 
