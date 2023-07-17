@@ -189,18 +189,20 @@ Let’s re-create our `-temp.fastq` files: .i.e Make sure to run `ls` after the 
 
 One big benefit of `xargs` is that it separates the process that specifies the files to operate on (`find`) from applying a command to these files (through `xargs`). If we wanted to inspect a long list of files find returns before running `rm` on all files in this list, we could use:
 
-```bash
-touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
-```
-```bash
-find genome-project/data/raw/ -name "*-temp.fastq" > ohno_filestodelete.txt
-```
-```bash
-cat ohno_filestodelete.txt
-```
-```bash
-cat ohno_filestodelete.txt  | xargs rm
-```
+!!! terminal "code"
+
+    ```bash
+    touch genome-project/data/raw/bird{A,C}_R{1,2}-temp.fastq
+    ```
+    ```bash
+    find genome-project/data/raw/ -name "*-temp.fastq" > ohno_filestodelete.txt
+    ```
+    ```bash
+    cat ohno_filestodelete.txt
+    ```
+    ```bash
+    cat ohno_filestodelete.txt  | xargs rm
+    ```
 
 !!! note "Using `xargs` with Replacement Strings to Apply Commands to Files"
 
