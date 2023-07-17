@@ -16,7 +16,7 @@ man mkdir
 
 
 
-!!! note "Key commands for navigating around the filesystem are:"
+!!! backward "Key commands for navigating around the filesystem are:"
 
     - `ls` - list the contents of the current directory
     - `ls -l` - list the contents of the current directory in more detail
@@ -26,7 +26,7 @@ man mkdir
     - `cd` (also `cd ~/`) - change to your home directory
     - `cd ..` - change to the directory one level above
 
-!!! note "Other useful commands:"
+!!! backward "Other useful commands:"
 
     - `mv` - move files or directories
     - `cp` - copy files or directories
