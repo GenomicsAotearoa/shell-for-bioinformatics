@@ -849,11 +849,11 @@
 .md-typeset .backward > .admonition-title,
 .md-typeset .backward > summary {
   color:rgb(255, 255, 255);
-  background-color: rgba(32, 31, 25, 0.664);
+  background-color: rgba(32, 31, 25, 0.74);
 }
 .md-typeset .backward > .admonition-title::before,
 .md-typeset .backward > summary::before {
-  background-color: rgb(221, 245, 85);
+  background-color: rgb(231, 209, 86);
   -webkit-mask-image: var(--md-admonition-icon--backward);
           mask-image: var(--md-admonition-icon--backward);
 }

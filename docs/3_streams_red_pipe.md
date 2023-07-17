@@ -345,5 +345,6 @@ Another example of using command substitution would be creating dated directorie
     ```bash
     mkdir results-$(date +%F)
     ```
+    !!! clipboard-question ""
 
-* `%F` - full date; same as `%Y-%m-%d`
+        * `%F` - full date; same as `%Y-%m-%d`
