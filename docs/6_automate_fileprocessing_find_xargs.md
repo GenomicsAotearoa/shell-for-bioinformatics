@@ -1,4 +1,4 @@
-# 5. Automating File-Processing with find and xargs
+# 5. Automating File-Processing with `find` and `xargs`
 
 In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix `find`. We’ll also see how files printed by `find` can be passed to another tool called `xargs` to create powerful Unix-based processing workflows.
 
@@ -52,7 +52,6 @@ find path expression
 
     - Path specifies the starting directory for search. Expressions are how we describe which files we want to `find` to return
     - Unlike `ls`, `find`is recursive (it will search through the directory structure). In fact, running `find` on a directory (without other arguments) is a quick way to see it’s structure, e.g.,
-
     ```bash
     find /nesi/project/nesi02659/| head
     ```
@@ -70,7 +69,10 @@ find path expression
     /nesi/project/nesi02659/.jupyter/share/jupyter/kernels/sismonr/logo-64x64.png
     ```
 
-Argument `-maxdepth` limits the depth of the search: to search only within the current directory, use `find -maxdepth 1 .`
+    - Try the same command with `-maxdepth 1` .i.e.
+    ```bash
+    find /nesi/project/nesi02659/ -maxdepth 1 | head
+    ```
 
 ??? question "Exercise 6.1"
 
@@ -130,7 +132,7 @@ Argument `-maxdepth` limits the depth of the search: to search only within the c
 
 ### `find`s `-exec`: Running Commands on find’s Results
 
-Find’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -`exec` option.
+`find`’s real strength in bioinformatics is that it allows you to run commands on every file that is returned by find, using -`exec` option.
 
 Continuing from our last example, suppose that a collaborator created numerous temporary files. Let’s emulate this (in the *genome-project/data/raw/*): (then `ls` ensure the `-temp.fastq` files were created)
 
