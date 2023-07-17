@@ -49,7 +49,7 @@
 
     ### Remote
     
-    ??? info "Log into NeSI Mahuika Jupyter Service"
+    ??? jupyter "Log into NeSI Mahuika Jupyter Service"
     
         1. Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)
         2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br>![image](./images/jupyter_login_labels_updated.png)</p>
