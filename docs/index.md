@@ -19,7 +19,7 @@
 |5. [Automating File-Processing with find and xargs](./6_automate_fileprocessing_find_xargs.md)| Search files by pattern with `find` and use `xargs` to execute a command for those objects matching the pattern|
 |6. [Puzzles](./puzzles.md) 🧩 | Can you use shell scripts to solve these "real" life challenged in molecular biology ?|
 |7. [Supplementary - 1](./supplementary%20/supplementary_1.md) | Recap - Unix , Linux and Unix shell|
-|8. [Supplementary - 1](./supplementary%20/supplementary_2.md) | Recao - Shell basics and commands  |
+|8. [Supplementary - 1](./supplementary%20/supplementary_2.md) | Recap - Shell basics and commands  |
 |11. [Supplementary_3](./supplementary%20/supplementary_3.md)| Escaping, Special Characters|
 
 - - - 
