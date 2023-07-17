@@ -33,7 +33,7 @@ Basic syntax for `find` is
 ```bash
 find path expression
 ```
-!!! note "find" 
+!!! mg-glass-location "find" 
 
     - Path specifies the starting directory for search. Expressions are how we describe which files we want to `find` to return
     - Unlike `ls`, `find`is recursive (it will search through the directory structure). In fact, running `find` on a directory (without other arguments) is a quick way to see it’s structure, e.g.,
