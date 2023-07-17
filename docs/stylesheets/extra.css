@@ -868,11 +868,11 @@
 .md-typeset .surprise > .admonition-title,
 .md-typeset .surprise > summary {
   color:rgb(35, 35, 37);
-  background-color: rgba(194, 197, 192, 0.664);
+  background-color: rgba(247, 203, 10, 0.815);
 }
 .md-typeset .surprise > .admonition-title::before,
 .md-typeset .surprise > summary::before {
-  background-color: rgb(9, 209, 26);
+  background-color: rgb(209, 22, 9);
   -webkit-mask-image: var(--md-admonition-icon--surprise);
           mask-image: var(--md-admonition-icon--surprise);
 }
