@@ -838,3 +838,22 @@
   -webkit-mask-image: var(--md-admonition-icon--terminal-2);
           mask-image: var(--md-admonition-icon--terminal-2);
 }
+
+:root {
+  --md-admonition-icon--backward: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 41.4 86.6zM288 416H576c17.7 0 32 14.3 32 32s-14.3 32-32 32H288c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>')
+}
+.md-typeset .admonition.backward,
+.md-typeset details.backward {
+  border-color: rgb(105,105,105);
+}
+.md-typeset .backward > .admonition-title,
+.md-typeset .backward > summary {
+  color:rgb(35, 35, 37);
+  background-color: rgba(194, 197, 192, 0.664);
+}
+.md-typeset .backward > .admonition-title::before,
+.md-typeset .backward > summary::before {
+  background-color: rgb(9, 209, 26);
+  -webkit-mask-image: var(--md-admonition-icon--backward);
+          mask-image: var(--md-admonition-icon--backward);
+}
