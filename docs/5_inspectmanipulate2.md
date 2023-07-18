@@ -374,7 +374,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     * Note that the start site of features in the .bed file is **1** less than the start site of features in the .gtf file: .bed uses 0-indexing and .gtf uses 1-indexing  .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
 
     * Let's build the command 
-        
+
 
     ??? truck-medical " Help !"
 
@@ -388,8 +388,6 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         >```
 
 
-    
-    This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.
 
 <br>
 
