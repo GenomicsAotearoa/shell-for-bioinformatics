@@ -322,7 +322,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
     - Tilde `~` means **match**.
-    - To do the inverse of **match**, we can use `!~` OR `!($1 ~ /chr1/`
+    - To do the inverse of **match**, we can use `!~` OR `!($1 ~ /chr1/)`
 
 
 
