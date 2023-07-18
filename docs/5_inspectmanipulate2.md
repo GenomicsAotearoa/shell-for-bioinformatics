@@ -375,6 +375,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
     * Let's build the command based on `awk options 'selection_criteria {action}' input-file`
         - What is the `selection_criteria` ? ( **hint**- it evolves around a symbol. )
+        - There is a possibility of needing the "inverse of match" function in `awk` here which can be invoked with `!`
         - For `{action}`, we will need the field IDs of the three columns. Based on pre-existing knowledge of annotation formats, it will be feild 1, 4 and 5. Don't foget the above note on 0 vs 1 indexing of start site 
 
 
