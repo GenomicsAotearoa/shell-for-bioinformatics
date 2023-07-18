@@ -368,12 +368,14 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     
         In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment `s` by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
     
-!!! terminal-2 "`awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf*** as follows:"
+!!! clipboard-question "`awk` makes it easy to convert between bioinformatics files like BED and GTF. Can you generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf***:"
 
     * Follow this link for a quick recap on [annotation formats](https://tag.readthedocs.io/en/stable/formats.html#:~:text=BED%20allows%20for%20a%20single,by%20ID%20and%20Parent%20attributes)
     * Note that the start site of features in the .bed file is **1** less than the start site of features in the .gtf file: .bed uses 0-indexing and .gtf uses 1-indexing  .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
 
-    * Let's build the command 
+    * Let's build the command based on `awk options 'selection_criteria {action}' input-file`
+
+
 
 
     ??? truck-medical " Help !"
