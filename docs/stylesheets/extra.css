@@ -906,11 +906,11 @@
 .md-typeset .flushed > .admonition-title,
 .md-typeset .flushed > summary {
   color:rgb(35, 35, 37);
-  background-color: rgba(247, 203, 10, 0.815);
+  background-color: rgba(231, 198, 52, 0.815);
 }
 .md-typeset .flushed > .admonition-title::before,
 .md-typeset .flushed > summary::before {
-  background-color: rgb(209, 22, 9);
+  background-color: rgb(148, 87, 7);
   -webkit-mask-image: var(--md-admonition-icon--flushed);
           mask-image: var(--md-admonition-icon--flushed);
 }
