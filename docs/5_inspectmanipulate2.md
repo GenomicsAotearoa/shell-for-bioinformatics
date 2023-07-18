@@ -370,17 +370,24 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     
 !!! terminal-2 "`awk` makes it easy to convert between bioinformatics files like BED and GTF. For example, we could generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf*** as follows:"
 
-    ```bash
-    awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
-    ```
-    >```bash
-    >1	3054232	3054733
-    >1	3054232	3054733
-    >1	3054232	3054733
-    >```
+    * Follow this link for a quick recap on [annotation formats](https://tag.readthedocs.io/en/stable/formats.html#:~:text=BED%20allows%20for%20a%20single,by%20ID%20and%20Parent%20attributes)
+    * Note that the start site of features in the .bed file is **1** less than the start site of features in the .gtf file: .bed uses 0-indexing and .gtf uses 1-indexing  .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
 
-!!! danger "Note"
-    Note that we subtract 1 from the start position to convert to **BED** format. This is because **BED** uses zero-indexing while GTF uses 1-indexing; .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
+    * Let's build the command 
+        
+
+    ??? truck-medical " Help !"
+
+        ```bash
+        awk '!/^#/ { print $1 "\t" $4-1 "\t" $5}' Mus_musculus.GRCm38.75_chr1.gtf | head -n 3
+        ```
+        >```bash
+        >1	3054232	3054733
+        >1	3054232	3054733
+        >1	3054232	3054733
+        >```
+
+
     
     This is a subtle detail, certainly one that’s been missed many times. In the midst of an analysis, it’s easy to miss these small details.
 
