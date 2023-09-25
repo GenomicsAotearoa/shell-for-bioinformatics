@@ -161,7 +161,7 @@ Check the contents:
     
       cat: mik.fasta: No such file or directory
     ```
-!!! warning "`>` vs `>>`"
+!!! warning "Reminder :`>` vs `>>`"
 
     Note that `>` will overwrite an existing file. We can use `>>` to add to a file instead of overwriting it:
 
