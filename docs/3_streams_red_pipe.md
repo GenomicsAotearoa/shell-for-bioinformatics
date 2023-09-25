@@ -274,6 +274,31 @@ since we are redirecting to a text file, the `--color` by itself will not record
 
 The file `intermediate-out.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
+### Command Substitution
+
+Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
+
+!!! terminal-2 "Which is better ?"
+    ```bash
+    grep -c '^@' SRR097977.fastq
+    ```
+    ```bash
+    echo "There are $(grep -c '^@' SRR097977.fastq) entries in my FASTA file."
+    ```
+
+This command uses `grep` to count (the `-c` option stands for count) the number of lines matching the pattern. Using command substitution, we can calculate and return the number of FASTA entries directly into this string!
+
+Another example of using command substitution would be creating dated directories:
+
+!!! terminal "code"
+
+    ```bash
+    mkdir results-$(date +%F)
+    ```
+    !!! clipboard-question ""
+
+        * `%F` - full date; same as `%Y-%m-%d`
+        
 ### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
 
 
@@ -327,27 +352,4 @@ By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an
         ~$ 
         ```
 
-### Command Substitution
 
-Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
-
-!!! terminal-2 "Which is better ?"
-    ```bash
-    grep -c '^@' SRR097977.fastq
-    ```
-    ```bash
-    echo "There are $(grep -c '^@' SRR097977.fastq) entries in my FASTA file."
-    ```
-
-This command uses `grep` to count (the `-c` option stands for count) the number of lines matching the pattern. Using command substitution, we can calculate and return the number of FASTA entries directly into this string!
-
-Another example of using command substitution would be creating dated directories:
-
-!!! terminal "code"
-
-    ```bash
-    mkdir results-$(date +%F)
-    ```
-    !!! clipboard-question ""
-
-        * `%F` - full date; same as `%Y-%m-%d`
