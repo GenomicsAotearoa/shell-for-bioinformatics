@@ -6,7 +6,7 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
 !!! warning "Warning"
     With certain commands and utilities, such as `echo` and `sed`, escaping a character may have the opposite effect - it can toggle on a special meaning for that character.
 
-??? info "Special meanings of certain escaped characters"
+??? circle-info "Special meanings of certain escaped characters"
 
     <center>
 
@@ -24,7 +24,7 @@ Escaping is a method of quoting single characters. The escape `(\)` preceding a 
 
 ## Special Characters 
 
-??? info "Special Characters"
+??? circle-info "Special Characters"
 
     | Character  | Meaning            |
     |:-----------|:-------------------|

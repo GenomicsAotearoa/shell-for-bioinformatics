@@ -1,6 +1,6 @@
 # Supp - 1. UNIX, Linux  & UNIX Shell 
 
-!!! abstract "Lesson Objectives"
+!!! clipboard-list "Lesson Objectives"
 
     - Quick overview on UNIX operating system and it's importance
     - Differences/similarities between UNIX vs. Linux

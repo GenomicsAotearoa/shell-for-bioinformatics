@@ -1,6 +1,6 @@
 # Supp - 2. Unix Shell Basics 
 
-!!! abstract "Lesson Objectives 😶‍🌫️"
+!!! clipbord-list "Objectives 😶‍🌫️"
 
     - Navigate your file system using the command line.
     - Quick recap on commands used in routine tasks such copy, move, remove.
