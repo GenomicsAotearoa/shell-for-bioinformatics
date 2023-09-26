@@ -63,7 +63,7 @@
 
 Data we download is the starting point of all future analyses and conclusions. Therefore it’s important to explicitly check the transferred data’s integrity with check‐sums. Checksums are very compressed summaries of data, computed in a way that even if just one bit of the data is changed the checksum will be different. As such, data integrity checks are also helpful in keeping track of data versions. Checksums facilitate reproducibility, as we can link a particular analysis and set of results to an exact version of data summarized by the data’s checksum value.
 
-!!! book-lock "SHA and MD5 Checksums"
+!!! circle-info "SHA and MD5 Checksums"
 
     Two most common checksum algorithms are MD5 and SHA (Specifically referring to **SHA256**)
 
@@ -71,9 +71,8 @@ Data we download is the starting point of all future analyses and conclusions. T
 
     * **SHA**  : SHA-256 is a more secure and newer cryptographic hash function that was launched in 2000 as a new version of SHA functions and was adopted as *Federal Information Processing Standards* (FIPS) in 2002. It is allowed to use a hash generator tool to produce a SHA256 hash for any string or input value. Also, it generates 256 hash values, and the internal state size is 256 bit and the original message size is up to 264-1 bits.
 
-    To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through **standard** in
-
-    !!! terminal "code"
+    
+    !!! terminal-2 "To create checksums, we can pass arbitrary strings to the program `md5sum` (or `sha256sum`) through **standard** in"
 
         ```bash
     
