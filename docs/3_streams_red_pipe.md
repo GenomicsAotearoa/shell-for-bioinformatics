@@ -331,7 +331,7 @@ The file `intermediate-out.txt` will contain the output from `grep -v "^>" tb1.f
 
 ### Command Substitution
 
-Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
+Unix users like to have the Unix shell do the work for them. This is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
 
 !!! terminal-2 "Which is better ?"
     ```bash
