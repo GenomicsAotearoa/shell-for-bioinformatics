@@ -1,6 +1,6 @@
 # Puzzles
 
-!!! desktop-download-24  "Info"
+??? desktop-download-24  "Info"
 
     * Download data (and answers  😊)
 
@@ -32,6 +32,16 @@
         - `cmp` compare two files 
         - `printf` format and print data
         - `if` `else` `fi` are control statements. This will be covered in depth during the *Advanced shell for Bioinformatics" workshop
+
+<br>
+
+!!! tip "Few additional bash commands to help with puzzles"
+
+    1. `tr` - translating or deleting characters. It supports a range of transformations including uppercase to lowercase, squeezing repeating characters, deleting specific characters, and basic find and replace. It can be used with UNIX pipes to support more complex translation
+        - Let's say we want to replace upper case `B` in `AABBCC` ( standard_input) with lower case `b`, we can use `standard_input | tr B b`
+    2. `rev` - reverse the lines characterwise. This utility basically reverses the order of the characters in each line by copying the specified files to the standard output. If no files are specified, then the standard input will read  
+        - Suppose the standard input is "**Humpty Dumpty sat on a wall**", `rev standard_input` will print "**llaw a no tas ytpmuD ytpmuH**"
+
 
 ??? clipboard-question "Transcribing DNA into RNA (tdir)"
 
