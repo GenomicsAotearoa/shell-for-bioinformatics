@@ -1,8 +1,8 @@
 # 1. Download & Verify Data
 
-!!! abstract "Lesson Objectives"
+!!! clipboard-list "Lesson Objectives"
 
-    - Inspect data (checksum verification)
+    - Inspect data with `md5` (checksum verification)
 
 !!! desktop-download-24 "Download with `wget` from a terminal client"
 

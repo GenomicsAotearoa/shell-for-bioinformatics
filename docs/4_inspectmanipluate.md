@@ -1,6 +1,6 @@
 # 3. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
  
-!!! abstract "Lesson Objectives"
+!!! clipboard-list "Lesson Objectives"
     * Inspect file/s with utilities such as `head`,`less`. 
     * Extracting and formatting tabular data. 
     * Magical `grep`

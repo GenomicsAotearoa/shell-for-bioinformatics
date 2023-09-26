@@ -1,6 +1,6 @@
 # 2. Streams, Redirection and Pipe
 
-!!! abstract "Lesson Objectives"
+!!! clipboard-list "Lesson Objectives"
 
     - To be able to redirect streams of data in Unix.
     - Solve problems by piping several Unix commands.

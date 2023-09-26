@@ -1,6 +1,6 @@
 # 4. Inspecting and Manipulating Text Data with Unix Tools - Part 2
 
-!!! abstract "Lesson Objectives"
+!!! clipboard-list "Lesson Objectives"
      
     * insertion, deletion, search and replace(substitution) with `sed`
     * Use specialised language `awk` to do a variety of text-processing tasks
