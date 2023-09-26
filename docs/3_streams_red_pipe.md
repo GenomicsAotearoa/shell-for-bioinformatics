@@ -274,6 +274,60 @@ since we are redirecting to a text file, the `--color` by itself will not record
 
 The file `intermediate-out.txt` will contain the output from `grep -v "^>" tb1.fasta`, but `tee` also passes that output through the pipe to the next `grep` command.
 
+??? magnifying-glass "Preview - This is to be covered in "Advanced Shell for Bioinformatics"<br>*Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)*"
+
+
+    How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of `0` indicates the process ran successfully, and any **nonzero** status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command:
+    
+    ```bash
+    program input.txt > results.txt; echo $?
+    ```
+    Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (`||`).
+    
+    For example, the sequence `program1 input.txt > intermediate-results.txt && program2 intermediate-results.txt > results.txt` will execute the second command only if previous commands have completed with a successful zero exit status.
+    
+    By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an error occurred"` will print the message if error has occurred.
+    
+    !!! quote "" 
+        When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
+    
+    !!! clipboard-question "Exit Status : using `&&` and `||`"
+        To test your understanding of `&&` and `||`, we’ll use two Unix commands that do nothing but return either exit success (true) or exit failure (false). Predict and check the outcome of the following commands:
+    
+        ```bash
+        true
+        echo $?
+        false
+        echo $?
+        true && echo "first command was a success"
+        true || echo "first command was not a success" 
+        false || echo "first command was not a success"
+        false && echo "first command was a success"
+        ```
+        !!! tip "hint"
+            The `$?` variable represents the exit status of the previous command.
+    
+        ??? success "Answer"
+    
+            ```bash
+            ~$ true 
+            ~$ echo $?
+            0
+            ~$ false
+            ~$ echo $?
+            1
+            ~$ true && echo "first command was a success"
+            first command was a success
+    
+            ~$ true || echo "first command was not a success"
+            ~$ false || echo "first command was not a success"
+            first command was not a success
+    
+            ~$ false && echo "first command was a success"
+            ~$ 
+            ```
+
+
 ### Command Substitution
 
 Unix users like to have the Unix shell do work for them—this is why shell expansions like wildcards and brace expansion exist. Another type of useful shell expansion is command substitution. Command substitution runs a Unix command inline and returns the output as a string that can be used in another command. This opens up a lot of useful possibilities. For example, if you want to include the results from executing a command into a text, you can type:
@@ -299,57 +353,6 @@ Another example of using command substitution would be creating dated directorie
 
         * `%F` - full date; same as `%Y-%m-%d`
         
-### Pipes and Chains and Long running processes  : Exit Status (Programmatically Tell Whether Your Command Worked)
 
-
-How do you know when they complete? How do you know if they successfully finished without an error? Unix programs exit with an exit status, which indicates whether a program terminated without a problem or with an error. By Unix standards, an exit status of `0` indicates the process ran successfully, and any **nonzero** status indicates some sort of error has occurred (and hopefully the program prints an understandable error message, too). The exit status isn’t printed to the terminal, but your shell will set its value to a shell variable named   `$?`. We can use the `echo` command to look at this variable’s value after running a command:
-
-```bash
-program input.txt > results.txt; echo $?
-```
-Exit statuses are useful because they allow us to programmatically chain commands together in the shell. A subsequent command in a chain is run conditionally on the last command’s exit status. The shell provides two operators that implement this: one operator that runs the subsequent command only if the first command completed successfully (`&&`), and one operator that runs the next command only if the first completed unsuccessfully (`||`).
-
-For example, the sequence `program1 input.txt > intermediate-results.txt && program2 intermediate-results.txt > results.txt` will execute the second command only if previous commands have completed with a successful zero exit status.
-
-By contrast, `program1 input.txt > intermediate-results.txt || echo "warning: an error occurred"` will print the message if error has occurred.
-
-!!! quote "" 
-    When a script ends with an **exit** that has no parameter, the exit status of the script is the exit status of the last command executed in the script (previous to the **exit**).
-
-!!! clipboard-question "Exit Status : using `&&` and `||`"
-    To test your understanding of `&&` and `||`, we’ll use two Unix commands that do nothing but return either exit success (true) or exit failure (false). Predict and check the outcome of the following commands:
-
-    ```bash
-    true
-    echo $?
-    false
-    echo $?
-    true && echo "first command was a success"
-    true || echo "first command was not a success" 
-    false || echo "first command was not a success"
-    false && echo "first command was a success"
-    ```
-    !!! tip "hint"
-        The `$?` variable represents the exit status of the previous command.
-
-    ??? success "Answer"
-
-        ```bash
-        ~$ true 
-        ~$ echo $?
-        0
-        ~$ false
-        ~$ echo $?
-        1
-        ~$ true && echo "first command was a success"
-        first command was a success
-
-        ~$ true || echo "first command was not a success"
-        ~$ false || echo "first command was not a success"
-        first command was not a success
-
-        ~$ false && echo "first command was a success"
-        ~$ 
-        ```
 
 
