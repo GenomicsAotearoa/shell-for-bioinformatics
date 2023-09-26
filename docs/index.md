@@ -59,7 +59,7 @@
     
     
     
-    ??? info "Local host setup - Windows, MacOS & Linux"
+    ??? circle-info "Local host setup - Windows, MacOS & Linux"
     
         === "Windows Hosts"
     
