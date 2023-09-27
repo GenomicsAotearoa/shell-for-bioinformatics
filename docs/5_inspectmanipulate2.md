@@ -452,7 +452,9 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         ```
     However, if we needed to also filter on column-specific information (e.g., strand), an approach using just base Unix tools would be quite messy. With Awk, adding an additional filter would be trivial: we’d just use `&&` to add another expression in the pattern.
     
-## `bioawk` 
+!!! info "" 
+
+## **Optonal** - `bioawk` 
 
 `bioawk` is an extension of `awk`, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, `bioawk` is intended to behave exactly the same as the original `awk`.
 
