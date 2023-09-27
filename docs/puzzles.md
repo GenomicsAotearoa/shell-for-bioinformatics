@@ -153,7 +153,12 @@
             for N in open("csod_data.txt","r").read()[::-1]:
                 for pair in ["GC","AT"]:
                     if N in pair: print("".join(set(N)^set(pair)),end="")
-            ```    
+            ```
+        === "R"
+            ```r
+            library(biostrings)
+            reverseComplement(DNAString(readLines("tdir_data.txt")))
+            ```
         === "Julia"
             ```jl
             f = read(open("csod_data.txt"), String)
@@ -250,6 +255,11 @@
                 dataset = file.read()
 
             print(dataset.count('A'), dataset.count('C'), dataset.count('G'), dataset.count('T'))
+            ```
+        === "R"
+            ```r
+            library(biostrings)
+            letterFrequency(  DNAString( readLines("dnct_data.txt")), letters = c("A", "C","G", "T"))
             ```
         === "Rust"
             ```rs
@@ -446,4 +456,10 @@
         === "bash"
             ```bash
             cat cdcr_data.txt | tr \  '\n' | sed 's/.*/2 * sqrt(&) - &/' | bc -l
+            ```
+        === "R"
+            ```r
+            nums <- readLines("cdcr_data.txt")                
+            nums <- as.numeric(unlist(strsplit(nums, " ")))
+            2 * sqrt(nums) - nums
             ```
