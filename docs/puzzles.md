@@ -65,7 +65,6 @@
             ```bash
             awk '{gsub(/T/,"U");print}' tdir_data.txt
             ``` 
-            ```
             ```bash
             cat tdir_data.txt | tr T U
             ```           
