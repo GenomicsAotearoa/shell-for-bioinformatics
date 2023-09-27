@@ -59,13 +59,14 @@
             There are multiple ways to do this
 
             ```bash
-            cat tdir_data.txt | tr T U
+            sed 's/T/U/g' tdir_data.txt
             ```
             ```bash
             awk '{gsub(/T/,"U");print}' tdir_data.txt
             ``` 
+            ```
             ```bash
-            sed 's/T/U/g' tdir_data.txt
+            cat tdir_data.txt | tr T U
             ```           
 
         === "R"
