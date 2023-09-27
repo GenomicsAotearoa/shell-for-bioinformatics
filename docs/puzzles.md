@@ -30,6 +30,7 @@
     !!! info ""
 
         - `cmp` compare two files 
+        - `--silent` Output nothing; yield exit status only.
         - `printf` format and print data
         - `if` `else` `fi` are control statements. This will be covered in depth during the *Advanced shell for Bioinformatics" workshop
 
