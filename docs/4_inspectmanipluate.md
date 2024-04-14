@@ -235,11 +235,12 @@ Note that you should only use `column -t` to visualize data in the terminal, not
 
     ```bash
     column -s "," -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
-    
-        1	3054233	3054733
-        1	3054233	3054733
-        1	3054233	3054733
     ```
+    >```bash
+    >    1	3054233	3054733
+    >    1	3054233	3054733
+    >    1	3054233	3054733
+    >```
 
 ??? warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
 
@@ -274,26 +275,27 @@ Very often we need to work with sorted plain-text data in bioinformatics. The tw
 - Certain operations are much more efficient when performed on sorted data.
 - Sorting data is a prerequisite to finding all unique lines.
 
-`sort`  is designed to work with plain-text data with columns. Create a test .bed file with few rows and use `sort` command without any arguments.
+`sort`  is designed to work with plain-text data with columns. 
 
 !!! terminal "code"
+    * Create a test .bed file with few rows and use `sort` command without any arguments.
 
     ```bash
     cat > test_sort.bed
     ```
 
-??? database  "input"
+    ??? database  "input for the *test_sort.bed* file"
 
-    ```bash
-    chr1	26	39
-    chr1	32	47
-    chr3	11	28
-    chr1	40	49
-    chr3	16	27
-    chr1	9	28
-    chr2	35	54
-    chr1	10	19
-    ```
+        ```bash
+        chr1	26	39
+        chr1	32	47
+        chr3	11	28
+        chr1	40	49
+        chr3	16	27
+        chr1	9	28
+        chr2	35	54
+        chr1	10	19
+        ```
 !!! terminal "code"
 
     ```bash
