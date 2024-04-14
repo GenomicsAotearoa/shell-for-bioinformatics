@@ -4,7 +4,7 @@
 
     - Inspect data with `md5` (checksum verification)
 
-!!! desktop-download-24 "Download with `wget` from a terminal client"
+??? desktop-download-24 "Download with `wget` from a terminal client (optional)  - Not required for  NeSI Training platform"
 
     ```bash
     wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz
@@ -17,7 +17,7 @@
 
 - - -
 
-!!! desktop-download-24 "Download via Web Browser (use locally)"
+??? desktop-download-24 "Download via Web Browser (use locally)"
 
     * Data can be downloaded directly from this [link](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz) which will download **shell4b_data.tar.gz** to *Downloads* directory
     * If the above link fails, try [this alternative .zip](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.zip)
