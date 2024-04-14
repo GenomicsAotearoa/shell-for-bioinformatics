@@ -649,7 +649,7 @@ Often, we only need to list the number of lines, which can be done by using the 
 </div>
 <p>Although <code>wc -l</code> is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" </p>
 <p>For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing <strong>Enter</strong> twice, </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat &gt; fool_wc.bed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat &gt; foo_wc.bed
 </code></pre></div>
 <blockquote>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>  <span class="m">1</span> <span class="m">100</span>
@@ -658,12 +658,12 @@ Often, we only need to list the number of lines, which can be done by using the 
 </code></pre></div>
 </blockquote>
 <p><strong>Ctrl+D</strong> to end the edits started with <code>cat &gt;</code></p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>wc -l fool_wc.bed 
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>wc -l foo_wc.bed 
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span class="m">5</span> fool_wc.bed
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span class="m">5</span> foo_wc.bed
 </code></pre></div>
 This is a good place to bring in <code>grep</code> again which can be used to count the number of lines while excluding white-spaces (spaces, tabs (<code>t</code>) or newlines (<code>n</code>))</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep -c <span class="s2">&quot;[^ \n\t]&quot;</span> fool_wc.bed 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep -c <span class="s2">&quot;[^ \n\t]&quot;</span> foo_wc.bed 
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  <span class="m">3</span>
 </code></pre></div>

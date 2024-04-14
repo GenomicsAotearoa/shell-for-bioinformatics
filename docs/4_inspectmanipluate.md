@@ -124,7 +124,7 @@ For an example, if we are to create a file with 3 rows of data and then two empt
 !!! terminal "code"
 
     ```bash
-    cat > fool_wc.bed
+    cat > foo_wc.bed
     ```
     >```bash
     >  1 100
@@ -138,10 +138,10 @@ For an example, if we are to create a file with 3 rows of data and then two empt
 !!! terminal "code"
 
     ```bash
-    wc -l fool_wc.bed 
+    wc -l foo_wc.bed 
     ```
     >```
-    >  5 fool_wc.bed
+    >  5 foo_wc.bed
     >```
 This is a good place to bring in `grep` again which can be used to count the number of lines while excluding white-spaces (spaces, tabs (`t`) or newlines (`n`))
 
@@ -149,7 +149,7 @@ This is a good place to bring in `grep` again which can be used to count the num
 
     ```bash
     
-    grep -c "[^ \n\t]" fool_wc.bed 
+    grep -c "[^ \n\t]" foo_wc.bed 
     ```
     >```bash
     >  3
