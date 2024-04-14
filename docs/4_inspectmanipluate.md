@@ -119,9 +119,9 @@ Often, we only need to list the number of lines, which can be done by using the 
 
 Although `wc -l` is the quickest way to count the number of lines in a file, it is not the most robust as it relies on the very bad assumption that "data is well formatted" 
 
-For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing **Enter** twice, 
 
 !!! terminal "code"
+    * For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing ^^**Enter** twice^^, 
 
     ```bash
     cat > foo_wc.bed
@@ -130,10 +130,11 @@ For an example, if we are to create a file with 3 rows of data and then two empt
     >  1 100
     >  2 200
     >  3 300
+    >[Press Enter]
+    >[Press Enter]
     >```
 
-
-**Ctrl+D** to end the edits started with `cat >`
+    **Ctrl+D** to end the edits started with `cat >`
 
 !!! terminal "code"
 
