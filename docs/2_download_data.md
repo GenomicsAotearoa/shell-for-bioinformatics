@@ -87,10 +87,14 @@ Data we download is the starting point of all future analyses and conclusions. T
     Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from **standard** in. Checksums with **file** input can be done with `md5usm filename` .i.e.
 
     !!! terminal "code"
+        
+        NeSI training environment terminal will open with with working directory already being set to `shell4b_data`. If not, change directory with,
 
         ```bash
         cd shell4b_data
         ```
+        * Use `md5sum` to print the hash key
+
         ```bash    
         md5sum tb1.fasta
         ```
