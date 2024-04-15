@@ -163,11 +163,6 @@ One of the powerful features is that we can combine these ranges or multiples in
     approach and use .* . Consider:
     
 - - - 
-
-!!! terminal-2 "In preparation for next lesson, rename *`example.bed.old`* back to  *`example.bed`*"
-
-    ```bash
-    mv example.bed.old example.bed
     ```
 
 ## Aho, Weinberger, Kernighan = AWK
@@ -224,21 +219,20 @@ awk options 'selection_criteria {action}' input-file >  output-file
 
     ```bash
     awk '{print}' example.bed 
-    ```
-    
-    - If you get the error `No such file or directory..`, restore the *example.bed* file from *example.bed.old* with `mv example.bed.old example.bed`
+    ```  
 
     ??? success "Output"
     
         ```bash
-        chr1	26	39
-        chr1	32	47
-        chr3	11	28
-        chr1	40	49
-        chr3	16	27
-        chr1	9	28
-        chr2	35	54
-        chr1	10	19
+        chromosome1	26	39
+        chromosome1	32	47
+        chromosome3	11	28
+        chromosome1	40	49
+        chromosome3	16	27
+        chromosome1	9	28
+        chromosome2	35	54
+        chromosome1	10	19
+
         ```
 
 !!! terminal-2 "Print lines which match the given pattern"
@@ -247,11 +241,11 @@ awk options 'selection_criteria {action}' input-file >  output-file
     awk '/chr1/{print}' example.bed
     ```
     >```bash
-    >chr1	26	39
-    >chr1	32	47
-    >chr1	40	49
-    >chr1	9	28
-    >chr1	10	19
+    >chromosome1	26	39
+    >chromosome1	32	47
+    >chromosome1	40	49
+    >chromosome1	9	28
+    >chromosome1	10	19
     >```
 
 !!! terminal-2 "`awk` can be used to mimic functionality of `cut`" 
@@ -276,17 +270,16 @@ awk options 'selection_criteria {action}' input-file >  output-file
         ```
 Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f 2,3 example.bed` 
 
-Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end
-position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:
 
-!!! terminal "code"
+
+!!! terminal-2 "Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:"
 
     ```bash
     awk '$3 - $2 > 18' example.bed
     ``` 
     >```bash
-    >chr1	9	28
-    >chr2	35	54
+    >chromosome1	9	28
+    >chromosome2	35	54
     >```
 
 - - -
@@ -315,12 +308,12 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 !!! terminal "code"
 
     ```bash
-    awk '$1 ~ /chr1/ && $3 - $2 > 10' example.bed 
+    awk '$1 ~ /chromosome1/ && $3 - $2 > 10' example.bed 
     ```
     >```bash
-    >chr1	26	39
-    >chr1	32	47
-    >chr1	9	28
+    >chromosome1	26	39
+    >chromosome1	32	47
+    >chromosome1	9	28
     >```
 !!! info ""
 
