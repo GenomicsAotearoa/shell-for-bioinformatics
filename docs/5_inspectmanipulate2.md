@@ -225,6 +225,9 @@ awk options 'selection_criteria {action}' input-file >  output-file
     ```bash
     awk '{print}' example.bed 
     ```
+    
+    - If you get the error `No such file or directory..`, restore the *example.bed* file from *example.bed.old* with `mv example.bed.old example.bed`
+
     ??? success "Output"
     
         ```bash
