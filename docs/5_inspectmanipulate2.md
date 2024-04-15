@@ -51,6 +51,7 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 !!! terminal-2 "Find and replace `chr` to `chromosome`, only if you also find **40** in the line"
 
+    - This will follow the format `sed '/SEARCH_STRING/OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME` where `SEARCH_STRING` is **40**
     ```bash
     sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
     ```
