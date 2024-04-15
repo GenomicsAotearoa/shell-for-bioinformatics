@@ -61,7 +61,7 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
     sed -i.old 's/chr/chromosome/g' example.bed
     ```
     !!! info ""
-        `-i` to edit files in-place instead of printing to standard output
+        `-i` to edit files **in-place** instead of printing to standard output
 
 * Print specific lines of the file
 
@@ -76,7 +76,7 @@ To print a specific line you can use the address function. Note that by default,
     sed -n '5p' example.bed
     ```
 
-!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5,"
+!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program Let's print line 2 and 5,"
 
     ```bash
     sed -n -e '2p' -e '5p' example.bed
