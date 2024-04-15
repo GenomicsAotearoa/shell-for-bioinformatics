@@ -163,7 +163,7 @@ One of the powerful features is that we can combine these ranges or multiples in
     approach and use .* . Consider:
     
 - - - 
-    ```
+    
 
 ## Aho, Weinberger, Kernighan = AWK
 
@@ -238,7 +238,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
 !!! terminal-2 "Print lines which match the given pattern"
 
     ```bash
-    awk '/chr1/{print}' example.bed
+    awk '/chromosome1/{print}' example.bed
     ```
     >```bash
     >chromosome1	26	39
@@ -319,7 +319,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
     - Tilde `~` means **match**.
-    - To do the inverse of **match**, we can use `!~` OR `!($1 ~ /chr1/)`
+    - To do the inverse of **match**, we can use `!~` OR `!($1 ~ /chromosome1/)`
 
 
 
