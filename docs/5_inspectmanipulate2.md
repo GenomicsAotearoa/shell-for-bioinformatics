@@ -61,7 +61,9 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
     sed -i.old 's/chr/chromosome/g' example.bed
     ```
     !!! info ""
-        `-i` to edit files **in-place** instead of printing to standard output
+
+        - `-i` to edit files **in-place** instead of printing to standard output
+        - original file will be retained under the filename `example.bed.old`
 
 * Print specific lines of the file
 
@@ -70,17 +72,29 @@ To print a specific line you can use the address function. Note that by default,
 !!! info ""
     `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
 
+
+
 !!! terminal-2 "print 5th line of example.bed"
 
     ```bash
     sed -n '5p' example.bed
     ```
 
+    !!! info ""
+
+    - `n:` This option suppresses the default output. Normally, sed prints every line of the input file to the standard output. The -n option tells sed to not print anything unless explicitly instructed to do so.
+    - '5p': This is the command within sed. The 5 specifies the line number, and p stands for print. So, 5p means "print the 5th line".
+
 !!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program Let's print line 2 and 5,"
 
     ```bash
     sed -n -e '2p' -e '5p' example.bed
     ```
+
+    !!! info ""
+
+    - `-e '2p'`: This is the first expression. The 2p part means "print the 2nd line".
+    - `-e '5p'`: This is the second expression. The 5p part means "print the 5th line".
 
 !!! terminal-2 "It also accepts range, using `,`. Let's print line 2-6,"
 
