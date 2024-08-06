@@ -101,13 +101,24 @@ To print a specific line you can use the address function. Note that by default,
     ```bash
     sed -n '2,6p' example.bed
     ```
+
+    !!! info ""
+
+    - `'2,6p'`: This is the command within sed. The 2,6 specifies the range of lines, and p stands for print. So, 2,6p means "print lines 2 through 6"
+
 !!! terminal-2 "Also, we can create specific pattern, like multiples of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file"
 
     ```bash
     sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
     ```
+    !!! info ""
+    - `'10~10p'`: This is the key part of the command. It uses a special addressing syntax:
+        - `10`: Start at line 10
+        - `~10`: Then print every 10th line after that
+        - `p`: The print command
 
-???+ question "Exercise 4.4"
+
+???+ dumbbell "Exercise 4.4"
 
     Can you use the above `~` trick to extract all the **odd** numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file **odd_sed.bed**
 
