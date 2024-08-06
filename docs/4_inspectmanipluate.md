@@ -152,9 +152,21 @@ This is a good place to bring in `grep` again which can be used to count the num
     
     grep -c "[^ \n\t]" foo_wc.bed 
     ```
-    >```bash
-    >  3
-    >```
+    ??? success "Output"
+
+        >```bash
+        >  3
+        >```
+
+    !!! info ""
+    - `-c`: This option tells grep to output only a count of matching lines instead of the lines themselves.
+    - `"[^ \n\t]"`: This is a regular expression pattern:
+    - `[ ]`: Defines a character set
+    - `^`: Inside the brackets, this means "not"
+    - `\n`: Represents a newline character
+    - `\t`: Represents a tab character
+
+    So `[^ \n\t]` means "match any character that is not a space, newline, or tab"
 ## Using `cut` with column data and formatting tabular data with `column`
 
 When working with plain-text tabular data formats like tab-delimited and CSV files, we often need to extract specific columns from the original file or stream. For example, suppose we wanted to extract only the start positions (the second column) of the ***Mus_musculus.GRCm38.75_chr1.bed*** file. The simplest way to do this is with `cut`.
