@@ -329,18 +329,35 @@ awk options 'selection_criteria {action}' input-file >  output-file
     ```bash
     awk '$3 - $2 > 18' example.bed
     ``` 
-    !!! info ""
-    - `$3`: This refers to the third field (column) of the current line.
-    - `$2`: This refers to the second field (column) of the current line.
-    - `$3 - $2`: This calculates the difference between the third and second fields.
-    - `> 18`: This checks if the difference is greater than 18.
-
     ??? success "Output"
 
         >```bash
         >chromosome1	9	28
         >chromosome2	35	54
         >```
+    !!! info ""
+    - `$3`: This refers to the third field (column) of the current line.
+    - `$2`: This refers to the second field (column) of the current line.
+    - `$3 - $2`: This calculates the difference between the third and second fields.
+    - `> 18`: This checks if the difference is greater than 18.
+
+    ??? clipboard-question "Why is this useful"
+        - **Filtering Genomic Regions by Length**:
+            - In a BED file, the second and third columns typically represent the start and end positions of genomic regions. This command can filter out regions that are shorter than a specified length (in this case, 18 base pairs).
+        - **Quality Control**:
+            When working with genomic data, you might want to exclude very short regions that could be artifacts or less reliable. This command helps in maintaining the quality of your dataset by keeping only those regions that meet a minimum length criterion.
+        - **Data Reduction**:
+            If you have a large dataset and are only interested in longer regions, this command can help reduce the size of the dataset, making subsequent analyses faster and more manageable.
+        - **Custom Analysis**:
+            In some analyses, you might be specifically interested in longer genomic regions due to their biological significance. This command allows you to focus on those regions directly.
+
+        **Example Scenario**<br>
+        Imagine you are analyzing ChIP-Seq data to identify binding sites of a transcription factor. You might want to filter out very short binding sites to focus on more substantial binding events. The command can help you achieve this:
+        ```bash
+        awk '$3 - $2 > 18' chipseq_peaks.bed > filtered_peaks.bed
+        ```
+
+
 
 - - -
 
@@ -375,7 +392,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     >chromosome1	32	47
     >chromosome1	9	28
     >```
-!!! info ""
+    !!! info ""
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
     - Tilde `~` means **match**.
