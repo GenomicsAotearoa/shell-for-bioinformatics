@@ -162,6 +162,8 @@ This is a good place to bring in `grep` again which can be used to count the num
     - `-c`: This option tells grep to output only a count of matching lines instead of the lines themselves.
     - `"[^ \n\t]"`: This is a regular expression pattern:
     - `[ ]`: Defines a character set
+        - When you place characters inside square brackets, you are specifying a set of characters, any one of which can match at that position in the string.
+        - For example, `[abc]` matches any one of the characters `a`, `b`, or `c`.
     - `^`: Inside the brackets, this means "not"
     - `\n`: Represents a newline character
     - `\t`: Represents a tab character
