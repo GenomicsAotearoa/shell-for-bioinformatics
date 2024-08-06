@@ -337,6 +337,8 @@ Unix users like to have the Unix shell do the work for them. This is why shell e
     ```bash
     grep -c '^@' SRR097977.fastq
     ```
+    <center>**OR**</center>
+
     ```bash
     echo "There are $(grep -c '^@' SRR097977.fastq) entries in my FASTA file."
     ```
