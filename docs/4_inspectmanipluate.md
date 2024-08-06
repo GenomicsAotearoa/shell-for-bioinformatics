@@ -123,6 +123,8 @@ Although `wc -l` is the quickest way to count the number of lines in a file, it 
 !!! terminal "code"
     * For an example, if we are to create a file with 3 rows of data and then two empty lines by pressing ^^**Enter** twice^^, 
 
+        ><kbd>Ctrl</kbd>+<kbd>D</kbd> to end the edits started with `cat >`
+
     ```bash
     cat > foo_wc.bed
     ```
@@ -134,7 +136,7 @@ Although `wc -l` is the quickest way to count the number of lines in a file, it 
     >[Press Enter]
     >```
 
-    **Ctrl+D** to end the edits started with `cat >`
+    
 
 !!! terminal "code"
 
