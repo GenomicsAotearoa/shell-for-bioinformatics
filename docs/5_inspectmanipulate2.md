@@ -329,10 +329,18 @@ awk options 'selection_criteria {action}' input-file >  output-file
     ```bash
     awk '$3 - $2 > 18' example.bed
     ``` 
-    >```bash
-    >chromosome1	9	28
-    >chromosome2	35	54
-    >```
+    !!! info ""
+    - `$3`: This refers to the third field (column) of the current line.
+    - `$2`: This refers to the second field (column) of the current line.
+    - `$3 - $2`: This calculates the difference between the third and second fields.
+    - `> 18`: This checks if the difference is greater than 18.
+
+    ??? success "Output"
+
+        >```bash
+        >chromosome1	9	28
+        >chromosome2	35	54
+        >```
 
 - - -
 
