@@ -214,7 +214,8 @@ Here is the full command:
 
     `grep -v "^>" tb1.fasta`
  
-    The `-v` tells `grep` to search for all lines in the file `tb1.fasta` that *do not* contain a ">" at the start (`^` is a special character that denotes "at the start of the line - we'll learn more about this later).
+    - `-v`: Inverts the match, selecting non-matching lines
+    - `"^>"`: The pattern to match. ^ means start of line, > is the literal character
 
     `grep --color -i "[^ATCG]"`
 
@@ -222,7 +223,13 @@ Here is the full command:
 
     - `--color`: tells `grep` to highlight any matches
     - `-i`: tells `grep` to ignore the case (i.e., will match lower or upper case)
-    - `[^ATCG]`: when `^` is used *inside square brackets* it has a different function - *inverts* the pattern, so that `grep` finds any letters that are *not* A, T, C or G.
+    - `[^ATCG]`: when `^` is used *inside square brackets* it has a different function - *inverts* the pattern, so that `grep` finds any letters that are *not* A, T, C or G. In other words,  `[^...]` means "any character not in this set"
+
+    ??? clipboard-question "Why is this useful"
+
+        - Identifying non-standard nucleotides in a DNA sequence
+        - Spotting potential sequencing errors
+        - Quality control of DNA sequence data
 
 Let's run the code:
 
@@ -232,18 +239,10 @@ Let's run the code:
     grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
     ```
 
-!!! quote ""
+    ??? success  "Output"
 
-    CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
+        CCCCAAAGACGGACCAATCCAGCAGCTTCTACTGCTA<span style="color:red">Y</span>CCATGCTCCCCTCCCTTCGCCGCCGCCGACGC
 
-
-What if we had just run the code for step 2 on the `tb1.fasta` file?
-
-!!! terminal "code"
-
-    ```bash
-    grep --color -i "[^ATCG]" tb1.fasta
-    ```
 
 ### Combining pipes and redirection
 
