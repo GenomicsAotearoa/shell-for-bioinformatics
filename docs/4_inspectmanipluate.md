@@ -198,6 +198,8 @@ When working with plain-text tabular data formats like tab-delimited and CSV fil
     > 3054233	3054733
     > 3054233	3054733
     >```
+    !!! info ""
+    `-f 2-3` is an option that tells cut to extract fields 2 and 3. In this context, fields are typically columns in a text file, separated by a delimiter (by default, a tab).
 
 
 Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
@@ -212,6 +214,18 @@ Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to
     >1	3054233	3054733
     >1	3054233	3054733
     >```
+
+    ??? flushed "Explain please"
+
+
+        - `-v` inverts the match, selecting lines that do not match the pattern
+        - `"^#"` is a regular expression that matches lines starting with #
+            - In summary, `grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf` step removes all comment lines (which typically start with #) from the GTF file
+
+        - `-f 1,4,5` specifies fields (columns) 1, 4, and 5 - In a GTF file, these columns typically represent:
+            - Field 1: Chromosome name
+            - Field 4: Start position of the feature
+            - Field 5: End position of the feature
 
 Note that although our three-column file of genomic positions looks like a BED-formatted file, it’s not (due to subtle differences in genomic range formats).
 
@@ -250,11 +264,18 @@ Note that you should only use `column -t` to visualize data in the terminal, not
     ```bash
     column -s "," -t Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
     ```
-    >```bash
-    >    1	3054233	3054733
-    >    1	3054233	3054733
-    >    1	3054233	3054733
-    >```
+    ??? success "Output"
+
+        >```bash
+        >    1	3054233	3054733
+        >    1	3054233	3054733
+        >    1	3054233	3054733
+        >```
+
+    !!! info ""
+    - `column`: This command is used to format its input into multiple columns.
+    - `-s ","`: This option specifies the separator character. In this case, it's set to a comma, which is typical for CSV files.
+    - `-t`: This option determines the number of columns automatically and creates a table.
 
 ??? warning "Counting the number of columns of a *.gtf* with `grep` and `wc`"
 
