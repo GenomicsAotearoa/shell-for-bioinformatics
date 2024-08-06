@@ -511,30 +511,10 @@ Count in order from most frequent to last
     chr2	39521
     chr3	24859
     ```
-The Unix tool join is used to join different files together by a common column. For example, we may want to add chromosome lengths recorded in example_lengths.txt to example.bed BED file, we saw earlier. The files look like this:
+!!! info ""
 
-!!! terminal "code"
-    
-    ```bash
-    cat example.bed
-    echo "=========="
-    cat example_lengths.txt
-    ```
+The Unix tool `join` is used to join different files together by a common column. For example, we may want to add chromosome lengths recorded in example_lengths.txt to example.bed BED file, we saw earlier. The files look like this:
 
-    >```bash
-    >chr1	26	39
-    >chr1	32	47
-    >chr3	11	28
-    >chr1	40	49
-    >chr3	16	27
-    >chr1	9	28
-    >chr2	35	54
-    >chr1	10	19
-    >==========
-    >chr1	58352
-    >chr2	39521
-    >chr3	24859
-    >```
  
 To do this, we need to join both of these tabular files by their common column, the one containing the chromosome names. But first, we first need to sort both files by the column to be joined on (join would not work otherwise):
 
@@ -543,11 +523,19 @@ To do this, we need to join both of these tabular files by their common column, 
     ```bash
     sort -k1,1 example.bed > example_sorted.bed
     ```
+    !!! info ""
+    - `-k1,1` : This option specifies the sorting key. Here's what it means:
+        - `-k`: This flag indicates that you are specifying a sorting key.
+        - `1,1` : This means you are sorting based on the **first field** (column) of each line in the file. The syntax `1,1` indicates that the sort should start at the **first field** and ^^end^^ at the **first field**, meaning only the **first field** is considered for sorting.
+
+!!! terminal "code"
+
     ```bash
     sort -c -k1,1 example_lengths.txt
     ```
-!!! info ""
-    `-c`, `--check`, `--check=diagnose-first` = check for sorted input; do not sort
+    !!! info ""
+    - `-c`, `--check`, `--check=diagnose-first` = check for sorted input; do not sort
+        -  When you use this option, `sort` does not `sort` the file; instead, it ^^checks^^ whether the file is already sorted according to the specified key. If the file is sorted correctly, it will exit with a status code of `0`. If the file is not sorted, it will exit with a status code of `1` and may print an error message indicating where the sorting order is violated.
 
 The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`. So, with *example.bed* and *example_lengths.txt* this would be:
 
@@ -557,6 +545,11 @@ The basic syntax is `join -1 <file_1_field> -2 <file_2_field> <file_1> <file_2>`
     join -1 1 -2 1 example_sorted.bed example_lengths.txt > example_with_lengths.txt
     ```
 
+    !!! info ""
+    - `-1 1` : This option specifies the join field for the first file (example_sorted.bed). The -1 flag indicates which field from the first file to use for joining, and 1 refers to the first field (column).
+    - `-2 1` :This option specifies the join field for the second file (example_lengths.txt). Similar to -1, the -2 flag indicates which field from the second file to use for joining, and 1 again refers to the first field (column).
+    
+    ^^Inspect the file^^
     ```bash
     cat example_with_lengths.txt
     ```
