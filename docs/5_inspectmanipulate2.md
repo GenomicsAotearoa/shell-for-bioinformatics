@@ -387,11 +387,13 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     ```bash
     awk '$1 ~ /chromosome1/ && $3 - $2 > 10' example.bed 
     ```
-    >```bash
-    >chromosome1	26	39
-    >chromosome1	32	47
-    >chromosome1	9	28
-    >```
+    ??? success "Output"
+
+        >```bash
+        >chromosome1	26	39
+        >chromosome1	32	47
+        >chromosome1	9	28
+        >```
     !!! info ""
 
     - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
