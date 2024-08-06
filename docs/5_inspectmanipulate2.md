@@ -433,11 +433,20 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     ```bash
     awk 'NR >= 3 && NR <=5' example.bed
     ``` 
-    >```bash
-    >    chr3	11	28
-    >    chr1	40	49
-    >    chr3	16	27
-    >```
+    ??? success "Output"
+
+        >```bash
+        >    chr3	11	28
+        >    chr1	40	49
+        >    chr3	16	27
+        >```
+    
+    ??? clipboard-question "Why is this useful"
+
+        - Extract a specific subset of lines from a larger file
+        - Perform operations on a range of lines in a file
+        - Debug or inspect specific portions of a large dataset
+        - It's commonly used in bioinformatics (as the .bed file extension suggests) and other fields where processing specific sections of large datasets is necessary.
 
 !!! terminal-2 "suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:"
 
