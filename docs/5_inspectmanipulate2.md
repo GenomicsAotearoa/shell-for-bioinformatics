@@ -457,6 +457,15 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         >    chr3	16	27
         >```
 
+    !!! info ""
+
+    `'NR >= 3 && NR <= 5'`: This is the selection criteria used by awk to determine which lines to process. Let's dissect this part further:
+
+    - `NR`: This is a built-in variable in awk that stands for "Number of Records." It keeps track of the current line number in the input file.
+    - `>= 3`: This means "greater than or equal to 3."
+    - `&&`: This is the logical AND operator.
+    - `<= 5`: This means "less than or equal to 5.
+
     ??? clipboard-question "Why is this useful"
 
         - Extract a specific subset of lines from a larger file
