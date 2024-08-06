@@ -7,7 +7,7 @@
     * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
 <center>
-![image](./images/awk_image.png){width="200"}
+![image](./images/reading-book.png){width="300"}
 </center>
 
 ## sed
