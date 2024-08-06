@@ -317,9 +317,12 @@ Very often we need to work with sorted plain-text data in bioinformatics. The tw
 !!! terminal "code"
     * Create a test .bed file with few rows and use `sort` command without any arguments.
 
+        ><kbd>Ctrl</kbd>+<kbd>D</kbd> to end the edits started with `cat >`
+
     ```bash
     cat > test_sort.bed
     ```
+    
 
     ??? database  "input for the *test_sort.bed* file"
 
@@ -605,18 +608,23 @@ Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows f
     ```bash
     join -1 1 -2 1 -a 1 example_sorted.bed example_lengths_alt.txt 
     ```
+    
+    ??? success "Output"
+
+        >```bash
+        >chr1 10 19 58352
+        >chr1 26 39 58352
+        >chr1 32 47 58352
+        >chr1 40 49 58352
+        >chr1 9 28 58352
+        >chr2 35 54 39521
+        >chr3 11 28
+        >chr3 16 27
+        >```
+    
     !!! info ""
-        `-a` FILENUM  - also print unpairable lines from file FILENUM, where FILENUM is 1 or 2, corresponding to FILE1 or FILE2
-    
-    >```bash
-    >chr1 10 19 58352
-    >chr1 26 39 58352
-    >chr1 32 47 58352
-    >chr1 40 49 58352
-    >chr1 9 28 58352
-    >chr2 35 54 39521
-    >chr3 11 28
-    >chr3 16 27
-    >```
-    
+    - `-1 1`  : This option specifies that the join should use the **first field** of the **first file** (example_sorted.bed) as the key for joining. The `1` indicates that the key is in the first column of this file.
+    - `-2 1`  : This option specifies that the join should use the **first field** of the **second file** (example_lengths_alt.txt) as the key for joining. Similarly, the `1` indicates that the key is in the first column of this file.
+    - `-a 1` -  join command to include all lines from the first file (example_sorted.bed), even if there is no matching line in the second file. This is useful when you want to retain all records from the first file regardless of whether they find a match in the second file.
+
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
