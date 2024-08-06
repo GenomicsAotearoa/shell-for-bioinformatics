@@ -354,6 +354,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
     - `$3`: This refers to the third field (column) of the current line.
     - `$2`: This refers to the second field (column) of the current line.
     - `$3 - $2`: This calculates the difference between the third and second fields.
+        - Space on either side of `-` is not important but leaving a space makes it easy to read
     - `> 18`: This checks if the difference is greater than 18.
 
     ??? clipboard-question "Why is this useful"
