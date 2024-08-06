@@ -340,8 +340,19 @@ Unix users like to have the Unix shell do the work for them. This is why shell e
     ```bash
     echo "There are $(grep -c '^@' SRR097977.fastq) entries in my FASTA file."
     ```
+    !!! info ""
 
-This command uses `grep` to count (the `-c` option stands for count) the number of lines matching the pattern. Using command substitution, we can calculate and return the number of FASTA entries directly into this string!
+    - `echo`: This is a command that prints text to the standard output.
+    - The text in quotes is what will be printed, with a substitution: "There are ... entries in my FASTA file."
+    - `$(...)`: This is command substitution. It runs the command inside the parentheses and replaces itself with the output of that command.
+    - `grep -c '^@' SRR097977.fastq`: This is the command inside the substitution:
+        - `-c`: An option that tells grep to count matching lines instead of printing them
+        - `'^@'`: The pattern to search for. In this case, it's looking for lines that start with '@'
+
+    - So, this command will:
+        - Count how many lines in SRR097977.fastq start with '@'
+        - Substitute that number into the echo statement
+        - Print the resulting message!
 
 Another example of using command substitution would be creating dated directories:
 
