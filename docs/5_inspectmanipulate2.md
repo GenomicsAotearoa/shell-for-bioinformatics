@@ -55,6 +55,10 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
     ```bash
     sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
     ```
+    ??? clipboard-question "Why is this useful ?" 
+
+        This command is particularly useful for processing genomic data files, where you might want to change the chromosome notation (from "chr" to "chromosome") only for a specific chromosome 
+
 !!! terminal-2 "Find and replace directly on the input, but save an old version too"
 
     ```bash
@@ -64,6 +68,16 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
         - `-i` to edit files **in-place** instead of printing to standard output
         - original file will be retained under the filename `example.bed.old`
+
+    ??? clipboard-question "Why is this useful ?"
+
+        - ^^Standardizing nomenclature^^: In genomics, chromosomes are sometimes abbreviated as "chr" (e.g., chr1, chr2), but some tools or databases might require the full word "chromosome". This command helps standardize the format.
+        - ^^File format conversion^^: It can help convert between different file formats or standards that use different chromosome naming conventions.
+        - ^^Data cleaning^^: If you have a large dataset with inconsistent chromosome naming, this command can quickly standardize it.
+        - ^^Preparing data for specific tools^^: Some bioinformatics tools might require a specific format for chromosome names, and this command can help prepare your data.
+        - ^^Safety^^: The -i.old option creates a backup, allowing you to revert changes if needed.
+        - ^^Efficiency^^: It can process large files quickly, which is common in genomics data.
+        - ^^Reproducibility^^: This command can be easily incorporated into scripts or pipelines, ensuring consistent data processing.
 
 * Print specific lines of the file
 
