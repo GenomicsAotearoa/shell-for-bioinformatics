@@ -97,9 +97,9 @@ To print a specific line you can use the address function. Note that by default,
     !!! info ""
 
     - `n:` This option suppresses the default output. Normally, sed prints every line of the input file to the standard output. The -n option tells sed to not print anything unless explicitly instructed to do so.
-    - '5p': This is the command within sed. The 5 specifies the line number, and p stands for print. So, 5p means "print the 5th line".
+    - `'5p'`: This is the command within sed. The 5 specifies the line number, and p stands for print. So, 5p means "print the 5th line".
 
-!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program Let's print line 2 and 5,"
+!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program. Let's print line 2 and 5,"
 
     ```bash
     sed -n -e '2p' -e '5p' example.bed
@@ -134,7 +134,7 @@ To print a specific line you can use the address function. Note that by default,
 
 ???+ dumbbell "Exercise 4.4"
 
-    Can you use the above `~` trick to extract all the **odd** numbered lines from Mus_musculus.GRCm38.75_chr1.bed and append the output to a new file **odd_sed.bed**
+    Can you use the above `~` trick to extract all the **odd** numbered lines from *Mus_musculus.GRCm38.75_chr1.bed* and append the output to a new file **odd_sed.bed**
 
 One of the powerful features is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header
 
