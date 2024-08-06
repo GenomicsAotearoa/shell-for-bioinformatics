@@ -295,13 +295,18 @@ awk options 'selection_criteria {action}' input-file >  output-file
     >chromosome1	10	19
     >```
 
-!!! terminal-2 "`awk` can be used to mimic functionality of `cut`" 
+!!! terminal-2 "`awk` can be used to mimic functionality of `cut` : Following command is useful for extracting specific columns from a tabular file, which is a common operation in data processing and bioinformatics workflows." 
 
      ```bash
      awk '{print $2 "\t" $3}' example.bed 
      ```
 
-    - `\t` for tab separated ( Refer to **Special meanings of certain escaped characters** in [supplementary](./supplementary%20/supplementary_3.md) )
+    !!! info ""
+    - `$2`: This refers to the second field (column) of the current line.
+    - `"\t"`: This adds a tab character between the output fields. ( Refer to **Special meanings of certain escaped characters** in [supplementary](./supplementary%20/supplementary_3.md) )
+    - `$3`: This refers to the third field (column) of the current line.
+
+    Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f 2,3 example.bed` 
 
     ??? success "Output"
      
@@ -315,7 +320,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
         35	54
         10	19
         ```
-Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f 2,3 example.bed` 
+
 
 
 
