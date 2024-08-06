@@ -236,7 +236,7 @@ Awk is a utility that enables a programmer to write tiny but effective programs.
 
     Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that match with the specified patterns and then perform the associated actions. 
 
-???+ "WHAT CAN WE DO WITH AWK?" 
+???+ circle-info "WHAT CAN WE DO WITH AWK?" 
 
       1. AWK Operations: 
          -  Scans a file line by line 
@@ -246,7 +246,9 @@ Awk is a utility that enables a programmer to write tiny but effective programs.
 
       2. Useful For: 
          -  Transform data files 
+         -  Automation
          -  Produce formatted reports 
+        
 
       3. Programming Constructs: 
          - Format output lines 
@@ -268,13 +270,12 @@ Awk is a utility that enables a programmer to write tiny but effective programs.
 ```bash
 awk options 'selection_criteria {action}' input-file >  output-file
 ```
-!!! Options 
+!!! info ""
 
-      `-f program-file` OR `--file program-file`: Reads the AWK program source from the file program-file, instead of from the first command line argument.
+    - `'selection_criteria {action}'`: This is the core part of the awk command where you define:
 
-      `-F fs`OR `--field-separator fs`  : Use fs for the input field separator
-
-
+        - `selection_criteria`: Conditions that determine which lines or records in the input file are processed. The selection criteria can be any valid `awk` expression that evaluates to true or false. Some common examples include:
+        - `action`: Operations to perform on the selected lines or records. .i.e. The action is a block of code enclosed in `{}` that specifies what to do with the selected lines
 
 !!! terminal-2 "Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`"
 
