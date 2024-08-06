@@ -466,9 +466,9 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
             - `s += ($3-$2)`: For each line, it calculates the difference between the third field (`$3`) and the second field (`$2`) and adds this difference to the variable `s`.
         - `END{ print "mean: " s/NR};`
             - `END{}`: This block is executed after all input lines have been read.
-            - `print "mean: " s/NR`: Prints the mean of the differences calculated. s is the sum of all differences, and NR (Number of Records) is the total number of lines read. So, s/NR gives the mean difference.
+            - `print "mean: " s/NR`: Prints the mean of the differences calculated. s is the sum of all differences, and NR (Number of Records) is the total number of lines read. So, `s/NR` gives the mean difference.
     
-        In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment `s` by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
+        ^^Summary^^ - In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment `s` by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
     
 !!! clipboard-question "`awk` makes it easy to convert between bioinformatics files like BED and GTF. Can you generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf***: ?"
 
@@ -494,6 +494,17 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         >1	3054232	3054733
         >```
 
+        ??? flushed "Explain......"
+
+            - `'!/^#/ { print $1 "\t" $4-1 "\t" $5}'`
+                - `!/^#/` : This is a pattern that matches lines that do not start with the # character. The `^` symbol represents the start of a line, and `#` is the character to match. The `!` negates the match, so this pattern matches lines that do not start with `#`.
+            - `{ print $1 "\t" $4-1 "\t" $5}` This action block is executed for each line that matches the pattern (i.e., lines that do not start with `#`).
+                - `print $1`: Prints the first field of the line.
+                - `"\t"`: Inserts a tab character.
+                - `$4-1`: Prints the value of the fourth field minus 1.
+                - `"\t"`: Inserts another tab character.
+                - `$5`: Prints the fifth field of the line.
+            
 
 
 <br>
