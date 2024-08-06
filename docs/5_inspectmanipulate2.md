@@ -129,6 +129,17 @@ One of the powerful features is that we can combine these ranges or multiples in
     ```bash
     sed -n '1~4p;2~4p' SRR097977.fastq
     ```
+    !!! info ""
+    - `'1~4p;2~4p'`: This is the sed script, which consists of two address/action pairs separated by a semicolon:
+        - `1~4p`: This means "starting at line 1, print every 4th line"
+        - `2~4p`: This means "starting at line 2, print every 4th line"
+
+    ??? clipboard-question "Why is this userful ?"
+
+        - Quickly view or extract just the sequence data and identifiers from a FASTQ file
+        - Reduce the file size by removing quality score information
+        - Prepare the data for further processing that only requires the sequence and its identifier
+        
 !!! tip "Sanity Check"
 
     It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `cat SRR097977.fastq | wc -l`
@@ -139,6 +150,17 @@ One of the powerful features is that we can combine these ranges or multiples in
     ```bash
     sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
     ```
+    !!! info ""
+    - `^@`: Matches the `'@'` character at the beginning of a line
+    - `>:` Replaces the matched `'@'` with `'>'`
+
+    ??? clipboard-question "Why is this useful"
+        - **Format Conversion**: It quickly converts a FASTQ file to a FASTA file, which is a common requirement in many bioinformatics workflows.
+        - **Data Reduction**: It removes the quality score information, which is not used in FASTA format, potentially reducing file size.
+        - **Compatibility**: Many bioinformatics tools work with FASTA format, so this conversion can be a necessary preprocessing step.
+        - **Efficiency**: It performs the conversion using efficient text-processing tools, which can be faster than some scripted solutions, especially for large files.
+        - **Pipeline Integration**: This one-liner can be easily integrated into larger bioinformatics pipelines or scripts.
+
 <br>
 ??? surprise "Optional (Advanced) -Let's say that we want capture all the transcript names from the last column (9th column) from .gtf file. We can write something similar to:"
 
