@@ -509,7 +509,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
 !!! dumbbell "`awk` makes it easy to convert between bioinformatics files like BED and GTF. Can you generate a three-column BED file from ***Mus_muscu‐lus.GRCm38.75_chr1.gtf***: ?"
 
     * Follow this link for a quick recap on [annotation formats](https://tag.readthedocs.io/en/stable/formats.html#:~:text=BED%20allows%20for%20a%20single,by%20ID%20and%20Parent%20attributes)
-    * Note that the start site of features in the .bed file is **1** less than the start site of features in the .gtf file: .bed uses 0-indexing and .gtf uses 1-indexing  .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
+    * Note that the start site of features in the .bed file is **1** less than the start site of features in the .gtf file: .bed uses 0-indexing (^^first position is numbered 0^^.) and .gtf uses 1-indexing (^^first position is numbered 1^^) .i.e. *"chr 1 100" in a GTF/GFF is "chr 0 100" in BED*
 
     * Let's build the command based on `awk options 'selection_criteria {action}' input-file`
         - What is the `selection_criteria` ? ( **hint**- it evolves around a symbol. )
