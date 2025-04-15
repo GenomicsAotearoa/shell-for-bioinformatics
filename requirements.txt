@@ -1,6 +1,6 @@
 # requirements for core
 mergedeep
-mkdocs-material==9.5.39
+mkdocs-material
 cairosvg
 pillow
 
