@@ -55,6 +55,8 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
     ```bash
     sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
     ```
+    * `/40/`: This is an address (a pattern match) that restricts the following command to only those lines containing the string "40"
+
     ??? clipboard-question "Why is this useful ?" 
 
         This command is particularly useful for processing genomic data files, where you might want to change the chromosome notation (from "chr" to "chromosome") only for a specific chromosome 
@@ -106,9 +108,14 @@ To print a specific line you can use the address function. Note that by default,
     ```
 
     !!! info ""
-
+    - `-e` This allows you to specify a script
     - `-e '2p'`: This is the first expression. The 2p part means "print the 2nd line".
     - `-e '5p'`: This is the second expression. The 5p part means "print the 5th line".
+
+    ??? clipboard-question "Why is this useful ?"
+        - **Quality control**: Checking if certain lines (e.g., the 2nd and 5th) are formatted correctly or contain expected data.
+        - **Debugging scripts**: Verifying that data processing steps are working as intended by looking at specific entries.
+        - **Sampling**: Quickly viewing a few lines without loading the entire file into memory.
 
 !!! terminal-2 "It also accepts range, using `,`. Let's print line 2-6,"
 
@@ -130,7 +137,11 @@ To print a specific line you can use the address function. Note that by default,
         - `10`: Start at line 10
         - `~10`: Then print every 10th line after that
         - `p`: The print command
-
+    
+    ??? clipboard-question "Why is this useful ?"
+        - **Sampling Large Datasets**: When files are too large to inspect in full, sampling every 10th line provides a manageable subset for quick quality checks or visualization.
+        - **Performance Testing**: Developers can use sampled data to test pipelines or software tools without processing the entire dataset.
+        - **Data Summarization**: Researchers may want to get a sense of the data distribution or content without loading the whole file into memory.
 
 ???+ dumbbell "Exercise 4.4"
 
@@ -277,6 +288,13 @@ awk options 'selection_criteria {action}' input-file >  output-file
         - `selection_criteria`: Conditions that determine which lines or records in the input file are processed. The selection criteria can be any valid `awk` expression that evaluates to true or false. Some common examples include:
         - `action`: Operations to perform on the selected lines or records. .i.e. The action is a block of code enclosed in `{}` that specifies what to do with the selected lines
 
+    **How does it Work**:
+
+    - AWK reads the input file line by line.
+    - For each line, it checks if the line matches the `selection_criteria`.
+    - If a line matches, AWK executes the action on that line.
+    - If no action is specified, AWK prints the matching line by default
+
 !!! terminal-2 "Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`"
 
     ```bash
@@ -378,6 +396,12 @@ awk options 'selection_criteria {action}' input-file >  output-file
 - - -
 
 ??? table "`awk` Comparison and Logical operations"
+
+    AWK provides a set of comparison (relational) operators to compare numbers or strings, and to match patterns. These are used to filter data or control the flow of actions in AWK scripts. The main comparison operators are
+
+    - Comparisons can be numeric or string-based, depending on the data type of the operands.
+    - The `~` and `!~` operators are used for regular expression matching.
+
 
     |Comparison |  Description                                |
     |:----------|:--------------------------------------------|
@@ -492,6 +516,14 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         - `END{ print "mean: " s/NR};`
             - `END{}`: This block is executed after all input lines have been read.
             - `print "mean: " s/NR`: Prints the mean of the differences calculated. s is the sum of all differences, and NR (Number of Records) is the total number of lines read. So, `s/NR` gives the mean difference.
+
+        - Purpose of `{}` (Curly Braces)
+            - Curly braces `{}` enclose the action part of an AWK pattern-action statement.
+            - The action inside `{}` is executed when the pattern (or special block like `BEGIN` or `END`) is matched or triggered
+
+        - Purpose of `;` (Semicolon)
+            - Semicolons `;` in AWK separate multiple pattern-action statements when written on a single line.
+            - They allow you to write several AWK rules in one command line, making the script concise.
     
         ^^Summary^^ - In this example, we’ve initialized a variable `s` to **0** in `BEGIN` (variables you define do not need a dollar sign). Then, for each record we increment `s` by the length of the feature. At the end of the records, we print this sum `s` divided by the number of records `NR` , giving the mean.
     
