@@ -1,0 +1,1754 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/5_inspectmanipulate2/">
+      
+      
+        <link rel="prev" href="../4_inspectmanipluate/">
+      
+      
+        <link rel="next" href="../6_automate_fileprocessing_find_xargs/">
+      
+      
+      <link rel="icon" href="../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>4. Inspecting and Manipulating Text Data with Unix Tools - Part 2 - Intermediate Shell for Bioinformatics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-inspecting-and-manipulating-text-data-with-unix-tools-part-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intermediate Shell for Bioinformatics" class="md-header__button md-logo" aria-label="Intermediate Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intermediate Shell for Bioinformatics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Inspecting and Manipulating Text Data with Unix Tools - Part 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intermediate Shell for Bioinformatics" class="md-nav__button md-logo" aria-label="Intermediate Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Intermediate Shell for Bioinformatics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_download_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Download &amp; Verify Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_streams_red_pipe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Streams, Redirection and Pipe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_inspectmanipluate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Inspecting and Manipulating Text Data with Unix Tools - Part 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    4. Inspecting and Manipulating Text Data with Unix Tools - Part 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Inspecting and Manipulating Text Data with Unix Tools - Part 2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    <span class="md-ellipsis">
+      sed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find and Replace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aho-weinberger-kernighan-awk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aho, Weinberger, Kernighan = AWK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-bioawk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional - bioawk
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_automate_fileprocessing_find_xargs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Preview : Automating File-Processing with find and xargs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puzzles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Puzzles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Supplementary 
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Supplementary 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary%20/supplementary_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supp - 1. UNIX, Linux &amp; UNIX Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary%20/supplementary_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supp - 2. Unix Shell Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary%20/supplementary_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supp - 3. Escaping and Special Characters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    <span class="md-ellipsis">
+      sed
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-and-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find and Replace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aho-weinberger-kernighan-awk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aho, Weinberger, Kernighan = AWK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-bioawk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional - bioawk
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="4-inspecting-and-manipulating-text-data-with-unix-tools-part-2">4. Inspecting and Manipulating Text Data with Unix Tools - Part 2<a class="headerlink" href="#4-inspecting-and-manipulating-text-data-with-unix-tools-part-2" title="Permanent link">&para;</a></h1>
+<div class="admonition clipboard-list">
+<p class="admonition-title">Lesson Objectives</p>
+<ul>
+<li>insertion, deletion, search and replace(substitution) with <code>sed</code></li>
+<li>Use specialised language <code>awk</code> to do a variety of text-processing tasks</li>
+<li>Quick overview of <code>bioawk</code> (an extension of <code>awk</code> to process common biological data formats)</li>
+</ul>
+</div>
+<figure>
+<p><a class="glightbox" href="../images/reading-book.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../images/reading-book.png" width="300" /></a></p>
+</figure>
+<h2 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h2>
+<p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. </p>
+<h3 id="find-and-replace">Find and Replace<a class="headerlink" href="#find-and-replace" title="Permanent link">&para;</a></h3>
+<p>Most common use of <code>sed</code> is to substitute text, matching a pattern. The syntax for doing this in <code>sed</code> is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sed<span class="w"> </span><span class="s1">&#39;OPERATION/REGEXP/REPLACEMENT/FLAGS&#39;</span><span class="w"> </span>FILENAME
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). <ul>
+<li>The most common and widely used operation is <code>s</code> which does the <strong>substitution</strong> operation </li>
+<li>Other useful operators include <code>y</code> for <strong>transformation</strong>, <code>i</code> for <strong>insertion</strong>, <code>d</code> for <strong>deletion</strong> etc.).</li>
+</ul>
+</li>
+<li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
+<li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
+<li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
+<li><code>N</code> where N is any number, to replace Nth instance of the <code>REGEXP</code> with <code>REPLACEMENT</code></li>
+<li><code>p</code> if substitution was made, then prints the new pattern space</li>
+<li><code>i</code> ignores case for matching <code>REGEXP</code></li>
+<li><code>w</code> file If substitution was made, write out the result to the given file</li>
+<li><code>d</code> when specified without <code>REPLACEMENT</code>, deletes the found <code>REGEXP</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li>Some find and replace examples</li>
+</ul>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sed<span class="w"> </span><span class="s1">&#39;s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_chromosome.bed
+</code></pre></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
+<ul>
+<li>This will follow the format <code>sed '/SEARCH_STRING/OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME</code> where <code>SEARCH_STRING</code> is <strong>40</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sed<span class="w"> </span><span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_40.bed
+</code></pre></div></li>
+<li><code>/40/</code>: This is an address (a pattern match) that restricts the following command to only those lines containing the string "40"</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<p>This command is particularly useful for processing genomic data files, where you might want to change the chromosome notation (from "chr" to "chromosome") only for a specific chromosome </p>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace directly on the input, but save an old version too</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sed<span class="w"> </span>-i.old<span class="w"> </span><span class="s1">&#39;s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li><code>-i</code> to edit files <strong>in-place</strong> instead of printing to standard output</li>
+<li>original file will be retained under the filename <code>example.bed.old</code></li>
+</ul>
+</div>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li><ins>Standardizing nomenclature</ins>: In genomics, chromosomes are sometimes abbreviated as "chr" (e.g., chr1, chr2), but some tools or databases might require the full word "chromosome". This command helps standardize the format.</li>
+<li><ins>File format conversion</ins>: It can help convert between different file formats or standards that use different chromosome naming conventions.</li>
+<li><ins>Data cleaning</ins>: If you have a large dataset with inconsistent chromosome naming, this command can quickly standardize it.</li>
+<li><ins>Preparing data for specific tools</ins>: Some bioinformatics tools might require a specific format for chromosome names, and this command can help prepare your data.</li>
+<li><ins>Safety</ins>: The -i.old option creates a backup, allowing you to revert changes if needed.</li>
+<li><ins>Efficiency</ins>: It can process large files quickly, which is common in genomics data.</li>
+<li><ins>Reproducibility</ins>: This command can be easily incorporated into scripts or pipelines, ensuring consistent data processing.</li>
+</ul>
+</details>
+</div>
+<ul>
+<li>Print specific lines of the file</li>
+</ul>
+<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code> </p>
+<div class="admonition info">
+<p><code>-n</code>, <code>--quiet</code>, <code>--silent</code> = suppress automatic printing of pattern space</p>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">print 5<sup>th</sup> line of example.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;5p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>n:</code> This option suppresses the default output. Normally, sed prints every line of the input file to the standard output. The -n option tells sed to not print anything unless explicitly instructed to do so.</li>
+<li><code>'5p'</code>: This is the command within sed. The 5 specifies the line number, and p stands for print. So, 5p means "print the 5<sup>th</sup> line".</li>
+</ul>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">We can provide any number of additional lines to print using <code>-e</code> option. This tells sed to execute the next command line argument as sed program. Let's print line 2 and 5,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sed<span class="w"> </span>-n<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;2p&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;5p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>-e</code> This allows you to specify a script</li>
+<li><code>-e '2p'</code>: This is the first expression. The 2p part means "print the 2<sup>nd</sup> line".</li>
+<li><code>-e '5p'</code>: This is the second expression. The 5p part means "print the 5<sup>th</sup> line".</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li><strong>Quality control</strong>: Checking if certain lines (e.g., the 2<sup>nd</sup> and 5<sup>th</sup>) are formatted correctly or contain expected data.</li>
+<li><strong>Debugging scripts</strong>: Verifying that data processing steps are working as intended by looking at specific entries.</li>
+<li><strong>Sampling</strong>: Quickly viewing a few lines without loading the entire file into memory.</li>
+</ul>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2,6p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>'2,6p'</code>: This is the command within sed. The 2,6 specifies the range of lines, and p stands for print. So, 2,6p means "print lines 2 through 6"</li>
+</ul>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Also, we can create specific pattern, like multiples of a number using <code>~</code>. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;10~10p&#39;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.bed
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>'10~10p'</code>: This is the key part of the command. It uses a special addressing syntax:<ul>
+<li><code>10</code>: Start at line 10</li>
+<li><code>~10</code>: Then print every 10<sup>th</sup> line after that</li>
+<li><code>p</code>: The print command</li>
+</ul>
+</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li><strong>Sampling Large Datasets</strong>: When files are too large to inspect in full, sampling every 10<sup>th</sup> line provides a manageable subset for quick quality checks or visualization.</li>
+<li><strong>Performance Testing</strong>: Developers can use sampled data to test pipelines or software tools without processing the entire dataset.</li>
+<li><strong>Data Summarization</strong>: Researchers may want to get a sense of the data distribution or content without loading the whole file into memory.</li>
+</ul>
+</details>
+</div>
+<details class="dumbbell" open="open">
+<summary>Exercise 4.4</summary>
+<p>Can you use the above <code>~</code> trick to extract all the <strong>odd</strong> numbered lines from <em>Mus_musculus.GRCm38.75_chr1.bed</em> and append the output to a new file <strong>odd_sed.bed</strong></p>
+</details>
+<p>One of the powerful features is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1~4p;2~4p&#39;</span><span class="w"> </span>SRR097977.fastq
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>'1~4p;2~4p'</code>: This is the sed script, which consists of two address/action pairs separated by a semicolon:<ul>
+<li><code>1~4p</code>: This means "starting at line 1, print every 4<sup>th</sup> line"</li>
+<li><code>2~4p</code>: This means "starting at line 2, print every 4<sup>th</sup> line"</li>
+</ul>
+</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this userful ?</summary>
+<ul>
+<li>Quickly view or extract just the sequence data and identifiers from a FASTQ file</li>
+<li>Reduce the file size by removing quality score information</li>
+<li>Prepare the data for further processing that only requires the sequence and its identifier</li>
+</ul>
+</details>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Sanity Check</p>
+<p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>cat SRR097977.fastq | wc -l</code></p>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">We can use the above trick to convert the .fastq to .fasta</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1~4p;2~4p&#39;</span><span class="w"> </span>SRR097977.fastq<span class="w">  </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/^@/&gt;/g&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>SRR097977.fasta
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>^@</code>: Matches the <code>'@'</code> character at the beginning of a line</li>
+<li><code>&gt;:</code> Replaces the matched <code>'@'</code> with <code>'&gt;'</code></li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful</summary>
+<ul>
+<li><strong>Format Conversion</strong>: It quickly converts a FASTQ file to a FASTA file, which is a common requirement in many bioinformatics workflows.</li>
+<li><strong>Data Reduction</strong>: It removes the quality score information, which is not used in FASTA format, potentially reducing file size.</li>
+<li><strong>Compatibility</strong>: Many bioinformatics tools work with FASTA format, so this conversion can be a necessary preprocessing step.</li>
+<li><strong>Efficiency</strong>: It performs the conversion using efficient text-processing tools, which can be faster than some scripted solutions, especially for large files.</li>
+<li><strong>Pipeline Integration</strong>: This one-liner can be easily integrated into larger bioinformatics pipelines or scripts.</li>
+</ul>
+</details>
+</div>
+<p><br></p>
+<details class="surprise">
+<summary>Optional (Advanced) -Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to:</summary>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
+<details class="pied-piper">
+<summary>POSIX Regular and Exetended Regular Expressions</summary>
+<p><strong>POSIX Basic Regular Expressions</strong> </p>
+<ul>
+<li>
+<p>POSIX or “Portable Operating System Interface for uniX” is a collection of standards that define some of the functionality that a (UNIX) operating system should support. One of these standards defines two flavors of regular expressions. Commands involving regular expressions, such as <code>grep</code> and <code>egrep</code>, implement these flavors on POSIX-compliant UNIX systems. Several database systems also use POSIX regular expressions.</p>
+<p>The Basic Regular Expressions or BRE flavor standardizes a flavor similar to the one used by the traditional UNIX <code>grep</code> command. This is pretty much the oldest regular expression flavor still in use today. One thing that sets this flavor apart is that most meta-characters require a backslash to give the metacharacter its flavor. Most other flavors, including POSIX ERE, use a backslash to suppress the meaning of metacharacters. Using a backslash to escape a character that is never a metacharacter is an error.</p>
+</li>
+</ul>
+<p><strong>POSIX Extended Regular Expressions</strong></p>
+<ul>
+<li>
+<p>The Extended Regular Expressions or ERE flavor standardizes a flavor similar to the one used by the UNIX <code>egrep</code> command. “Extended” is relative to the original UNIX <code>grep</code>, which only had bracket expressions, dot, caret, dollar and star. An ERE support these just like a BRE. Most modern regex flavors are extensions of the ERE flavor. By today’s standard, the POSIX ERE flavor is rather bare bones. The POSIX standard was defined in 1986, and regular expressions have come a long way since then.</p>
+<p>The developers of <code>egrep</code> did not try to maintain compatibility with <code>grep</code>, creating a separate tool instead. Thus <code>egrep</code>, and POSIX ERE, add additional metacharacters without backslashes. You can use backslashes to suppress the meaning of all metacharacters, just like in modern regex flavors. Escaping a character that is not a meta-character is an error.</p>
+</li>
+</ul>
+</details>
+</div>
+<p>Output is not really what we are after,</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="m">1</span><span class="w">  </span>pseudogene<span class="w">  </span>gene<span class="w">    </span><span class="m">3054233</span><span class="w"> </span><span class="m">3054733</span><span class="w"> </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSMUSG00000090025&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;Gm16088&quot;</span><span class="p">;</span><span class="w"> </span>gene_source<span class="w"> </span><span class="s2">&quot;havana&quot;</span><span class="p">;</span><span class="w"> </span>gene_biotype<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ENSMUST00000160944
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ENSMUST00000160944
+</code></pre></div>
+</blockquote>
+<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of <em>Mus_musculus.GRCm38.75_chr1.gtf</em> don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before <code>sed</code> to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable <code>sed</code> from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;^#&quot;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*transcript_id &quot;([^&quot;]+)&quot;.*/\1/p&#39;</span>
+</code></pre></div>
+</div>
+<p>This example uses an important regular expression idiom: capturing text between delimiters (in this case, quotation marks). This is a useful pattern, so let’s break it
+down:</p>
+<ol>
+<li>First, match zero or more of any character ( .* ) before the string "transcript_id" .</li>
+<li>Then, match and capture (because there are parentheses around the pattern) one or more characters that are not a quote. This is accomplished with [^"]+ , the important idiom in this example. In regular extension jargon, the brackets make up a character class. Character classes specify what characters the expression is allowed to match. Here, we use a caret ( ^ ) inside the brackets to match anything except what’s inside these brackets (in this case, a quote). The end result is that we match and capture one or more nonquote characters (because there’s a trailing + ). This approach is nongreedy; often beginners make the mistake of taking a greedy
+approach and use .* . Consider:</li>
+</ol>
+</details>
+<hr />
+<h2 id="aho-weinberger-kernighan-awk">Aho, Weinberger, Kernighan = AWK<a class="headerlink" href="#aho-weinberger-kernighan-awk" title="Permanent link">&para;</a></h2>
+<p>Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. </p>
+<p>Awk is a utility that enables a programmer to write tiny but effective programs. These take the form of statements that define text patterns that are to be searched for in each line of a document, and the action that is to be taken when a match is found within a line. </p>
+<div class="admonition quote">
+<p>Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that match with the specified patterns and then perform the associated actions. </p>
+</div>
+<details class="circle-info" open="open">
+<summary>WHAT CAN WE DO WITH AWK?</summary>
+<ol>
+<li>
+<p>AWK Operations: </p>
+<ul>
+<li>Scans a file line by line </li>
+<li>Splits each input line into fields </li>
+<li>Compares input line/fields to pattern </li>
+<li>Performs action(s) on matched lines </li>
+</ul>
+</li>
+<li>
+<p>Useful For: </p>
+<ul>
+<li>Transform data files </li>
+<li>Automation</li>
+<li>Produce formatted reports </li>
+</ul>
+</li>
+<li>
+<p>Programming Constructs: </p>
+<ul>
+<li>Format output lines </li>
+<li>Arithmetic and string operations </li>
+<li>Conditionals and loops </li>
+</ul>
+</li>
+</ol>
+</details>
+<div class="admonition quote">
+<p>There are two key parts for understanding the Awk language: how Awk processes records, and pattern-action pairs. The rest of the language is quite simple.</p>
+<ul>
+<li>
+<p>Awk processes input data a record (line) at a time. Each record is composed of fields (column entries) that Awk automatically separates. Awk assigns the entire record to the variable $0, field one’s value to $1, field two’s value to $2, etc.</p>
+</li>
+<li>
+<p>We build Awk programs using one or more of the following structures: <code>pattern { action }</code>. Each pattern is an expression or regular expression pattern. In Awk lingo, these are pattern-action pairs and we can chain multiple pattern-action pairs together (separated by semicolons). If we omit the pattern, Awk will run the action on all records. If we omit the action but specify a pattern, Awk will print all records that match the pattern.</p>
+</li>
+</ul>
+</div>
+<p><strong>Syntax</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>awk<span class="w"> </span>options<span class="w"> </span><span class="s1">&#39;selection_criteria {action}&#39;</span><span class="w"> </span>input-file<span class="w"> </span>&gt;<span class="w">  </span>output-file
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li>
+<p><code>'selection_criteria {action}'</code>: This is the core part of the awk command where you define:</p>
+<ul>
+<li><code>selection_criteria</code>: Conditions that determine which lines or records in the input file are processed. The selection criteria can be any valid <code>awk</code> expression that evaluates to true or false. Some common examples include:</li>
+<li><code>action</code>: Operations to perform on the selected lines or records. .i.e. The action is a block of code enclosed in <code>{}</code> that specifies what to do with the selected lines</li>
+</ul>
+</li>
+</ul>
+<p><strong>How does it Work</strong>:</p>
+<ul>
+<li>AWK reads the input file line by line.</li>
+<li>For each line, it checks if the line matches the <code>selection_criteria</code>.</li>
+<li>If a line matches, AWK executes the action on that line.</li>
+<li>If no action is specified, AWK prints the matching line by default</li>
+</ul>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Default behaviour of <code>awk</code> is to print every line of data from the specified file. .i.e. mimics <code>cat</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>awk<span class="w"> </span><span class="s1">&#39;{print}&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>
+</code></pre></div>
+<details class="success">
+<summary>Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>chromosome1<span class="w"> </span><span class="m">26</span><span class="w">  </span><span class="m">39</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>chromosome1<span class="w"> </span><span class="m">32</span><span class="w">  </span><span class="m">47</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>chromosome3<span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">28</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>chromosome1<span class="w"> </span><span class="m">40</span><span class="w">  </span><span class="m">49</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>chromosome3<span class="w"> </span><span class="m">16</span><span class="w">  </span><span class="m">27</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>chromosome1<span class="w"> </span><span class="m">9</span><span class="w">   </span><span class="m">28</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>chromosome2<span class="w"> </span><span class="m">35</span><span class="w">  </span><span class="m">54</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>chromosome1<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="m">19</span>
+</code></pre></div>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Print lines which match the given pattern</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>awk<span class="w"> </span><span class="s1">&#39;/chromosome1/{print}&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>chromosome1<span class="w">    </span><span class="m">26</span><span class="w">  </span><span class="m">39</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>chromosome1<span class="w">    </span><span class="m">32</span><span class="w">  </span><span class="m">47</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>chromosome1<span class="w">    </span><span class="m">40</span><span class="w">  </span><span class="m">49</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>chromosome1<span class="w">    </span><span class="m">9</span><span class="w">   </span><span class="m">28</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>chromosome1<span class="w">    </span><span class="m">10</span><span class="w">  </span><span class="m">19</span>
+</code></pre></div>
+</blockquote>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title"><code>awk</code> can be used to mimic functionality of <code>cut</code> : Following command is useful for extracting specific columns from a tabular file, which is a common operation in data processing and bioinformatics workflows.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>awk<span class="w"> </span><span class="s1">&#39;{print $2 &quot;\t&quot; $3}&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>$2</code>: This refers to the second field (column) of the current line.</li>
+<li><code>"\t"</code>: This adds a tab character between the output fields. ( Refer to <strong>Special meanings of certain escaped characters</strong> in <a href="../supplementary%20/supplementary_3/">supplementary</a> )</li>
+<li><code>$3</code>: This refers to the third field (column) of the current line.</li>
+</ul>
+<p>Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, <code>$2"\t"$3</code> concatenates the second field, a tab character, and the third field. However, this is an instance where using <code>cut</code> is much simpler as the equivalent of above is <code>cut -f 2,3 example.bed</code> </p>
+<details class="success">
+<summary>Output</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="m">26</span><span class="w">  </span><span class="m">39</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="m">32</span><span class="w">  </span><span class="m">47</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="m">11</span><span class="w">  </span><span class="m">28</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="m">40</span><span class="w">  </span><span class="m">49</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="m">16</span><span class="w">  </span><span class="m">27</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w"> </span><span class="m">9</span><span class="w">  </span><span class="m">28</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="m">35</span><span class="w">  </span><span class="m">54</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="m">10</span><span class="w">  </span><span class="m">19</span>
+</code></pre></div>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>awk<span class="w"> </span><span class="s1">&#39;$3 - $2 &gt; 18&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<details class="success">
+<summary>Output</summary>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>chromosome1<span class="w">    </span><span class="m">9</span><span class="w">   </span><span class="m">28</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>chromosome2<span class="w">    </span><span class="m">35</span><span class="w">  </span><span class="m">54</span>
+</code></pre></div>
+</blockquote>
+</details>
+<div class="admonition info"></div>
+<ul>
+<li><code>$3</code>: This refers to the third field (column) of the current line.</li>
+<li><code>$2</code>: This refers to the second field (column) of the current line.</li>
+<li><code>$3 - $2</code>: This calculates the difference between the third and second fields.<ul>
+<li>Space on either side of <code>-</code> is not important but leaving a space makes it easy to read</li>
+</ul>
+</li>
+<li><code>&gt; 18</code>: This checks if the difference is greater than 18.</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful</summary>
+<ul>
+<li><strong>Filtering Genomic Regions by Length</strong>:<ul>
+<li>In a BED file, the second and third columns typically represent the start and end positions of genomic regions. This command can filter out regions that are shorter than a specified length (in this case, 18 base pairs).</li>
+</ul>
+</li>
+<li><strong>Quality Control</strong>:
+    When working with genomic data, you might want to exclude very short regions that could be artifacts or less reliable. This command helps in maintaining the quality of your dataset by keeping only those regions that meet a minimum length criterion.</li>
+<li><strong>Data Reduction</strong>:
+    If you have a large dataset and are only interested in longer regions, this command can help reduce the size of the dataset, making subsequent analyses faster and more manageable.</li>
+<li><strong>Custom Analysis</strong>:
+    In some analyses, you might be specifically interested in longer genomic regions due to their biological significance. This command allows you to focus on those regions directly.</li>
+</ul>
+<p><strong>Example Scenario</strong><br>
+Imagine you are analyzing ChIP-Seq data to identify binding sites of a transcription factor. You might want to filter out very short binding sites to focus on more substantial binding events. The command can help you achieve this:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>awk<span class="w"> </span><span class="s1">&#39;$3 - $2 &gt; 18&#39;</span><span class="w"> </span>chipseq_peaks.bed<span class="w"> </span>&gt;<span class="w"> </span>filtered_peaks.bed
+</code></pre></div></p>
+</details>
+</div>
+<hr />
+<details class="table">
+<summary><code>awk</code> Comparison and Logical operations</summary>
+<p>AWK provides a set of comparison (relational) operators to compare numbers or strings, and to match patterns. These are used to filter data or control the flow of actions in AWK scripts. The main comparison operators are</p>
+<ul>
+<li>Comparisons can be numeric or string-based, depending on the data type of the operands.</li>
+<li>The <code>~</code> and <code>!~</code> operators are used for regular expression matching.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>a == b</code></td>
+<td style="text-align: left;">a is equal to b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a != b</code></td>
+<td style="text-align: left;">a is not equal to b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a &lt; b</code></td>
+<td style="text-align: left;">a is less than b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a &gt; b</code></td>
+<td style="text-align: left;">a is greater than b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a &lt;= b</code></td>
+<td style="text-align: left;">a is less than or equal to b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a &gt;= b</code></td>
+<td style="text-align: left;">a is greater than or equal to b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a ~ b</code></td>
+<td style="text-align: left;">a matches regular expression pattern b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a !~ b</code></td>
+<td style="text-align: left;">a does not match regular expression pattern b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a &amp;&amp; b</code></td>
+<td style="text-align: left;">logical a and b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>a \|\| b</code></td>
+<td style="text-align: left;">logical or a and b</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>!a</code></td>
+<td style="text-align: left;">not a (logical negation)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<hr />
+<p>We can also chain patterns, by using logical operators <code>&amp;&amp;</code> (AND), <code>||</code> (OR), and <code>!</code> (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>awk<span class="w"> </span><span class="s1">&#39;$1 ~ /chromosome1/ &amp;&amp; $3 - $2 &gt; 10&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>
+</code></pre></div>
+<details class="success">
+<summary>Output</summary>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>chromosome1<span class="w">    </span><span class="m">26</span><span class="w">  </span><span class="m">39</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>chromosome1<span class="w">    </span><span class="m">32</span><span class="w">  </span><span class="m">47</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>chromosome1<span class="w">    </span><span class="m">9</span><span class="w">   </span><span class="m">28</span>
+</code></pre></div>
+</blockquote>
+</details>
+<div class="admonition info"></div>
+<ul>
+<li>First pattern, <code>$1 ~ /chr1</code> specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, <code>$1</code> against the regular expression <code>chr1</code>. </li>
+<li>Tilde <code>~</code> means <strong>match</strong>.</li>
+<li>To do the inverse of <strong>match</strong>, we can use <code>!~</code> OR <code>!($1 ~ /chromosome1/)</code></li>
+</ul>
+</div>
+<div class="admonition rectangle-list">
+<p class="admonition-title">Built-In Variables and special patterns In Awk</p>
+<p>Awk’s built-in variables include the field variables <code>$1</code>, <code>$2</code>, <code>$3</code>, and so on (<code>$0</code> is the entire line) — that break a line of text into individual words or pieces called fields. </p>
+<ul>
+<li>
+<p><strong><ins>Control Variables</ins></strong> - Some built-in variables are used to control how awk operates.</p>
+<ul>
+<li><code>FS</code> (field separator): contains the field separator character which is used to divide fields on the input line. The default is “white space”, meaning space and tab characters. FS can be reassigned to another character (typically in BEGIN) to change the field separator. </li>
+<li><code>OFS</code> ( Output field separator): stores the output field separator, which separates the fields when Awk prints them. The default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. </li>
+<li><code>RS</code> (Record Separator): stores the current record separator character. Since, by default, an input line is the input record, the default record separator character is a newline. </li>
+<li><code>ORS</code> (Output record separator ): stores the output record separator, which separates the output lines when Awk prints them. The default is a newline character. print automatically outputs the contents of ORS at the end of whatever it is given to print. </li>
+</ul>
+</li>
+<li>
+<p><strong><ins>Information Variables</ins></strong> - : These variables provide information about the current state of the program:</p>
+<ul>
+<li><code>NR</code> (Number of records): keeps a current count of the number of input records. Remember that records are usually lines. Awk command performs the pattern/action statements once for each record in a file. </li>
+<li><code>NF</code> (Number of fields): keeps a count of the number of fields within the current input record. </li>
+<li><code>FNR</code> (File Number of Records): Keeps track of the number of records read from the current input file.</li>
+<li><code>FILENAME</code>: Contains the name of the current input file being processed.</li>
+</ul>
+</li>
+</ul>
+<p>Also, there are two <ins><strong>special patterns</strong></ins> <code>BEGIN</code> &amp; <code>END</code> - These special patterns enable more complex and flexible data processing workflows by allowing actions to be tied to specific conditions and stages of the input processing cycle</p>
+<ul>
+<li><code>BEGIN {action}</code> - specifies what to do before the first record is read in. Useful to initialise and set up variables</li>
+<li><code>END {action}</code> - what to do after the last record's processing is complete. Useful to print data summaries at the end of file processing</li>
+</ul>
+</div>
+<p><strong>Examples</strong></p>
+<div class="admonition terminal-2">
+<p class="admonition-title">We can use <code>NR</code> to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>awk<span class="w"> </span><span class="s1">&#39;NR &gt;= 3 &amp;&amp; NR &lt;=5&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<details class="success">
+<summary>Output</summary>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="w">    </span>chr3<span class="w">   </span><span class="m">11</span><span class="w">  </span><span class="m">28</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span>chr1<span class="w">   </span><span class="m">40</span><span class="w">  </span><span class="m">49</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span>chr3<span class="w">   </span><span class="m">16</span><span class="w">  </span><span class="m">27</span>
+</code></pre></div>
+</blockquote>
+</details>
+<div class="admonition info"></div>
+<p><code>'NR &gt;= 3 &amp;&amp; NR &lt;= 5'</code>: This is the selection criteria used by awk to determine which lines to process. Let's dissect this part further:</p>
+<ul>
+<li><code>NR</code>: This is a built-in variable in awk that stands for "Number of Records." It keeps track of the current line number in the input file.</li>
+<li><code>&gt;= 3</code>: This means "greater than or equal to 3."</li>
+<li><code>&amp;&amp;</code>: This is the logical AND operator.</li>
+<li><code>&lt;= 5</code>: This means "less than or equal to 5.</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful</summary>
+<ul>
+<li>Extract a specific subset of lines from a larger file</li>
+<li>Perform operations on a range of lines in a file</li>
+<li>Debug or inspect specific portions of a large dataset</li>
+<li>It's commonly used in bioinformatics (as the .bed file extension suggests) and other fields where processing specific sections of large datasets is necessary.</li>
+</ul>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>awk<span class="w"> </span><span class="s1">&#39;BEGIN{s = 0}; {s += ($3-$2)}; END{ print &quot;mean: &quot; s/NR};&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">  </span>mean:<span class="w"> </span><span class="m">14</span>
+</code></pre></div>
+<details class="flushed">
+<summary>Explain please</summary>
+<ul>
+<li><code>'BEGIN{s = 0};</code><ul>
+<li><code>BEGIN{}</code>: This block is executed before any input lines are read.</li>
+<li><code>s = 0</code>: Initializes a variable s to 0. This variable will be used to accumulate the sum of differences between the third and second columns.</li>
+</ul>
+</li>
+<li><code>{s += ($3-$2)};</code><ul>
+<li>{}: This block is executed for each input line.</li>
+<li><code>s += ($3-$2)</code>: For each line, it calculates the difference between the third field (<code>$3</code>) and the second field (<code>$2</code>) and adds this difference to the variable <code>s</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>END{ print "mean: " s/NR};</code></p>
+<ul>
+<li><code>END{}</code>: This block is executed after all input lines have been read.</li>
+<li><code>print "mean: " s/NR</code>: Prints the mean of the differences calculated. s is the sum of all differences, and NR (Number of Records) is the total number of lines read. So, <code>s/NR</code> gives the mean difference.</li>
+</ul>
+</li>
+<li>
+<p>Purpose of <code>{}</code> (Curly Braces)</p>
+<ul>
+<li>Curly braces <code>{}</code> enclose the action part of an AWK pattern-action statement.</li>
+<li>The action inside <code>{}</code> is executed when the pattern (or special block like <code>BEGIN</code> or <code>END</code>) is matched or triggered</li>
+</ul>
+</li>
+<li>
+<p>Purpose of <code>;</code> (Semicolon)</p>
+<ul>
+<li>Semicolons <code>;</code> in AWK separate multiple pattern-action statements when written on a single line.</li>
+<li>They allow you to write several AWK rules in one command line, making the script concise.</li>
+</ul>
+</li>
+</ul>
+<p><ins>Summary</ins> - In this example, we’ve initialized a variable <code>s</code> to <strong>0</strong> in <code>BEGIN</code> (variables you define do not need a dollar sign). Then, for each record we increment <code>s</code> by the length of the feature. At the end of the records, we print this sum <code>s</code> divided by the number of records <code>NR</code> , giving the mean.</p>
+</details>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li><strong>Genomic Feature Analysis</strong>: It quickly provides the average length of genomic features (e.g., genes, exons, or other annotated regions) in a BED file.</li>
+<li><strong>Quality Control</strong>: It can be used to check if the features in your BED file have expected lengths, helping to identify potential errors or anomalies.</li>
+<li><strong>Data Characterization</strong>: This simple statistic can give you a quick overview of the type of features in your file (e.g., short features like SNPs vs. longer features like genes).</li>
+<li><strong>Comparative Analysis</strong>: You can use this command on multiple BED files to compare average feature lengths across different datasets or genomic regions.</li>
+<li><strong>Preprocessing Step</strong>: Knowing the average feature length can be useful for downstream analyses or for setting parameters in other bioinformatics tools.</li>
+<li><strong>Efficiency</strong>: It processes the entire file in a single pass, making it efficient for large genomic datasets.</li>
+<li><strong>Flexibility</strong>: The command can be easily modified to calculate other statistics or to handle different file formats with similar structures</li>
+</ul>
+</details>
+</div>
+<div class="admonition dumbbell">
+<p class="admonition-title"><code>awk</code> makes it easy to convert between bioinformatics files like BED and GTF. Can you generate a three-column BED file from <strong><em>Mus_muscu‐lus.GRCm38.75_chr1.gtf</em></strong>: ?</p>
+<ul>
+<li>Follow this link for a quick recap on <a href="https://tag.readthedocs.io/en/stable/formats.html#:~:text=BED%20allows%20for%20a%20single,by%20ID%20and%20Parent%20attributes">annotation formats</a></li>
+<li>
+<p>Note that the start site of features in the .bed file is <strong>1</strong> less than the start site of features in the .gtf file: .bed uses 0-indexing (<ins>first position is numbered 0</ins>.) and .gtf uses 1-indexing (<ins>first position is numbered 1</ins>) .i.e. <em>"chr 1 100" in a GTF/GFF is "chr 0 100" in BED</em></p>
+</li>
+<li>
+<p>Let's build the command based on <code>awk options 'selection_criteria {action}' input-file</code></p>
+<ul>
+<li>What is the <code>selection_criteria</code> ? ( <strong>hint</strong>- it evolves around a symbol. )</li>
+<li>There is a possibility of needing the "inverse of match" function in <code>awk</code> here which can be invoked with <code>!</code></li>
+<li>For <code>{action}</code>, we will need the field IDs of the three columns. Based on pre-existing knowledge of annotation formats, it will be feild 1, 4 and 5. Don't foget the above note on 0 vs 1 indexing of start site </li>
+</ul>
+</li>
+</ul>
+<details class="truck-medical">
+<summary> Help !</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ { print $1 &quot;\t&quot; $4-1 &quot;\t&quot; $5}&#39;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="m">1</span><span class="w">  </span><span class="m">3054232</span><span class="w"> </span><span class="m">3054733</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="m">1</span><span class="w">  </span><span class="m">3054232</span><span class="w"> </span><span class="m">3054733</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="m">1</span><span class="w">  </span><span class="m">3054232</span><span class="w"> </span><span class="m">3054733</span>
+</code></pre></div>
+</blockquote>
+<details class="flushed">
+<summary>Explain......</summary>
+<ul>
+<li><code>'!/^#/ { print $1 "\t" $4-1 "\t" $5}'</code><ul>
+<li><code>!/^#/</code> : This is a pattern that matches lines that do not start with the # character. The <code>^</code> symbol represents the start of a line, and <code>#</code> is the character to match. The <code>!</code> negates the match, so this pattern matches lines that do not start with <code>#</code>.</li>
+</ul>
+</li>
+<li><code>{ print $1 "\t" $4-1 "\t" $5}</code> This action block is executed for each line that matches the pattern (i.e., lines that do not start with <code>#</code>).<ul>
+<li><code>print $1</code>: Prints the first field of the line.</li>
+<li><code>"\t"</code>: Inserts a tab character.</li>
+<li><code>$4-1</code>: Prints the value of the fourth field minus 1.</li>
+<li><code>"\t"</code>: Inserts another tab character.</li>
+<li><code>$5</code>: Prints the fifth field of the line.</li>
+</ul>
+</li>
+</ul>
+</details>
+</details>
+</div>
+<p><br></p>
+<details class="surprise">
+<summary>Optional (Advanced)  - <code>awk</code> also has a very useful data structure known as an associative array. Associative arrays behave like Python’s dictionaries or hashes in other languages. We can create an associative array by simply assigning a value to a key.</summary>
+<p>For example, suppose we wanted to count the number of features (third column) belonging to the gene “Lypla1.” We could do this by incrementing their values in an associative array:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>awk<span class="w"> </span><span class="s1">&#39;/Lypla1/ {feature[$3] += 1}; END {for (k in feature) print k &quot;\t&quot; feature[k]}&#39;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>exon<span class="w">   </span><span class="m">69</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>CDS<span class="w">    </span><span class="m">56</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>UTR<span class="w">    </span><span class="m">24</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>gene<span class="w">   </span><span class="m">1</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>start_codon<span class="w">    </span><span class="m">5</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>stop_codon<span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>transcript<span class="w"> </span><span class="m">9</span>
+</code></pre></div>
+</blockquote>
+<details class="info">
+<summary>Quick Intro to Arrays</summary>
+<p>The <code>awk</code> language provides one-dimensional arrays for storing groups of related strings or numbers. Every <code>awk</code> array must have a name. Array names have the same syntax as variable names; any valid variable name would also be a valid array name. But one name cannot be used in both ways (as an array and as a variable) in the same <code>awk</code> program.</p>
+<p>Arrays in <code>awk</code> superficially resemble arrays in other programming languages, but there are fundamental differences. In <code>awk</code>, it isn’t necessary to specify the size of an array before starting to use it. Additionally, any number or string, not just consecutive integers, may be used as an array index.</p>
+<p>In most other languages, arrays must be declared before use, including a specification of how many elements or components they contain. In such languages, the declaration causes a contiguous block of memory to be allocated for that many elements. Usually, an index in the array must be a nonnegative integer. For example, the index zero specifies the first element in the array, which is actually stored at the beginning of the block of memory. Index one specifies the second element, which is stored in memory right after the first element, and so on. It is impossible to add more elements to the array, because it has room only for as many elements as given in the declaration. (Some languages allow arbitrary starting and ending indices—e.g., ‘15 .. 27’—but the size of the array is still fixed when the array is declared.)</p>
+<p>A <strong>contiguous</strong> array of four elements might look like below, conceptually, if the element values are eight, "foo", "", and 30.</p>
+<p><center><a class="glightbox" href="../images/contiguous_array.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../images/contiguous_array.png" width="400" /></a></center></p>
+<p>Only the values are stored; the indices are implicit from the order of the values. Here, eight is the value at index zero, because eight appears in the position with zero elements before it.</p>
+<p>Arrays in <code>awk</code> are different—they are <strong>associative</strong>. This means that each array is a collection of pairs—an index and its corresponding array element value:</p>
+<p><center><a class="glightbox" href="../images/associative_arrays.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../images/associative_arrays.png" width="220" /></a></center></p>
+<p>The pairs are shown in jumbled order because their order is irrelevant</p>
+<p>One advantage of associative arrays is that new pairs can be added at any time. For example, suppose a tenth element is added to the array whose value is "number ten". The result is:</p>
+<p><center><a class="glightbox" href="../images/adv_associative_arrays.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../images/adv_associative_arrays.png" width="200" /></a></center></p>
+<p>Now the array is sparse, which just means some indices are missing. It has elements 0–3 and 10, but doesn’t have elements 4, 5, 6, 7, 8, or 9.</p>
+</details>
+<p>It’s worth noting that there’s an entirely Unix way to count features of a particular gene: <code>grep</code> , <code>cut</code> , <code>sort</code> , and <code>uniq -c</code></p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>grep<span class="w"> </span><span class="s2">&quot;Lypla1&quot;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</code></pre></div>
+</div>
+<p>However, if we needed to also filter on column-specific information (e.g., strand), an approach using just base Unix tools would be quite messy. With Awk, adding an additional filter would be trivial: we’d just use <code>&amp;&amp;</code> to add another expression in the pattern.</p>
+</details>
+<div class="admonition info"></div>
+<h2 id="optional-bioawk"><strong>Optional</strong> - <code>bioawk</code><a class="headerlink" href="#optional-bioawk" title="Permanent link">&para;</a></h2>
+<p><code>bioawk</code> is an extension of <code>awk</code>, adding the support of several common biological data formats, including optionally gzip'ed BED, GFF, SAM, VCF, FASTA/Q and TAB-delimited formats with column names. It also adds a few built-in functions and a command line option to use TAB as the input/output delimiter. When the new functionality is not used, <code>bioawk</code> is intended to behave exactly the same as the original <code>awk</code>.</p>
+<p>The original <code>awk</code> requires a YACC-compatible parser generator (e.g. Byacc or Bison). <code>bioawk</code> further depends on <a href="http://zlib.net/">zlib</a> so as to work with gzip'd files.</p>
+<details>
+<summary>YACC</summary>
+<p>A parser generator is a program that takes as input a specification of a syntax, and produces as output a procedure for recognizing that language. Historically, they are also called compiler-compilers.
+  YACC (yet another compiler-compiler) is an LALR(LookAhead, Left-to-right, Rightmost derivation producer with 1 lookahead token) parser generator. YACC was originally designed for being complemented by <strong>Lex</strong>.</p>
+<ul>
+<li><strong>Lex</strong> (A Lexical Analyzer Generator) helps write programs whose control flow is directed by instances of regular expressions in the input stream. It is well suited for editor-script type transformations and for segmenting input in preparation for a parsing routine. </li>
+</ul>
+</details>
+<div class="admonition info">
+<p class="admonition-title"><code>bioawk</code> features</p>
+<ul>
+<li>It can automatically recognize some popular formats and will parse different features associated with those formats. The format option is passed to <code>bioawk</code> using <code>-c arg</code> flag. Here <code>arg</code> can be bed, sam, vcf, gff or fastx (for both fastq and FASTA). It can also deal with other types of table formats using the <code>-c header</code> option. When <code>header</code> is specified, the field names will used for variable names, thus greatly expanding the utility.`</li>
+<li>There are several built-in functions (other than the standard <code>awk</code> built-ins), that are specific to biological file formats. When a format is read with <code>bioawk</code>, the fields get automatically parsed. You can apply several functions on these variables to get the desired output. Let’s say, we read fasta format, now we have <code>$name</code> and <code>$seq</code> that holds sequence name and sequence respectively. You can use the <code>print</code> function (<code>awk</code> built-in) to print <code>$name</code> and <code>$seq</code>. You can also use <code>bioawk</code> built-in with the <code>print</code> function to get length, reverse complement etc by using <code>'{print length($seq)}'</code>. Other functions include <code>reverse</code>, <code>revcomp</code>, <code>trimq</code>, <code>and</code>, <code>or</code>, <code>xor</code> etc.</li>
+</ul>
+</div>
+<details class="table">
+<summary>Variables for each format</summary>
+<p>For the <code>-c</code> you can either specify bed, sam, vcf, gff, fastx or header. <code>bioawk</code> will parse these variables for the respective format. If <code>-c</code> header is specified, the field names (first line) will be used as variables (spaces and special characters will be changed to under_score).</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>bed</strong></th>
+<th style="text-align: left;"><strong>sam</strong></th>
+<th style="text-align: left;"><strong>vcf</strong></th>
+<th style="text-align: left;"><strong>gff</strong></th>
+<th style="text-align: left;"><strong>fastx</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">chrom</td>
+<td style="text-align: left;">qname</td>
+<td style="text-align: left;">chrom</td>
+<td style="text-align: left;">seqname</td>
+<td style="text-align: left;">name</td>
+</tr>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">flag</td>
+<td style="text-align: left;">pos</td>
+<td style="text-align: left;">source</td>
+<td style="text-align: left;">seq</td>
+</tr>
+<tr>
+<td style="text-align: left;">end</td>
+<td style="text-align: left;">rname</td>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">feature</td>
+<td style="text-align: left;">qual</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">pos</td>
+<td style="text-align: left;">ref</td>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">comment</td>
+</tr>
+<tr>
+<td style="text-align: left;">score</td>
+<td style="text-align: left;">mapq</td>
+<td style="text-align: left;">alt</td>
+<td style="text-align: left;">end</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">strand</td>
+<td style="text-align: left;">cigar</td>
+<td style="text-align: left;">qual</td>
+<td style="text-align: left;">score</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">thickstart</td>
+<td style="text-align: left;">rnext</td>
+<td style="text-align: left;">filter</td>
+<td style="text-align: left;">filter</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">thickend</td>
+<td style="text-align: left;">pnext</td>
+<td style="text-align: left;">info</td>
+<td style="text-align: left;">strand</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">rgb</td>
+<td style="text-align: left;">tlen</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">blockcount</td>
+<td style="text-align: left;">seq</td>
+<td style="text-align: left;">attribute</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">blocksizes</td>
+<td style="text-align: left;">qual</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">blockstarts</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<p><strong>bioawk</strong> is not a default linux/unix utility. .i.e. Has to be installed. This is available as a module on NeSI HPC platforms which can be loaded with </p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>module<span class="w"> </span>load<span class="w"> </span>bioawk/1.0
+</code></pre></div>
+</div>
+<p>The basic idea of Bioawk is that we specify what bioinformatics format we’re working with, and Bioawk will automatically set variables for each field (just as regular Awk sets the columns of a tabular text file to $1, $1, $2, etc.). For Bioawk to set these fields, specify the format of the input file or stream with -c. Let’s look at Bioawk’s supported input formats and what variables these formats set:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>bioawk
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>usage: bioawk [-F fs] [-v var=value] [-c fmt] [-tH] [-f progfile | &#39;prog&#39;] [file ...]
+</code></pre></div>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>bioawk<span class="w"> </span>-c<span class="w"> </span><span class="nb">help</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>bed:
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">   </span><span class="m">1</span>:chrom<span class="w"> </span><span class="m">2</span>:start<span class="w"> </span><span class="m">3</span>:end<span class="w"> </span><span class="m">4</span>:name<span class="w"> </span><span class="m">5</span>:score<span class="w"> </span><span class="m">6</span>:strand<span class="w"> </span><span class="m">7</span>:thickstart<span class="w"> </span><span class="m">8</span>:thickend<span class="w"> </span><span class="m">9</span>:rgb<span class="w"> </span><span class="m">10</span>:blockcount<span class="w"> </span><span class="m">11</span>:blocksizes<span class="w"> </span><span class="m">12</span>:blockstarts<span class="w"> </span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>sam:
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">   </span><span class="m">1</span>:qname<span class="w"> </span><span class="m">2</span>:flag<span class="w"> </span><span class="m">3</span>:rname<span class="w"> </span><span class="m">4</span>:pos<span class="w"> </span><span class="m">5</span>:mapq<span class="w"> </span><span class="m">6</span>:cigar<span class="w"> </span><span class="m">7</span>:rnext<span class="w"> </span><span class="m">8</span>:pnext<span class="w"> </span><span class="m">9</span>:tlen<span class="w"> </span><span class="m">10</span>:seq<span class="w"> </span><span class="m">11</span>:qual<span class="w"> </span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>vcf:
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">   </span><span class="m">1</span>:chrom<span class="w"> </span><span class="m">2</span>:pos<span class="w"> </span><span class="m">3</span>:id<span class="w"> </span><span class="m">4</span>:ref<span class="w"> </span><span class="m">5</span>:alt<span class="w"> </span><span class="m">6</span>:qual<span class="w"> </span><span class="m">7</span>:filter<span class="w"> </span><span class="m">8</span>:info<span class="w"> </span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>gff:
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">   </span><span class="m">1</span>:seqname<span class="w"> </span><span class="m">2</span>:source<span class="w"> </span><span class="m">3</span>:feature<span class="w"> </span><span class="m">4</span>:start<span class="w"> </span><span class="m">5</span>:end<span class="w"> </span><span class="m">6</span>:score<span class="w"> </span><span class="m">7</span>:filter<span class="w"> </span><span class="m">8</span>:strand<span class="w"> </span><span class="m">9</span>:group<span class="w"> </span><span class="m">10</span>:attribute<span class="w"> </span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>fastx:
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="w">   </span><span class="m">1</span>:name<span class="w"> </span><span class="m">2</span>:seq<span class="w"> </span><span class="m">3</span>:qual<span class="w"> </span><span class="m">4</span>:comment<span class="w"> </span>
+</code></pre></div>
+</blockquote>
+</div>
+<p>As an example of how this works, let’s read in <em>example.bed</em> and append a column with the length of the feature (end position - start position) for all protein coding genes:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>bioawk<span class="w"> </span>-c<span class="w"> </span>gff<span class="w"> </span><span class="s1">&#39;$3 ~ /gene/ &amp;&amp; $2 ~ /protein_coding/ {print $seqname,$end-$start}&#39;</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>1  465597
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>1  16807
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>1  5485
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>1  12533
+</code></pre></div>
+</blockquote>
+</div>
+<p>Bioawk is also quite useful for processing FASTA/FASTQ files. For example, we could use it to turn a FASTQ file into a FASTA file:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>bioawk<span class="w"> </span>-c<span class="w"> </span>fastx<span class="w"> </span><span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;$seq}&#39;</span><span class="w"> </span>SRR097977.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>&gt;SRR097977.1
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>&gt;SRR097977.2
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>GGTTACTCTTTTAACCTTGATGTTTCGACGCTGTAT
+</code></pre></div>
+</blockquote>
+</div>
+<div class="admonition info">
+<p>Note that Bioawk detects whether to parse input as FASTQ or FASTA when we use <code>-c fastx</code>.</p>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Bioawk can also serve as a method of counting the number of FASTQ/FASTA entries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>bioawk<span class="w"> </span>-c<span class="w"> </span>fastx<span class="w"> </span><span class="s1">&#39;END{print NR}&#39;</span><span class="w"> </span>SRR097977.fastq<span class="w"> </span>
+</code></pre></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Bioawk’s function <code>revcomp()</code> can be used to reverse complement a sequence:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>bioawk<span class="w"> </span>-c<span class="w"> </span>fastx<span class="w"> </span><span class="s1">&#39;{print &quot;&gt;&quot;$name&quot;\n&quot;revcomp($seq)}&#39;</span><span class="w"> </span>SRR097977.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+</code></pre></div>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>&gt;SRR097977.1
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>ACACTAACAAGTGGCGAATTTCATTATGGCAGAATA
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>&gt;SRR097977.2
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>ATACAGCGTCGAAACATCAAGGTTAAAAGAGTAACC
+</code></pre></div>
+</blockquote>
+</div>
+<hr />
+<p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../4_inspectmanipluate/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3. Inspecting and Manipulating Text Data with Unix Tools - Part 1">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3. Inspecting and Manipulating Text Data with Unix Tools - Part 1
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../6_automate_fileprocessing_find_xargs/" class="md-footer__link md-footer__link--next" aria-label="Next: 5. Preview : Automating File-Processing with find and xargs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                5. Preview : Automating File-Processing with find and xargs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Intermediate Shell for Bioinformatics workshop material is licensed under a <a rel="noopener" target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
