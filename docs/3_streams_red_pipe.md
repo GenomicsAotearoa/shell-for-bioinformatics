@@ -10,7 +10,7 @@ Bioinformatics data is often text-based and large. This is why Unix’s philosop
 
 
 <center>
- ![image](./images/redirection_st.png){ width="590" }
+ ![image](images/redirection_st.png){ width="590" }
 </center>
 
 By default, both standard error and standard output of most unix programs go to your terminal screen. We can change this behavior (redirect the streams to a file) by using `>` or `>>` operators. The operator `>` redirects standard output to a file and overwrites any existing contents of the file, whereas `>>` appends to the file. If there isn’t an existing file, both operators will create it before redirecting output to it. 
