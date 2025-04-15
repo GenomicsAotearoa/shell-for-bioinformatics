@@ -1,6 +1,5 @@
-<center>
-![image](./images/nesiGAworkshop_logos.png){width="300"}
-</center>
+
+ <p align="center"><img src="./images/nesiGAworkshop_logos.png" alt="drawing" width="300"/></p> 
 
 # <p align="center"><img src="./images/logo-2023-sept.png" alt="drawing" width="420"/></p> 
 
