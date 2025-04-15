@@ -6,9 +6,9 @@
     * Use specialised language `awk` to do a variety of text-processing tasks
     * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
-<center>
-![image](./images/reading-book.png){width="300"}
-</center>
+<figure markdown>
+![image](images/reading-book.png){width="300"}
+</figure>
 
 ## sed
 

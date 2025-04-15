@@ -7,9 +7,9 @@
     - What is a shell and the importance of UNIX shell/s for Bioinformatics (or for Scientific computing in general)
     - Types of Shell and intro to Bash Shell (we will be using the latter throughout the workshop)
 
-<center>
+<figure markdown>
 ![image](../images/unix_funnel.png){width="350"}
-</center>
+</figure>
 
 <!--- check -->
 
