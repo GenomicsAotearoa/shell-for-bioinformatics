@@ -84,7 +84,7 @@ Data we download is the starting point of all future analyses and conclusions. T
         >afa4dbcc56b540e24558085fdc10342f  -
         >```
 
-    Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from **standard** in. Checksums with **file** input can be done with `md5usm filename` .i.e.
+    Checksums are reported in hexadecimal format, where each digit can be one of 16 characters: digits 0 through 9, and the letters a, b, c, d, e, and f. The trailing dash indicates this is the MD5 checksum of input from **standard** in. Checksums with **file** input can be done with `md5sum filename` .i.e.
 
     !!! terminal "code"
         
