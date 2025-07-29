@@ -258,7 +258,7 @@
 
 #### Advanced (A)
 
-!!! terminal-2 "A-Exampple 1: suppose we wanted to calculate the mean chromosome length in example.bed. We would have to take the sum  of chrosomome lengths, and then divide by the total number of chromosomes ( records). We can do this with:"
+!!! terminal-2 "A-Example 1: suppose we wanted to calculate the mean chromosome length in example.bed. We would have to take the sum  of chrosomome lengths, and then divide by the total number of chromosomes ( records). We can do this with:"
 
     ```bash
     awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 
