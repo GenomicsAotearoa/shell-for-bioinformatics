@@ -1,4 +1,4 @@
-# 5. Preview : Automating File-Processing with `find` and `xargs`
+# 6. Preview : Automating File-Processing with `find` and `xargs`
 
 
 ??? truck-ramp "This section will be moved to "Advanced Shell for BioInformaitcs""
