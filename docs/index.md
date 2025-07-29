@@ -11,8 +11,9 @@
 |1. [Download and verify data](./2_download_data.md)|Downloading data with `wget`/`curl` and check the transferred data’s integrity with check‐sums|
 |2. [Streams, Redirection and Pipe](./3_streams_red_pipe.md)|Combining pipes and redirection, Using "Exit" statuses|
 |3. [Inspecting and Manipulating Text Data with UNIX Tools - Part 1](./4_inspectmanipluate.md)| Inspect file/s with utilities such as `head`,`less`. Extracting and formatting tabular data. Magical `grep`. |
-|4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)|Substitute matching patterns with `sed`. Text processing with `awk` and `bioawk`|
-|5. [Automating File-Processing with find and xargs](./6_automate_fileprocessing_find_xargs.md)| Search files by pattern with `find` and use `xargs` to execute a command for those objects matching the pattern|
+|4. [Inspecting and Manipulating Text Data with UNIX Tools - Part 2](./5_inspectmanipulate2.md)|Substitute matching patterns with `sed`.|
+|5. [Inspecting and Manipulating Text Data with UNIX Tools - Part 3](.//6_inspectmanipulate3.md)| Text processing with `awk` and `bioawk`|
+|6. [Automating File-Processing with find and xargs](./7_automate_fileprocessing_find_xargs.md)| Search files by pattern with `find` and use `xargs` to execute a command for those objects matching the pattern|
 |6. [Puzzles](./puzzles.md) 🧩 | Can you use shell scripts to solve these "real" life challenges in molecular biology ?|
 |7. [Supplementary - 1](./supplementary/supplementary_1.md) | Recap - Unix , Linux and Unix shell|
 |8. [Supplementary - 2](./supplementary/supplementary_2.md) | Recap - Shell basics and commands  |
