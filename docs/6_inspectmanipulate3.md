@@ -24,7 +24,7 @@
 
     There are two key parts for understanding the Awk language: how Awk processes records, and pattern-action pairs. The rest of the language is quite simple.
 
-    - Awk processes input data a record (line) at a time. Each record is composed of fields (column entries) that Awk automatically separates. Awk assigns the entire record to the variable $0, field one's value to $1, field two's value to $2, etc.
+    - Awk processes input data a ^^**record (line)**^^ at a time. Each record is composed of ^^**fields (column entries)**^^ that Awk automatically separates. Awk assigns the entire record to the variable $0, field one's value to $1, field two's value to $2, etc.
     - We build Awk programs using one or more of the following structures: `pattern { action }`. Each pattern is an expression or regular expression pattern. In Awk lingo, these are pattern-action pairs and we can chain multiple pattern-action pairs together (separated by semicolons). If we omit the pattern, Awk will run the action on all records. If we omit the action but specify a pattern, Awk will print all records that match the pattern
     <figure markdown>
     ![image](./images/awk_concepts_diagram.png){width="600"}
