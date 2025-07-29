@@ -183,7 +183,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
     |`a ~ b`      |a matches regular expression pattern b       |
     |`a !~ b`     |a does not match regular expression pattern b|
     |`a && b`     |logical a and b                              |
-    |`a \|\| b`     |logical or a and b                           |
+    |`a || b`     |logical OR between a and b — true if either a is true, or b is true, or both are true|
     |`!a`         |not a (logical negation)                     |
 
 
