@@ -143,13 +143,13 @@ sed -n '3p' example.bed
 
     - `'2,6p'`: This is the command within sed. The 2,6 specifies the range of lines, and p stands for print. So, 2,6p means "print lines 2 through 6"
 
-!!! terminal-2 "Example 3: Finding lines with successful substitutions"
+!!! terminal-2 "Example 2: Finding lines with successful substitutions"
     - Show only lines where chr was replaced with chromosome
     ```bash
-    sed 's/chr/chromosome/g' example.bed
+    sed 's/chr3/chromosome3/g' test.bed
     ```
     ```bash
-    sed -n 's/chr/chromosome/gp' example.bed
+    sed -n 's/chr3/chromosome3/gp' test.bed
     ```
     * The `p` flag after `g` means "print if substitution was made". Combined with `-n`, this shows only modified lines.
 
