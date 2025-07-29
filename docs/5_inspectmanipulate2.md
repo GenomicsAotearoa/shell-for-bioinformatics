@@ -81,9 +81,15 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
         - ^^Efficiency^^: It can process large files quickly, which is common in genomics data.
         - ^^Reproducibility^^: This command can be easily incorporated into scripts or pipelines, ensuring consistent data processing.
 
-* Print specific lines of the file
+!!! circle-info ""
+    **Now that we've seen how sed processes and modifies files, let's understand an important aspect of how sed displays its output**...
 
-To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n` 
+
+### Understanding sed's Default Behavior and the `-n` Flag
+
+### `sed`s Default Behavior: The Auto-Print Feature
+
+By default, `sed` automatically prints every line from the input file to standard output, regardless of whether any operations were performed on that line. This is called **automatic printing of pattern space**.
 
 !!! info ""
     `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
@@ -336,7 +342,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
 
     !!! info ""
     - `$2`: This refers to the second field (column) of the current line.
-    - `"\t"`: This adds a tab character between the output fields. ( Refer to **Special meanings of certain escaped characters** in [supplementary](./supplementary%20/supplementary_3.md) )
+    - `"\t"`: This adds a tab character between the output fields. ( Refer to **Special meanings of certain escaped characters** in [supplementary](./supplementary/supplementary_3.md) )
     - `$3`: This refers to the third field (column) of the current line.
 
     Here, we’re making use of Awk’s string concatenation. Two strings are concatenated if they are placed next to each other with no argument. So for each record, `$2"\t"$3` concatenates the second field, a tab character, and the third field. However, this is an instance where using `cut` is much simpler as the equivalent of above is `cut -f 2,3 example.bed` 
