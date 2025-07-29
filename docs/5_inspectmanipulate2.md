@@ -12,7 +12,7 @@
 
 ## sed
 
-The `s`treamline `ed`itor or `sed` command is a stream editor that reads one or more text files, makes changes or edits according to editing script, and writes the results to standard output. First, we will discuss sed command with respect to search and replace function. 
+The `s`treamline `ed`itor or `sed` command  is a powerful text processing tool in Unix and Linux systems used to perform automated editing and transformation of text, especially within files or data streams First, we will discuss sed command with respect to search and replace function. 
 
 ### Find and Replace
 
