@@ -64,6 +64,9 @@ awk options 'selection_criteria {action}' input-file >  output-file
     - If a line matches, AWK executes the action on that line.
     - If no action is specified, AWK prints the matching line by default
 
+### Understanding `awk`'s Default Behavior
+
+
 !!! terminal-2 "Default behaviour of `awk` is to print every line of data from the specified file. .i.e. mimics `cat`"
 
     ```bash
@@ -83,8 +86,11 @@ awk options 'selection_criteria {action}' input-file >  output-file
         chromosome1	10	19
 
         ```
+### Practical Examples for Bioinformatics¶
 
-!!! terminal-2 "Print lines which match the given pattern"
+#### Beginner (B)
+
+!!! terminal-2 "B-Example 1: Print lines which match the given pattern"
 
     ```bash
     awk '/chromosome1/{print}' example.bed
@@ -97,7 +103,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
     >chromosome1	10	19
     >```
 
-!!! terminal-2 "`awk` can be used to mimic functionality of `cut` : Following command is useful for extracting specific columns from a tabular file, which is a common operation in data processing and bioinformatics workflows." 
+!!! terminal-2 "B-Example 2: `awk` can be used to mimic functionality of `cut` : Following command is useful for extracting specific columns from a tabular file, which is a common operation in data processing and bioinformatics workflows." 
 
      ```bash
      awk '{print $2 "\t" $3}' example.bed 
@@ -123,10 +129,35 @@ awk options 'selection_criteria {action}' input-file >  output-file
         10	19
         ```
 
+#### Intermediate (I)
+
+- - -
+
+??? table "`awk` Comparison and Logical operations -  AWK provides a set of comparison (relational) operators to compare numbers or strings, and to match patterns. These are used to filter data or control the flow of actions in AWK scripts. The main comparison operators are"
+
+    - Comparisons can be numeric or string-based, depending on the data type of the operands.
+    - The `~` and `!~` operators are used for regular expression matching.
 
 
+    |Comparison |  Description                                |
+    |:----------|:--------------------------------------------|
+    |`a == b`     |a is equal to b                              |
+    |`a != b`     |a is not equal to b                          |
+    |`a < b`      |a is less than b                             |
+    |`a > b`      |a is greater than b                          |
+    |`a <= b`     |a is less than or equal to b                 |
+    |`a >= b`     |a is greater than or equal to b              |
+    |`a ~ b`      |a matches regular expression pattern b       |
+    |`a !~ b`     |a does not match regular expression pattern b|
+    |`a && b`     |logical a and b                              |
+    |`a || b`     |logical OR between a and b — true if either a is true, or b is true, or both are true|
+    |`!a`         |not a (logical negation)                     |
 
-!!! terminal-2 "Let’s look at how we can incorporate simple pattern matching. Suppose we wanted to write a filter that only output lines where the length of the feature (end position - start position) was greater than 18. Awk supports arithmetic with the standard operators + , - , * , / , % (remainder), and ^ (exponentiation). We can subtract within a pattern to calculate the length of a feature, and filter on that expression:"
+
+- - -
+
+
+!!! terminal-2 "I-Example 1: AWK can perform arithmetic directly in patterns : Suppose you want to output only the lines where the chromosome length is greater than 18"
 
     ```bash
     awk '$3 - $2 > 18' example.bed
@@ -161,37 +192,7 @@ awk options 'selection_criteria {action}' input-file >  output-file
         ```
 
 
-
-- - -
-
-??? table "`awk` Comparison and Logical operations"
-
-    AWK provides a set of comparison (relational) operators to compare numbers or strings, and to match patterns. These are used to filter data or control the flow of actions in AWK scripts. The main comparison operators are
-
-    - Comparisons can be numeric or string-based, depending on the data type of the operands.
-    - The `~` and `!~` operators are used for regular expression matching.
-
-
-    |Comparison |  Description                                |
-    |:----------|:--------------------------------------------|
-    |`a == b`     |a is equal to b                              |
-    |`a != b`     |a is not equal to b                          |
-    |`a < b`      |a is less than b                             |
-    |`a > b`      |a is greater than b                          |
-    |`a <= b`     |a is less than or equal to b                 |
-    |`a >= b`     |a is greater than or equal to b              |
-    |`a ~ b`      |a matches regular expression pattern b       |
-    |`a !~ b`     |a does not match regular expression pattern b|
-    |`a && b`     |logical a and b                              |
-    |`a || b`     |logical OR between a and b — true if either a is true, or b is true, or both are true|
-    |`!a`         |not a (logical negation)                     |
-
-
-- - -
-
-We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:
-
-!!! terminal "code"
+!!! terminal-2 "I-Example 2: We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), and `!` (NOT). For example, if we wanted all lines on chromosome 1 with a length greater than 10:"
 
     ```bash
     awk '$1 ~ /chromosome1/ && $3 - $2 > 10' example.bed 
@@ -205,7 +206,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         >```
     !!! info ""
 
-    - First pattern, `$1 ~ /chr1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chr1`. 
+    - First pattern, `$1 ~ /chromosome1` specifies the regular expression (All Regular expressions are in slashes).  We are matching the first field, `$1` against the regular expression `chromosome1`. 
     - Tilde `~` means **match**.
     - To do the inverse of **match**, we can use `!~` OR `!($1 ~ /chromosome1/)`
 
@@ -235,9 +236,7 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     - `END {action}` - what to do after the last record's processing is complete. Useful to print data summaries at the end of file processing
 
 
-**Examples**
-
-!!! terminal-2 "We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):"
+!!! terminal-2 "I-Example 3: We can use `NR` to extract ranges of lines, too; for example, if we wanted to extract all lines between 3 and 5 (inclusive):"
 
     ```bash
     awk 'NR >= 3 && NR <=5' example.bed
@@ -266,7 +265,9 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
         - Debug or inspect specific portions of a large dataset
         - It's commonly used in bioinformatics (as the .bed file extension suggests) and other fields where processing specific sections of large datasets is necessary.
 
-!!! terminal-2 "suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum feature lengths, and then divide by the total number of records. We can do this with:"
+#### Advanced (A)
+
+!!! terminal-2 "A-Exampple 1: suppose we wanted to calculate the mean chromosome length in example.bed. We would have to take the sum  of chrosomome lengths, and then divide by the total number of chromosomes ( records). We can do this with:"
 
     ```bash
     awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 
