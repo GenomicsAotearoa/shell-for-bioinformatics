@@ -245,9 +245,9 @@ We can also chain patterns, by using logical operators `&&` (AND), `||` (OR), an
     ??? success "Output"
 
         >```bash
-        >    chr3	11	28
-        >    chr1	40	49
-        >    chr3	16	27
+        >    chromosome3	11	28
+        >    chromosome1	40	49
+        >    chromosome3	16	27
         >```
 
     !!! info ""
