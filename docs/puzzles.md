@@ -377,6 +377,12 @@
     ??? success "Solution"
 
         === "bash"
+             **Option 1**
+            ```bash
+            awk 'BEGIN{RS=">"} NF{seq=""; for(i=2;i<=NF;i++) seq=seq$i; gc=gsub(/[GC]/,"&",seq); if(gc/length(seq)*100>max) {max=gc/length(seq)*100; id=$1}} END{print id"\n"max}' cgcc_data.txt
+            ```
+            **Option 2**
+
             ```bash
             #/bin/bash
 
