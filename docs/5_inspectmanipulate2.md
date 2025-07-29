@@ -179,8 +179,8 @@ sed -n '3p' example.bed
     ```
     !!! info ""
     - `'1~4p;2~4p'`: This is the sed script, which consists of two address/action pairs separated by a semicolon:
-        - `1~4p`: This means "starting at line 1, print every 4th line"
-        - `2~4p`: This means "starting at line 2, print every 4th line"
+        - `1~4p`: This means "starting at line 1, print every 4th line" (lines 1, 5, 9, 13...)
+        - `2~4p`: This means "starting at line 2, print every 4th line" (lines 2, 6, 10, 14..)
 
     ??? clipboard-question "Why is this userful ?"
 
