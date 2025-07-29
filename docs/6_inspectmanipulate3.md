@@ -1,5 +1,11 @@
 # 5. Inspecting and Manipulating Text Data with Unix Tools - Part 3
 
+!!! clipboard-list "Lesson Objectives"
+     
+    * Use specialised language `awk` to do a variety of text-processing tasks
+    * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
+
+
 ## Aho, Weinberger, Kernighan = AWK
 
 Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. 

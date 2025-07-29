@@ -3,8 +3,6 @@
 !!! clipboard-list "Lesson Objectives"
      
     * insertion, deletion, search and replace(substitution) with `sed`
-    * Use specialised language `awk` to do a variety of text-processing tasks
-    * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
 <figure markdown>
 ![image](images/reading-book.png){width="300"}
