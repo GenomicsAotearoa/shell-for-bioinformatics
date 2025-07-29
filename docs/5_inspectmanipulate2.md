@@ -12,7 +12,7 @@
 !!! circle-info "Introduction to `sed`"
     #### 1. WHAT IS `sed`  & WHAT CAN WE DO WITH IT?
     The `s`treamline `ed`itor or `sed` command  is a powerful text processing tool in Unix and Linux systems used to perform automated editing and transformation of text, especially within files or data streams 
-    - Most common use of `sed` is to substitute text, matching a pattern. The syntax for doing this in `sed` is as follows:
+    - Most common use of `sed` is to substitute text, matching a pattern. 
 
     #### 2. Core Concepts - The Foundation
     1. Stream Processing:
