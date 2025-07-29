@@ -33,7 +33,7 @@
 
 !!! key "License" 
 
-    Genomics Aotearoa / New Zealand eScience Infrastructure "Intermediate Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
+    Genomics Aotearoa / The Research Education Advanced Network New Zealand (REANNZ)  "Intermediate Shell for Bioinformatics" is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
     
 - - - 
 
@@ -41,18 +41,10 @@
 
     - If possible, we do recommend using the **Remote** option over **Local**  ( Especially for *Windows* hosts). This will eliminate  the need to install any additional applications
 
-    - **Remote** option will require an existing NeSI Account
-
     ### Remote
     
-    ??? jupyter "Log into NeSI Mahuika Jupyter Service - Not required if the workshop is running on OpenOnDemand based Training environment"
-    
-        1. Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)
-        2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br>![image](./images/jupyter_login_labels_updated.png)</p>
-        3. <p>Choose server options as below
-        <br>>>make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=2`, memory `4 GB` prior to pressing ![images](./images/start_button.png){width="40"}  button.
-    
-        <br>![images](./images/jupyter_server2022.png)
+    ??? jupyter "Workshop will be running on REANNZ Training environment. Access details will be provided on the day of the workshop"
+
     
     ### Local  :warning:
     
