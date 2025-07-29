@@ -1,3 +1,9 @@
+:root {}
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+  height: 5rem;
+  margin: -1.3rem;
+}
+
 .magnifying-glass {
   color: #1DA1F2;
 }
