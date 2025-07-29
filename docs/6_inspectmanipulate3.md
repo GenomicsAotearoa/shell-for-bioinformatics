@@ -12,14 +12,15 @@
 ## Aho, Weinberger, Kernighan = AWK
 
 ???+ circle-info "Introduction to AWK"
-    #### WHAT IS AWK & WHAT CAN WE DO WITH IT? 
+    #### 1. WHAT IS AWK & WHAT CAN WE DO WITH IT? 
     Awk is a scripting language used for manipulating data and generating reports. The awk command programming language requires no compiling and allows the user to use variables, numeric functions, string functions, and logical operators. Awk is mostly used for pattern scanning and processing. It searches one or more files to see if they contain lines that match with the specified patterns and then perform the associated actions. 
 
     1. Transform data files
     2. Automation
     3. Produce formatted reports
 
-    #### Core Concepts - The Foundation
+
+    #### 2. Core Concepts - The Foundation
 
     There are two key parts for understanding the Awk language: how Awk processes records, and pattern-action pairs. The rest of the language is quite simple.
 
@@ -30,25 +31,30 @@
     </figure>
 
 
-**Syntax**:
-
-```bash
-awk options 'selection_criteria {action}' input-file >  output-file
-```
-!!! info ""
+    #### 3. Basic Syntax
+    ```bash
+    awk options 'selection_criteria {action}' input-file >  output-file
+    ```
 
     - `'selection_criteria {action}'`: This is the core part of the awk command where you define:
 
         - `selection_criteria`: Conditions that determine which lines or records in the input file are processed. The selection criteria can be any valid `awk` expression that evaluates to true or false. Some common examples include:
         - `action`: Operations to perform on the selected lines or records. .i.e. The action is a block of code enclosed in `{}` that specifies what to do with the selected lines
 
-    **How does it Work**:
-
-    - AWK reads the input file line by line.
-    - For each line, it checks if the line matches the `selection_criteria`.
-    - If a line matches, AWK executes the action on that line.
+    #### 4. How AWK Operations works
+    - Scans a file line by line
+    - Splits each input line into fields
+    - Compares input line/fields to pattern
+    - Performs action(s) on matched lines
     - If no action is specified, AWK prints the matching line by default
 
+    #### 5. Programming Constructs Available:
+    - Format output lines
+    - Arithmetic and string operations
+    - Conditionals and loops
+
+
+    
 ### Understanding `awk`'s Default Behavior
 
 
