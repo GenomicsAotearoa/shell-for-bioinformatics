@@ -5,6 +5,9 @@
     * Use specialised language `awk` to do a variety of text-processing tasks
     * Quick overview of `bioawk` (an extension of `awk` to process common biological data formats)
 
+<figure markdown>
+![image](./images/awk_logo.png){width="300"}
+</figure>
 
 ## Aho, Weinberger, Kernighan = AWK
 
