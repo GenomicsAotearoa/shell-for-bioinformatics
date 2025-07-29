@@ -87,31 +87,56 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 
 ### Understanding sed's Default Behavior and the `-n` Flag
 
-### `sed`s Default Behavior: The Auto-Print Feature
+#### `sed`s Default Behavior: The Auto-Print Feature
 
 By default, `sed` automatically prints every line from the input file to standard output, regardless of whether any operations were performed on that line. This is called **automatic printing of pattern space**.
 
-!!! info ""
-    `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
+!!! circle-info "Pattern Space"
+    The pattern space is sed's internal buffer where it holds the current line being processed. Think of it as sed's "working memory" for each line.
 
+Let's see this in action:
 
-
-!!! terminal-2 "print 5th line of example.bed"
-
-    ```bash
-    sed -n '5p' example.bed
+!!! terminal-2 "Default behavior example - sed prints ALL lines"
+    - Let's say we have a simple file with 5 lines
+    ```
+    echo -e "chr1\nchr2\nchr3\nchr4\nchr5" > test.txt
     ```
 
-    !!! info ""
+    - Now let's replace only chr3 with chromosome3
+    ```
+    sed 's/chr3/chromosome3/' test.txt
+    ```
+    * Notice that `sed` printed all 5 lines, even though it only modified line 3. This is sed's default behavior - it acts like a "stream editor" that processes and outputs every line
 
-    - `n:` This option suppresses the default output. Normally, sed prints every line of the input file to the standard output. The -n option tells sed to not print anything unless explicitly instructed to do so.
-    - `'5p'`: This is the command within sed. The 5 specifies the line number, and p stands for print. So, 5p means "print the 5th line".
+##### When This Default Behavior Becomes a Problem
+The default behavior can cause issues when you want to:
+
+- Print only specific lines
+- Print only lines that match certain conditions
+- Extract specific information without showing unchanged lines
+
+!!! terminal-2 "Problem example - Trying to print only the 3rd line"
+
+    ```bash
+    sed '3p' example.bed
+    ```
+    You will notice he 3rd line appears twice because:
+
+    - `sed` automatically prints all lines (including line 3)
+    -   The `p` command explicitly prints line 3 again
+    
+##### How to over-ride the default behaviour
+
+The `-n` flag (also `--quiet` or `--silent`) suppresses automatic printing. With `-n`, `sed` only prints when you explicitly tell it to using commands like `p`
+
+#### Practical Examples for Bioinformatics
 
 !!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program. Let's print line 2 and 5,"
 
     ```bash
     sed -n -e '2p' -e '5p' example.bed
     ```
+
 
     !!! info ""
     - `-e` This allows you to specify a script
