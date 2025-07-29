@@ -127,26 +127,13 @@ The default behavior can cause issues when you want to:
 
 The `-n` flag (also `--quiet` or `--silent`) suppresses automatic printing. With `-n`, `sed` only prints when you explicitly tell it to using commands like `p`
 
+```bash
+sed -n '3p' example.bed
+```
+
 #### Practical Examples for Bioinformatics
 
-!!! terminal-2 "We can provide any number of additional lines to print using `-e` option. This tells sed to execute the next command line argument as sed program. Let's print line 2 and 5,"
-
-    ```bash
-    sed -n -e '2p' -e '5p' example.bed
-    ```
-
-
-    !!! info ""
-    - `-e` This allows you to specify a script
-    - `-e '2p'`: This is the first expression. The 2p part means "print the 2nd line".
-    - `-e '5p'`: This is the second expression. The 5p part means "print the 5th line".
-
-    ??? clipboard-question "Why is this useful ?"
-        - **Quality control**: Checking if certain lines (e.g., the 2nd and 5th) are formatted correctly or contain expected data.
-        - **Debugging scripts**: Verifying that data processing steps are working as intended by looking at specific entries.
-        - **Sampling**: Quickly viewing a few lines without loading the entire file into memory.
-
-!!! terminal-2 "It also accepts range, using `,`. Let's print line 2-6,"
+!!! terminal-2 "Example 1: Extracting specific lines from a BED file"
 
     ```bash
     sed -n '2,6p' example.bed
@@ -156,29 +143,17 @@ The `-n` flag (also `--quiet` or `--silent`) suppresses automatic printing. With
 
     - `'2,6p'`: This is the command within sed. The 2,6 specifies the range of lines, and p stands for print. So, 2,6p means "print lines 2 through 6"
 
-!!! terminal-2 "Also, we can create specific pattern, like multiples of a number using `~`. Let's print every tenth line of Mus_musculus.GRCm38.75_chr1.bed starting from 10, 20, 30.. to end of the file"
-
+!!! terminal-2 "Example 3: Finding lines with successful substitutions"
+    - Show only lines where chr was replaced with chromosome
     ```bash
-    sed -n '10~10p' Mus_musculus.GRCm38.75_chr1.bed
+    sed 's/chr/chromosome/g' example.bed
     ```
-    !!! info ""
-    - `'10~10p'`: This is the key part of the command. It uses a special addressing syntax:
-        - `10`: Start at line 10
-        - `~10`: Then print every 10th line after that
-        - `p`: The print command
-    
-    ??? clipboard-question "Why is this useful ?"
-        - **Sampling Large Datasets**: When files are too large to inspect in full, sampling every 10th line provides a manageable subset for quick quality checks or visualization.
-        - **Performance Testing**: Developers can use sampled data to test pipelines or software tools without processing the entire dataset.
-        - **Data Summarization**: Researchers may want to get a sense of the data distribution or content without loading the whole file into memory.
+    ```bash
+    sed -n 's/chr/chromosome/gp' example.bed
+    ```
+    * The `p` flag after `g` means "print if substitution was made". Combined with `-n`, this shows only modified lines.
 
-???+ dumbbell "Exercise 4.4"
-
-    Can you use the above `~` trick to extract all the **odd** numbered lines from *Mus_musculus.GRCm38.75_chr1.bed* and append the output to a new file **odd_sed.bed**
-
-One of the powerful features is that we can combine these ranges or multiples in any fashion. Example: fastq files have header on first line and sequence in second, next two lines will have the quality and a blank extra line (four lines make one read). Sometimes  we only need the sequence and header
-
-!!! terminal "code"
+!!! terminal-2 "Example 3: Extract sequence and header from a .fastq file"
 
     ```bash
     sed -n '1~4p;2~4p' SRR097977.fastq
@@ -193,13 +168,13 @@ One of the powerful features is that we can combine these ranges or multiples in
         - Quickly view or extract just the sequence data and identifiers from a FASTQ file
         - Reduce the file size by removing quality score information
         - Prepare the data for further processing that only requires the sequence and its identifier
-        
+
 !!! tip "Sanity Check"
 
     It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above `sed -n '1~4p;2~4p' SRR097977.fastq` should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with `sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l` & `cat SRR097977.fastq | wc -l`
 
 
-!!! terminal-2 "We can use the above trick to convert the .fastq to .fasta"
+!!! terminal-2 "Example 4: We can use the above trick to convert the .fastq to .fasta"
 
     ```bash
     sed -n '1~4p;2~4p' SRR097977.fastq  | sed 's/^@/>/g' > SRR097977.fasta
@@ -264,8 +239,6 @@ One of the powerful features is that we can combine these ranges or multiples in
     approach and use .* . Consider:
     
 - - - 
-    
-
 
     
 
