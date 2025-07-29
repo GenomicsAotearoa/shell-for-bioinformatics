@@ -8,21 +8,40 @@
 ![image](images/reading-book.png){width="300"}
 </figure>
 
-## sed
 
-The `s`treamline `ed`itor or `sed` command  is a powerful text processing tool in Unix and Linux systems used to perform automated editing and transformation of text, especially within files or data streams First, we will discuss sed command with respect to search and replace function. 
+!!! circle-info "Introduction to `sed`"
+    #### 1. WHAT IS `sed`  & WHAT CAN WE DO WITH IT?
+    The `s`treamline `ed`itor or `sed` command  is a powerful text processing tool in Unix and Linux systems used to perform automated editing and transformation of text, especially within files or data streams 
+    - Most common use of `sed` is to substitute text, matching a pattern. The syntax for doing this in `sed` is as follows:
 
-### Find and Replace
+    #### 2. Core Concepts - The Foundation
+    1. Stream Processing:
+        - Reads input line by line, applies operations, outputs results
+        - Think: Input → sed operations → Output
+    2. Address-Command Structure:
 
-Most common use of `sed` is to substitute text, matching a pattern. The syntax for doing this in `sed` is as follows:
+        - Format: `[address]command`
+        - Address = which lines to target (optional)
+        - Command = what operation to perform
 
-```bash
-sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
-```
+    3. Common Operations:
 
-!!! info ""
+        - `s` = substitute (find/replace)
+        - `d` = delete
+        - `i/a` = insert/append
+        - `y` = transform characters
 
+    >Mental Model: sed is a "text assembly line" - each input line gets processed through your editing operations.
 
+    #### 3. Basic Syntax
+    ```bash
+    sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
+    ```
+     <figure markdown>
+     ![image](./images/sed_syntax_diagram.png)
+     </figure>
+
+     
     - Here, `/` is the delimiter (you can also use `_` (underscore), `|` (pipe) or `:` (colon) as delimiter as well)
     - `OPERATION` specifies the action to be performed (sometimes if a condition is satisfied). 
          - The most common and widely used operation is `s` which does the **substitution** operation 
