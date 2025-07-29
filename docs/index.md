@@ -1,7 +1,7 @@
 
  <p align="center"><img src="./images/ga_reannz.png" alt="drawing" width="300"/></p> 
 
-# <p align="center"><img src="./images/logo-2023-sept.png" alt="drawing" width="420"/></p> 
+# <p align="center"><img src="./images/logo-2023-sept.png" alt="drawing" width="370"/></p> 
 
 
 <!--- check -->
