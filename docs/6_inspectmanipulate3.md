@@ -130,8 +130,15 @@
     - The `~` and `!~` operators are used for regular expression matching.
 
 
-    |Comparison |  Description                                |
-    |:----------|:--------------------------------------------|
+    |Comparison   |  Description                                |
+    |:------------|:--------------------------------------------|
+    |`a + b`      |a plus b                                     |
+    |`a - b`      |a minus b                                    |
+    |`a * b`      |a times b                                    |
+    |`a / b`      |a divided by b                               |
+    |`a % b`      |a modulo b (remainder of division)           |
+    |`a ^ b`      |a raised to the power of b                   |
+    |`a == b`     |a is equal to b                              |
     |`a == b`     |a is equal to b                              |
     |`a != b`     |a is not equal to b                          |
     |`a < b`      |a is less than b                             |
@@ -258,7 +265,7 @@
 
 #### Advanced (A)
 
-!!! terminal-2 "A-Example 1: suppose we wanted to calculate the mean chromosome length in example.bed. We would have to take the sum  of chrosomome lengths, and then divide by the total number of chromosomes ( records). We can do this with:"
+!!! terminal-2 "A-Example 1: suppose we wanted to calculate the mean feature length in example.bed. We would have to take the sum of feature lengths, and then divide by the total number of features (records). We can do this with:"
 
     ```bash
     awk 'BEGIN{s = 0}; {s += ($3-$2)}; END{ print "mean: " s/NR};' example.bed 

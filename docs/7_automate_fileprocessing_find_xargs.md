@@ -1,7 +1,7 @@
 # 6. Preview : Automating File-Processing with `find` and `xargs`
 
 
-??? truck-ramp "This section will be moved to "Advanced Shell for BioInformaitcs""
+??? truck-ramp "This section will be moved to "Advanced Shell for BioInformatics""
 
     In this section, we’ll learn about a more powerful way to specify files matching some criteria using Unix `find`. We’ll also see how files printed by `find` can be passed to another tool called `xargs` to create powerful Unix-based processing workflows.
     
