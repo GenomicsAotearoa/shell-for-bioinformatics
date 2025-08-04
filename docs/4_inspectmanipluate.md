@@ -1,7 +1,7 @@
 # 3. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
  
 !!! clipboard-list "Lesson Objectives"
-    * Inspect file/s with utilities such as `head`,`less`. 
+    * Inspect file/s with utilities such as `head`,`tail`. 
     * Extracting and formatting tabular data. 
     * Magical `grep`
     * use `sort`, `uniq`, `join` to manipulate the one or multiple files at once
@@ -387,6 +387,26 @@ However, using `sort`’s default of sorting alphanumerically by line and doesn�
     with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
 
     The end result is that rows are grouped by chromosome and sorted by start position.
+    
+    ??? tip "What if we want to sort the chromosome column when there are 10+ chromosomes?"
+        Let's say we have a file with chromosomes named chr1, chr2, chr10, and chr11. If we sort this file using `sort -k1,1`, the output will be:
+        ```bash
+        chr1
+        chr10
+        chr11
+        chr2
+        ```
+        This is because `sort` treats the chromosome names as strings, and sorts them lexicographically. To sort the chromosome names numerically, we can use the `-V` option, which sorts version numbers in a way that is more intuitive for humans. The `-V` option sorts the chromosome names in a way that takes into account the numeric values in the names. So,
+        ```bash
+        sort -k1,1 -V test-chr-sort.txt     
+        ```
+        Will output:
+        ```bash
+        chr1
+        chr2
+        chr10
+        chr11
+        ```
 
 
 ??? question "Exercise 4.3"
