@@ -173,7 +173,7 @@
         - Space on either side of `-` is not important but leaving a space makes it easy to read
     - `> 18`: This checks if the difference is greater than 18.
 
-    ??? clipboard-question "Why is this useful"
+    ??? clipboard-question "Why is this useful ?"
         - **Filtering Genomic Regions by Length**:
             - In a BED file, the second and third columns typically represent the start and end positions of genomic regions. This command can filter out regions that are shorter than a specified length (in this case, 18 base pairs).
         - **Quality Control**:
@@ -256,7 +256,7 @@
     - `&&`: This is the logical AND operator.
     - `<= 5`: This means "less than or equal to 5.
 
-    ??? clipboard-question "Why is this useful"
+    ??? clipboard-question "Why is this useful ?"
 
         - Extract a specific subset of lines from a larger file
         - Perform operations on a range of lines in a file

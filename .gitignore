@@ -1,1 +1,2 @@
 clean-data-dir.sh
+*.DS_Store*

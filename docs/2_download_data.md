@@ -4,7 +4,7 @@
 
     - Inspect data with `md5` (checksum verification)
 
-??? desktop-download-24 "Download with `wget` from a terminal client (optional)  - Not required for  NeSI Training platform"
+??? desktop-download-24 "Download with `wget` from a terminal client (optional)  - Not required for  REANNZ Training platform"
 
     ```bash
     wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz
@@ -88,7 +88,7 @@ Data we download is the starting point of all future analyses and conclusions. T
 
     !!! terminal "code"
         
-        NeSI training environment terminal will open with with working directory already being set to `shell4b_data`. If not, change directory with,
+        REANNZ training environment terminal will open with with working directory already being set to `shell4b_data`. If not, change directory with,
 
         ```bash
         cd shell4b_data
@@ -113,7 +113,7 @@ Data we download is the starting point of all future analyses and conclusions. T
 
 !!! danger "Applications will not trigger clear error messages for corrupted data"
 
-    The following is an error message recorded on the log for a failed `bedtools genomecov` process ran on NeSI Mahuika cluster
+    The following is an error message recorded on the log for a failed `bedtools genomecov` process ran on REANNZ Mahuika cluster
     ```bash
     terminate called after throwing an instance of 'std::bad_alloc'
     what(): std::bad_alloc

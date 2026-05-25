@@ -182,7 +182,7 @@ sed -n '3p' example.bed
         - `1~4p`: This means "starting at line 1, print every 4th line" (lines 1, 5, 9, 13...)
         - `2~4p`: This means "starting at line 2, print every 4th line" (lines 2, 6, 10, 14..)
 
-    ??? clipboard-question "Why is this userful ?"
+    ??? clipboard-question "Why is this useful ?"
 
         - Quickly view or extract just the sequence data and identifiers from a FASTQ file
         - Reduce the file size by removing quality score information
