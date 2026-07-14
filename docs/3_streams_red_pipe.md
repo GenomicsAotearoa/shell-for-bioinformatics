@@ -1,4 +1,4 @@
-# 2. Streams, Redirection and Pipe
+# Streams, Redirection and Pipe
 
 !!! clipboard-list "Lesson Objectives"
 

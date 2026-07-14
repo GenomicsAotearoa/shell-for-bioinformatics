@@ -1,10 +1,10 @@
-# 3. Inspecting and Manipulating Text Data with Unix Tools - Part 1 
+# Inspecting and Manipulating Text Data with Unix Tools - Part 1 
  
 !!! clipboard-list "Lesson Objectives"
     * Inspect file/s with utilities such as `head`,`tail`. 
     * Extracting and formatting tabular data. 
     * Magical `grep`
-    * use `sort`, `uniq`, `join` to manipulate the one or multiple files at once
+    * use `sort`, `uniq`, `join`, `cut` to manipulate the one or multiple files at once
 
 
 <figure markdown>

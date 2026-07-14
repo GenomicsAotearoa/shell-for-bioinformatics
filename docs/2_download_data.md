@@ -1,4 +1,4 @@
-# 1. Download & Verify Data
+# Download & Verify Data
 
 !!! clipboard-list "Lesson Objectives"
 

@@ -1,4 +1,4 @@
-# 5. Inspecting and Manipulating Text Data with Unix Tools - Part 3
+# Inspecting and Manipulating Text Data with Unix Tools - Part 3
 
 !!! clipboard-list "Lesson Objectives"
      
