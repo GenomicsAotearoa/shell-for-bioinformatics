@@ -7,20 +7,22 @@
 ??? desktop-download-24 "Download with `wget` from a terminal client (optional)  - Not required for  REANNZ Training platform"
 
     ```bash
-    wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz
+    # for .tar.gz dir
+    wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/shell4b_data.tar.gz
     ```
     OR
 
     ```bash
-    wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.zip
+    # for .zip dir
+    wget -c https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/shell4b_data.zip
     ```
 
 - - -
 
 ??? desktop-download-24 "Download via Web Browser (use locally)"
 
-    * Data can be downloaded directly from this [link](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.tar.gz) which will download **shell4b_data.tar.gz** to *Downloads* directory
-    * If the above link fails, try [this alternative .zip](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v1.0/shell4b_data.zip)
+    * Data can be downloaded directly from this [link](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/shell4b_data.tar.gz) which will download **shell4b_data.tar.gz** to *Downloads* directory
+    * If the above link fails, try [this alternative .zip](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/releases/download/v2.0/shell4b_data.zip)
 
 <br>
 
