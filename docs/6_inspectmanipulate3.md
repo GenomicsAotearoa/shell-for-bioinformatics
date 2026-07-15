@@ -120,6 +120,51 @@
         10	19
         ```
 
+!!! terminal-2 "B-Example 3: `awk` can be used to print the line numbers, which can be an extremely useful code snippet so that you can quickly know the column number(s) of what you want to extract out with `cut` or `awk`" 
+
+    Earlier, we saw this bit of code that allowed us to replace tabs with new lines (so that we could count how many columns we have in a file by piping into `wc -l`)
+
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -1 | tr '\t' '\n' 
+    ```
+    
+    >```
+    >1
+    >pseudogene
+    >gene
+    >3054233
+    >3054733
+    >.
+    >+
+    >.
+    >gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+    >```
+
+    We can pipe this into `awk '{print NR $0'}'` to now append line numbers to the output:
+
+    - `NR` means the current record (line) number that awk is processing. It starts at 1 and increments with each line read.
+    - `$0` means the entire current record (the whole line), exactly as read from input - as opposed to $1, $2, etc., which refer to individual fields within that line.
+
+
+    ```bash
+    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | head -1 | tr '\t' '\n' | awk '{print NR $0}'
+    ```
+
+    >```
+    >11
+    >2pseudogene
+    >3gene
+    >43054233
+    >53054733
+    >6.
+    >7+
+    >8.
+    >9gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+    >```
+
+
+
+
 #### Intermediate (I)
 
 - - -

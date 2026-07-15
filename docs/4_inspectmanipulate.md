@@ -206,6 +206,27 @@ When working with plain-text tabular data formats like tab-delimited and CSV fil
 
 Using `cut`, we can convert our GTF for ***Mus_musculus.GRCm38.75_chr1.gtf*** to a three-column tab-delimited file of genomic ranges (e.g., chromosome, start, and end position). We’ll chop off the metadata rows using the grep command covered earlier and then use cut to extract the first, fourth, and fifth columns (chromosome, start, end):
 
+??? info "What are gtf files and what do they look like?" 
+
+    [GTF files](https://asia.ensembl.org/info/website/upload/gff.html?) or Gene Transfer Format files are genomic annotation files. They contain information about every annotated feature in a genome, including the feature name, start and end position in the sequence, which strand the feature is on, and other IDs and attributes. The first few lines are header lines and begin with a # symbol. After the header lines, each row contains annotation information for a single feature. Each column of the annotation data are tab separated and correspond to a specific field. We want to ignore the header lines so that we can begin processing/extracting the relevant annotation information.  
+
+    ```bash
+    head Mus_musculus.GRCm38.75_chr1.gtf 
+    ```
+    ```output
+    #!genome-build GRCm38.p2
+    #!genome-version GRCm38
+    #!genome-date 2012-01
+    #!genome-build-accession NCBI:GCA_000001635.4
+    #!genebuild-last-updated 2013-09
+    1       pseudogene      gene    3054233 3054733 .       +       .       gene_id "ENSMUSG00000090025"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene";
+    1       unprocessed_pseudogene  transcript      3054233 3054733 .       +       .       gene_id "ENSMUSG00000090025"; transcript_id "ENSMUST00000160944"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene"; transcript_name "Gm16088-001"; transcript_source "havana"; tag "cds_end_NF"; tag "cds_start_NF"; tag "mRNA_end_NF"; tag "mRNA_start_NF";
+    1       unprocessed_pseudogene  exon    3054233 3054733 .       +       .       gene_id "ENSMUSG00000090025"; transcript_id "ENSMUST00000160944"; exon_number "1"; gene_name "Gm16088"; gene_source "havana"; gene_biotype "pseudogene"; transcript_name "Gm16088-001"; transcript_source "havana"; exon_id "ENSMUSE00000848981"; tag "cds_end_NF"; tag "cds_start_NF"; tag "mRNA_end_NF"; tag "mRNA_start_NF";
+    1       snRNA   gene    3102016 3102125 .       +       .       gene_id "ENSMUSG00000064842"; gene_name "Gm26206"; gene_source "ensembl"; gene_biotype "snRNA";
+    1       snRNA   transcript      3102016 3102125 .       +       .       gene_id "ENSMUSG00000064842"; transcript_id "ENSMUST00000082908"; gene_name "Gm26206"; gene_source "ensembl"; gene_biotype "snRNA"; transcript_name "Gm26206-201"; transcript_source "ensembl";
+    ```
+
+
 !!! terminal "code"
 
     ```bash
@@ -381,40 +402,39 @@ However, using `sort`’s default of sorting alphanumerically by line and doesn�
         chr3	16	27
         ```
 
-!!! quote ""
 
-    Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as `start,end`, so to sort by a single column we use `start,start`. In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
-    with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
+Here, we specify the columns (and their order) we want to sort by as `-k` arguments. In technical terms, `-k` specifies the sorting keys and their order. Each `-k` argument takes a range of columns as `start,end`, so to sort by a single column we use `start,start`. In the preceding example, we first sorted by the first column (chromosome), as the first `-k` argument was `-k1,1` . Sorting by the first column alone leads to many ties in rows
+with the same chromosomes (e.g., “chr1” and “chr3”). Adding a second `-k` argument with a different column tells sort how to break these ties. In our example, `-k2,2n` tells sort to sort by the second column (start position), treating this column as numerical data (because there’s an `n` in `-k2,2n`).
 
-    The end result is that rows are grouped by chromosome and sorted by start position.
+The end result is that rows are grouped by chromosome and sorted by start position.
     
-    ??? tip "What if we want to sort the chromosome column when there are 10+ chromosomes?"
-        Let's say we have a file with chromosomes named chr1, chr2, chr10, and chr11. If we sort this file using `sort -k1,1`, the output will be:
-        ```bash
-        chr1
-        chr10
-        chr11
-        chr2
-        ```
-        This is because `sort` treats the chromosome names as strings, and sorts them lexicographically. To sort the chromosome names numerically, we can use the `-V` option, which sorts version numbers in a way that is more intuitive for humans. The `-V` option sorts the chromosome names in a way that takes into account the numeric values in the names. So,
-        ```bash
-        sort -k1,1 -V test-chr-sort.txt     
-        ```
-        Will output:
-        ```bash
-        chr1
-        chr2
-        chr10
-        chr11
-        ```
+??? tip "What if we want to sort the chromosome column when there are 10+ chromosomes?"
+    Let's say we have a file with chromosomes named chr1, chr2, chr10, and chr11. If we sort this file using `sort -k1,1`, the output will be:
+    ```bash
+    chr1
+    chr10
+    chr11
+    chr2
+    ```
+    This is because `sort` treats the chromosome names as strings, and sorts them lexicographically. To sort the chromosome names numerically, we can use the `-V` option, which sorts version numbers in a way that is more intuitive for humans. The `-V` option sorts the chromosome names in a way that takes into account the numeric values in the names. So,
+    ```bash
+    sort -k1,1 -V test-chr-sort.txt     
+    ```
+    Will output:
+    ```bash
+    chr1
+    chr2
+    chr10
+    chr11
+    ```
 
 
-??? question "Exercise 4.3"
+!!! question "Exercise 4.3"
 
     ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
     header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.
 
-    ??? success "solution"
+    ??? success "Solution"
         ```bash
         sort -k1,1 -k4,4n Mus_musculus.GRCm38.75_chr1_random.gtf > Mus_musculus.GRCm38.75_chr1_sorted.gtf
         ```
