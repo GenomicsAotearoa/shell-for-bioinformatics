@@ -444,7 +444,7 @@ The end result is that rows are grouped by chromosome and sorted by start positi
     ```
 
 
-!!! question "Exercise 4.3"
+???+ dumbbell "Exercise 4.3"
 
     ***Mus_musculus.GRCm38.75_chr1_random.gtf*** file is ***Mus_musculus.GRCm38.75_chr1.gtf*** with permuted rows (and without a metadata
     header). Can you group rows by chromosome, and sort by position? If yes, append the output to a separate file.
@@ -673,6 +673,68 @@ Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows f
     !!! info ""
     - `-1 1`  : This option specifies that the join should use the **first field** of the **first file** (example_sorted.bed) as the key for joining. The `1` indicates that the key is in the first column of this file.
     - `-2 1`  : This option specifies that the join should use the **first field** of the **second file** (example_lengths_alt.txt) as the key for joining. Similarly, the `1` indicates that the key is in the first column of this file.
-    - `-a 1` -  join command to include all lines from the first file (example_sorted.bed), even if there is no matching line in the second file. This is useful when you want to retain all records from the first file regardless of whether they find a match in the second file.
+    - `-a 1` -  join command to include all lines from the first file (example_sorted.bed), even if there is no matching line in the second file. This is useful when you want to retain all records from the first file regardless of whether they find a match in the second file. The `-a 1` flag works similar to a `left_join()` in tidyverse R, but leaves the rows empty (in R, these would become NAs)
+
+
+???+ dumbbell "Exercise 4.4"
+
+     What if we want to retain all rows in our first and second files, even if there is no match in either file? We can do this with the `-a 1` and `-a 2` flags and arguments together.  
+
+     To test this, first:  
+
+     1. Create an alternative example_sorted.bed which does not have the chr2 line. You can make use of the subshell trick we learnt earlier to use head and tail in a single line, and redirect the output to *example_sorted_alt.bed*. You should end up with a file that has rows with chr1 and chr3, but no chr2 rows.   
+     2. Then, join this to *example_lengths_alt.txt*, which has chr1 and chr2, but no chr3. Retain all rows using `-a 1 -a 2`. This is similar to an `outer_join()` in tidyverse R. 
+
+    ??? success "Solution"
+        ```bash
+        (head -n 5; tail -n 2) < example_sorted.bed > example_sorted_alt.bed
+        cat example_sorted_alt.bed
+        ```
+        ```bash
+        chr1	10	19
+        chr1	26	39
+        chr1	32	47
+        chr1	40	49
+        chr1	9	28
+        chr3	11	28
+        chr3	16	27
+        ```
+
+        ```bash
+        # "inner join" - default behaviour, only matching rows retained
+        join -1 1 -2 1 example_sorted_alt.bed example_lengths_alt.txt 
+        chr1 10 19 58352
+        chr1 26 39 58352
+        chr1 32 47 58352
+        chr1 40 49 58352
+        chr1 9 28 58352
+        ```
+        ```bash
+        # "left join" - all rows in first file retained
+        join -1 1 -2 1 -a1 example_sorted_alt.bed example_lengths_alt.txt
+        chr1 10 19 58352
+        chr1 26 39 58352
+        chr1 32 47 58352
+        chr1 40 49 58352
+        chr1 9 28 58352
+        chr3 11 28
+        chr3 16 27
+        ```
+        ```bash
+        # "outer join" - all rows in both files retained
+        join -1 1 -2 1 -a1 -a2 example_sorted_alt.bed example_lengths_alt.txt
+        chr1 10 19 58352
+        chr1 26 39 58352
+        chr1 32 47 58352
+        chr1 40 49 58352
+        chr1 9 28 58352
+        chr2 39521
+        chr3 11 28
+        chr3 16 27
+        ```
+
+
+
+
 
 <p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
