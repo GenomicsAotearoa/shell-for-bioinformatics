@@ -1,0 +1,1345 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa &amp; NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/5_inspectmanipulate2/">
+      
+      
+        <link rel="prev" href="../4_inspectmanipulate/">
+      
+      
+        <link rel="next" href="../6_inspectmanipulate3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/ga_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Inspecting and Manipulating Text Data with Unix Tools - Part 2 - Intermediate Shell for Bioinformatics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inspecting-and-manipulating-text-data-with-unix-tools-part-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Intermediate Shell for Bioinformatics" class="md-header__button md-logo" aria-label="Intermediate Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/ga_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intermediate Shell for Bioinformatics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inspecting and Manipulating Text Data with Unix Tools - Part 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to system preference" type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Intermediate Shell for Bioinformatics" class="md-nav__button md-logo" aria-label="Intermediate Shell for Bioinformatics" data-md-component="logo">
+      
+  <img src="../images/ga_logo.png" alt="logo">
+
+    </a>
+    Intermediate Shell for Bioinformatics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/shell-for-bioinformatics" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/shell-for-bioinformatics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_download_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download &amp; Verify Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_streams_red_pipe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Streams, Redirection and Pipe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_inspectmanipulate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inspecting and Manipulating Text Data with Unix Tools - Part 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inspecting and Manipulating Text Data with Unix Tools - Part 2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inspecting and Manipulating Text Data with Unix Tools - Part 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-sed-what-can-we-do-with-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. WHAT IS sed &amp; WHAT CAN WE DO WITH IT?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts-the-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts - The Foundation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-basic-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Basic Syntax
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-seds-default-behavior-and-the-n-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding sed's Default Behavior and the -n Flag
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding sed's Default Behavior and the -n Flag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seds-default-behavior-the-auto-print-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seds Default Behavior: The Auto-Print Feature
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="seds Default Behavior: The Auto-Print Feature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-this-default-behavior-becomes-a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When This Default Behavior Becomes a Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-over-ride-the-default-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to over-ride the default behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples-for-bioinformatics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Examples for Bioinformatics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_inspectmanipulate3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inspecting and Manipulating Text Data with Unix Tools - Part 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../puzzles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puzzles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supplementary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supplementary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary/supplementary_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supp - 1. UNIX, Linux &amp; UNIX Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary/supplementary_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supp - 2. Unix Shell Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary/supplementary_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supp - 3. Escaping and Special Characters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supplementary/supplementary_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Preview : Automating File-Processing with find and xargs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-sed-what-can-we-do-with-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. WHAT IS sed &amp; WHAT CAN WE DO WITH IT?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts-the-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts - The Foundation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-basic-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Basic Syntax
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-seds-default-behavior-and-the-n-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding sed's Default Behavior and the -n Flag
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding sed's Default Behavior and the -n Flag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seds-default-behavior-the-auto-print-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seds Default Behavior: The Auto-Print Feature
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="seds Default Behavior: The Auto-Print Feature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-this-default-behavior-becomes-a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When This Default Behavior Becomes a Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-over-ride-the-default-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to over-ride the default behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-examples-for-bioinformatics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Examples for Bioinformatics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="inspecting-and-manipulating-text-data-with-unix-tools-part-2">Inspecting and Manipulating Text Data with Unix Tools - Part 2<a class="headerlink" href="#inspecting-and-manipulating-text-data-with-unix-tools-part-2" title="Permanent link">¶</a></h1>
+<div class="admonition clipboard-list">
+<p class="admonition-title">Lesson Objectives</p>
+<ul>
+<li>insertion, deletion, search and replace(substitution) with <code>sed</code></li>
+</ul>
+</div>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/reading-book.png" data-desc-position="bottom"><img alt="image" src="../images/reading-book.png" width="300"></a></p>
+</figure>
+<div class="admonition circle-info">
+<p class="admonition-title">Introduction to <code>sed</code></p>
+<h4 id="1-what-is-sed-what-can-we-do-with-it">1. WHAT IS <code>sed</code>  &amp; WHAT CAN WE DO WITH IT?<a class="headerlink" href="#1-what-is-sed-what-can-we-do-with-it" title="Permanent link">¶</a></h4>
+<p>The <code>s</code>treamline <code>ed</code>itor or <code>sed</code> command  is a powerful text processing tool in Unix and Linux systems used to perform automated editing and transformation of text, especially within files or data streams 
+- Most common use of <code>sed</code> is to substitute text, matching a pattern. </p>
+<h4 id="2-core-concepts-the-foundation">2. Core Concepts - The Foundation<a class="headerlink" href="#2-core-concepts-the-foundation" title="Permanent link">¶</a></h4>
+<ol>
+<li>Stream Processing:<ul>
+<li>Reads input line by line, applies operations, outputs results</li>
+<li>Think: Input → sed operations → Output</li>
+</ul>
+</li>
+<li>
+<p>Address-Command Structure:</p>
+<ul>
+<li>Format: <code>[address]command</code></li>
+<li>Address = which lines to target (optional)</li>
+<li>Command = what operation to perform</li>
+</ul>
+</li>
+<li>
+<p>Common Operations:</p>
+<ul>
+<li><code>s</code> = substitute (find/replace)</li>
+<li><code>d</code> = delete</li>
+<li><code>i/a</code> = insert/append</li>
+<li><code>y</code> = transform characters</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Mental Model: sed is a "text assembly line" - each input line gets processed through your editing operations.</p>
+</blockquote>
+<h4 id="3-basic-syntax">3. Basic Syntax<a class="headerlink" href="#3-basic-syntax" title="Permanent link">¶</a></h4>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sed<span class="w"> </span><span class="s1">'OPERATION/REGEXP/REPLACEMENT/FLAGS'</span><span class="w"> </span>FILENAME
+</code></pre></div>
+ <figure markdown="">
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/sed_syntax_diagram.png" data-desc-position="bottom"><img alt="image" src="../images/sed_syntax_diagram.png"></a>
+ </figure><p></p>
+<ul>
+<li>Here, <code>/</code> is the delimiter (you can also use <code>_</code> (underscore), <code>|</code> (pipe) or <code>:</code> (colon) as delimiter as well)</li>
+<li><code>OPERATION</code> specifies the action to be performed (sometimes if a condition is satisfied). <ul>
+<li>The most common and widely used operation is <code>s</code> which does the <strong>substitution</strong> operation </li>
+<li>Other useful operators include <code>y</code> for <strong>transformation</strong>, <code>i</code> for <strong>insertion</strong>, <code>d</code> for <strong>deletion</strong> etc.).</li>
+</ul>
+</li>
+<li><code>REGEXP</code> and <code>REPLACEMENT</code> specify search term and the substitution term respectively for the operation that is being performed.</li>
+<li><code>FLAGS</code> are additional parameters that control the operation. Some common <code>FLAGS</code> include:<ul>
+<li><code>g</code>   replace all the instances of <code>REGEXP</code> with <code>REPLACEMENT</code> (globally)</li>
+<li><code>N</code> where N is any number, to replace Nth instance of the <code>REGEXP</code> with <code>REPLACEMENT</code></li>
+<li><code>p</code> if substitution was made, then prints the new pattern space</li>
+<li><code>i</code> ignores case for matching <code>REGEXP</code></li>
+<li><code>w</code> file If substitution was made, write out the result to the given file</li>
+<li><code>d</code> when specified without <code>REPLACEMENT</code>, deletes the found <code>REGEXP</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li>Some find and replace examples</li>
+</ul>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file names example_chromosome.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sed<span class="w"> </span><span class="s1">'s/chr/chromosome/g'</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_chromosome.bed
+</code></pre></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
+<ul>
+<li>This will follow the format <code>sed '/SEARCH_STRING/OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME</code> where <code>SEARCH_STRING</code> is <strong>40</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sed<span class="w"> </span><span class="s1">'/40/s/chr/chromosome/g'</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_40.bed
+</code></pre></div></li>
+<li><code>/40/</code>: This is an address (a pattern match) that restricts the following command to only those lines containing the string "40"</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<p>This command is particularly useful for processing genomic data files, where you might want to change the chromosome notation (from "chr" to "chromosome") only for a specific chromosome </p>
+</details>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Find and replace directly on the input, but save an old version too</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sed<span class="w"> </span>-i.old<span class="w"> </span><span class="s1">'s/chr/chromosome/g'</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info">
+<ul>
+<li><code>-i</code> to edit files <strong>in-place</strong> instead of printing to standard output</li>
+<li>original file will be retained under the filename <code>example.bed.old</code></li>
+</ul>
+</div>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li><ins>Standardizing nomenclature</ins>: In genomics, chromosomes are sometimes abbreviated as "chr" (e.g., chr1, chr2), but some tools or databases might require the full word "chromosome". This command helps standardize the format.</li>
+<li><ins>File format conversion</ins>: It can help convert between different file formats or standards that use different chromosome naming conventions.</li>
+<li><ins>Data cleaning</ins>: If you have a large dataset with inconsistent chromosome naming, this command can quickly standardize it.</li>
+<li><ins>Preparing data for specific tools</ins>: Some bioinformatics tools might require a specific format for chromosome names, and this command can help prepare your data.</li>
+<li><ins>Safety</ins>: The -i.old option creates a backup, allowing you to revert changes if needed.</li>
+<li><ins>Efficiency</ins>: It can process large files quickly, which is common in genomics data.</li>
+<li><ins>Reproducibility</ins>: This command can be easily incorporated into scripts or pipelines, ensuring consistent data processing.</li>
+</ul>
+</details>
+</div>
+<div class="admonition circle-info">
+<p><strong>Now that we've seen how sed processes and modifies files, let's understand an important aspect of how sed displays its output</strong>...</p>
+</div>
+<h3 id="understanding-seds-default-behavior-and-the-n-flag">Understanding sed's Default Behavior and the <code>-n</code> Flag<a class="headerlink" href="#understanding-seds-default-behavior-and-the-n-flag" title="Permanent link">¶</a></h3>
+<h4 id="seds-default-behavior-the-auto-print-feature"><code>sed</code>s Default Behavior: The Auto-Print Feature<a class="headerlink" href="#seds-default-behavior-the-auto-print-feature" title="Permanent link">¶</a></h4>
+<p>By default, <code>sed</code> automatically prints every line from the input file to standard output, regardless of whether any operations were performed on that line. This is called <strong>automatic printing of pattern space</strong>.</p>
+<div class="admonition circle-info">
+<p class="admonition-title">Pattern Space</p>
+<p>The pattern space is sed's internal buffer where it holds the current line being processed. Think of it as sed's "working memory" for each line.</p>
+</div>
+<p>Let's see this in action:</p>
+<div class="admonition terminal-2">
+<p class="admonition-title">Default behavior example - sed prints ALL lines</p>
+<ul>
+<li>
+<p>Let's say we have a simple file with 5 lines
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>echo -e "chr1\nchr2\nchr3\nchr4\nchr5" &gt; test.txt
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Now let's replace only chr3 with chromosome3
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sed 's/chr3/chromosome3/' test.txt
+</code></pre></div><p></p>
+</li>
+<li>Notice that <code>sed</code> printed all 5 lines, even though it only modified line 3. This is sed's default behavior - it acts like a "stream editor" that processes and outputs every line</li>
+</ul>
+</div>
+<h5 id="when-this-default-behavior-becomes-a-problem">When This Default Behavior Becomes a Problem<a class="headerlink" href="#when-this-default-behavior-becomes-a-problem" title="Permanent link">¶</a></h5>
+<p>The default behavior can cause issues when you want to:</p>
+<ul>
+<li>Print only specific lines</li>
+<li>Print only lines that match certain conditions</li>
+<li>Extract specific information without showing unchanged lines</li>
+</ul>
+<div class="admonition terminal-2">
+<p class="admonition-title">Problem example - Trying to print only the 3<sup>rd</sup> line</p>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sed<span class="w"> </span><span class="s1">'3p'</span><span class="w"> </span>example.bed
+</code></pre></div>
+You will notice he 3<sup>rd</sup> line appears twice because:<p></p>
+<ul>
+<li><code>sed</code> automatically prints all lines (including line 3)</li>
+<li>The <code>p</code> command explicitly prints line 3 again</li>
+</ul>
+</div>
+<h5 id="how-to-over-ride-the-default-behaviour">How to over-ride the default behaviour<a class="headerlink" href="#how-to-over-ride-the-default-behaviour" title="Permanent link">¶</a></h5>
+<p>The <code>-n</code> flag (also <code>--quiet</code> or <code>--silent</code>) suppresses automatic printing. With <code>-n</code>, <code>sed</code> only prints when you explicitly tell it to using commands like <code>p</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'3p'</span><span class="w"> </span>example.bed
+</code></pre></div>
+<h4 id="practical-examples-for-bioinformatics">Practical Examples for Bioinformatics<a class="headerlink" href="#practical-examples-for-bioinformatics" title="Permanent link">¶</a></h4>
+<div class="admonition terminal-2">
+<p class="admonition-title">Example 1: Extracting specific lines from a BED file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'2,6p'</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>'2,6p'</code>: This is the command within sed. The 2,6 specifies the range of lines, and p stands for print. So, 2,6p means "print lines 2 through 6"</li>
+</ul>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Example 2: Finding lines with successful substitutions</p>
+<ul>
+<li>Show only lines where chr was replaced with chromosome
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sed<span class="w"> </span><span class="s1">'s/chr3/chromosome3/g'</span><span class="w"> </span>test.bed
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/chr3/chromosome3/gp'</span><span class="w"> </span>test.bed
+</code></pre></div></li>
+<li>The <code>p</code> flag after <code>g</code> means "print if substitution was made". Combined with <code>-n</code>, this shows only modified lines.</li>
+</ul>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Example 3: Extract sequence and header from a .fastq file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'1~4p;2~4p'</span><span class="w"> </span>SRR097977.fastq
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>'1~4p;2~4p'</code>: This is the sed script, which consists of two address/action pairs separated by a semicolon:<ul>
+<li><code>1~4p</code>: This means "starting at line 1, print every 4<sup>th</sup> line" (lines 1, 5, 9, 13...)</li>
+<li><code>2~4p</code>: This means "starting at line 2, print every 4<sup>th</sup> line" (lines 2, 6, 10, 14..)</li>
+</ul>
+</li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful ?</summary>
+<ul>
+<li>Quickly view or extract just the sequence data and identifiers from a FASTQ file</li>
+<li>Reduce the file size by removing quality score information</li>
+<li>Prepare the data for further processing that only requires the sequence and its identifier</li>
+</ul>
+</details>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Sanity Check</p>
+<p>It's not a bad practice validate some of these commands by comparing the output from another command. For an example, above <code>sed -n '1~4p;2~4p' SRR097977.fastq</code> should print exactly half the number of lines in the file as it is removing two lines per read. Do a quick sanity check with <code>sed -n '1~4p;2~4p' SRR097977.fastq  | wc -l</code> &amp; <code>cat SRR097977.fastq | wc -l</code></p>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Example 4: We can use the above trick to convert the .fastq to .fasta</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'1~4p;2~4p'</span><span class="w"> </span>SRR097977.fastq<span class="w">  </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s/^@/&gt;/g'</span><span class="w"> </span>&gt;<span class="w"> </span>SRR097977.fasta
+</code></pre></div>
+<div class="admonition info"></div>
+<ul>
+<li><code>^@</code>: Matches the <code>'@'</code> character at the beginning of a line</li>
+<li><code>&gt;:</code> Replaces the matched <code>'@'</code> with <code>'&gt;'</code></li>
+</ul>
+<details class="clipboard-question">
+<summary>Why is this useful</summary>
+<ul>
+<li><strong>Format Conversion</strong>: It quickly converts a FASTQ file to a FASTA file, which is a common requirement in many bioinformatics workflows.</li>
+<li><strong>Data Reduction</strong>: It removes the quality score information, which is not used in FASTA format, potentially reducing file size.</li>
+<li><strong>Compatibility</strong>: Many bioinformatics tools work with FASTA format, so this conversion can be a necessary preprocessing step.</li>
+<li><strong>Efficiency</strong>: It performs the conversion using efficient text-processing tools, which can be faster than some scripted solutions, especially for large files.</li>
+<li><strong>Pipeline Integration</strong>: This one-liner can be easily integrated into larger bioinformatics pipelines or scripts.</li>
+</ul>
+</details>
+</div>
+<p><br></p>
+<details class="surprise">
+<summary>Optional (Advanced) -Let's say that we want capture all the transcript names from the last column (9<sup>th</sup> column) from .gtf file. We can write something similar to:</summary>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">"^#"</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span><span class="s1">'s/.*transcript_id "([^"]+)".*/\1/'</span>
+</code></pre></div>
+</div>
+<div class="admonition info">
+<p><code>-E</code> option to enable POSIX Extended Regular Expressions (ERE)</p>
+<details class="pied-piper">
+<summary>POSIX Regular and Exetended Regular Expressions</summary>
+<p><strong>POSIX Basic Regular Expressions</strong> </p>
+<ul>
+<li>
+<p>POSIX or “Portable Operating System Interface for uniX” is a collection of standards that define some of the functionality that a (UNIX) operating system should support. One of these standards defines two flavors of regular expressions. Commands involving regular expressions, such as <code>grep</code> and <code>egrep</code>, implement these flavors on POSIX-compliant UNIX systems. Several database systems also use POSIX regular expressions.</p>
+<p>The Basic Regular Expressions or BRE flavor standardizes a flavor similar to the one used by the traditional UNIX <code>grep</code> command. This is pretty much the oldest regular expression flavor still in use today. One thing that sets this flavor apart is that most meta-characters require a backslash to give the metacharacter its flavor. Most other flavors, including POSIX ERE, use a backslash to suppress the meaning of metacharacters. Using a backslash to escape a character that is never a metacharacter is an error.</p>
+</li>
+</ul>
+<p><strong>POSIX Extended Regular Expressions</strong></p>
+<ul>
+<li>
+<p>The Extended Regular Expressions or ERE flavor standardizes a flavor similar to the one used by the UNIX <code>egrep</code> command. “Extended” is relative to the original UNIX <code>grep</code>, which only had bracket expressions, dot, caret, dollar and star. An ERE support these just like a BRE. Most modern regex flavors are extensions of the ERE flavor. By today’s standard, the POSIX ERE flavor is rather bare bones. The POSIX standard was defined in 1986, and regular expressions have come a long way since then.</p>
+<p>The developers of <code>egrep</code> did not try to maintain compatibility with <code>grep</code>, creating a separate tool instead. Thus <code>egrep</code>, and POSIX ERE, add additional metacharacters without backslashes. You can use backslashes to suppress the meaning of all metacharacters, just like in modern regex flavors. Escaping a character that is not a meta-character is an error.</p>
+</li>
+</ul>
+</details>
+</div>
+<p>Output is not really what we are after,</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="m">1</span><span class="w">  </span>pseudogene<span class="w">  </span>gene<span class="w">    </span><span class="m">3054233</span><span class="w"> </span><span class="m">3054733</span><span class="w"> </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">"ENSMUSG00000090025"</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">"Gm16088"</span><span class="p">;</span><span class="w"> </span>gene_source<span class="w"> </span><span class="s2">"havana"</span><span class="p">;</span><span class="w"> </span>gene_biotype<span class="w"> </span><span class="s2">"pseudogene"</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ENSMUST00000160944
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ENSMUST00000160944
+</code></pre></div>
+</blockquote>
+<p>The is due to <code>sed</code> default behaviour where it prints every line, making replacements to matching lines. .i.e Some lines of the last column of <em>Mus_musculus.GRCm38.75_chr1.gtf</em> don't contain <code>transcript_id</code>. So, <code>sed</code> prints the entire line rather than captured group. One way to solve this would be to use <code>grep</code> <code>transcript_id</code> before <code>sed</code> to only work with lines containing the string <code>transcript_id</code> . However, <code>sed</code> offers a cleaner way. First, disable <code>sed</code> from outputting all lines with <code>-n</code> ( can use <code>--quiet</code> or <code>--silent</code> as well .i.e. <em>suppress automatic printing of pattern space</em>). Then, by appending <code>p</code> (<em>Print the current pattern space</em>) after the last slash <code>sed</code> will print all lines it’s made a replacement on. The following is an illustration of <code>-n</code> used with <code>p</code>:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">"^#"</span><span class="w"> </span>Mus_musculus.GRCm38.75_chr1.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/.*transcript_id "([^"]+)".*/\1/p'</span>
+</code></pre></div>
+</div>
+<p>This example uses an important regular expression idiom: capturing text between delimiters (in this case, quotation marks). This is a useful pattern, so let’s break it
+down:</p>
+<ol>
+<li>First, match zero or more of any character ( .* ) before the string "transcript_id" .</li>
+<li>Then, match and capture (because there are parentheses around the pattern) one or more characters that are not a quote. This is accomplished with [^"]+ , the important idiom in this example. In regular extension jargon, the brackets make up a character class. Character classes specify what characters the expression is allowed to match. Here, we use a caret ( ^ ) inside the brackets to match anything except what’s inside these brackets (in this case, a quote). The end result is that we match and capture one or more nonquote characters (because there’s a trailing + ). This approach is nongreedy; often beginners make the mistake of taking a greedy
+approach and use .* . Consider:</li>
+</ol>
+</details>
+<hr>
+<hr>
+<p align="center"><b><a class="btn" href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/" style="background: var(--bs-dark);font-weight:bold">Back to homepage</a></b></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../4_inspectmanipulate/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Inspecting and Manipulating Text Data with Unix Tools - Part 1">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Inspecting and Manipulating Text Data with Unix Tools - Part 1
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../6_inspectmanipulate3/" class="md-footer__link md-footer__link--next" aria-label="Next: Inspecting and Manipulating Text Data with Unix Tools - Part 3">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Inspecting and Manipulating Text Data with Unix Tools - Part 3
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Intermediate Shell for Bioinformatics workshop material is licensed under a <a rel="noopener" target="_blank" href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
