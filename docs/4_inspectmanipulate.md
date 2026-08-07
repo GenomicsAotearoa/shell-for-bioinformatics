@@ -514,45 +514,38 @@ As you can see, `uniq` does not return the unique values in letters.txt — it o
     >      4 C
     >```
 
-Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarize columns of tabular data:
+Combined with other Unix tools like `cut`, `grep` and `sort`, `uniq` can be used to summarise columns of tabular data. 
 
-!!! terminal "code"
+???+ dumbbell "Exercise 4.4"
 
-    ```bash
-    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c
-    ```
-    ??? success "Output"
+     Find and count the unique annotation features in the GTF file, ordering from most frequent to last.
+
+     Hint: annotation features are in column 3. 
+     
+    ??? success "Solution"
     
-        ```bash
-        25901 CDS
-        36128 exon
-        2027 gene
-        2290 start_codon
-        2299 stop_codon
-        4993 transcript
-        7588 UTR
-        ```
-Count in order from most frequent to last
+        !!! terminal "code"
 
-!!! terminal "code"
+            ```bash
+            grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
+            ```
 
-    ```bash
-    grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf | cut -f3 | sort | uniq -c | sort -rn
-    ```
-
-    >```bash
-    >  36128 exon
-    >  25901 CDS
-    >   7588 UTR
-    >   4993 transcript
-    >   2299 stop_codon
-    >   2290 start_codon
-    >   2027 gene
-    >```
+            >```bash
+            >  36128 exon
+            >  25901 CDS
+            >   7588 UTR
+            >   4993 transcript
+            >   2299 stop_codon
+            >   2290 start_codon
+            >   2027 gene
+            >```
     
-!!! abstract ""
- 
-    * `n` and `r` represents *numerical sort* and *reverse* order (Or descending as the default as ascending) 
+        !!! abstract ""
+            *  `grep -v "^#" Mus_musculus.GRCm38.75_chr1.gtf` - first remove all the header lines from our gtf.  
+            * `cut -f3` - cut out just column 3, which contains our annotation features.    
+            * `sort` - sort this column BEFORE running unique. Remember earlier we saw unique only removes consecutive duplicates. Our features will be repeated in the gtf file many times, and not in alphabetical order.  
+            *  `uniq -c` - use uniq with the -c flag to count all unique entries.  
+            * Finally we can `sort` with`n` and `r` which represents *numerical sort* and *reverse* order (Or descending as the default is ascending).   
 
 
 ## Joining two files with `join`
@@ -649,7 +642,7 @@ However, look what happens if our second file, *example_lengths.txt* doesn’t h
     >6
     >```
 
-Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows from example_sorted.bed that do not have an entry in the first column of example_lengths_alt.txt. If we don’t want this behavior, we can use option -a to include unpairable lines—ones that do not have an entry in either file:
+Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows from *example_sorted.bed* that do not have an entry in the first column of *example_lengths_alt.txt*. If we don’t want this behavior, we can use option `-a` to include unpairable lines—ones that do not have an entry in either file:
 
 !!! terminal "code"
 
@@ -676,13 +669,13 @@ Because **chr3** is absent from *example_lengths_alt.txt*, our join omits rows f
     - `-a 1` -  join command to include all lines from the first file (example_sorted.bed), even if there is no matching line in the second file. This is useful when you want to retain all records from the first file regardless of whether they find a match in the second file. The `-a 1` flag works similar to a `left_join()` in tidyverse R, but leaves the rows empty (in R, these would become NAs)
 
 
-???+ dumbbell "Exercise 4.4"
+???+ dumbbell "Exercise 4.5"
 
      What if we want to retain all rows in our first and second files, even if there is no match in either file? We can do this with the `-a 1` and `-a 2` flags and arguments together.  
 
      To test this, first:  
 
-     1. Create an alternative example_sorted.bed which does not have the chr2 line. You can make use of the subshell trick we learnt earlier to use head and tail in a single line, and redirect the output to *example_sorted_alt.bed*. You should end up with a file that has rows with chr1 and chr3, but no chr2 rows.   
+     1. Create an alternative *example_sorted.bed* which does not have the chr2 line. You can make use of the subshell trick we learnt earlier to use head and tail in a single line, and redirect the output to *example_sorted_alt.bed*. You should end up with a file that has rows with chr1 and chr3, but no chr2 rows.   
      2. Then, join this to *example_lengths_alt.txt*, which has chr1 and chr2, but no chr3. Retain all rows using `-a 1 -a 2`. This is similar to an `outer_join()` in tidyverse R. 
 
     ??? success "Solution"
